@@ -9,6 +9,7 @@ on:
     branches:
       - main
     paths:
+      - '.github/**'
       - 'app/**'
       - 'gradle/**'
       - 'gradle.properties'
@@ -18,6 +19,7 @@ on:
     branches:
       - main
     paths:
+      - '.github/**'
       - 'app/**'
       - 'gradle/**'
       - 'build.gradle'
@@ -49,9 +51,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: apk-editor-debug
-          path: app/build/outputs/apk/debug/app-debug.apk
-      - name: Upload output-metadata
+          path: app/build/outputs/apk/debug
+      - name: Upload Files
         uses: actions/upload-artifact@v3
         with:
-          name: output-metadata
-          path: app/build/outputs/apk/debug/output-metadata.json
+          name: Files
+          path: app
