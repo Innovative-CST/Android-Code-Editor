@@ -1,0 +1,57 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# Original at https://github.com/tyron12233/CodeAssist/blob/main/.github/workflows/build-apk.yml
+# Changes: Minor adjustments, removal of Cancel previous runs step, but every change can be found with a simple diff.
+
+name: Android CI
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'app/**'
+      - 'gradle/**'
+      - 'gradle.properties'
+      - 'gradlew'
+      - 'settings.gradle'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'app/**'
+      - 'gradle/**'
+      - 'build.gradle'
+      - 'gradle.properties'
+      - 'gradlew'
+      - 'settings.gradle'
+  workflow_dispatch:
+
+jobs:
+  buildApkFile:
+    name: Build Debug APK
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: temurin
+          
+      - name: Allow gradlew permission
+        run: chmod +x ./gradlew
+
+      - name: Build debug APK
+        run: ./gradlew assembleDebug --warning-mode all
+          
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: apk-editor-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
+      - name: Upload output-metadata
+        uses: actions/upload-artifact@v3
+        with:
+          name: output-metadata
+          path: app/build/outputs/apk/debug/output-metadata.json

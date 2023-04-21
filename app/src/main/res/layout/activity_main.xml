@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+	 xmlns:android="http://schemas.android.com/apk/res/android"
+	 xmlns:app="http://schemas.android.com/apk/res-auto"
+	 android:layout_height="match_parent"
+	 android:layout_width="match_parent"
+	 android:background="@color/brownish_red_md_theme_light_main_activity_logo_background"
+	 android:id="@+id/coordinator">
+
+	<LinearLayout
+		 android:layout_height="match_parent"
+		 android:layout_width="match_parent"
+		 android:orientation="vertical"
+		 android:id="@+id/main">
+
+		<ImageView
+			 android:layout_height="0dp"
+			 android:layout_width="match_parent"
+			 android:src="@drawable/ic_launcher_foreground"
+			 android:tint="@color/brownish_red_md_theme_light_main_activity_logo_color"
+			 android:layout_weight="1" />
+
+		<TextView
+			 android:layout_height="wrap_content"
+			 android:layout_width="wrap_content"
+			 android:visibility="gone"
+			 android:textColor="@color/brownish_red_md_theme_light_main_activity_logo_color"
+			 android:text="Tap to start"
+			 android:id="@+id/info"
+			 android:layout_gravity="center_horizontal" />
+
+	</LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
