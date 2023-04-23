@@ -1,6 +1,7 @@
 package android.code.editor;
 
 import android.Manifest;
+import android.code.editor.files.FileManagerActivity;
 import android.code.editor.tsd.StoragePermission;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -18,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements StoragePermission {
 
@@ -200,7 +203,10 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
         	@Override
         	public void onClick(View arg0) {
             	// TODO: Implement this method
-				
+				Intent intent = new Intent();
+				intent.putExtra("path",Environment.getExternalStorageDirectory().getAbsolutePath());
+				intent.setClass(MainActivity.this,FileManagerActivity.class);
+				startActivity(intent);
         	}
         });
     }
