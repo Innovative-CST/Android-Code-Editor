@@ -51,4 +51,12 @@ public class FileManager {
 	public static String getLatSegmentOfFilePath(String path) {
 		return Uri.parse(path).getLastPathSegment();
 	}
+	
+	public static boolean ifFileFormatIsEqualTo(String path,String format){
+		try {
+			return Uri.parse(path).getLastPathSegment().substring(Uri.parse(path).getLastPathSegment().length() - ".".concat(format).length(), Uri.parse(path).getLastPathSegment().length()).equals(".".concat(format));
+		} catch(Exception e) {
+			return false;
+		}
+	}
 }

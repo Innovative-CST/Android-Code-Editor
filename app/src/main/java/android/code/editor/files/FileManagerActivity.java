@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
@@ -123,17 +124,19 @@ public class FileManagerActivity extends AppCompatActivity {
 			FileIcon.setUpIcon(FileManagerActivity.this,_data.get(_position).get("path").toString(),icon);
 			path.setText(_data.get(_position).get("lastSegmentOfFilePath").toString());
 			final String path = _data.get(_position).get("path").toString();
+			if (new File(path).isDirectory()) {
 			mainlayout.setOnClickListener(
-				new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						Intent intent = new Intent();
-						intent.putExtra("path",path);
-						intent.setClass(FileManagerActivity.this,FileManagerActivity.class);
-						startActivity(intent);
+					new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							Intent intent = new Intent();
+							intent.putExtra("path",path);
+							intent.setClass(FileManagerActivity.this,FileManagerActivity.class);
+							startActivity(intent);
+						}
 					}
-				}
-			);
+				);
+			}
 		}
 		
 		@Override
