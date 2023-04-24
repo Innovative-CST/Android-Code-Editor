@@ -125,7 +125,7 @@ public class FileManagerActivity extends AppCompatActivity {
 			path.setText(_data.get(_position).get("lastSegmentOfFilePath").toString());
 			final String path = _data.get(_position).get("path").toString();
 			if (new File(path).isDirectory()) {
-			mainlayout.setOnClickListener(
+				mainlayout.setOnClickListener(
 					new View.OnClickListener() {
 						@Override
 						public void onClick(View v) {
@@ -136,6 +136,8 @@ public class FileManagerActivity extends AppCompatActivity {
 						}
 					}
 				);
+			} else {
+				mainlayout.setOnClickListener(null);
 			}
 		}
 		
