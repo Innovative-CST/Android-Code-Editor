@@ -1,6 +1,7 @@
 package android.code.editor.files;
 
 import android.code.editor.R;
+import android.code.editor.editor.CodeEditorActivity;
 import android.code.editor.files.utils.FileIcon;
 import android.code.editor.files.utils.FileManager;
 import android.code.editor.ui.MaterialColorHelper;
@@ -136,7 +137,20 @@ public class FileManagerActivity extends AppCompatActivity {
 						}
 					}
 				);
-			} else {
+			} else if (FileManager.ifFileFormatIsEqualTo(path,"java")) {
+				mainlayout.setOnClickListener(
+					new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							Intent intent = new Intent();
+							intent.putExtra("path",path);
+							intent.setClass(FileManagerActivity.this,CodeEditorActivity.class);
+							startActivity(intent);
+						}
+					}
+				);
+			} else
+			{
 				mainlayout.setOnClickListener(null);
 			}
 		}
