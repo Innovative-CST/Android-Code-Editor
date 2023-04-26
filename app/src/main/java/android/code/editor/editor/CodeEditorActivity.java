@@ -1,12 +1,16 @@
 package android.code.editor.editor;
 
 import android.code.editor.R;
+import android.code.editor.files.utils.FileManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import editor.tsd.widget.CodeEditorLayout;
+import java.io.File;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class CodeEditorActivity extends AppCompatActivity {
     @Override
@@ -14,7 +18,9 @@ public class CodeEditorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_code_editor);
         CodeEditorLayout codeEditor = findViewById(R.id.editor);
-        codeEditor.setCode("Test Code");
+        
+        codeEditor.setCode(FileManager.readFile(getIntent().getStringExtra("path")));
+        
         findViewById(R.id.toast).setOnClickListener(
             new View.OnClickListener() {
                     @Override

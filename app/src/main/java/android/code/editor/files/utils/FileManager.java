@@ -2,6 +2,8 @@ package android.code.editor.files.utils;
 
 import android.net.Uri;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -59,4 +61,57 @@ public class FileManager {
 			return false;
 		}
 	}
+    
+    public static String readFile(String path) {
+        createNewFile(path);
+
+        StringBuilder sb = new StringBuilder();
+        FileReader fr = null;
+        try {
+            fr = new FileReader(new File(path));
+
+            char[] buff = new char[1024];
+            int length = 0;
+
+            while ((length = fr.read(buff)) > 0) {
+                sb.append(new String(buff, 0, length));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fr != null) {
+                try {
+                    fr.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return sb.toString();
+    }
+    
+    private static void createNewFile(String path) {
+        int lastSep = path.lastIndexOf(File.separator);
+        if (lastSep > 0) {
+            String dirPath = path.substring(0, lastSep);
+            makeDir(dirPath);
+        }
+
+        File file = new File(path);
+
+        try {
+            if (!file.exists()) file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void makeDir(String path) {
+        if (new File(path).exists()) {
+            File file = new File(path);
+            file.mkdirs();
+        }
+    }
+
 }
