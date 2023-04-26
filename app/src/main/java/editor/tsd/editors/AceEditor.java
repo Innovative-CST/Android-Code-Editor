@@ -60,6 +60,11 @@ public class AceEditor implements Editor {
     @Override
     public String getCode() {
         aceEditor.loadUrl("javascript:putCodeToJava()");
+        try {
+            Thread.sleep(5);
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
         return aceJSInterface.code;
     }
     
