@@ -106,6 +106,7 @@
 		});
 		setEditorTheme(aceEditor.getAceEditorTheme());
 		setCode();
+        setLanguageMode();
 
 		function setEditorTheme(theme) {
 			editor.setTheme('ace/theme/' + theme);
@@ -115,8 +116,8 @@
 			document.getElementById('editor').style.fontSize = aceEditor.getAceEditorFontSize();
 		}
 
-		function setHighlighter() {
-			var format = aceEditor.getHighlighter();
+		function setLanguageMode() {
+			var fileFormat = aceEditor.getLanguageMode();
 			if (fileFormat == 'html') {
 				editor.session.setMode("ace/mode/html");
 			} else if (fileFormat == 'css') {

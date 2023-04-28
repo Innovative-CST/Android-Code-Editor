@@ -43,12 +43,11 @@ public class AceEditor implements Editor {
         
         // load editor file
         aceEditor.loadUrl("file:///android_asset/Editor/Ace-Editor/AceEditor/index.html");
-        setHighlighterLanguage("java");
     }
     
-    public void setHighlighterLanguage(String language) {
-        aceJSInterface.highlighter = language;
-        aceEditor.loadUrl("javascript:setHighlighter()");
+    public void setLanguageMode(String language) {
+        aceJSInterface.languageMode = language;
+        aceEditor.loadUrl("javascript:setLanguageMode()");
     }
 
     @Override
@@ -78,22 +77,19 @@ public class AceEditor implements Editor {
     }
     
     public class AceJSInterface{
-        public String highlighter;
+        public String languageMode;
         public String code;
         public void UpdateCode(String Code) {
             code = Code;
         }
         
-        public void setHighlighter(String Highlighter) {
-            highlighter= Highlighter;
-        }
 		@JavascriptInterface
 		public String getAceEditorTheme(){
 			return "monokai";
 		}
         @JavascriptInterface
-		public String getHighlighter(){
-			return highlighter;
+		public String getLanguageMode(){
+			return languageMode;
 		}
         
         @JavascriptInterface

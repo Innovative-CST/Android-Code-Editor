@@ -69,21 +69,21 @@ public class CodeEditorLayout extends LinearLayout {
 
     public void setEditor(int newEditor) {
         if (newEditor != editor) {
-            if (AceCodeEditor == newEditor) {
+            if (CodeEditorLayout.AceCodeEditor == newEditor) {
                 aceEditor = new AceEditor(conText);
                 aceEditor.setCode(getCode());
+                aceEditor.setLanguageMode("java");
+                removeView(soraEditor.getCodeEditor());
                 addView(aceEditor.getCodeEditor());
                 editor = AceCodeEditor;
                 soraEditor = null;
-                invalidate();
                 requestLayout();
-            } else if (SoraCodeEditor == newEditor) {
+            } else if (CodeEditorLayout.SoraCodeEditor == newEditor) {
                 soraEditor = new SoraEditor(conText);
                 soraEditor.setCode(getCode());
                 addView(soraEditor.getCodeEditor());
                 editor = SoraCodeEditor;
                 aceEditor = null;
-                invalidate();
                 requestLayout();
             }
         }

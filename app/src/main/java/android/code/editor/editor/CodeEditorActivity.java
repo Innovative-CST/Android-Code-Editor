@@ -20,7 +20,6 @@ public class CodeEditorActivity extends AppCompatActivity {
         CodeEditorLayout codeEditor = findViewById(R.id.editor);
         
         codeEditor.setCode(FileManager.readFile(getIntent().getStringExtra("path")));
-        
         findViewById(R.id.toast).setOnClickListener(
             new View.OnClickListener() {
                     @Override

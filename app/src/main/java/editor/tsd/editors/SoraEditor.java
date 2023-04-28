@@ -18,7 +18,7 @@ public class SoraEditor implements Editor {
         ViewGroup.LayoutParams codeEditor_LayoutParams =
                 new ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
+        
         editor.setLayoutParams(codeEditor_LayoutParams);
     }
 
