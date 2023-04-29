@@ -81,6 +81,7 @@ public class CodeEditorLayout extends LinearLayout {
             } else if (CodeEditorLayout.SoraCodeEditor == newEditor) {
                 soraEditor = new SoraEditor(conText);
                 soraEditor.setCode(getCode());
+                removeView(aceEditor.getCodeEditor());
                 addView(soraEditor.getCodeEditor());
                 editor = SoraCodeEditor;
                 aceEditor = null;
