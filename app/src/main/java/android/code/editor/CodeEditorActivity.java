@@ -1,6 +1,5 @@
-package android.code.editor.editor;
+package android.code.editor;
 
-import android.code.editor.R;
 import android.code.editor.files.utils.FileManager;
 import android.os.Bundle;
 import android.view.View;
@@ -31,3 +30,4 @@ public class CodeEditorActivity extends AppCompatActivity {
             );
     }
 }
+

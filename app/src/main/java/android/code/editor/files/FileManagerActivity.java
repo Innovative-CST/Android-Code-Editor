@@ -1,7 +1,7 @@
 package android.code.editor.files;
 
 import android.code.editor.R;
-import android.code.editor.editor.CodeEditorActivity;
+import android.code.editor.CodeEditorActivity;
 import android.code.editor.files.utils.FileIcon;
 import android.code.editor.files.utils.FileManager;
 import android.code.editor.ui.MaterialColorHelper;

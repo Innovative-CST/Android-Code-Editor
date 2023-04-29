@@ -30,7 +30,7 @@
 			android:name="android.code.editor.files.FileManagerActivity"
 			android:exported="true" />
 		<activity
-			android:name="android.code.editor.editor.CodeEditorActivity"
+			android:name="android.code.editor.CodeEditorActivity"
 			android:exported="true" />
 	</application>
 
