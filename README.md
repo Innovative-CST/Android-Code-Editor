@@ -23,7 +23,7 @@ It is the beginning of this app and I hope it will available soon for users.
 - [ ] Create Projects.
 - [ ] File Tree.
 - [ ] Inbuilt browser for previewing HTML files.
-- [ ] Preview Mark Downtown file.
+- [ ] Preview Mark Down file.
 
 ## Note for New Contributors
 Help us to build an Android Code Editor that supports Sora Code Editor as well as Ace Code Editor on GitHub.Just add features,fix bugs,enhance app.
