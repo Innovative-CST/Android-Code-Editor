@@ -1,7 +1,7 @@
 package android.code.editor;
 
 import android.Manifest;
-import android.code.editor.files.FileManagerActivity;
+import android.code.editor.FileManagerActivity;
 import android.code.editor.tsd.StoragePermission;
 import android.content.DialogInterface;
 import android.content.Intent;

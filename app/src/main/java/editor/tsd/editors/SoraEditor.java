@@ -1,5 +1,6 @@
 package editor.tsd.editors;
 
+import android.code.editor.R;
 import android.content.Context;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;

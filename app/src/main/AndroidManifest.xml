@@ -27,7 +27,7 @@
 			android:name=".DebugActivity"
 			android:exported="true" />
 		<activity
-			android:name="android.code.editor.files.FileManagerActivity"
+			android:name="android.code.editor.FileManagerActivity"
 			android:exported="true" />
 		<activity
 			android:name="android.code.editor.CodeEditorActivity"

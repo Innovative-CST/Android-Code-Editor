@@ -1,5 +1,6 @@
 package android.code.editor.ui;
 
+import android.code.editor.R;
 import android.content.Context;
 import com.google.android.material.color.MaterialColors;
 

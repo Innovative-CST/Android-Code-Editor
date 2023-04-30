@@ -1,6 +1,5 @@
-package android.code.editor.files;
+package android.code.editor;
 
-import android.code.editor.R;
 import android.code.editor.CodeEditorActivity;
 import android.code.editor.files.utils.FileIcon;
 import android.code.editor.files.utils.FileManager;
@@ -86,7 +85,7 @@ public class FileManagerActivity extends AppCompatActivity {
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
-		
+        
 		// Define view
 		list = findViewById(R.id.list);
 		progressbar = findViewById(R.id.progressbar);
