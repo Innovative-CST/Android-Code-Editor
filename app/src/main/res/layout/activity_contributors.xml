@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_height="match_parent"
+     android:layout_width="match_parent"
+     android:id="@+id/coordinator">
+
+    <LinearLayout
+         android:layout_height="match_parent"
+         android:layout_width="match_parent"
+         android:visibility="gone"
+         android:background="?attr/colorSurface"
+         android:orientation="vertical"
+         android:id="@+id/main">
+
+        <com.google.android.material.appbar.AppBarLayout
+             android:layout_height="wrap_content"
+             android:layout_width="match_parent"
+             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
+             android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+             android:id="@+id/appbar">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                 android:layout_height="?attr/actionBarSize"
+                 android:layout_width="match_parent"
+                 android:background="?attr/colorPrimary"
+                 app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+                 android:id="@+id/toolbar" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+             android:layout_height="match_parent"
+             android:layout_width="match_parent"
+             android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                 android:layout_height="match_parent"
+                 android:layout_width="match_parent"
+                 android:id="@+id/list" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+         android:layout_height="match_parent"
+         android:layout_width="match_parent"
+         android:gravity="center_horizontal|center_vertical"
+         android:background="?attr/colorSurface"
+         android:orientation="vertical"
+         android:id="@+id/loading">
+
+        <ProgressBar
+             android:layout_height="wrap_content"
+             android:layout_width="match_parent"
+             android:indeterminate="true"
+             android:id="@+id/progressbar" />
+
+        <TextView
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:textColor="?attr/colorOnSurface"
+             android:text="Please wait..." />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
