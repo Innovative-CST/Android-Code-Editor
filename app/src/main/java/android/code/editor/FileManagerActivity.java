@@ -164,7 +164,7 @@ public class FileManagerActivity extends AppCompatActivity {
             path = _view.findViewById(R.id.path);
             FileIcon.setUpIcon(
                     FileManagerActivity.this, _data.get(_position).get("path").toString(), icon);
-			Utils.applyRippleEffect(mainlayout,MaterialColorHelper.getMaterialColor(FileManagerActivity.this,com.google.android.material.R.attr.colorSurface),MaterialColorHelper.getMaterialColor(FileManagerActivity.this,R.attr.colorOnSurface));
+			Utils.applyRippleEffect(mainlayout,MaterialColorHelper.getMaterialColor(FileManagerActivity.this,com.google.android.material.R.attr.colorSurface),MaterialColorHelper.getMaterialColor(FileManagerActivity.this,com.google.android.material.R.attr.colorOnSurface));
             path.setText(_data.get(_position).get("lastSegmentOfFilePath").toString());
             final String path = _data.get(_position).get("path").toString();
             if (new File(path).isDirectory()) {
