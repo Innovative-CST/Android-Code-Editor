@@ -15,7 +15,7 @@
 	<ImageView
 		 android:layout_height="match_parent"
 		 android:layout_width="0dp"
-		 android:tint="?attr/colorPrimary"
+		 android:tint="?attr/colorOnSurface"
 		 android:layout_weight="10"
 		 android:id="@+id/icon"
 		 android:scaleType="fitCenter" />

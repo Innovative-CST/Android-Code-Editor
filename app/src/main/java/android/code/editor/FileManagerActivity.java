@@ -2,6 +2,7 @@ package android.code.editor;
 
 import android.code.editor.files.utils.FileIcon;
 import android.code.editor.files.utils.FileManager;
+import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.ui.Utils;
 import android.content.Intent;
 import android.os.Bundle;
@@ -93,6 +94,7 @@ public class FileManagerActivity extends AppCompatActivity {
             PopupMenu popupMenu = new PopupMenu(FileManagerActivity.this, findViewById(R.id.menu_main_setting));
             Menu menu = popupMenu.getMenu();
             menu.add("Contributors");
+			menu.add("Settings");
             popupMenu.setOnMenuItemClickListener(
                     item -> {
                         switch (item.getTitle().toString()) {
@@ -102,6 +104,11 @@ public class FileManagerActivity extends AppCompatActivity {
                                         FileManagerActivity.this, ContributorsActivity.class);
                                 startActivity(intent);
                                 break;
+							case "Settings":
+								Intent setting = new Intent();
+                                setting.setClass(
+                                        FileManagerActivity.this, SettingActivity.class);
+                                startActivity(setting);
                             default:
                                 return false;
                         }
@@ -155,9 +162,9 @@ public class FileManagerActivity extends AppCompatActivity {
             mainlayout = _view.findViewById(R.id.layout);
             icon = _view.findViewById(R.id.icon);
             path = _view.findViewById(R.id.path);
-            Utils.applyRippleEffect(mainlayout, "#ffffff", "#000000");
             FileIcon.setUpIcon(
                     FileManagerActivity.this, _data.get(_position).get("path").toString(), icon);
+			Utils.applyRippleEffect(mainlayout,MaterialColorHelper.getMaterialColor(FileManagerActivity.this,com.google.android.material.R.attr.colorSurface),MaterialColorHelper.getMaterialColor(FileManagerActivity.this,R.attr.colorOnSurface));
             path.setText(_data.get(_position).get("lastSegmentOfFilePath").toString());
             final String path = _data.get(_position).get("path").toString();
             if (new File(path).isDirectory()) {

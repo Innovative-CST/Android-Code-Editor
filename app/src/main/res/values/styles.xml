@@ -1,7 +1,7 @@
 <resources>
     <!-- Base application theme. -->
     
-	<style name="BrownishRed" parent="Theme.Material3.Light.NoActionBar">
+	<style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
 		<item name="colorPrimary">@color/brownish_red_md_theme_light_primary</item>
         <item name="colorOnPrimary">@color/brownish_red_md_theme_light_onPrimary</item>
         <item name="colorPrimaryContainer">@color/brownish_red_md_theme_light_primaryContainer</item>
