@@ -34,7 +34,6 @@ public class MaterialColorHelper {
     }
 
     public static void setUpTheme(Context context) {
-        // SharedPreferences Theme = context.getSharedPreferences("setting",Context.MODE_PRIVATE);
         switch (Setting.getSettingString(Setting.Key.Theme, "BrownishLight", context)) {
             case "BrownishLight":
                 context.setTheme(R.style.BrownishLight);
@@ -55,19 +54,5 @@ public class MaterialColorHelper {
                 context.setTheme(R.style.GreenDark);
                 break;
         }
-
-        /*if(Theme.getString(Setting.Key.Theme,Setting.Default.Theme) == "BrownishLight") {
-        	context.setTheme(R.style.BrownishLight);
-        } else if (Theme.getString(Setting.Key.Theme,Setting.Default.Theme) == "BrownishDark") {
-        	context.setTheme(R.style.BrownishDark);
-        } else if (Theme.getString(Setting.Key.Theme,Setting.Default.Theme) == "LightBlueLight") {
-        	context.setTheme(R.style.LightBlueLight);
-        } else if (Theme.getString(Setting.Key.Theme,Setting.Default.Theme) == "LightBlueDark") {
-        	context.setTheme(R.style.LightBlueDark);
-        } else if (Theme.getString(Setting.Key.Theme,Setting.Default.Theme) == "LightGreen") {
-        	context.setTheme(R.style.GreenLight);
-        } else if (Theme.getString(Setting.Key.Theme,Setting.Default.Theme) == "DarkGreen") {
-        	context.setTheme(R.style.GreenDark);
-        }*/
     }
 }

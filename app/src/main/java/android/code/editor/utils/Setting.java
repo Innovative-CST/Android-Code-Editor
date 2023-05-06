@@ -16,7 +16,6 @@ import java.io.File;
 import java.util.HashMap;
 
 public class Setting {
-    // public static SharedPreferences setting;
 	public static String SettingFilePath;
 	public static String settingData;
 	private static HashMap<String, Object> setting_map = new HashMap<>();
@@ -32,16 +31,6 @@ public class Setting {
     }
 
     public static void setSetting(String key, Object value, Context context) {
-		/* 
-        setting = context.getSharedPreferences("setting", Context.MODE_MULTI_PROCESS);
-        if (value instanceof Boolean) {
-            setting.edit().putBoolean(key, (Boolean) value).commit();
-            setting.edit().putBoolean(key, (Boolean) value).apply();
-        } else if (value instanceof String) {
-            setting.edit().putString(key, (String) value).commit();
-            setting.edit().putString(key, (String) value).apply();
-        }
-		*/
 		SettingFilePath = getDataDir(context).concat(File.separator).concat("Settings.json");
 		initSettingFile(SettingFilePath,context);
 		settingData = FileManager.readFile(SettingFilePath);
@@ -62,9 +51,6 @@ public class Setting {
     }
 
     public static void setSetting(String key, int value, Context context) {
-        /* setting = context.getSharedPreferences("setting", Context.MODE_MULTI_PROCESS);
-        setting.edit().putInt(key, value).commit();
-        setting.edit().putInt(key, value).apply();*/
 		SettingFilePath = getDataDir(context).concat(File.separator).concat("Settings.json");
 		initSettingFile(SettingFilePath,context);
 		settingData = FileManager.readFile(SettingFilePath);
@@ -82,8 +68,6 @@ public class Setting {
     }
 
     public static String getSettingString(String key, String defaultValue, Context context) {
-        /* setting = context.getSharedPreferences("setting", Context.MODE_MULTI_PROCESS);
-        return setting.getString(key, defaultValue);*/
 		SettingFilePath = getDataDir(context).concat(File.separator).concat("Settings.json");
 		initSettingFile(SettingFilePath,context);
 		settingData = FileManager.readFile(SettingFilePath);
@@ -105,8 +89,6 @@ public class Setting {
     }
 
     public static int getSettingInt(String key, int defaultValue, Context context) {
-        /*setting = context.getSharedPreferences("setting", Context.MODE_MULTI_PROCESS);
-        return setting.getInt(key, defaultValue);*/
 		SettingFilePath = getDataDir(context).concat(File.separator).concat("Settings.json");
 		initSettingFile(SettingFilePath,context);
 		settingData = FileManager.readFile(SettingFilePath);
