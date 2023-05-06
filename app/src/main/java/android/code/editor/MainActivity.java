@@ -3,6 +3,7 @@ package android.code.editor;
 import android.Manifest;
 import android.code.editor.FileManagerActivity;
 import android.code.editor.tsd.StoragePermission;
+import android.code.editor.ui.MaterialColorHelper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
         // SketchLogger.startLogging(); 
 		
         super.onCreate(savedInstanceState);
+		MaterialColorHelper.setUpTheme(this);
         setContentView(R.layout.activity_main);
         // Navigation
         // modified by ashishtechnozone

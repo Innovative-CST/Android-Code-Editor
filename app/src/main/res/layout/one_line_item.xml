@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_height="wrap_content"
+	android:layout_width="wrap_content"
+	android:id="@+id/coordinator"
+	android:background="?attr/colorSurface">
+
+	<TextView
+		android:id="@+id/item"
+		android:textColor="?attr/colorOnSurface"
+		android:textSize="16sp"
+		android:padding="8dp"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

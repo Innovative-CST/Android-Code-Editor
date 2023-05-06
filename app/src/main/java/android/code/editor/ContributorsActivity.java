@@ -2,6 +2,7 @@ package android.code.editor;
 
 import android.code.editor.Sketchware.RequestNetwork;
 import android.code.editor.Sketchware.RequestNetworkController;
+import android.code.editor.ui.MaterialColorHelper;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -50,6 +51,7 @@ public class ContributorsActivity extends AppCompatActivity {
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
         // TODO: Implement this method
+		MaterialColorHelper.setUpTheme(this);
         setContentView(R.layout.activity_contributors);
         // Initialze views in layout
         init();

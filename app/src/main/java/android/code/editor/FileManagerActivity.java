@@ -37,7 +37,7 @@ public class FileManagerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+		MaterialColorHelper.setUpTheme(this);
         // Set Layout in Activity
         setContentView(R.layout.activity_file_manager);
 

@@ -4,7 +4,7 @@
 	 xmlns:app="http://schemas.android.com/apk/res-auto"
 	 android:layout_height="match_parent"
 	 android:layout_width="match_parent"
-	 android:background="@color/brownish_red_md_theme_light_main_activity_logo_background"
+	 android:background="#000000"
 	 android:id="@+id/coordinator">
 
 	<LinearLayout
@@ -17,14 +17,14 @@
 			 android:layout_height="0dp"
 			 android:layout_width="match_parent"
 			 android:src="@drawable/ic_launcher_foreground"
-			 android:tint="@color/brownish_red_md_theme_light_main_activity_logo_color"
+			 android:tint="#FFFFFF"
 			 android:layout_weight="1" />
 
 		<TextView
 			 android:layout_height="wrap_content"
 			 android:layout_width="wrap_content"
 			 android:visibility="gone"
-			 android:textColor="@color/brownish_red_md_theme_light_main_activity_logo_color"
+			 android:textColor="#FFFFFF"
 			 android:text="Tap to start"
 			 android:id="@+id/info"
 			 android:layout_gravity="center_horizontal" />

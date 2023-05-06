@@ -3,6 +3,7 @@ package android.code.editor.files.utils;
 import android.net.Uri;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,6 +36,26 @@ public class FileManager {
 			pos++;
 		}
 	}
+	
+	public static void writeFile(String path, String str) {
+        createNewFile(path);
+        FileWriter fileWriter = null;
+
+        try {
+            fileWriter = new FileWriter(new File(path), false);
+            fileWriter.write(str);
+            fileWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fileWriter != null)
+                    fileWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 	
 	public static void listDir(String path, ArrayList<String> list) {
         File dir = new File(path);
@@ -91,7 +112,7 @@ public class FileManager {
         return sb.toString();
     }
     
-    private static void createNewFile(String path) {
+    public static void createNewFile(String path) {
         int lastSep = path.lastIndexOf(File.separator);
         if (lastSep > 0) {
             String dirPath = path.substring(0, lastSep);
