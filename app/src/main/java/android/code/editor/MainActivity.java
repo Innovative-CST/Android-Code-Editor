@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
     private LinearLayout main;
 
     @Override
+	@SuppressWarnings("deprecation")
     protected void onCreate(Bundle savedInstanceState) {
 		// Enable logging in Sketchware pro
         // SketchLogger.startLogging(); 
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
             Window w = this.getWindow();
             w.setNavigationBarColor(Color.parseColor("#000000"));
         }
-
+		
         // StatusBar
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
             Window w = this.getWindow();
