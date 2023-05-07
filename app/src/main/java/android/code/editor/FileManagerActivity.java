@@ -126,6 +126,7 @@ public class FileManagerActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 		toolbar.setTitleTextColor(MaterialColorHelper.getMaterialColorInt(this,com.google.android.material.R.attr.colorOnPrimary));
+		toolbar.getNavigationIcon().setTint(MaterialColorHelper.getMaterialColorInt(this,com.google.android.material.R.attr.colorOnPrimary));
 
         // Define view
         list = findViewById(R.id.list);
