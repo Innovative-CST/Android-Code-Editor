@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import com.google.android.material.snackbar.Snackbar;
@@ -39,6 +40,18 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(arg0);
         // TODO: Implement this method
         setContentView(R.layout.activity_setting);
+		Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        toolbar.setTitleTextColor(
+                MaterialColorHelper.getMaterialColorInt(
+                        this, com.google.android.material.R.attr.colorOnPrimary));
+		toolbar.getNavigationIcon()
+                .setTint(
+                        MaterialColorHelper.getMaterialColorInt(
+                                this, com.google.android.material.R.attr.colorOnPrimary));
+		
         editorChooser = findViewById(R.id.editorChooser);
 
         HashMap map = new HashMap<>();

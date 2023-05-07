@@ -107,7 +107,10 @@ public class ContributorsActivity extends AppCompatActivity {
 		toolbar.setTitleTextColor(
                 MaterialColorHelper.getMaterialColorInt(
                         this, com.google.android.material.R.attr.colorOnPrimary));
-        
+        toolbar.getNavigationIcon()
+                .setTint(
+                        MaterialColorHelper.getMaterialColorInt(
+                                this, com.google.android.material.R.attr.colorOnPrimary));
 		// Define views
 		list = findViewById(R.id.list);
 		main = findViewById(R.id.main);
