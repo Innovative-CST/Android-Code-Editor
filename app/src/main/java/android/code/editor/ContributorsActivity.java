@@ -104,6 +104,9 @@ public class ContributorsActivity extends AppCompatActivity {
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
+		toolbar.setTitleTextColor(
+                MaterialColorHelper.getMaterialColorInt(
+                        this, com.google.android.material.R.attr.colorOnPrimary));
         
 		// Define views
 		list = findViewById(R.id.list);
