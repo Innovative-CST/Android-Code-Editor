@@ -5,7 +5,8 @@
 	 android:layout_height="match_parent"
 	 android:layout_width="match_parent"
 	 android:orientation="vertical"
-	 android:id="@+id/coordinator">
+	 android:id="@+id/coordinator"
+	 android:background="?attr/colorSurface">
 
 	<com.google.android.material.appbar.AppBarLayout
 		 android:layout_height="wrap_content"
