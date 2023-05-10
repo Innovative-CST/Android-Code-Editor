@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "android.code.editor"
-        minSdk 21
+        minSdk 24
         targetSdk 28
         versionCode 1
         versionName "1.0"
@@ -38,6 +38,9 @@ dependencies {
     implementation platform("$editorGroupId:bom:0.21.1")
     implementation "$editorGroupId:editor"
     implementation "$editorGroupId:language-textmate"
+	
+	implementation "com.termux.termux-app:terminal-view:0.117"
+	implementation "com.termux.termux-app:terminal-emulator:0.117"
 	
 	implementation "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
     implementation 'androidx.appcompat:appcompat:1.4.0'

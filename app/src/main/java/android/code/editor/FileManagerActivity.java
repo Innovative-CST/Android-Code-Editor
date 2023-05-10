@@ -125,6 +125,8 @@ public class FileManagerActivity extends AppCompatActivity {
             Menu menu = popupMenu.getMenu();
             menu.add("Contributors");
             menu.add("Settings");
+			menu.add("Terminal");
+			
             popupMenu.setOnMenuItemClickListener(
                     item -> {
                         switch (item.getTitle().toString()) {
@@ -138,8 +140,10 @@ public class FileManagerActivity extends AppCompatActivity {
                                 Intent setting = new Intent();
                                 setting.setClass(FileManagerActivity.this, SettingActivity.class);
                                 startActivity(setting);
-                            default:
-                                return false;
+							case "Terminal":
+								Intent terminal = new Intent();
+								terminal.setClass(this,TerminalActivity.class);
+								startActivity(terminal);
                         }
                         return true;
                     });
