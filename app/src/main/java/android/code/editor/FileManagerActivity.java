@@ -140,6 +140,7 @@ public class FileManagerActivity extends AppCompatActivity {
                                 Intent setting = new Intent();
                                 setting.setClass(FileManagerActivity.this, SettingActivity.class);
                                 startActivity(setting);
+								break;
 							case "Terminal":
 								Intent terminal = new Intent();
 								terminal.setClass(this,TerminalActivity.class);
