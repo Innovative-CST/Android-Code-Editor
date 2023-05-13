@@ -40,9 +40,6 @@
 		<activity
 			android:name="android.code.editor.SettingActivity"
 			android:exported="true" />
-		<activity
-			android:name="android.code.editor.TerminalActivity"
-			android:exported="true"/>
 	</application>
 
 </manifest>

@@ -2,7 +2,10 @@ package android.code.editor;
 
 import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.utils.ThemeObservable;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.Observable;
@@ -21,6 +24,14 @@ public class DebugActivity extends AppCompatActivity implements Observer {
 		setContentView(R.layout.activity_debug);
 		error = findViewById(R.id.error);
 		error.setText(getIntent().getStringExtra("error").toString());
+		error.setOnLongClickListener(new View.OnLongClickListener(){
+			@Override
+			public boolean onLongClick(View arg0) {
+				// TODO: Implement this method
+				((ClipboardManager) getSystemService(getApplicationContext().CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("clipboard", error.getText().toString()));
+				return true;
+			}
+		});
     }
 	
 	@Override
