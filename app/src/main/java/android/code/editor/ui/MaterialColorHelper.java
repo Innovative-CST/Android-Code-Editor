@@ -3,7 +3,7 @@ package android.code.editor.ui;
 import android.code.editor.R;
 import android.code.editor.utils.Setting;
 import android.content.Context;
-import android.content.SharedPreferences;
+
 import com.google.android.material.color.MaterialColors;
 
 public class MaterialColorHelper {

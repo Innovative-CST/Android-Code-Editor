@@ -4,8 +4,6 @@ import android.code.editor.files.utils.FileIcon;
 import android.code.editor.files.utils.FileManager;
 import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.ui.Utils;
-import android.code.editor.utils.Setting;
-import android.code.editor.utils.ThemeObservable;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -19,17 +17,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -40,8 +37,6 @@ public class FileManagerActivity extends AppCompatActivity {
 
     private ArrayList<String> listString = new ArrayList<>();
     private ArrayList<HashMap<String, Object>> listMap = new ArrayList<>();
-
-    private ThemeObservable themeObservable = new ThemeObservable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

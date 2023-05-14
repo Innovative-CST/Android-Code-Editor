@@ -1,7 +1,6 @@
 package android.code.editor.Sketchware;
 
 import android.app.Activity;
-import android.code.editor.R;
 
 import java.util.HashMap;
 

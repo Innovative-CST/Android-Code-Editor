@@ -1,7 +1,6 @@
 package android.code.editor.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;

@@ -1,10 +1,8 @@
 package android.code.editor;
 
 import android.Manifest;
-import android.code.editor.FileManagerActivity;
 import android.code.editor.tsd.StoragePermission;
 import android.code.editor.ui.MaterialColorHelper;
-import android.code.editor.utils.ThemeObservable;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,21 +16,19 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import java.io.File;
-import java.util.Observable;
-import java.util.Observer;
 
-public class MainActivity extends AppCompatActivity implements StoragePermission,Observer {
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+public class MainActivity extends AppCompatActivity implements StoragePermission {
 
     private boolean isRequested;
     private MaterialAlertDialogBuilder MaterialDialog;
     private TextView info;
     private LinearLayout main;
-	private ThemeObservable themeObservable = new ThemeObservable();
 
     @Override
 	@SuppressWarnings("deprecation")
@@ -148,13 +144,6 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
             startActivtyLogic();
         }
     }
-	
-	@Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // TODO: Implement this method
-		((MyApplication)getApplication()).getThemeObservable().deleteObserver(this);
-    }
 
     public void _requestStoragePermission() {
         ActivityCompat.requestPermissions(
@@ -223,11 +212,4 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
         	}
         });
     }
-	
-	@Override
-    public void update(Observable arg0, Object arg1) {
-		if ((String)arg1 == "ThemeUpdated") {
-			recreate();
-		}
-	}
 }

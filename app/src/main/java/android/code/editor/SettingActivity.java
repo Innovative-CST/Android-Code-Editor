@@ -1,10 +1,7 @@
 package android.code.editor;
 
 import android.code.editor.ui.MaterialColorHelper;
-import android.code.editor.ui.Utils;
 import android.code.editor.utils.Setting;
-import android.code.editor.utils.ThemeObservable;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,22 +10,22 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
 import com.google.android.material.snackbar.Snackbar;
+
 import editor.tsd.widget.CodeEditorLayout;
-import io.github.rosemoe.sora.widget.CodeEditor;
+
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SettingActivity extends AppCompatActivity {
     public Spinner editorChooser;
     ArrayList<HashMap<String, Object>> data = new ArrayList<>();
-	private ThemeObservable themeObservable = new ThemeObservable();
     public LinearLayout theme1;
     public LinearLayout theme2;
     public LinearLayout theme3;
@@ -172,7 +169,6 @@ public class SettingActivity extends AppCompatActivity {
                         Setting.SaveInFile.setSetting(
                                 Setting.Key.Theme, "BrownishLight", SettingActivity.this);
 						recreate();
-						themeObservable.notifyThemeChanged();
                     }
                 });
 
@@ -189,7 +185,6 @@ public class SettingActivity extends AppCompatActivity {
                         snackbar.show();
                         Setting.SaveInFile.setSetting(Setting.Key.Theme, "BrownishDark", SettingActivity.this);
 						recreate();
-						themeObservable.notifyThemeChanged();
                     }
                 });
 
@@ -207,7 +202,6 @@ public class SettingActivity extends AppCompatActivity {
                         Setting.SaveInFile.setSetting(
                                 Setting.Key.Theme, "LightBlueLight", SettingActivity.this);
 						recreate();
-						themeObservable.notifyThemeChanged();
                     }
                 });
 
@@ -225,7 +219,6 @@ public class SettingActivity extends AppCompatActivity {
                         Setting.SaveInFile.setSetting(
                                 Setting.Key.Theme, "LightBlueDark", SettingActivity.this);
 						recreate();
-						themeObservable.notifyThemeChanged();
                     }
                 });
 
@@ -242,7 +235,6 @@ public class SettingActivity extends AppCompatActivity {
                         snackbar.show();
                         Setting.SaveInFile.setSetting(Setting.Key.Theme, "LightGreen", SettingActivity.this);
 						recreate();
-						themeObservable.notifyThemeChanged();
                     }
                 });
 
@@ -259,7 +251,6 @@ public class SettingActivity extends AppCompatActivity {
                         snackbar.show();
                         Setting.SaveInFile.setSetting(Setting.Key.Theme, "DarkGreen", SettingActivity.this);
 						recreate();
-						themeObservable.notifyThemeChanged();
                     }
                 });
     }

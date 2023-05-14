@@ -1,11 +1,9 @@
 package android.code.editor.files.utils;
 
 import android.code.editor.R;
-import android.code.editor.ui.MaterialColorHelper;
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.widget.ImageView;
+
 import java.io.File;
 
 public class FileIcon {

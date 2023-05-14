@@ -3,7 +3,6 @@ package android.code.editor;
 import android.app.AlarmManager;
 import android.app.Application;
 import android.app.PendingIntent;
-import android.code.editor.utils.ThemeObservable;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Process;
@@ -12,15 +11,10 @@ import android.util.Log;
 public class MyApplication extends Application {
     private static Context mApplicationContext;
     private Thread.UncaughtExceptionHandler uncaughtExceptionHandler;
-	public ThemeObservable themeObservable = new ThemeObservable();
 
     public static Context getContext() {
         return mApplicationContext;
     }
-	
-	public ThemeObservable getThemeObservable() {
-		return themeObservable;
-	}
 
     @Override
     public void onCreate() {
