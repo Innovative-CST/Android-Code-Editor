@@ -1,6 +1,6 @@
 package editor.tsd.widget;
 
-import android.code.editor.R;
+import editor.tsd.R;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;

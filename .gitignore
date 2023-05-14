@@ -1,4 +1,5 @@
 .androidide
 .gradle
 app/build
+editor/build
 app/src/main/java/android/code/editor/SketchLogger.java
