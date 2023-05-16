@@ -112,13 +112,4 @@ public class CodeEditorLayout extends LinearLayout {
         return aceEditor.getCodeEditor();
     }
 
-    @Override
-    public void onViewRemoved(View arg0) {
-        super.onViewRemoved(arg0);
-    }
-
-    @Override
-    public void onViewAdded(View arg0) {
-        super.onViewAdded(arg0);
-    }
 }
