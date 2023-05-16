@@ -48,11 +48,11 @@ public class SettingActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         toolbar.setTitleTextColor(
-                MaterialColorHelper.getMaterialColorInt(
+                MaterialColorHelper.getMaterialColor(
                         this, com.google.android.material.R.attr.colorOnPrimary));
         toolbar.getNavigationIcon()
                 .setTint(
-                        MaterialColorHelper.getMaterialColorInt(
+                        MaterialColorHelper.getMaterialColor(
                                 this, com.google.android.material.R.attr.colorOnPrimary));
 
         editorChooser = findViewById(R.id.editorChooser);

@@ -4,29 +4,18 @@ import android.code.editor.R;
 import android.code.editor.utils.Setting;
 import android.content.Context;
 
+import android.graphics.Color;
 import com.google.android.material.color.MaterialColors;
 
 public class MaterialColorHelper {
-    public static String getMaterialColor(Context context, int res) {
-        return String.format(
-                "#%08X",
-                (0xFFFFFFFF
-                        & MaterialColors.getColor(
-                                context, res, "Passed color in parameter doesn't exists.")));
-    }
-
-    public static int getMaterialColorInt(Context context, int res) {
+    public static int getMaterialColor(Context context, int res) {
         return MaterialColors.getColor(context, res, "Passed color in parameter doesn't exists.");
     }
 
-    public static String setColorTransparency(String hex, String transparency) {
-        return "#".concat(transparency).concat(hex.substring(3, hex.length()));
-    }
-
-    public static String setColorTransparency(int hex, String transparency) {
-        return "#"
-                .concat(transparency)
-                .concat(intColorToString(hex).substring(3, intColorToString(hex).length()));
+    public static int setColorTransparency(int color, String transparency) {
+		String hex;
+		hex = intColorToString(color);
+        return Color.parseColor("#".concat(transparency).concat(hex.substring(3, hex.length())));
     }
 
     public static String intColorToString(int color) {

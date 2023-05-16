@@ -11,12 +11,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 public class Utils {
-	public static void applyRippleEffect(View view,String focus,String ripple) {
-		GradientDrawable gradientDrawable = new GradientDrawable();
-        gradientDrawable.setColor(Color.parseColor(focus));
-        view.setBackground(new RippleDrawable(new ColorStateList(new int[][]{new int[0]}, new int[]{Color.parseColor(ripple)}), gradientDrawable, null));
-	}
-	
 	public static void applyRippleEffect(View view,int focus,int ripple) {
 		GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setColor(focus);
