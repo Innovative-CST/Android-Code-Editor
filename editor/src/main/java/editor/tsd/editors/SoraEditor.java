@@ -1,14 +1,12 @@
 package editor.tsd.editors;
 
-import editor.tsd.R;
 import android.content.Context;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+
 import editor.tsd.widget.CodeEditorLayout;
+
 import io.github.rosemoe.sora.widget.CodeEditor;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+
 
 public class SoraEditor implements Editor {
     public CodeEditor editor;

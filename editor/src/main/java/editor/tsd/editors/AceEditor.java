@@ -1,11 +1,11 @@
 package editor.tsd.editors;
 
-import editor.tsd.R;
 import android.content.Context;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+
 import editor.tsd.widget.CodeEditorLayout;
 
 public class AceEditor implements Editor {

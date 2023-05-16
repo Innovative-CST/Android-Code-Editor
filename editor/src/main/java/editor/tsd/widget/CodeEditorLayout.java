@@ -1,15 +1,16 @@
 package editor.tsd.widget;
 
-import editor.tsd.R;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.view.View;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
+
+import editor.tsd.R;
 import editor.tsd.editors.AceEditor;
 import editor.tsd.editors.Editor;
 import editor.tsd.editors.SoraEditor;
+
 import io.github.rosemoe.sora.widget.CodeEditor;
 
 public class CodeEditorLayout extends LinearLayout {
