@@ -24,6 +24,13 @@ Join our discord server to keep contact us about Android Code Editor.
 		- [ ] HTML
 		- [ ] CSS
 		- [ ] XML
+- [ ] Code Mirror.
+	- Language Highlighting
+		- [ ] Java
+		- [ ] JavaScript
+		- [ ] HTML
+		- [ ] CSS
+		- [ ] XML
 - [ ] Save and Edit files.
 - [ ] Create Projects.
 - [ ] File Tree.
