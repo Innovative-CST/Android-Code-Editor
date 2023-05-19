@@ -39,4 +39,4 @@ Join our discord server to keep contact us about Android Code Editor.
 
 ## Note for New Contributors
 Help us to build an Android Code Editor that supports Sora Code Editor as well as Ace Code Editor on GitHub.Just add features,fix bugs,enhance app.
-Any small or large contribution is noticed and get on contribution list.We will also add Contributors list in app as well if we got 5 contributors.
+Any small or large contribution is noticed and get on contribution list in app too.
