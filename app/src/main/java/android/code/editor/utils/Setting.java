@@ -1,17 +1,16 @@
 package android.code.editor.utils;
 
-import android.app.Activity;
-import android.app.Application;
 import android.code.editor.files.utils.FileManager;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.widget.Toast;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
+
 import editor.tsd.widget.CodeEditorLayout;
+
 import java.io.File;
 import java.util.HashMap;
 
