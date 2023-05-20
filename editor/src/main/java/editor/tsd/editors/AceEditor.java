@@ -6,13 +6,14 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
+import editor.tsd.tools.Language;
 import editor.tsd.widget.CodeEditorLayout;
 
 public class AceEditor implements Editor {
     public Context context;
     public WebView aceEditor;
     public AceJSInterface aceJSInterface;
-    
+
     public AceEditor(Context c) {
         context = c;
         aceEditor = new WebView(context);
@@ -21,33 +22,28 @@ public class AceEditor implements Editor {
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
         aceEditor.setLayoutParams(aceEditor_LayoutParams);
-        
+
         aceEditor.getSettings().setJavaScriptEnabled(true);
-		
-		// disable zoom
-		// webview.getSettings().setSupportZoom(false);
-		aceEditor.getSettings().setSupportZoom(true);
-		
-		// allow content access
-		aceEditor.getSettings().setAllowContentAccess(true); 
-		
-		// allow file access
-		aceEditor.getSettings().setAllowFileAccess(true); 
-		
-		// setup web chrome client
+
+        // disable zoom
+        // webview.getSettings().setSupportZoom(false);
+        aceEditor.getSettings().setSupportZoom(true);
+
+        // allow content access
+        aceEditor.getSettings().setAllowContentAccess(true);
+
+        // allow file access
+        aceEditor.getSettings().setAllowFileAccess(true);
+
+        // setup web chrome client
         aceEditor.setWebChromeClient(new WebChromeClient());
-        
+
         // JavaScript contact with Java
         aceJSInterface = new AceJSInterface();
-		aceEditor.addJavascriptInterface(aceJSInterface, "aceEditor");
-        
+        aceEditor.addJavascriptInterface(aceJSInterface, "aceEditor");
+
         // load editor file
         aceEditor.loadUrl("file:///android_asset/Editor/Ace-Editor/AceEditor/index.html");
-    }
-    
-    public void setLanguageMode(String language) {
-        aceJSInterface.languageMode = language;
-        aceEditor.loadUrl("javascript:setLanguageMode()");
     }
 
     @Override
@@ -66,7 +62,7 @@ public class AceEditor implements Editor {
         }
         return aceJSInterface.code;
     }
-    
+
     public WebView getCodeEditor() {
         return aceEditor;
     }
@@ -75,31 +71,41 @@ public class AceEditor implements Editor {
     public int getCodeEditorType() {
         return CodeEditorLayout.AceCodeEditor;
     }
-    
-    public class AceJSInterface{
+
+    public class AceJSInterface {
         public String languageMode;
         public String code;
+
         public void UpdateCode(String Code) {
             code = Code;
         }
-        
-		@JavascriptInterface
-		public String getAceEditorTheme(){
-			return "monokai";
-		}
+
         @JavascriptInterface
-		public String getLanguageMode(){
-			return languageMode;
-		}
-        
+        public String getAceEditorTheme() {
+            return "monokai";
+        }
+
+        @JavascriptInterface
+        public String getLanguageMode() {
+            return languageMode;
+        }
+
         @JavascriptInterface
         public void getCode(String Code) {
             code = Code;
         }
-        
+
         @JavascriptInterface
         public String setCode() {
             return code;
         }
-	}
+    }
+
+    @Override
+    public void setLanguageMode(String LanguageMode) {
+        if (Language.Java == LanguageMode) {
+            aceJSInterface.languageMode = "java";
+        }
+        aceEditor.loadUrl("javascript:setLanguageMode()");
+    }
 }

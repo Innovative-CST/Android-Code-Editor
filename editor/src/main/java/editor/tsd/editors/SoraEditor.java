@@ -39,4 +39,9 @@ public class SoraEditor implements Editor {
     public int getCodeEditorType() {
         return CodeEditorLayout.SoraCodeEditor;
     }
+
+    @Override
+    public void setLanguageMode(String LqnguageMode) {
+    }
+    
 }

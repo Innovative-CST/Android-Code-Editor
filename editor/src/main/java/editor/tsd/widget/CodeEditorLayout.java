@@ -16,12 +16,13 @@ import io.github.rosemoe.sora.widget.CodeEditor;
 public class CodeEditorLayout extends LinearLayout {
     public static int AceCodeEditor = 0;
     public static int SoraCodeEditor = 1;
-    
+
     public AceEditor aceEditor;
     public SoraEditor soraEditor;
     public int editor;
     public String code;
     public Context conText;
+    public Editor CurrentCodeEditor;
 
     public CodeEditorLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -36,10 +37,12 @@ public class CodeEditorLayout extends LinearLayout {
             // Set Code Editor as SoraEditor
             if (editor == SoraCodeEditor) {
                 soraEditor = new SoraEditor(context);
+                CurrentCodeEditor = soraEditor;
                 soraEditor.setCode(code);
                 addView(soraEditor.getCodeEditor());
             } else if (editor == AceCodeEditor) {
                 aceEditor = new AceEditor(context);
+                CurrentCodeEditor = aceEditor;
                 addView(aceEditor.getCodeEditor());
                 aceEditor.setCode(code);
             }
@@ -49,21 +52,13 @@ public class CodeEditorLayout extends LinearLayout {
 
     public void setCode(String newCode) {
         code = newCode;
-        if (editor == AceCodeEditor) {
-            aceEditor.setCode(newCode);
-        }
-        if (editor == SoraCodeEditor) {
-            soraEditor.setCode(newCode);
-        }
+        CurrentCodeEditor.setCode(newCode);
     }
-    
+
     public String getCode() {
-        if (editor == AceCodeEditor) {
-            return aceEditor.getCode();
-        } else if (editor == SoraCodeEditor) {
-            return soraEditor.getCode();
-        }
-        else {
+        if (CurrentCodeEditor!= null) {
+            return CurrentCodeEditor.getCode();
+        } else {
             return "";
         }
     }
@@ -72,8 +67,8 @@ public class CodeEditorLayout extends LinearLayout {
         if (newEditor != editor) {
             if (CodeEditorLayout.AceCodeEditor == newEditor) {
                 aceEditor = new AceEditor(conText);
+                CurrentCodeEditor = aceEditor;
                 aceEditor.setCode(getCode());
-                aceEditor.setLanguageMode("java");
                 removeView(soraEditor.getCodeEditor());
                 addView(aceEditor.getCodeEditor());
                 editor = AceCodeEditor;
@@ -81,6 +76,7 @@ public class CodeEditorLayout extends LinearLayout {
                 requestLayout();
             } else if (CodeEditorLayout.SoraCodeEditor == newEditor) {
                 soraEditor = new SoraEditor(conText);
+                CurrentCodeEditor = soraEditor;
                 soraEditor.setCode(getCode());
                 removeView(aceEditor.getCodeEditor());
                 addView(soraEditor.getCodeEditor());
@@ -90,27 +86,24 @@ public class CodeEditorLayout extends LinearLayout {
             }
         }
     }
+    
+    public void setLanguageMode(String LanguageMode) {
+        CurrentCodeEditor.setLanguageMode(LanguageMode);
+    }
 
     public Editor getEditor() {
-        if (editor == AceCodeEditor) {
-            return aceEditor;
-        } else if (editor == SoraCodeEditor) {
-            return soraEditor;
-        } else {
-            return null;
-        }
+        return CurrentCodeEditor;
     }
-    
+
     public int getCurrentEditorType() {
         return editor;
     }
-    
+
     public CodeEditor getSoraEditor() {
         return soraEditor.getCodeEditor();
     }
-    
+
     public WebView getAceEditor() {
         return aceEditor.getCodeEditor();
     }
-
 }
