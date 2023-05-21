@@ -113,6 +113,14 @@ public class ContributorsActivity extends AppCompatActivity {
                 .setTint(
                         MaterialColorHelper.getMaterialColor(
                                 this, com.google.android.material.R.attr.colorOnPrimary));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+			    // TODO: Implement this method
+                onBackPressed();
+			}
+			            
+		});
 		// Define views
 		list = findViewById(R.id.list);
 		main = findViewById(R.id.main);

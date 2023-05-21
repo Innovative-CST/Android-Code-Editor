@@ -157,7 +157,14 @@ public class FileManagerActivity extends AppCompatActivity {
                 .setTint(
                         MaterialColorHelper.getMaterialColor(
                                 this, com.google.android.material.R.attr.colorOnPrimary));
-
+		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+			    // TODO: Implement this method
+                onBackPressed();
+			}
+			            
+		});
         // Define view
         list = findViewById(R.id.list);
         progressbar = findViewById(R.id.progressbar);

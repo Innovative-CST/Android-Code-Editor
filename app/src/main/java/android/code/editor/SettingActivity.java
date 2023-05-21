@@ -54,7 +54,14 @@ public class SettingActivity extends AppCompatActivity {
                 .setTint(
                         MaterialColorHelper.getMaterialColor(
                                 this, com.google.android.material.R.attr.colorOnPrimary));
-
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+			    // TODO: Implement this method
+                onBackPressed();
+			}
+			            
+		});
         editorChooser = findViewById(R.id.editorChooser);
 
         HashMap map = new HashMap<>();
