@@ -12,7 +12,7 @@ public class FileIcon {
 			imageview.setImageResource(R.drawable.ic_folder_black_24dp);
 		} else if (new File(path).isFile()) {
 			if (FileManager.ifFileFormatIsEqualTo(path,"java")) {
-				imageview.setImageResource(R.drawable.java_logo);
+				imageview.setImageResource(R.drawable.ic_language_java);
 			} else {
 				imageview.setImageResource(0);
 			}
