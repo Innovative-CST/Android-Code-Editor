@@ -25,7 +25,7 @@ public class Setting {
     }
 
     public class Default {
-        public static int CodeEditor = CodeEditorLayout.SoraCodeEditor;
+        public static int CodeEditor = CodeEditorLayout.AceCodeEditor;
         public static String Theme = "LightGreen";
     }
 
