@@ -13,18 +13,17 @@
 	 android:id="@+id/layout">
 
 	<ImageView
-		 android:layout_height="match_parent"
-		 android:layout_width="0dp"
+		 android:layout_height="25dp"
+		 android:layout_width="25dp"
 		 android:tint="?attr/colorOnSurface"
-		 android:layout_weight="10"
 		 android:id="@+id/icon"
-		 android:scaleType="fitCenter" />
+		 android:scaleType="fitCenter"
+         android:layout_marginEnd="8dp"/>
 
 	<TextView
 		 android:layout_height="wrap_content"
-		 android:layout_width="0dp"
+		 android:layout_width="wrap_content"
 		 android:textColor="?attr/colorOnSurface"
-		 android:layout_weight="90"
 		 android:id="@+id/path" />
 
 </LinearLayout>
