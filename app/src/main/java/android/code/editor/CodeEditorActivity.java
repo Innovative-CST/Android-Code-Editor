@@ -27,6 +27,9 @@ public class CodeEditorActivity extends AppCompatActivity {
         codeEditor.setEditor(
                 Setting.SaveInFile.getSettingInt(Setting.Key.CodeEditor, Setting.Default.CodeEditor, this));
         codeEditor.setCode(FileManager.readFile(getIntent().getStringExtra("path")));
+        if (getIntent().hasExtra("LanguageMode")) {
+            codeEditor.setLanguageMode(getIntent().getStringExtra("LanguageMode"));
+        }
         findViewById(R.id.toast)
                 .setOnClickListener(
                         new View.OnClickListener() {

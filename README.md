@@ -19,7 +19,7 @@ Join our discord server to keep contact us about Android Code Editor.
 		- [ ] JavaScript
 - [x] Ace Editor.
 	- Language Highlighting
-		- [ ] Java
+		- [x] Java
 		- [ ] JavaScript
 		- [ ] HTML
 		- [ ] CSS

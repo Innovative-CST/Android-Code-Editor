@@ -24,6 +24,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import editor.tsd.tools.Language;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -224,6 +225,7 @@ public class FileManagerActivity extends AppCompatActivity {
                             public void onClick(View v) {
                                 Intent intent = new Intent();
                                 intent.putExtra("path", path);
+                                intent.putExtra("LanguageMode",Language.Java);
                                 intent.setClass(FileManagerActivity.this, CodeEditorActivity.class);
                                 startActivity(intent);
                             }
