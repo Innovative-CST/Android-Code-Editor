@@ -2,6 +2,7 @@ package android.code.editor;
 
 import android.code.editor.files.utils.FileIcon;
 import android.code.editor.files.utils.FileManager;
+import android.code.editor.files.utils.FileTypeHandler;
 import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.ui.Utils;
 import android.content.Intent;
@@ -24,7 +25,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import editor.tsd.tools.Language;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -205,34 +205,11 @@ public class FileManagerActivity extends AppCompatActivity {
                             FileManagerActivity.this,
                             com.google.android.material.R.attr.colorOnSurface));
             path.setText(_data.get(_position).get("lastSegmentOfFilePath").toString());
-            final String path = _data.get(_position).get("path").toString();
-            if (new File(path).isDirectory()) {
-                mainlayout.setOnClickListener(
-                        new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent();
-                                intent.putExtra("path", path);
-                                intent.setClass(
-                                        FileManagerActivity.this, FileManagerActivity.class);
-                                startActivity(intent);
-                            }
-                        });
-            } else if (FileManager.ifFileFormatIsEqualTo(path, "java")) {
-                mainlayout.setOnClickListener(
-                        new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent();
-                                intent.putExtra("path", path);
-                                intent.putExtra("LanguageMode",Language.Java);
-                                intent.setClass(FileManagerActivity.this, CodeEditorActivity.class);
-                                startActivity(intent);
-                            }
-                        });
-            } else {
-                mainlayout.setOnClickListener(null);
-            }
+            String path = _data.get(_position).get("path").toString();
+            FileTypeHandler fileTypeHandler = new FileTypeHandler(FileManagerActivity.this);
+            fileTypeHandler.handleFile(new File(path));
+            fileTypeHandler.setTargetView(mainlayout);
+            fileTypeHandler.startHandling();
         }
 
         @Override
