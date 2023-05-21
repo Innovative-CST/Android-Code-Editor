@@ -47,7 +47,7 @@ public class FileManagerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_file_manager);
         initActivity();
     }
-	
+
     public void initActivity() {
         initViews();
 
@@ -121,7 +121,7 @@ public class FileManagerActivity extends AppCompatActivity {
             Menu menu = popupMenu.getMenu();
             menu.add("Contributors");
             menu.add("Settings");
-			
+
             popupMenu.setOnMenuItemClickListener(
                     item -> {
                         switch (item.getTitle().toString()) {
@@ -135,7 +135,7 @@ public class FileManagerActivity extends AppCompatActivity {
                                 Intent setting = new Intent();
                                 setting.setClass(FileManagerActivity.this, SettingActivity.class);
                                 startActivity(setting);
-								break;
+                                break;
                         }
                         return true;
                     });
@@ -157,17 +157,24 @@ public class FileManagerActivity extends AppCompatActivity {
                 .setTint(
                         MaterialColorHelper.getMaterialColor(
                                 this, com.google.android.material.R.attr.colorOnPrimary));
-		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-			    // TODO: Implement this method
-                onBackPressed();
-			}
-			            
-		});
+        toolbar.setNavigationOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View arg0) {
+                        // TODO: Implement this method
+                        onBackPressed();
+                    }
+                });
         // Define view
         list = findViewById(R.id.list);
         progressbar = findViewById(R.id.progressbar);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        // TODO: Implement this method
+        finishAffinity();
     }
 
     // Adapter of Recycler View
@@ -230,6 +237,4 @@ public class FileManagerActivity extends AppCompatActivity {
             }
         }
     }
-	
-    
 }
