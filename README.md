@@ -37,6 +37,9 @@ Join our discord server to keep contact us about Android Code Editor.
 - [ ] Inbuilt browser for previewing HTML files.
 - [ ] Preview Mark Down file.
 
+## Attribution
+Thanks for awsome icons provided by [Pictogrammers](https://pictogrammers.com/).
+
 ## Note for New Contributors
 Help us to build an Android Code Editor that supports Sora Code Editor as well as Ace Code Editor on GitHub.Just add features,fix bugs,enhance app.
 Any small or large contribution is noticed and get on contribution list in app too.
