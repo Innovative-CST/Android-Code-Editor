@@ -105,6 +105,8 @@ public class AceEditor implements Editor {
     public void setLanguageMode(String LanguageMode) {
         if (Language.Java.equals(LanguageMode)) {
             aceJSInterface.languageMode = "java";
+        } else if (Language.HTML.equals(LanguageMode)) {
+            aceJSInterface.languageMode = "html";
         }
         aceEditor.loadUrl("javascript:setLanguageMode()");
     }

@@ -42,30 +42,43 @@ public class FileTypeHandler {
                     });
         } else {
             final File FinalFile = file;
-            switch(getFileFormat(file.getAbsolutePath())) {
+            switch (getFileFormat(file.getAbsolutePath())) {
                 case "java":
-                view.setOnClickListener(
-                    new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent();
-                            intent.putExtra("path", file.getAbsolutePath());
-                            intent.putExtra("LanguageMode",Language.Java);
-                            intent.setClass(context, CodeEditorActivity.class);
-                            context.startActivity(intent);
-                        }
-                    });
-                break;
+                    view.setOnClickListener(
+                            new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent();
+                                    intent.putExtra("path", file.getAbsolutePath());
+                                    intent.putExtra("LanguageMode", Language.Java);
+                                    intent.setClass(context, CodeEditorActivity.class);
+                                    context.startActivity(intent);
+                                }
+                            });
+                    break;
+                case "html":
+                    view.setOnClickListener(
+                            new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent();
+                                    intent.putExtra("path", file.getAbsolutePath());
+                                    intent.putExtra("LanguageMode", Language.HTML);
+                                    intent.setClass(context, CodeEditorActivity.class);
+                                    context.startActivity(intent);
+                                }
+                            });
+                    break;
                 default:
                     view.setOnClickListener(null);
-                break;
+                    break;
             }
         }
     }
-    
+
     private String getFileFormat(String path) {
         int index = path.lastIndexOf('.');
-        if(index > 0) {
+        if (index > 0) {
             String extension = path.substring(index + 1);
             return extension;
         } else {
