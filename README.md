@@ -22,7 +22,7 @@ Join our discord server to keep contact us about Android Code Editor.
 		- [x] Java
 		- [ ] JavaScript
 		- [x] HTML
-		- [ ] CSS
+		- [x] CSS
 		- [ ] XML
 - [ ] Code Mirror.
 	- Language Highlighting

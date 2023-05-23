@@ -69,6 +69,19 @@ public class FileTypeHandler {
                                 }
                             });
                     break;
+                case "css":
+                    view.setOnClickListener(
+                            new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent();
+                                    intent.putExtra("path", file.getAbsolutePath());
+                                    intent.putExtra("LanguageMode", Language.CSS);
+                                    intent.setClass(context, CodeEditorActivity.class);
+                                    context.startActivity(intent);
+                                }
+                            });
+                    break;
                 default:
                     view.setOnClickListener(null);
                     break;
