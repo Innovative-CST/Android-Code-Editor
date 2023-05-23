@@ -13,6 +13,8 @@ public class FileIcon {
         } else if (new File(path).isFile()) {
             if (FileManager.ifFileFormatIsEqualTo(path, "java")) {
                 imageview.setImageResource(R.drawable.ic_language_java);
+            } else if (FileManager.ifFileFormatIsEqualTo(path, "xml")) {
+                imageview.setImageResource(R.drawable.file_xml_box);
             } else if (FileManager.ifFileFormatIsEqualTo(path, "html")) {
                 imageview.setImageResource(R.drawable.language_html);
             } else if (FileManager.ifFileFormatIsEqualTo(path, "css")) {
