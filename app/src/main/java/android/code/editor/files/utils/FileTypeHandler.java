@@ -56,6 +56,19 @@ public class FileTypeHandler {
                                 }
                             });
                     break;
+                case "xml":
+                    view.setOnClickListener(
+                            new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent();
+                                    intent.putExtra("path", file.getAbsolutePath());
+                                    intent.putExtra("LanguageMode", Language.XML);
+                                    intent.setClass(context, CodeEditorActivity.class);
+                                    context.startActivity(intent);
+                                }
+                            });
+                    break;
                 case "html":
                     view.setOnClickListener(
                             new View.OnClickListener() {

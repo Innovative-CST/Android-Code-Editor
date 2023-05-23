@@ -20,10 +20,10 @@ Join our discord server to keep contact us about Android Code Editor.
 - [x] Ace Editor.
 	- Language Highlighting
 		- [x] Java
-		- [ ] JavaScript
+		- [x] JavaScript
 		- [x] HTML
 		- [x] CSS
-		- [ ] XML
+		- [x] XML
 - [ ] Code Mirror.
 	- Language Highlighting
 		- [ ] Java
