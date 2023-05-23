@@ -17,6 +17,8 @@ public class FileIcon {
                 imageview.setImageResource(R.drawable.language_html);
             } else if (FileManager.ifFileFormatIsEqualTo(path, "css")) {
                 imageview.setImageResource(R.drawable.language_css);
+            } else if (FileManager.ifFileFormatIsEqualTo(path, "js")) {
+                imageview.setImageResource(R.drawable.language_javascript);
             } else {
                 imageview.setImageResource(0);
             }
