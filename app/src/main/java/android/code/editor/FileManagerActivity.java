@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -174,7 +175,12 @@ public class FileManagerActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         // TODO: Implement this method
-        finishAffinity();
+        if (Environment.getExternalStorageDirectory().getAbsolutePath().equals(getIntent().getStringExtra("path"))) {
+            finishAffinity();
+        } else {
+            finish();
+        }
+        
     }
 
     // Adapter of Recycler View
