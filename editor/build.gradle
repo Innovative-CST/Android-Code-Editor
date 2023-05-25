@@ -35,4 +35,5 @@ dependencies {
     implementation platform("$editorGroupId:bom:0.21.1")
     implementation "$editorGroupId:editor"
     implementation "$editorGroupId:language-textmate"
+    implementation "$editorGroupId:language-java"
 }

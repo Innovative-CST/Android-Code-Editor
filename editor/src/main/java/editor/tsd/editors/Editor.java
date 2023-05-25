@@ -7,4 +7,5 @@ public interface Editor {
     public String getCode();
     public int getCodeEditorType();
     public void setLanguageMode(String LqnguageMode);
+    public void setTheme(String theme);
 }

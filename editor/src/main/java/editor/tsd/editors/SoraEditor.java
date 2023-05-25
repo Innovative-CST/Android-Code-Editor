@@ -7,17 +7,17 @@ import editor.tsd.widget.CodeEditorLayout;
 
 import io.github.rosemoe.sora.widget.CodeEditor;
 
-
 public class SoraEditor implements Editor {
     public CodeEditor editor;
+    public Context context;
 
     public SoraEditor(Context context) {
-
+        this.context = context;
         editor = new CodeEditor(context);
         ViewGroup.LayoutParams codeEditor_LayoutParams =
                 new ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        
+
         editor.setLayoutParams(codeEditor_LayoutParams);
     }
 
@@ -34,14 +34,17 @@ public class SoraEditor implements Editor {
     public CodeEditor getCodeEditor() {
         return editor;
     }
-    
+
     @Override
     public int getCodeEditorType() {
         return CodeEditorLayout.SoraCodeEditor;
     }
 
     @Override
-    public void setLanguageMode(String LqnguageMode) {
+    public void setLanguageMode(String LanguageMode) {}
+
+    @Override
+    public void setTheme(String theme) {
+        
     }
-    
 }
