@@ -54,6 +54,11 @@ jobs:
         with:
           name: apk-editor-debug
           path: app/build/outputs/apk/debug
+      - name: Upload editor aar debug
+        uses: actions/upload-artifact@v3
+        with:
+          name: aar-editor-debug
+          path: editor/build/outputs/aar/editor-debug.aar
       - name: Upload Files
         uses: actions/upload-artifact@v3
         with:
