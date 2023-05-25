@@ -99,11 +99,19 @@ public class CodeEditorLayout extends LinearLayout {
         return editor;
     }
 
-    public CodeEditor getSoraEditor() {
+    public CodeEditor getSoraCodeEditor() {
         return soraEditor.getCodeEditor();
     }
+    
+    public SoraEditor getSoraEditor() {
+        return soraEditor;
+    }
 
-    public WebView getAceEditor() {
+    public WebView getAceCodeEditor() {
         return aceEditor.getCodeEditor();
+    }
+    
+    public AceEditor getAceEditor() {
+        return aceEditor;
     }
 }
