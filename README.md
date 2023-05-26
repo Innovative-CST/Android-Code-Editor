@@ -17,6 +17,7 @@ Join our discord server to keep contact us about Android Code Editor.
 		- [ ] HTML
 		- [ ] CSS
 		- [ ] JavaScript
+    - [ ] Themes
 - [x] Ace Editor.
 	- Language Highlighting
 		- [x] Java
@@ -24,6 +25,7 @@ Join our discord server to keep contact us about Android Code Editor.
 		- [x] HTML
 		- [x] CSS
 		- [x] XML
+    - [ ] Themes
 - [ ] Code Mirror.
 	- Language Highlighting
 		- [ ] Java
@@ -31,6 +33,7 @@ Join our discord server to keep contact us about Android Code Editor.
 		- [ ] HTML
 		- [ ] CSS
 		- [ ] XML
+    - [ ] Themes
 - [ ] Save and Edit files.
 - [ ] Create Projects.
 - [ ] File Tree.
