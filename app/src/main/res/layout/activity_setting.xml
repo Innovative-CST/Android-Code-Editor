@@ -1,300 +1,372 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-	 xmlns:android="http://schemas.android.com/apk/res/android"
-	 xmlns:app="http://schemas.android.com/apk/res-auto"
-	 android:layout_height="match_parent"
-	 android:layout_width="match_parent"
-	 android:orientation="vertical"
-	 android:id="@+id/coordinator"
-	 android:background="?attr/colorSurface">
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_height="match_parent"
+     android:layout_width="match_parent"
+     android:background="?attr/colorSurface"
+     android:orientation="vertical"
+     android:id="@+id/coordinator">
 
-	<com.google.android.material.appbar.AppBarLayout
-		 android:layout_height="wrap_content"
-		 android:layout_width="match_parent"
-		 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
-		 android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
-		 android:id="@+id/appbar">
+    <com.google.android.material.appbar.AppBarLayout
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
+         android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+         android:id="@+id/appbar">
 
-		<com.google.android.material.appbar.MaterialToolbar
-			 android:layout_height="?attr/actionBarSize"
-			 android:layout_width="match_parent"
-			 android:background="?attr/colorPrimary"
-			 app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
-			 android:id="@+id/toolbar" />
+        <com.google.android.material.appbar.MaterialToolbar
+             android:layout_height="?attr/actionBarSize"
+             android:layout_width="match_parent"
+             android:background="?attr/colorPrimary"
+             app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+             android:id="@+id/toolbar"/>
 
-	</com.google.android.material.appbar.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-	<ScrollView
-		 android:layout_height="match_parent"
-		 android:layout_width="match_parent">
+    <ScrollView
+         android:layout_height="match_parent"
+         android:layout_width="match_parent">
 
-		<LinearLayout
-			 android:layout_height="wrap_content"
-			 android:layout_width="match_parent"
-			 android:background="?attr/colorSurface"
-			 android:orientation="vertical">
+        <LinearLayout
+             android:layout_height="wrap_content"
+             android:layout_width="match_parent"
+             android:background="?attr/colorSurface"
+             android:orientation="vertical">
 
-			<TextView
-				 android:layout_height="wrap_content"
-				 android:layout_width="wrap_content"
-				 android:layout_margin="8dp"
-				 android:textSize="22sp"
-				 android:text="Editor"
-				 android:textStyle="bold" />
+            <TextView
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                 android:layout_margin="8dp"
+                 android:textSize="22sp"
+                 android:text="Editor"
+                 android:textStyle="bold"/>
 
-			<LinearLayout
-				 android:layout_height="wrap_content"
-				 android:layout_width="match_parent"
-				 android:gravity="center_vertical"
-				 android:orientation="horizontal">
+            <LinearLayout
+                 android:layout_height="wrap_content"
+                 android:layout_width="match_parent"
+                 android:gravity="center_vertical"
+                 android:orientation="horizontal">
 
-				<LinearLayout
-					 android:layout_height="wrap_content"
-					 android:layout_width="wrap_content"
-					 android:padding="8dp"
-					 android:orientation="vertical"
-					 android:layout_weight="1">
+                <LinearLayout
+                     android:layout_height="wrap_content"
+                     android:layout_width="wrap_content"
+                     android:padding="8dp"
+                     android:orientation="vertical"
+                     android:layout_weight="1">
 
-					<TextView
-						 android:layout_height="wrap_content"
-						 android:layout_width="wrap_content"
-						 android:textSize="16sp"
-						 android:text="Editor" />
+                    <TextView
+                         android:layout_height="wrap_content"
+                         android:layout_width="wrap_content"
+                         android:textSize="16sp"
+                         android:text="Editor"/>
 
-					<TextView
-						 android:layout_height="wrap_content"
-						 android:layout_width="wrap_content"
-						 android:textSize="11sp"
-						 android:text="Choose an code editor for you which is good for you." />
+                    <TextView
+                         android:layout_height="wrap_content"
+                         android:layout_width="wrap_content"
+                         android:textSize="11sp"
+                         android:text="Choose an code editor for you which is good for you."/>
 
-				</LinearLayout>
+                </LinearLayout>
 
-				<Spinner
-					 android:layout_height="wrap_content"
-					 android:layout_width="wrap_content"
-					 android:id="@+id/editorChooser">
+                <Spinner
+                     android:layout_height="wrap_content"
+                     android:layout_width="wrap_content"
+                     android:id="@+id/editorChooser">
 
-				</Spinner>
+                </Spinner>
 
-			</LinearLayout>
+            </LinearLayout>
 
-			<TextView
-				 android:layout_height="wrap_content"
-				 android:layout_width="wrap_content"
-				 android:layout_margin="8dp"
-				 android:textSize="16sp"
-				 android:text="Themes"
-				 android:textStyle="bold" />
+            <LinearLayout
+                 android:layout_height="wrap_content"
+                 android:layout_width="match_parent"
+                 android:gravity="center_vertical"
+                 android:orientation="horizontal">
 
-			<LinearLayout
-				 android:layout_height="wrap_content"
-				 android:layout_width="match_parent"
-				 android:weightSum="100"
-				 android:layout_marginBottom="8dp"
-				 android:gravity="center_horizontal">
+                <LinearLayout
+                     android:layout_height="wrap_content"
+                     android:layout_width="wrap_content"
+                     android:padding="8dp"
+                     android:orientation="vertical"
+                     android:layout_weight="1">
 
-				<androidx.cardview.widget.CardView
-					 android:layout_height="80dp"
-					 android:layout_width="0dp"
-					 app:cardElevation="10dp"
-					 app:cardBackgroundColor="@color/brownish_md_theme_light_primary"
-					 android:layout_marginRight="4dp"
-					 app:cardCornerRadius="20dp"
-					 android:layout_weight="45"
-					 android:id="@+id/theme1"
-					 app:cardPreventCornerOverlap="true">
+                    <TextView
+                         android:layout_height="wrap_content"
+                         android:layout_width="wrap_content"
+                         android:textSize="16sp"
+                         android:text="Ace Editor Theme"/>
 
-					<LinearLayout
-						 android:layout_height="match_parent"
-						 android:layout_width="match_parent"
-						 android:gravity="center"
-						 android:background="?selectableItemBackground"
-						 android:clickable="true"
-						 android:focusable="true"
-						 android:id="@+id/ThemeContent1">
+                    <TextView
+                         android:layout_height="wrap_content"
+                         android:layout_width="wrap_content"
+                         android:textSize="11sp"
+                         android:text="Choose a theme for Ace Editor."/>
 
-						<TextView
-							 android:layout_height="wrap_content"
-							 android:layout_width="wrap_content"
-							 android:textColor="@color/brownish_md_theme_light_onPrimary"
-							 android:text="Brownish Light" />
+                </LinearLayout>
 
-					</LinearLayout>
+                <Spinner
+                     android:layout_height="wrap_content"
+                     android:layout_width="wrap_content"
+                     android:id="@+id/aceEditorThemeChooser">
 
-				</androidx.cardview.widget.CardView>
+                </Spinner>
 
-				<androidx.cardview.widget.CardView
-					 android:layout_height="80dp"
-					 android:layout_width="0dp"
-					 app:cardElevation="10dp"
-					 app:cardBackgroundColor="@color/brownish_md_theme_dark_primary"
-					 android:layout_marginLeft="4dp"
-					 app:cardCornerRadius="20dp"
-					 android:layout_weight="45"
-					 android:id="@+id/theme2"
-					 app:cardPreventCornerOverlap="true">
+            </LinearLayout>
 
-					<LinearLayout
-						 android:layout_height="match_parent"
-						 android:layout_width="match_parent"
-						 android:gravity="center"
-						 android:background="?selectableItemBackground"
-						 android:clickable="true"
-						 android:focusable="true"
-						 android:id="@+id/ThemeContent2">
+            <LinearLayout
+                 android:layout_height="wrap_content"
+                 android:layout_width="match_parent"
+                 android:gravity="center_vertical"
+                 android:orientation="horizontal">
 
-						<TextView
-							 android:layout_height="wrap_content"
-							 android:layout_width="wrap_content"
-							 android:textColor="@color/brownish_md_theme_dark_onPrimary"
-							 android:text="Brownish Dark" />
+                <LinearLayout
+                     android:layout_height="wrap_content"
+                     android:layout_width="wrap_content"
+                     android:padding="8dp"
+                     android:orientation="vertical"
+                     android:layout_weight="1">
 
-					</LinearLayout>
+                    <TextView
+                         android:layout_height="wrap_content"
+                         android:layout_width="wrap_content"
+                         android:textSize="16sp"
+                         android:text="Sora Editor Theme"/>
 
-				</androidx.cardview.widget.CardView>
+                    <TextView
+                         android:layout_height="wrap_content"
+                         android:layout_width="wrap_content"
+                         android:textSize="11sp"
+                         android:text="Choose a theme for Sora Editor."/>
 
-			</LinearLayout>
+                </LinearLayout>
 
-			<LinearLayout
-				 android:layout_height="wrap_content"
-				 android:layout_width="match_parent"
-				 android:weightSum="100"
-				 android:layout_marginBottom="8dp"
-				 android:gravity="center_horizontal">
+                <Spinner
+                     android:layout_height="wrap_content"
+                     android:layout_width="wrap_content"
+                     android:id="@+id/soraEditorThemeChooser">
 
-				<androidx.cardview.widget.CardView
-					 android:layout_height="80dp"
-					 android:layout_width="0dp"
-					 app:cardElevation="10dp"
-					 app:cardBackgroundColor="@color/md_theme_light_primary"
-					 android:layout_marginRight="4dp"
-					 app:cardCornerRadius="20dp"
-					 android:layout_weight="45"
-					 android:id="@+id/theme3"
-					 app:cardPreventCornerOverlap="true">
+                </Spinner>
 
-					<LinearLayout
-						 android:layout_height="match_parent"
-						 android:layout_width="match_parent"
-						 android:gravity="center"
-						 android:background="?selectableItemBackground"
-						 android:clickable="true"
-						 android:focusable="true"
-						 android:id="@+id/ThemeContent3">
+            </LinearLayout>
 
-						<TextView
-							 android:layout_height="wrap_content"
-							 android:layout_width="wrap_content"
-							 android:textColor="@color/md_theme_light_onPrimary"
-							 android:text="Light Blue (Light)" />
+            <TextView
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                 android:layout_margin="8dp"
+                 android:textSize="22sp"
+                 android:text="Themes"
+                 android:textStyle="bold"/>
 
-					</LinearLayout>
+            <LinearLayout
+                 android:layout_height="wrap_content"
+                 android:layout_width="match_parent"
+                 android:weightSum="100"
+                 android:layout_marginBottom="8dp"
+                 android:gravity="center_horizontal">
 
-				</androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                     android:layout_height="80dp"
+                     android:layout_width="0dp"
+                     app:cardElevation="10dp"
+                     app:cardBackgroundColor="@color/brownish_md_theme_light_primary"
+                     android:layout_marginRight="4dp"
+                     app:cardCornerRadius="20dp"
+                     android:layout_weight="45"
+                     android:id="@+id/theme1"
+                     app:cardPreventCornerOverlap="true">
 
-				<androidx.cardview.widget.CardView
-					 android:layout_height="80dp"
-					 android:layout_width="0dp"
-					 android:clickable="true"
-					 app:cardElevation="10dp"
-					 app:cardBackgroundColor="@color/md_theme_dark_primary"
-					 android:layout_marginLeft="4dp"
-					 app:cardCornerRadius="20dp"
-					 android:layout_weight="45"
-					 android:focusable="true"
-					 android:id="@+id/theme4"
-					 app:cardPreventCornerOverlap="true">
+                    <LinearLayout
+                         android:layout_height="match_parent"
+                         android:layout_width="match_parent"
+                         android:gravity="center"
+                         android:background="?selectableItemBackground"
+                         android:clickable="true"
+                         android:focusable="true"
+                         android:id="@+id/ThemeContent1">
 
-					<LinearLayout
-						 android:layout_height="match_parent"
-						 android:layout_width="match_parent"
-						 android:gravity="center"
-						 android:background="?selectableItemBackground"
-						 android:id="@+id/ThemeContent4">
+                        <TextView
+                             android:layout_height="wrap_content"
+                             android:layout_width="wrap_content"
+                             android:textColor="@color/brownish_md_theme_light_onPrimary"
+                             android:text="Brownish Light"/>
 
-						<TextView
-							 android:layout_height="wrap_content"
-							 android:layout_width="wrap_content"
-							 android:textColor="@color/md_theme_dark_onPrimary"
-							 android:text="Light Blue (Dark)" />
+                    </LinearLayout>
 
-					</LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-				</androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                     android:layout_height="80dp"
+                     android:layout_width="0dp"
+                     app:cardElevation="10dp"
+                     app:cardBackgroundColor="@color/brownish_md_theme_dark_primary"
+                     android:layout_marginLeft="4dp"
+                     app:cardCornerRadius="20dp"
+                     android:layout_weight="45"
+                     android:id="@+id/theme2"
+                     app:cardPreventCornerOverlap="true">
 
-			</LinearLayout>
+                    <LinearLayout
+                         android:layout_height="match_parent"
+                         android:layout_width="match_parent"
+                         android:gravity="center"
+                         android:background="?selectableItemBackground"
+                         android:clickable="true"
+                         android:focusable="true"
+                         android:id="@+id/ThemeContent2">
 
-			<LinearLayout
-				 android:layout_height="wrap_content"
-				 android:layout_width="match_parent"
-				 android:weightSum="100"
-				 android:layout_marginBottom="8dp"
-				 android:gravity="center_horizontal">
+                        <TextView
+                             android:layout_height="wrap_content"
+                             android:layout_width="wrap_content"
+                             android:textColor="@color/brownish_md_theme_dark_onPrimary"
+                             android:text="Brownish Dark"/>
 
-				<androidx.cardview.widget.CardView
-					 android:layout_height="80dp"
-					 android:layout_width="0dp"
-					 app:cardElevation="10dp"
-					 app:cardBackgroundColor="@color/green_md_theme_light_primary"
-					 android:layout_marginRight="4dp"
-					 app:cardCornerRadius="20dp"
-					 android:layout_weight="45"
-					 android:id="@+id/theme5"
-					 app:cardPreventCornerOverlap="true">
+                    </LinearLayout>
 
-					<LinearLayout
-						 android:layout_height="match_parent"
-						 android:layout_width="match_parent"
-						 android:gravity="center"
-						 android:background="?selectableItemBackground"
-						 android:clickable="true"
-						 android:focusable="true"
-						 android:id="@+id/ThemeContent5">
+                </androidx.cardview.widget.CardView>
 
-						<TextView
-							 android:layout_height="wrap_content"
-							 android:layout_width="wrap_content"
-							 android:textColor="@color/green_md_theme_light_onPrimary"
-							 android:text="Light Green" />
+            </LinearLayout>
 
-					</LinearLayout>
+            <LinearLayout
+                 android:layout_height="wrap_content"
+                 android:layout_width="match_parent"
+                 android:weightSum="100"
+                 android:layout_marginBottom="8dp"
+                 android:gravity="center_horizontal">
 
-				</androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                     android:layout_height="80dp"
+                     android:layout_width="0dp"
+                     app:cardElevation="10dp"
+                     app:cardBackgroundColor="@color/md_theme_light_primary"
+                     android:layout_marginRight="4dp"
+                     app:cardCornerRadius="20dp"
+                     android:layout_weight="45"
+                     android:id="@+id/theme3"
+                     app:cardPreventCornerOverlap="true">
 
-				<androidx.cardview.widget.CardView
-					 android:layout_height="80dp"
-					 android:layout_width="0dp"
-					 android:clickable="true"
-					 app:cardElevation="10dp"
-					 app:cardBackgroundColor="@color/green_md_theme_dark_primary"
-					 android:layout_marginLeft="4dp"
-					 app:cardCornerRadius="20dp"
-					 android:layout_weight="45"
-					 android:focusable="true"
-					 android:id="@+id/theme6"
-					 app:cardPreventCornerOverlap="true">
+                    <LinearLayout
+                         android:layout_height="match_parent"
+                         android:layout_width="match_parent"
+                         android:gravity="center"
+                         android:background="?selectableItemBackground"
+                         android:clickable="true"
+                         android:focusable="true"
+                         android:id="@+id/ThemeContent3">
 
-					<LinearLayout
-						 android:layout_height="match_parent"
-						 android:layout_width="match_parent"
-						 android:gravity="center"
-						 android:background="?selectableItemBackground"
-						 android:id="@+id/ThemeContent6">
+                        <TextView
+                             android:layout_height="wrap_content"
+                             android:layout_width="wrap_content"
+                             android:textColor="@color/md_theme_light_onPrimary"
+                             android:text="Light Blue (Light)"/>
 
-						<TextView
-							 android:layout_height="wrap_content"
-							 android:layout_width="wrap_content"
-							 android:textColor="@color/green_md_theme_dark_onPrimary"
-							 android:text="Dark Green" />
+                    </LinearLayout>
 
-					</LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-				</androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                     android:layout_height="80dp"
+                     android:layout_width="0dp"
+                     android:clickable="true"
+                     app:cardElevation="10dp"
+                     app:cardBackgroundColor="@color/md_theme_dark_primary"
+                     android:layout_marginLeft="4dp"
+                     app:cardCornerRadius="20dp"
+                     android:layout_weight="45"
+                     android:focusable="true"
+                     android:id="@+id/theme4"
+                     app:cardPreventCornerOverlap="true">
 
-			</LinearLayout>
+                    <LinearLayout
+                         android:layout_height="match_parent"
+                         android:layout_width="match_parent"
+                         android:gravity="center"
+                         android:background="?selectableItemBackground"
+                         android:id="@+id/ThemeContent4">
 
-		</LinearLayout>
+                        <TextView
+                             android:layout_height="wrap_content"
+                             android:layout_width="wrap_content"
+                             android:textColor="@color/md_theme_dark_onPrimary"
+                             android:text="Light Blue (Dark)"/>
 
-	</ScrollView>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                 android:layout_height="wrap_content"
+                 android:layout_width="match_parent"
+                 android:weightSum="100"
+                 android:layout_marginBottom="8dp"
+                 android:gravity="center_horizontal">
+
+                <androidx.cardview.widget.CardView
+                     android:layout_height="80dp"
+                     android:layout_width="0dp"
+                     app:cardElevation="10dp"
+                     app:cardBackgroundColor="@color/green_md_theme_light_primary"
+                     android:layout_marginRight="4dp"
+                     app:cardCornerRadius="20dp"
+                     android:layout_weight="45"
+                     android:id="@+id/theme5"
+                     app:cardPreventCornerOverlap="true">
+
+                    <LinearLayout
+                         android:layout_height="match_parent"
+                         android:layout_width="match_parent"
+                         android:gravity="center"
+                         android:background="?selectableItemBackground"
+                         android:clickable="true"
+                         android:focusable="true"
+                         android:id="@+id/ThemeContent5">
+
+                        <TextView
+                             android:layout_height="wrap_content"
+                             android:layout_width="wrap_content"
+                             android:textColor="@color/green_md_theme_light_onPrimary"
+                             android:text="Light Green"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                     android:layout_height="80dp"
+                     android:layout_width="0dp"
+                     android:clickable="true"
+                     app:cardElevation="10dp"
+                     app:cardBackgroundColor="@color/green_md_theme_dark_primary"
+                     android:layout_marginLeft="4dp"
+                     app:cardCornerRadius="20dp"
+                     android:layout_weight="45"
+                     android:focusable="true"
+                     android:id="@+id/theme6"
+                     app:cardPreventCornerOverlap="true">
+
+                    <LinearLayout
+                         android:layout_height="match_parent"
+                         android:layout_width="match_parent"
+                         android:gravity="center"
+                         android:background="?selectableItemBackground"
+                         android:id="@+id/ThemeContent6">
+
+                        <TextView
+                             android:layout_height="wrap_content"
+                             android:layout_width="wrap_content"
+                             android:textColor="@color/green_md_theme_dark_onPrimary"
+                             android:text="Dark Green"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
