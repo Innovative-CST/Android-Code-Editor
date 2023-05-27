@@ -7,6 +7,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
 import editor.tsd.tools.Language;
+import editor.tsd.tools.Themes;
 import editor.tsd.widget.CodeEditorLayout;
 
 public class AceEditor implements Editor {
@@ -75,14 +76,19 @@ public class AceEditor implements Editor {
     public class AceJSInterface {
         public String languageMode;
         public String code;
+        public String theme;
 
         public void UpdateCode(String Code) {
             code = Code;
         }
+        
+        public void setTheme(String theme) {
+            this.theme = theme;
+        }
 
         @JavascriptInterface
         public String getAceEditorTheme() {
-            return "monokai";
+            return this.theme;
         }
 
         @JavascriptInterface
@@ -118,5 +124,12 @@ public class AceEditor implements Editor {
     }
 
     @Override
-    public void setTheme(String theme) {}
+    public void setTheme(String theme) {
+        // Set theme
+        if (theme.equals(Themes.AceEditorTheme.Dracula)) {
+            aceJSInterface.setTheme("dracula");
+        }
+        // Update theme 
+        aceEditor.loadUrl("javascript:setLanguageMode()");
+    }
 }

@@ -56,7 +56,7 @@ public class CodeEditorLayout extends LinearLayout {
     }
 
     public String getCode() {
-        if (CurrentCodeEditor!= null) {
+        if (CurrentCodeEditor != null) {
             return CurrentCodeEditor.getCode();
         } else {
             return "";
@@ -86,9 +86,13 @@ public class CodeEditorLayout extends LinearLayout {
             }
         }
     }
-    
+
     public void setLanguageMode(String LanguageMode) {
         CurrentCodeEditor.setLanguageMode(LanguageMode);
+    }
+
+    public void setTheme(String theme) {
+        CurrentCodeEditor.setTheme(theme);
     }
 
     public Editor getEditor() {
@@ -102,7 +106,7 @@ public class CodeEditorLayout extends LinearLayout {
     public CodeEditor getSoraCodeEditor() {
         return soraEditor.getCodeEditor();
     }
-    
+
     public SoraEditor getSoraEditor() {
         return soraEditor;
     }
@@ -110,7 +114,7 @@ public class CodeEditorLayout extends LinearLayout {
     public WebView getAceCodeEditor() {
         return aceEditor.getCodeEditor();
     }
-    
+
     public AceEditor getAceEditor() {
         return aceEditor;
     }

@@ -104,12 +104,12 @@
 			enableLiveAutocompletion: enableLiveAutocompletion,
 			useWorker: false,
 		});
-		setEditorTheme(aceEditor.getAceEditorTheme());
+		setEditorTheme();
 		setCode();
         setLanguageMode();
 
-		function setEditorTheme(theme) {
-			editor.setTheme('ace/theme/' + theme);
+		function setEditorTheme() {
+			editor.setTheme('ace/theme/' + aceEditor.getAceEditorTheme());
 		}
 
 		function setEditorFontSize() {
