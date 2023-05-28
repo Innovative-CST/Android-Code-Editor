@@ -126,7 +126,7 @@ public class AceEditor implements Editor {
     @Override
     public void setTheme(String theme) {
         // Set theme
-        if (theme.equals(Themes.AceEditorTheme.Dracula)) {
+        if (theme.equals(Themes.AceEditorTheme.Dark.Dracula)) {
             aceJSInterface.setTheme("dracula");
         }
         // Update theme 

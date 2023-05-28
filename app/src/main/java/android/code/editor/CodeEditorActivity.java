@@ -28,9 +28,20 @@ public class CodeEditorActivity extends AppCompatActivity {
         codeEditor.setEditor(
                 Setting.SaveInFile.getSettingInt(Setting.Key.CodeEditor, Setting.Default.CodeEditor, this));
         codeEditor.setCode(FileManager.readFile(getIntent().getStringExtra("path")));
+        
+        // Set editor theme
+        if (Setting.SaveInFile.getSettingString(Setting.Key.ThemeType,Setting.Default.ThemeType,this).equals(Setting.Value.Dark)) {
+            if (Setting.SaveInFile.getSettingInt(Setting.Key.CodeEditor, Setting.Default.CodeEditor, this) == CodeEditorLayout.SoraCodeEditor) {
+                codeEditor.setTheme(Setting.SaveInFile.getSettingString("SoraCodeEditorDarkTheme",Themes.SoraEditorTheme.Dark.Darcula,this));
+            } else if (Setting.SaveInFile.getSettingInt(Setting.Key.CodeEditor, Setting.Default.CodeEditor, this) == CodeEditorLayout.AceCodeEditor) {
+                codeEditor.setTheme(Setting.SaveInFile.getSettingString("AceCodeEditorDarkTheme",Themes.SoraEditorTheme.Dark.Darcula,this));
+            }
+        }
+        
         if (getIntent().hasExtra("LanguageMode")) {
             codeEditor.setLanguageMode(getIntent().getStringExtra("LanguageMode"));
         }
+        
         findViewById(R.id.toast)
                 .setOnClickListener(
                         new View.OnClickListener() {

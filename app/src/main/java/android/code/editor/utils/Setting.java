@@ -22,13 +22,18 @@ public class Setting {
     public class Key {
         public static String CodeEditor = "CodeEditor";
         public static String Theme = "Theme";
+        public static final String ThemeType = "ThemeType";
     }
 
     public class Default {
         public static int CodeEditor = CodeEditorLayout.AceCodeEditor;
         public static String Theme = "LightGreen";
+        public static final String ThemeType = "Dark";
     }
-
+    
+    public class Value {
+        public static final String Dark = "Dark";
+    }
 
     public class SaveInFile {
         public static void setSetting(String key, Object value, Context context) {

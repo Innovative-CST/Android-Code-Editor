@@ -2,9 +2,15 @@ package editor.tsd.tools;
 
 public class Themes {
     public class AceEditorTheme {
-        public static final String Dracula = "dracula";
+        public class Dark {
+            public static final String Dracula = "dracula";
+            public static final String Default = Dracula;
+        }
     }
     public class SoraEditorTheme {
-        public static final String Darcula = "Darcula";
+        public class Dark {
+            public static final String Darcula = "Darcula";
+            public static final String Default = Darcula;
+        }
     }
 }
