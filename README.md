@@ -12,7 +12,7 @@ Join our discord server to keep contact us about Android Code Editor.
 - [x] Mixed Editor Widget
 - [x] Sora Editor.
 	- Language Highlighting
-		- [ ] Java
+		- [x] Java
 		- [ ] XML
 		- [ ] HTML
 		- [ ] CSS
@@ -28,7 +28,7 @@ Join our discord server to keep contact us about Android Code Editor.
     - [ ] Themes
 - [ ] Code Mirror.
 	- Language Highlighting
-		- [x] Java
+		- [ ] Java
 		- [ ] JavaScript
 		- [ ] HTML
 		- [ ] CSS
