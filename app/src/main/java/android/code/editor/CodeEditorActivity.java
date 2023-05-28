@@ -34,7 +34,7 @@ public class CodeEditorActivity extends AppCompatActivity {
             if (Setting.SaveInFile.getSettingInt(Setting.Key.CodeEditor, Setting.Default.CodeEditor, this) == CodeEditorLayout.SoraCodeEditor) {
                 codeEditor.setTheme(Setting.SaveInFile.getSettingString("SoraCodeEditorDarkTheme",Themes.SoraEditorTheme.Dark.Darcula,this));
             } else if (Setting.SaveInFile.getSettingInt(Setting.Key.CodeEditor, Setting.Default.CodeEditor, this) == CodeEditorLayout.AceCodeEditor) {
-                codeEditor.setTheme(Setting.SaveInFile.getSettingString("AceCodeEditorDarkTheme",Themes.SoraEditorTheme.Dark.Darcula,this));
+                codeEditor.setTheme(Setting.SaveInFile.getSettingString("AceCodeEditorDarkTheme",Themes.AceEditorTheme.Dark.Dracula,this));
             }
         }
         
