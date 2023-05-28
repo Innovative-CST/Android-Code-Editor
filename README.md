@@ -8,26 +8,28 @@ Join our discord server to keep contact us about Android Code Editor.
 
 [![Join our discord](https://invidget.switchblade.xyz/RM5qaZs4kd)](https://discord.gg/RM5qaZs4kd)
 
-### Progress
+### TODO
 - [x] Mixed Editor Widget
 - [x] Sora Editor.
-	- Language Highlighting
+	- Language Mode
 		- [x] Java
 		- [ ] XML
 		- [ ] HTML
 		- [ ] CSS
 		- [ ] JavaScript
-    - [ ] Themes
+    - Themes
+        - [x] Darcula
 - [x] Ace Editor.
-	- Language Highlighting
+	- Language Mode
 		- [x] Java
 		- [x] JavaScript
 		- [x] HTML
 		- [x] CSS
 		- [x] XML
-    - [ ] Themes
+    - Themes
+        - [x] Dracula
 - [ ] Code Mirror.
-	- Language Highlighting
+	- Language Mode
 		- [ ] Java
 		- [ ] JavaScript
 		- [ ] HTML
