@@ -25,7 +25,7 @@ public class CodeEditorActivity extends AppCompatActivity {
 
     public void initActivity() {
         CodeEditorLayout codeEditor = findViewById(R.id.editor);
-        
+        findViewById(R.id.progressbar).setVisibility(View.VISIBLE);
         codeEditor.setEditor(
                 Setting.SaveInFile.getSettingInt(
                         Setting.Key.CodeEditor, Setting.Default.CodeEditor, this));
@@ -35,11 +35,13 @@ public class CodeEditorActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(String arg0) {
                         codeEditor.setCode(arg0);
+                        findViewById(R.id.progressbar).setVisibility(View.GONE);
                     }
 
                     @Override
                     public void onError(String error) {
                         codeEditor.setCode(error);
+                        findViewById(R.id.progressbar).setVisibility(View.GONE);
                     }
                 });
         // Set editor theme
