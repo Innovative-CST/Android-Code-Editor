@@ -33,6 +33,7 @@ public class Setting {
     
     public class Value {
         public static final String Dark = "Dark";
+        public static final String Light = "Light";
     }
 
     public class SaveInFile {

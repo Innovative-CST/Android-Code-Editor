@@ -19,7 +19,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 import editor.tsd.widget.CodeEditorLayout;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -35,10 +34,10 @@ public class SettingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle arg0) {
-		MaterialColorHelper.setUpTheme(this);
+        MaterialColorHelper.setUpTheme(this);
         super.onCreate(arg0);
         // TODO: Implement this method
-		setContentView(R.layout.activity_setting);
+        setContentView(R.layout.activity_setting);
         initActivity();
     }
 
@@ -54,14 +53,14 @@ public class SettingActivity extends AppCompatActivity {
                 .setTint(
                         MaterialColorHelper.getMaterialColor(
                                 this, com.google.android.material.R.attr.colorOnPrimary));
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-			    // TODO: Implement this method
-                onBackPressed();
-			}
-			            
-		});
+        toolbar.setNavigationOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View arg0) {
+                        // TODO: Implement this method
+                        onBackPressed();
+                    }
+                });
         editorChooser = findViewById(R.id.editorChooser);
 
         HashMap map = new HashMap<>();
@@ -75,7 +74,8 @@ public class SettingActivity extends AppCompatActivity {
 
         editorChooser.setAdapter(new editorChooserAdapter(data));
         editorChooser.setSelection(
-                Setting.SaveInFile.getSettingInt(Setting.Key.CodeEditor, Setting.Default.CodeEditor, this));
+                Setting.SaveInFile.getSettingInt(
+                        Setting.Key.CodeEditor, Setting.Default.CodeEditor, this));
 
         initTheme();
         editorChooser.setOnItemSelectedListener(
@@ -175,7 +175,9 @@ public class SettingActivity extends AppCompatActivity {
                         snackbar.show();
                         Setting.SaveInFile.setSetting(
                                 Setting.Key.Theme, "BrownishLight", SettingActivity.this);
-						recreate();
+                        Setting.SaveInFile.setSetting(
+                                Setting.Key.ThemeType, Setting.Value.Light, SettingActivity.this);
+                        recreate();
                     }
                 });
 
@@ -190,8 +192,11 @@ public class SettingActivity extends AppCompatActivity {
                                         "Theme will be changed when you restart.",
                                         Snackbar.LENGTH_LONG);
                         snackbar.show();
-                        Setting.SaveInFile.setSetting(Setting.Key.Theme, "BrownishDark", SettingActivity.this);
-						recreate();
+                        Setting.SaveInFile.setSetting(
+                                Setting.Key.Theme, "BrownishDark", SettingActivity.this);
+                        Setting.SaveInFile.setSetting(
+                                Setting.Key.ThemeType, Setting.Value.Dark, SettingActivity.this);
+                        recreate();
                     }
                 });
 
@@ -208,7 +213,9 @@ public class SettingActivity extends AppCompatActivity {
                         snackbar.show();
                         Setting.SaveInFile.setSetting(
                                 Setting.Key.Theme, "LightBlueLight", SettingActivity.this);
-						recreate();
+                        Setting.SaveInFile.setSetting(
+                                Setting.Key.ThemeType, Setting.Value.Light, SettingActivity.this);
+                        recreate();
                     }
                 });
 
@@ -225,7 +232,9 @@ public class SettingActivity extends AppCompatActivity {
                         snackbar.show();
                         Setting.SaveInFile.setSetting(
                                 Setting.Key.Theme, "LightBlueDark", SettingActivity.this);
-						recreate();
+                        Setting.SaveInFile.setSetting(
+                                Setting.Key.ThemeType, Setting.Value.Dark, SettingActivity.this);
+                        recreate();
                     }
                 });
 
@@ -240,8 +249,11 @@ public class SettingActivity extends AppCompatActivity {
                                         "Theme will be changed when you restart.",
                                         Snackbar.LENGTH_LONG);
                         snackbar.show();
-                        Setting.SaveInFile.setSetting(Setting.Key.Theme, "LightGreen", SettingActivity.this);
-						recreate();
+                        Setting.SaveInFile.setSetting(
+                                Setting.Key.Theme, "LightGreen", SettingActivity.this);
+                        Setting.SaveInFile.setSetting(
+                                Setting.Key.ThemeType, Setting.Value.Light, SettingActivity.this);
+                        recreate();
                     }
                 });
 
@@ -256,8 +268,11 @@ public class SettingActivity extends AppCompatActivity {
                                         "Theme will be changed when you restart.",
                                         Snackbar.LENGTH_LONG);
                         snackbar.show();
-                        Setting.SaveInFile.setSetting(Setting.Key.Theme, "DarkGreen", SettingActivity.this);
-						recreate();
+                        Setting.SaveInFile.setSetting(
+                                Setting.Key.Theme, "DarkGreen", SettingActivity.this);
+                        Setting.SaveInFile.setSetting(
+                                Setting.Key.ThemeType, Setting.Value.Dark, SettingActivity.this);
+                        recreate();
                     }
                 });
     }
