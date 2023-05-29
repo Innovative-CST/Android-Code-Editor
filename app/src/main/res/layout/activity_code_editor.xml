@@ -20,7 +20,7 @@
          android:layout_width="match_parent"
          app:codeEditor="SoraCodeEditor"
          android:layout_weight="1"
-         app:setCode="This is my first text"
+         app:setCode=""
          android:id="@+id/editor" />
 
     <Button
