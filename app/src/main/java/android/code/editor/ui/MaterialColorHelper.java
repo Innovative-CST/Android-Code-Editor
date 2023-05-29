@@ -23,7 +23,7 @@ public class MaterialColorHelper {
     }
 
     public static void setUpTheme(Context context) {
-        switch (Setting.SaveInFile.getSettingString(Setting.Key.Theme, "BrownishLight", context)) {
+        switch (Setting.SaveInFile.getSettingString(Setting.Key.Theme, Setting.Default.Theme, context)) {
             case "BrownishLight":
                 context.setTheme(R.style.BrownishLight);
                 break;

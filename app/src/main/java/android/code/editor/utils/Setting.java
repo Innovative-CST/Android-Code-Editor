@@ -27,8 +27,8 @@ public class Setting {
 
     public class Default {
         public static int CodeEditor = CodeEditorLayout.AceCodeEditor;
-        public static String Theme = "LightGreen";
-        public static final String ThemeType = "Dark";
+        public static String Theme = "DarkGreen";
+        public static final String ThemeType = Value.Dark;
     }
     
     public class Value {
