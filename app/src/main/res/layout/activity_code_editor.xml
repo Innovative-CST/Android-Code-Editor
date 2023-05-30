@@ -13,20 +13,26 @@
          android:visibility="gone"
          android:indeterminate="true"
          style="?android:progressBarStyleHorizontal"
-         android:id="@+id/progressbar" />
+         android:id="@+id/progressbar"/>
 
-    <editor.tsd.widget.CodeEditorLayout
+    <LinearLayout
          android:layout_height="0dp"
          android:layout_width="match_parent"
-         app:codeEditor="SoraCodeEditor"
-         android:layout_weight="1"
-         app:setCode=""
-         android:id="@+id/editor" />
+         android:layout_weight="1">
+
+        <editor.tsd.widget.CodeEditorLayout
+             android:layout_height="match_parent"
+             android:layout_width="match_parent"
+             app:codeEditor="SoraCodeEditor"
+             app:setCode=""
+             android:id="@+id/editor"/>
+
+    </LinearLayout>
 
     <Button
          android:layout_height="wrap_content"
          android:layout_width="match_parent"
          android:id="@+id/toast"
-         android:text="Show Toast" />
+         android:text="Show Toast"/>
 
 </LinearLayout>
