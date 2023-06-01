@@ -1,5 +1,6 @@
 package android.code.editor;
 
+import android.code.editor.files.utils.FileManager;
 import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.utils.Setting;
 import android.os.Bundle;
@@ -10,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import editor.tsd.tools.Themes;
 import editor.tsd.widget.CodeEditorLayout;
-
-import ninja.corex.file.NinjaMacroFileUtil;
 
 public class CodeEditorActivity extends AppCompatActivity {
 
@@ -30,23 +29,9 @@ public class CodeEditorActivity extends AppCompatActivity {
         codeEditor.setEditor(
                 Setting.SaveInFile.getSettingInt(
                         Setting.Key.CodeEditor, Setting.Default.CodeEditor, this));
-        NinjaMacroFileUtil.readFile(
-                getIntent().getStringExtra("path"),
-                new NinjaMacroFileUtil.OnFileOperationListener() {
-                    @Override
-                    public void onSuccess(String arg0) {
-                        codeEditor.setCode(arg0);
-                        findViewById(R.id.progressbar).setVisibility(View.GONE);
-                        codeEditor.setVisibility(View.VISIBLE);
-                    }
-
-                    @Override
-                    public void onError(String error) {
-                        codeEditor.setCode(error);
-                        findViewById(R.id.progressbar).setVisibility(View.GONE);
-                        codeEditor.setVisibility(View.VISIBLE);
-                    }
-                });
+        codeEditor.setCode(FileManager.readFile(getIntent().getStringExtra("path")));
+        findViewById(R.id.progressbar).setVisibility(View.GONE);
+        codeEditor.setVisibility(View.VISIBLE);
         // Set editor theme
         if (Setting.SaveInFile.getSettingString(
                         Setting.Key.ThemeType, Setting.Default.ThemeType, this)

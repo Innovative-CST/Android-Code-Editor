@@ -19,7 +19,7 @@ android {
 	}
 	defaultConfig {
 		applicationId "android.code.editor"
-		minSdk 22
+		minSdk 21
 		targetSdk 33
 		versionCode 1
 		versionName "1.0-Snapshot-" + getCommitHash()
@@ -43,7 +43,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
+	implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
     
 	def editorGroupId = "io.github.Rosemoe.sora-editor"
 	implementation platform("$editorGroupId:bom:0.21.1")
