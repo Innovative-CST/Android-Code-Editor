@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
                         @Override
                         public void onClick(DialogInterface _dialog, int _which) {
                             if (Build.VERSION.SDK_INT >= 23) {
-                                if (shouldShowRequestPermissionRationale(
+                                if (!shouldShowRequestPermissionRationale(
                                         "Manifest.permission.READ_EXTERNAL_STORAGE")) {
                                     MaterialDialog.setTitle("Storage permission required");
                                     MaterialDialog.setMessage(
