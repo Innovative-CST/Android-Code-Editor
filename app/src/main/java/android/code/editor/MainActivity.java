@@ -31,13 +31,13 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
     private LinearLayout main;
 
     @Override
-	@SuppressWarnings("deprecation")
+    @SuppressWarnings("deprecation")
     protected void onCreate(Bundle savedInstanceState) {
-		// Enable logging in Sketchware pro
-        // SketchLogger.startLogging(); 
-		
+        // Enable logging in Sketchware pro
+        // SketchLogger.startLogging();
+
         super.onCreate(savedInstanceState);
-		MaterialColorHelper.setUpTheme(this);
+        MaterialColorHelper.setUpTheme(this);
         setContentView(R.layout.activity_main);
         // Navigation
         // modified by ashishtechnozone
@@ -70,54 +70,58 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface _dialog, int _which) {
-                            if (shouldShowRequestPermissionRationale(
-                                    "Manifest.permission.READ_EXTERNAL_STORAGE")) {
-                                MaterialDialog.setTitle("Storage permission required");
-                                MaterialDialog.setMessage(
-                                        "Storage permissions is highly recommend for storing and reading files in device.Without this permission you can't use this app.");
-                                MaterialDialog.setPositiveButton(
-                                        "Setting",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(
-                                                    DialogInterface _dialog, int _which) {
-                                                isRequested = true;
-                                                Intent intent = new Intent();
-                                                intent.setAction(
-                                                        android.provider.Settings
-                                                                .ACTION_APPLICATION_DETAILS_SETTINGS);
-                                                Uri uri =
-                                                        Uri.fromParts(
-                                                                "package",
-                                                                MainActivity.this.getPackageName(),
-                                                                null);
-                                                intent.setData(uri);
-                                                MainActivity.this.startActivity(intent);
-                                            }
-                                        });
-                                MaterialDialog.setNegativeButton(
-                                        "No thanks",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(
-                                                    DialogInterface _dialog, int _which) {
-                                                _showRationale(
-                                                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                                        "Storage permissions is highly recommend for storing and reading files in device.Without this permission you can't use this app");
-                                            }
-                                        });
-                                MaterialDialog.setNeutralButton(
-                                        "Exit",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(
-                                                    DialogInterface _dialog, int _which) {
-                                                finishAffinity();
-                                            }
-                                        });
-                                MaterialDialog.create().show();
-                            } else {
-                                _requestStoragePermission();
+                            if (Build.VERSION.SDK_INT >= 23) {
+                                if (shouldShowRequestPermissionRationale(
+                                        "Manifest.permission.READ_EXTERNAL_STORAGE")) {
+                                    MaterialDialog.setTitle("Storage permission required");
+                                    MaterialDialog.setMessage(
+                                            "Storage permissions is highly recommend for storing and reading files in device.Without this permission you can't use this app.");
+                                    MaterialDialog.setPositiveButton(
+                                            "Setting",
+                                            new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(
+                                                        DialogInterface _dialog, int _which) {
+                                                    isRequested = true;
+                                                    Intent intent = new Intent();
+                                                    intent.setAction(
+                                                            android.provider.Settings
+                                                                    .ACTION_APPLICATION_DETAILS_SETTINGS);
+                                                    Uri uri =
+                                                            Uri.fromParts(
+                                                                    "package",
+                                                                    MainActivity.this
+                                                                            .getPackageName(),
+                                                                    null);
+                                                    intent.setData(uri);
+                                                    MainActivity.this.startActivity(intent);
+                                                }
+                                            });
+                                    MaterialDialog.setNegativeButton(
+                                            "No thanks",
+                                            new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(
+                                                        DialogInterface _dialog, int _which) {
+                                                    _showRationale(
+                                                            Manifest.permission
+                                                                    .WRITE_EXTERNAL_STORAGE,
+                                                            "Storage permissions is highly recommend for storing and reading files in device.Without this permission you can't use this app");
+                                                }
+                                            });
+                                    MaterialDialog.setNeutralButton(
+                                            "Exit",
+                                            new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(
+                                                        DialogInterface _dialog, int _which) {
+                                                    finishAffinity();
+                                                }
+                                            });
+                                    MaterialDialog.create().show();
+                                } else {
+                                    _requestStoragePermission();
+                                }
                             }
                         }
                     });
@@ -201,15 +205,18 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
         info = findViewById(R.id.info);
         main = findViewById(R.id.main);
         info.setVisibility(View.VISIBLE);
-        main.setOnClickListener(new View.OnClickListener() {
-        	@Override
-        	public void onClick(View arg0) {
-            	// TODO: Implement this method
-				Intent intent = new Intent();
-				intent.putExtra("path",Environment.getExternalStorageDirectory().getAbsolutePath());
-				intent.setClass(MainActivity.this,FileManagerActivity.class);
-				startActivity(intent);
-        	}
-        });
+        main.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View arg0) {
+                        // TODO: Implement this method
+                        Intent intent = new Intent();
+                        intent.putExtra(
+                                "path",
+                                Environment.getExternalStorageDirectory().getAbsolutePath());
+                        intent.setClass(MainActivity.this, FileManagerActivity.class);
+                        startActivity(intent);
+                    }
+                });
     }
 }
