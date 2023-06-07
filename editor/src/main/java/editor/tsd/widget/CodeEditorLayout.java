@@ -14,8 +14,8 @@ import editor.tsd.editors.SoraEditor;
 import io.github.rosemoe.sora.widget.CodeEditor;
 
 public class CodeEditorLayout extends LinearLayout {
-    public static int AceCodeEditor = 0;
-    public static int SoraCodeEditor = 1;
+    public static final int AceCodeEditor = 0;
+    public static final int SoraCodeEditor = 1;
 
     public AceEditor aceEditor;
     public SoraEditor soraEditor;
