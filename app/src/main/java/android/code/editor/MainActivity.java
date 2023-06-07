@@ -55,14 +55,14 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
             w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             w.setStatusBarColor(Color.parseColor("#000000"));
         }
-        
+
         if (isStoagePermissionGranted(this)) {
             startActivtyLogic();
         } else {
             _requestStoragePermission(this, 10);
         }
     }
-    
+
     @Override
     public void startActivtyLogic() {
         info = findViewById(R.id.info);
@@ -118,10 +118,12 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
                     if (arg2[position] == PackageManager.PERMISSION_DENIED) {
                         Denied++;
                         if (Manifest.permission.WRITE_EXTERNAL_STORAGE.equals(arg1[position])) {
-                            if (shouldShowRequestPermissionRationale(arg1[position])) {
-                                showRationaleOfStoragePermissionDialog(this);
-                            } else {
-                                showStoragePermissionDialogForGoToSettings(this);
+                            if (Build.VERSION.SDK_INT >= 23) {
+                                if (shouldShowRequestPermissionRationale(arg1[position])) {
+                                    showRationaleOfStoragePermissionDialog(this);
+                                } else {
+                                    showStoragePermissionDialogForGoToSettings(this);
+                                }
                             }
                         }
                     }
@@ -132,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
                 break;
         }
     }
-            
+
     /* Show Material Dialog for Storage Permission */
 
     public static void showStoragePermissionDialog(Activity activity) {
