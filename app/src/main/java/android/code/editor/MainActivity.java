@@ -1,8 +1,10 @@
 package android.code.editor;
 
 import android.Manifest;
+import android.app.Activity;
 import android.code.editor.tsd.StoragePermission;
 import android.code.editor.ui.MaterialColorHelper;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
             w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             w.setStatusBarColor(Color.parseColor("#000000"));
         }
-
+        /*
         MaterialDialog = new MaterialAlertDialogBuilder(this);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -147,58 +149,86 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
         } else {
             startActivtyLogic();
         }
+        */
+        if (isStoagePermissionGranted(this)) {
+            startActivtyLogic();
+        } else {
+            _requestStoragePermission(this, 10);
+        }
     }
 
-    public void _requestStoragePermission() {
+    public static void _requestStoragePermission(Activity activity, int reqCode) {
         ActivityCompat.requestPermissions(
-                this,
+                activity,
                 new String[] {
                     Manifest.permission.READ_EXTERNAL_STORAGE,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE
                 },
-                2000);
+                reqCode);
     }
 
-    public void _showRationale(final String _permission, final String _text) {
-        if (Manifest.permission.WRITE_EXTERNAL_STORAGE.equals(_permission)) {
-            MaterialDialog.setTitle("Storage Permission required");
-            MaterialDialog.setMessage(_text);
-            MaterialDialog.setPositiveButton(
-                    "Continue",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface _dialog, int _which) {
-                            if (ContextCompat.checkSelfPermission(
-                                                    MainActivity.this,
-                                                    Manifest.permission.READ_EXTERNAL_STORAGE)
-                                            == PackageManager.PERMISSION_DENIED
-                                    || ContextCompat.checkSelfPermission(
-                                                    MainActivity.this,
-                                                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                                            == PackageManager.PERMISSION_DENIED) {
-                                ActivityCompat.requestPermissions(
-                                        MainActivity.this,
-                                        new String[] {
-                                            Manifest.permission.READ_EXTERNAL_STORAGE,
-                                            Manifest.permission.WRITE_EXTERNAL_STORAGE
-                                        },
-                                        1000);
-                            } else {
-                                startActivtyLogic();
-                            }
+    @Override
+    public void onRequestPermissionsResult(int arg0, String[] arg1, int[] arg2) {
+        super.onRequestPermissionsResult(arg0, arg1, arg2);
+        // TODO: Implement this method
+        switch (arg0) {
+            case 1:
+            case -1:
+            case 10:
+                for (int position = 0; position == arg2.length; position++) {
+                    if (arg2[position] == PackageManager.PERMISSION_DENIED) {
+                        if (shouldShowRequestPermissionRationale(arg1[position])) {
+                            showStoragePermissionDialog(this);
+                        } else {
+                            showStoragePermissionDialogForGoToSettings(this);
                         }
-                    });
-            MaterialDialog.setNegativeButton(
-                    "No thanks",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface _dialog, int _which) {
-                            finishAffinity();
-                        }
-                    });
-            MaterialDialog.create().show();
+                    }
+                }
+                break;
         }
     }
+
+    //    public void _showRationale(final String _permission, final String _text) {
+    //        if (Manifest.permission.WRITE_EXTERNAL_STORAGE.equals(_permission)) {
+    //            MaterialDialog.setTitle("Storage Permission required");
+    //            MaterialDialog.setMessage(_text);
+    //            MaterialDialog.setPositiveButton(
+    //                    "Continue",
+    //                    new DialogInterface.OnClickListener() {
+    //                        @Override
+    //                        public void onClick(DialogInterface _dialog, int _which) {
+    //                            if (ContextCompat.checkSelfPermission(
+    //                                                    MainActivity.this,
+    //                                                    Manifest.permission.READ_EXTERNAL_STORAGE)
+    //                                            == PackageManager.PERMISSION_DENIED
+    //                                    || ContextCompat.checkSelfPermission(
+    //                                                    MainActivity.this,
+    //
+    // Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    //                                            == PackageManager.PERMISSION_DENIED) {
+    //                                ActivityCompat.requestPermissions(
+    //                                        MainActivity.this,
+    //                                        new String[] {
+    //                                            Manifest.permission.READ_EXTERNAL_STORAGE,
+    //                                            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    //                                        },
+    //                                        1000);
+    //                            } else {
+    //                                startActivtyLogic();
+    //                            }
+    //                        }
+    //                    });
+    //            MaterialDialog.setNegativeButton(
+    //                    "No thanks",
+    //                    new DialogInterface.OnClickListener() {
+    //                        @Override
+    //                        public void onClick(DialogInterface _dialog, int _which) {
+    //                            finishAffinity();
+    //                        }
+    //                    });
+    //            MaterialDialog.create().show();
+    //        }
+    //    }
 
     @Override
     public void startActivtyLogic() {
@@ -218,5 +248,96 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
                         startActivity(intent);
                     }
                 });
+    }
+
+    public static boolean isStoagePermissionGranted(Context context) {
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)
+                        == PackageManager.PERMISSION_DENIED
+                || ContextCompat.checkSelfPermission(
+                                context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        == PackageManager.PERMISSION_DENIED) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /* Show Material Dialog for Storage Permission */
+
+    public static void showStoragePermissionDialog(Activity activity) {
+        MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(activity);
+        dialog.setTitle("Storage permission required");
+        dialog.setMessage(
+                "Storage permission is required please allow app to use storage in next page.");
+        dialog.setPositiveButton(
+                "Continue",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface _dialog, int _which) {
+                        _requestStoragePermission(activity, 1);
+                    }
+                });
+        dialog.setNegativeButton(
+                "No thanks",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface _dialog, int _which) {
+                        activity.finishAffinity();
+                    }
+                });
+        dialog.create().show();
+    }
+
+    public static void showRationaleOfStoragePermissionDialog(Activity activity) {
+        MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(activity);
+        dialog.setTitle("Storage permission required");
+        dialog.setMessage(
+                "Storage permissions is highly recommend for storing and reading files in device.Without this permission you can't use this app.");
+        dialog.setPositiveButton(
+                "Continue",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface _dialog, int _which) {
+                        _requestStoragePermission(activity, 1);
+                    }
+                });
+        dialog.setNegativeButton(
+                "No thanks",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface _dialog, int _which) {
+                        activity.finishAffinity();
+                    }
+                });
+        dialog.create().show();
+    }
+
+    public static void showStoragePermissionDialogForGoToSettings(Activity context) {
+        MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(context);
+        dialog.setTitle("Storage permission required");
+        dialog.setMessage(
+                "Storage permissions is highly recommend for storing and reading files in device.Without this permission you can't use this app.");
+        dialog.setPositiveButton(
+                "Setting",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface _dialog, int _which) {
+                        Intent intent = new Intent();
+                        intent.setAction(
+                                android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri = Uri.fromParts("package", context.getPackageName(), null);
+                        intent.setData(uri);
+                        context.startActivity(intent);
+                    }
+                });
+        dialog.setNegativeButton(
+                "No thanks",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface _dialog, int _which) {
+                        context.finishAffinity();
+                    }
+                });
+        dialog.create().show();
     }
 }
