@@ -30,7 +30,7 @@ public class Setting {
         public static final String Theme = "DarkGreen";
         public static final String ThemeType = Value.Dark;
     }
-    
+
     public class Value {
         public static final String Dark = "Dark";
         public static final String Light = "Light";
@@ -134,8 +134,6 @@ public class Setting {
             }
         }
     }
-	
-	public class SaveInSharedPreferences {
-		
-	}
+
+    public class SaveInSharedPreferences {}
 }
