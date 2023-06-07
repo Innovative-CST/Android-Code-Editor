@@ -20,14 +20,14 @@ public class Setting {
     private static HashMap<String, Object> setting_map = new HashMap<>();
 
     public class Key {
-        public static String CodeEditor = "CodeEditor";
-        public static String Theme = "Theme";
+        public static final String CodeEditor = "CodeEditor";
+        public static final String Theme = "Theme";
         public static final String ThemeType = "ThemeType";
     }
 
     public class Default {
-        public static int CodeEditor = CodeEditorLayout.AceCodeEditor;
-        public static String Theme = "DarkGreen";
+        public static final int CodeEditor = CodeEditorLayout.AceCodeEditor;
+        public static final String Theme = "DarkGreen";
         public static final String ThemeType = Value.Dark;
     }
     
