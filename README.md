@@ -13,10 +13,10 @@ Join our discord server to keep contact us about Android Code Editor.
 - [x] Sora Editor.
 	- Language Mode
 		- [x] Java
-		- [ ] XML
-		- [ ] HTML
-		- [ ] CSS
-		- [ ] JavaScript
+		- [x] XML
+		- [x] HTML
+		- [x] CSS
+		- [x] JavaScript
     - Themes
         - [x] Darcula(Deprecated)
         - [x] Monokai

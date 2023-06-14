@@ -60,19 +60,36 @@ public class SoraEditor implements Editor {
     public void setLanguageMode(String LanguageMode) {
         String LanguageConfigration;
         String tmLanguage;
-        String tmLanguageLastName;
         switch (LanguageMode) {
             case Language.Java:
                 LanguageConfigration = "Editor/SoraEditor/java/language-configuration.json";
                 tmLanguage = "Editor/SoraEditor/java/syntaxes/java.tmLanguage.json";
-                tmLanguageLastName = "java.tmLanguage.json";
-                initLanguageMode(LanguageConfigration, tmLanguage, tmLanguageLastName);
+                initLanguageMode(LanguageConfigration, tmLanguage);
+                break;
+            case Language.XML:
+                LanguageConfigration = "Editor/SoraEditor/xml/language-configuration.json";
+                tmLanguage = "Editor/SoraEditor/xml/syntaxes/xml.tmLanguage.json";
+                initLanguageMode(LanguageConfigration, tmLanguage);
+                break;
+            case Language.HTML:
+                LanguageConfigration = "Editor/SoraEditor/html/language-configuration.json";
+                tmLanguage = "Editor/SoraEditor/html/syntaxes/html.tmLanguage.json";
+                initLanguageMode(LanguageConfigration, tmLanguage);
+                break;
+            case Language.CSS:
+                LanguageConfigration = "Editor/SoraEditor/css/language-configuration.json";
+                tmLanguage = "Editor/SoraEditor/css/syntaxes/css.tmLanguage.json";
+                initLanguageMode(LanguageConfigration, tmLanguage);
+                break;
+            case Language.JavaScript:
+                LanguageConfigration = "Editor/SoraEditor/javascript/language-configuration.json";
+                tmLanguage = "Editor/SoraEditor/javascript/syntaxes/JavaScript.tmLanguage.json";
+                initLanguageMode(LanguageConfigration, tmLanguage);
                 break;
         }
     }
 
-    private void initLanguageMode(
-            String LanguageConfigration, String tmLanguage, String tmLanguageLastName) {
+    private void initLanguageMode(String LanguageConfigration, String tmLanguage) {
         try {
             AssetManager assetManager = context.getAssets();
             InputStream inputStream = null;
@@ -97,7 +114,7 @@ public class SoraEditor implements Editor {
                                 TextMateLanguage.create(
                                         IGrammarSource.fromInputStream(
                                                 context.getAssets().open(tmLanguage),
-                                                tmLanguageLastName,
+                                                tmLanguage,
                                                 Charset.defaultCharset()),
                                         reader,
                                         ((TextMateColorScheme) colorScheme).getThemeSource());
