@@ -18,7 +18,8 @@ Join our discord server to keep contact us about Android Code Editor.
 		- [ ] CSS
 		- [ ] JavaScript
     - Themes
-        - [x] Darcula
+        - [x] Darcula(Deprecated)
+        - [x] Monokai
 - [x] Ace Editor.
 	- Language Mode
 		- [x] Java
@@ -27,7 +28,8 @@ Join our discord server to keep contact us about Android Code Editor.
 		- [x] CSS
 		- [x] XML
     - Themes
-        - [x] Dracula
+        - [x] Dracula(Deprecated)
+        - [x] Monokai
 - [ ] Code Mirror.
 	- Language Mode
 		- [ ] Java
