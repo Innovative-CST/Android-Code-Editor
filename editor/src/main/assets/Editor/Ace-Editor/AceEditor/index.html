@@ -118,17 +118,7 @@
 
 		function setLanguageMode() {
 			var fileFormat = aceEditor.getLanguageMode();
-			if (fileFormat == 'html') {
-				editor.session.setMode("ace/mode/html");
-			} else if (fileFormat == 'css') {
-				editor.session.setMode("ace/mode/css");
-			} else if (fileFormat == 'js') {
-				editor.session.setMode("ace/mode/javascript");
-			} else if (fileFormat == 'xml') {
-				editor.session.setMode("ace/mode/xml");
-			} else if (fileFormat == 'java') {
-				editor.session.setMode("ace/mode/java");
-			}
+			editor.session.setMode("ace/mode/" + fileFormat);
 		}
 
 		function setCode() {
