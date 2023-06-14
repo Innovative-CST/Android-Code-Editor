@@ -81,7 +81,7 @@ public class AceEditor implements Editor {
         public void UpdateCode(String Code) {
             code = Code;
         }
-        
+
         public void setTheme(String theme) {
             this.theme = theme;
         }
@@ -126,12 +126,15 @@ public class AceEditor implements Editor {
     @Override
     public void setTheme(String theme) {
         // Set theme
-        if (theme.equals(Themes.AceEditorTheme.Dark.Dracula)) {
-            aceJSInterface.setTheme("dracula");
-        } else if (theme.equals(Themes.AceEditorTheme.Dark.Monokai)) {
-            aceJSInterface.setTheme("monokai");
+        switch (theme) {
+            case Themes.AceEditorTheme.Dark.Dracula:
+                aceJSInterface.setTheme("dracula");
+                break;
+            case Themes.AceEditorTheme.Dark.Monokai:
+                aceJSInterface.setTheme("monokai");
+                break;
         }
-        // Update theme 
+        // Update theme
         aceEditor.loadUrl("javascript:setLanguageMode()");
     }
 }
