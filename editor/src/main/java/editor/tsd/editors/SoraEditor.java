@@ -133,6 +133,11 @@ public class SoraEditor implements Editor {
                 ThemeFileName = "darcula.json";
                 initTheme(ThemeFile, ThemeFileName);
                 break;
+            case Themes.SoraEditorTheme.Dark.Monokai:
+                ThemeFile = "Editor/SoraEditor/monokai-color-theme.json";
+                ThemeFileName = "monokai-color-theme.json";
+                initTheme(ThemeFile, ThemeFileName);
+                break;
         }
     }
 

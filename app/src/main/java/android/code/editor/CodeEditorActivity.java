@@ -40,13 +40,13 @@ public class CodeEditorActivity extends AppCompatActivity {
                 codeEditor.setTheme(
                         Setting.SaveInFile.getSettingString(
                                 "SoraCodeEditorDarkTheme",
-                                Themes.SoraEditorTheme.Dark.Darcula,
+                                Themes.SoraEditorTheme.Dark.Monokai,
                                 this));
             } else if (codeEditor.getCurrentEditorType() == CodeEditorLayout.AceCodeEditor) {
                 codeEditor.setTheme(
                         Setting.SaveInFile.getSettingString(
                                 "AceCodeEditorDarkTheme",
-                                Themes.AceEditorTheme.Dark.Dracula,
+                                Themes.AceEditorTheme.Dark.Monokai,
                                 this));
             }
         }

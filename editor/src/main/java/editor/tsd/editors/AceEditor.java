@@ -128,6 +128,8 @@ public class AceEditor implements Editor {
         // Set theme
         if (theme.equals(Themes.AceEditorTheme.Dark.Dracula)) {
             aceJSInterface.setTheme("dracula");
+        } else if (theme.equals(Themes.AceEditorTheme.Dark.Monokai)) {
+            aceJSInterface.setTheme("monokai");
         }
         // Update theme 
         aceEditor.loadUrl("javascript:setLanguageMode()");
