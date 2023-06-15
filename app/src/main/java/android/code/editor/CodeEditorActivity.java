@@ -39,14 +39,14 @@ public class CodeEditorActivity extends AppCompatActivity {
             if (codeEditor.getCurrentEditorType() == CodeEditorLayout.SoraCodeEditor) {
                 codeEditor.setTheme(
                         Setting.SaveInFile.getSettingString(
-                                "SoraCodeEditorDarkTheme",
-                                Themes.SoraEditorTheme.Dark.Monokai,
+                                Setting.Key.SoraCodeEditorDarkTheme,
+                                Setting.Default.SoraCodeEditorDarkTheme,
                                 this));
             } else if (codeEditor.getCurrentEditorType() == CodeEditorLayout.AceCodeEditor) {
                 codeEditor.setTheme(
                         Setting.SaveInFile.getSettingString(
-                                "AceCodeEditorDarkTheme",
-                                Themes.AceEditorTheme.Dark.Monokai,
+                                Setting.Key.AceCodeEditorDarkTheme,
+                                Setting.Default.SoraCodeEditorDarkTheme,
                                 this));
             }
         }

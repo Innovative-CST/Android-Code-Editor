@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 
+import editor.tsd.tools.Themes;
 import editor.tsd.widget.CodeEditorLayout;
 
 import java.io.File;
@@ -23,12 +24,20 @@ public class Setting {
         public static final String CodeEditor = "CodeEditor";
         public static final String Theme = "Theme";
         public static final String ThemeType = "ThemeType";
+        public static final String AceCodeEditorDarkTheme = "AceCodeEditorDarkTheme";
+        public static final String SoraCodeEditorDarkTheme = "SoraCodeEditorDarkTheme";
+        public static final String AceCodeEditorDarkThemeSelectionPosition = "AceCodeEditorDarkThemeSelectionPosition";
+        public static final String SoraCodeEditorDarkThemeSelectionPosition = "SoraCodeEditorDarkThemeSelectionPosition";
     }
 
     public class Default {
         public static final int CodeEditor = CodeEditorLayout.AceCodeEditor;
         public static final String Theme = "DarkGreen";
         public static final String ThemeType = Value.Dark;
+        public static final String AceCodeEditorDarkTheme = Themes.AceEditorTheme.Dark.Default;
+        public static final String SoraCodeEditorDarkTheme = Themes.SoraEditorTheme.Dark.Default;
+        public static final int AceCodeEditorDarkThemeSelectionPosition = 1;
+        public static final int SoraCodeEditorDarkThemeSelectionPosition = 1;
     }
 
     public class Value {

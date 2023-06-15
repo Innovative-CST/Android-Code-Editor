@@ -17,6 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import editor.tsd.tools.Themes;
 import editor.tsd.widget.CodeEditorLayout;
 
 import java.util.ArrayList;
@@ -25,12 +26,17 @@ import java.util.HashMap;
 public class SettingActivity extends AppCompatActivity {
     public Spinner editorChooser;
     ArrayList<HashMap<String, Object>> data = new ArrayList<>();
+    ArrayList<String> aceEditorThemes = new ArrayList<>();
+    ArrayList<String> soraEditorThemes = new ArrayList<>();
+
     public LinearLayout theme1;
     public LinearLayout theme2;
     public LinearLayout theme3;
     public LinearLayout theme4;
     public LinearLayout theme5;
     public LinearLayout theme6;
+    public Spinner aceEditorThemeChooser;
+    public Spinner soraEditorThemeChooser;
 
     @Override
     protected void onCreate(Bundle arg0) {
@@ -62,6 +68,8 @@ public class SettingActivity extends AppCompatActivity {
                     }
                 });
         editorChooser = findViewById(R.id.editorChooser);
+        aceEditorThemeChooser = findViewById(R.id.aceEditorThemeChooser);
+        soraEditorThemeChooser = findViewById(R.id.soraEditorThemeChooser);
 
         HashMap map = new HashMap<>();
         map.put("Editor", "Ace Code Editor");
@@ -76,7 +84,7 @@ public class SettingActivity extends AppCompatActivity {
         editorChooser.setSelection(
                 Setting.SaveInFile.getSettingInt(
                         Setting.Key.CodeEditor, Setting.Default.CodeEditor, this));
-
+        initEditorThemeList();
         initTheme();
         editorChooser.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
@@ -99,59 +107,6 @@ public class SettingActivity extends AppCompatActivity {
                     @Override
                     public void onNothingSelected(AdapterView<?> _param1) {}
                 });
-    }
-
-    public class editorChooserAdapter extends BaseAdapter {
-        ArrayList<HashMap<String, Object>> data;
-        public TextView textView;
-
-        public editorChooserAdapter(ArrayList<HashMap<String, Object>> _arr) {
-            data = _arr;
-        }
-
-        @Override
-        public HashMap<String, Object> getItem(int _index) {
-            return data.get(_index);
-        }
-
-        @Override
-        public int getCount() {
-            // TODO: Implement this method
-            return data.size();
-        }
-
-        @Override
-        public long getItemId(int arg0) {
-            // TODO: Implement this method
-            return arg0;
-        }
-
-        @Override
-        public View getView(int arg0, View arg1, ViewGroup arg2) {
-            // TODO: Implement this method
-            LayoutInflater _inflater = getLayoutInflater();
-            View _view = arg1;
-            if (_view == null) {
-                _view = _inflater.inflate(R.layout.one_line_item, null);
-            }
-            textView = _view.findViewById(R.id.item);
-            if (arg0 == 0) {
-                textView.setText("Ace Code Editor");
-            } else if (arg0 == 1) {
-                textView.setText("Sora Code Editor");
-            }
-
-            textView.setOnClickListener(
-                    new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            // TODO: Implement this method
-                            editorChooser.setSelection(arg0);
-                        }
-                    });
-
-            return _view;
-        }
     }
 
     public void initTheme() {
@@ -275,5 +230,169 @@ public class SettingActivity extends AppCompatActivity {
                         recreate();
                     }
                 });
+    }
+
+    public void initEditorThemeList() {
+        aceEditorThemes.clear();
+        soraEditorThemes.clear();
+        if (Setting.SaveInFile.getSettingString(
+                        Setting.Key.ThemeType, Setting.Default.ThemeType, this)
+                .equals(Setting.Value.Dark)) {
+            aceEditorThemes.addAll(new Themes().new AceEditorTheme().new Dark().getThemes());
+
+            soraEditorThemes.addAll(new Themes().new SoraEditorTheme().new Dark().getThemes());
+        }
+        aceEditorThemeChooser.setAdapter(new editorThemeChooserAdapter(aceEditorThemes));
+        soraEditorThemeChooser.setAdapter(new editorThemeChooserAdapter(soraEditorThemes));
+
+        aceEditorThemeChooser.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(
+                            AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                        // TODO: Implement this method
+                        if (Setting.SaveInFile.getSettingString(
+                                        Setting.Key.ThemeType,
+                                        Setting.Default.ThemeType,
+                                        SettingActivity.this)
+                                .equals(Setting.Value.Dark)) {
+                            Setting.SaveInFile.setSetting(
+                                    Setting.Key.AceCodeEditorDarkThemeSelectionPosition,
+                                    arg2,
+                                    SettingActivity.this);
+                            Setting.SaveInFile.setSetting(
+                                    Setting.Key.AceCodeEditorDarkTheme,
+                                    aceEditorThemes.get(arg2),
+                                    SettingActivity.this);
+                        }
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> arg0) {
+                        // TODO: Implement this method
+                    }
+                });
+
+        soraEditorThemeChooser.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(
+                            AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                        // TODO: Implement this method
+                        if (Setting.SaveInFile.getSettingString(
+                                        Setting.Key.ThemeType,
+                                        Setting.Default.ThemeType,
+                                        SettingActivity.this)
+                                .equals(Setting.Value.Dark)) {
+                            Setting.SaveInFile.setSetting(
+                                    Setting.Key.SoraCodeEditorDarkThemeSelectionPosition,
+                                    arg2,
+                                    SettingActivity.this);
+                            Setting.SaveInFile.setSetting(
+                                    Setting.Key.SoraCodeEditorDarkTheme,
+                                    soraEditorThemes.get(arg2).toString(),
+                                    SettingActivity.this);
+                        }
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> arg0) {
+                        // TODO: Implement this method
+                    }
+                });
+        aceEditorThemeChooser.setSelection(
+                Setting.SaveInFile.getSettingInt(
+                        Setting.Key.AceCodeEditorDarkThemeSelectionPosition,
+                        Setting.Default.AceCodeEditorDarkThemeSelectionPosition,
+                        this));
+        soraEditorThemeChooser.setSelection(
+                Setting.SaveInFile.getSettingInt(
+                        Setting.Key.SoraCodeEditorDarkThemeSelectionPosition,
+                        Setting.Default.SoraCodeEditorDarkThemeSelectionPosition,
+                        this));
+    }
+
+    public class editorThemeChooserAdapter extends BaseAdapter {
+        public ArrayList<String> data;
+        public TextView textView;
+
+        public editorThemeChooserAdapter(ArrayList<String> data) {
+            this.data = data;
+        }
+
+        @Override
+        public String getItem(int _index) {
+            return data.get(_index);
+        }
+
+        @Override
+        public int getCount() {
+            // TODO: Implement this method
+            return data.size();
+        }
+
+        @Override
+        public long getItemId(int arg0) {
+            // TODO: Implement this method
+            return arg0;
+        }
+
+        @Override
+        public View getView(int arg0, View arg1, ViewGroup arg2) {
+            // TODO: Implement this method
+            LayoutInflater _inflater = getLayoutInflater();
+            View _view = arg1;
+            if (_view == null) {
+                _view = _inflater.inflate(R.layout.one_line_item, null);
+            }
+            textView = _view.findViewById(R.id.item);
+            textView.setText(data.get(arg0));
+
+            return _view;
+        }
+    }
+
+    public class editorChooserAdapter extends BaseAdapter {
+        ArrayList<HashMap<String, Object>> data;
+        public TextView textView;
+
+        public editorChooserAdapter(ArrayList<HashMap<String, Object>> _arr) {
+            data = _arr;
+        }
+
+        @Override
+        public HashMap<String, Object> getItem(int _index) {
+            return data.get(_index);
+        }
+
+        @Override
+        public int getCount() {
+            // TODO: Implement this method
+            return data.size();
+        }
+
+        @Override
+        public long getItemId(int arg0) {
+            // TODO: Implement this method
+            return arg0;
+        }
+
+        @Override
+        public View getView(int arg0, View arg1, ViewGroup arg2) {
+            // TODO: Implement this method
+            LayoutInflater _inflater = getLayoutInflater();
+            View _view = arg1;
+            if (_view == null) {
+                _view = _inflater.inflate(R.layout.one_line_item, null);
+            }
+            textView = _view.findViewById(R.id.item);
+            if (arg0 == 0) {
+                textView.setText("Ace Code Editor");
+            } else if (arg0 == 1) {
+                textView.setText("Sora Code Editor");
+            }
+
+            return _view;
+        }
     }
 }
