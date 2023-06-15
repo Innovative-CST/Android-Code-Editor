@@ -25,7 +25,7 @@ import java.util.HashMap;
 
 public class SettingActivity extends AppCompatActivity {
     public Spinner editorChooser;
-    ArrayList<HashMap<String, Object>> data = new ArrayList<>();
+    ArrayList<String> data = new ArrayList<>();
     ArrayList<String> aceEditorThemes = new ArrayList<>();
     ArrayList<String> soraEditorThemes = new ArrayList<>();
 
@@ -71,14 +71,9 @@ public class SettingActivity extends AppCompatActivity {
         aceEditorThemeChooser = findViewById(R.id.aceEditorThemeChooser);
         soraEditorThemeChooser = findViewById(R.id.soraEditorThemeChooser);
 
-        HashMap map = new HashMap<>();
-        map.put("Editor", "Ace Code Editor");
-        data.add(map);
-        map.clear();
-        HashMap map2 = new HashMap<>();
-        map2.put("Editor", "Sora Code Editor");
-        data.add(map2);
-        map2.clear();
+        
+        data.add("Ace Code Editor");
+        data.add("Sora Code Editor");
 
         editorChooser.setAdapter(new editorChooserAdapter(data));
         editorChooser.setSelection(
@@ -353,15 +348,15 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     public class editorChooserAdapter extends BaseAdapter {
-        ArrayList<HashMap<String, Object>> data;
+        ArrayList<String> data;
         public TextView textView;
 
-        public editorChooserAdapter(ArrayList<HashMap<String, Object>> _arr) {
+        public editorChooserAdapter(ArrayList<String> _arr) {
             data = _arr;
         }
 
         @Override
-        public HashMap<String, Object> getItem(int _index) {
+        public String getItem(int _index) {
             return data.get(_index);
         }
 
@@ -386,12 +381,7 @@ public class SettingActivity extends AppCompatActivity {
                 _view = _inflater.inflate(R.layout.one_line_item, null);
             }
             textView = _view.findViewById(R.id.item);
-            if (arg0 == 0) {
-                textView.setText("Ace Code Editor");
-            } else if (arg0 == 1) {
-                textView.setText("Sora Code Editor");
-            }
-
+            textView.setText(data.get(arg0));
             return _view;
         }
     }
