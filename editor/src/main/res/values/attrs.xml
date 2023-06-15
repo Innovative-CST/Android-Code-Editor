@@ -1,9 +1,17 @@
 <resources>
     <declare-styleable name="CodeEditorLayout">
-        <attr name="setCode" format="string" />
-        <attr name="codeEditor" format="enum">
-            <enum name="AceCodeEditor" value="0"/>
-           <enum name="SoraCodeEditor" value="1"/>
+        <attr
+                name="setCode"
+                format="string"/>
+        <attr
+                name="codeEditor"
+                format="enum">
+            <enum
+                    name="AceCodeEditor"
+                    value="0"/>
+            <enum
+                    name="SoraCodeEditor"
+                    value="1"/>
         </attr>
     </declare-styleable>
 </resources>

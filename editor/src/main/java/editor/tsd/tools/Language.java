@@ -1,9 +1,9 @@
 package editor.tsd.tools;
 
 public class Language {
-    public final static String Java = "Java";
-    public final static String JavaScript = "JavaScript";
-    public final static String HTML = "HTML";
-    public final static String CSS = "CSS";
-    public final static String XML = "XML";
+    public static final String Java = "Java";
+    public static final String JavaScript = "JavaScript";
+    public static final String HTML = "HTML";
+    public static final String CSS = "CSS";
+    public static final String XML = "XML";
 }

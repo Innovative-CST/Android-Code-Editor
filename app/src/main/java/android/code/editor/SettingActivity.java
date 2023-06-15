@@ -71,7 +71,6 @@ public class SettingActivity extends AppCompatActivity {
         aceEditorThemeChooser = findViewById(R.id.aceEditorThemeChooser);
         soraEditorThemeChooser = findViewById(R.id.soraEditorThemeChooser);
 
-        
         data.add("Ace Code Editor");
         data.add("Sora Code Editor");
 

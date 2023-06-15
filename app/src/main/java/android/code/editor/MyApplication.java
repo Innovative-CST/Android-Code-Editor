@@ -18,9 +18,9 @@ public class MyApplication extends Application {
 
     @Override
     public void onCreate() {
-		
+
         mApplicationContext = getApplicationContext();
-		
+
         this.uncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
 
         Thread.setDefaultUncaughtExceptionHandler(

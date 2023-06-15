@@ -175,12 +175,13 @@ public class FileManagerActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         // TODO: Implement this method
-        if (Environment.getExternalStorageDirectory().getAbsolutePath().equals(getIntent().getStringExtra("path"))) {
+        if (Environment.getExternalStorageDirectory()
+                .getAbsolutePath()
+                .equals(getIntent().getStringExtra("path"))) {
             finishAffinity();
         } else {
             finish();
         }
-        
     }
 
     // Adapter of Recycler View

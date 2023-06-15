@@ -12,32 +12,31 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 public class FileManager {
-	public static void setUpFileList(ArrayList<HashMap<String, Object>> listMap,ArrayList<String> listString) {
-		final class FileComparator implements Comparator<String> {
-			public int compare(String f1, String f2) {
-					if(f1 == f2) return 0;
-					if(new File(f1).isDirectory() && new File(f2).isFile())
-					return -1;
-					if(new File(f1).isFile() && new File(f2).isDirectory())
-					return 1;
-					return f1.compareToIgnoreCase(f2);
-			}
-		}
-		Collections.sort(listString, new FileComparator());
-		int pos = 0;
-		for(int _repeat13 = 0; _repeat13 < (int)(listString.size()); _repeat13++) {
-			{
-				HashMap<String, Object> _item = new HashMap<>();
-				_item.put("path", listString.get((int)(pos)));
-				_item.put("lastSegmentOfFilePath",getLatSegmentOfFilePath(listString.get(pos)));
-				listMap.add((int)pos, _item);
-			}
-		
-			pos++;
-		}
-	}
-	
-	public static void writeFile(String path, String str) {
+    public static void setUpFileList(
+            ArrayList<HashMap<String, Object>> listMap, ArrayList<String> listString) {
+        final class FileComparator implements Comparator<String> {
+            public int compare(String f1, String f2) {
+                if (f1 == f2) return 0;
+                if (new File(f1).isDirectory() && new File(f2).isFile()) return -1;
+                if (new File(f1).isFile() && new File(f2).isDirectory()) return 1;
+                return f1.compareToIgnoreCase(f2);
+            }
+        }
+        Collections.sort(listString, new FileComparator());
+        int pos = 0;
+        for (int _repeat13 = 0; _repeat13 < (int) (listString.size()); _repeat13++) {
+            {
+                HashMap<String, Object> _item = new HashMap<>();
+                _item.put("path", listString.get((int) (pos)));
+                _item.put("lastSegmentOfFilePath", getLatSegmentOfFilePath(listString.get(pos)));
+                listMap.add((int) pos, _item);
+            }
+
+            pos++;
+        }
+    }
+
+    public static void writeFile(String path, String str) {
         createNewFile(path);
         FileWriter fileWriter = null;
 
@@ -49,15 +48,14 @@ public class FileManager {
             e.printStackTrace();
         } finally {
             try {
-                if (fileWriter != null)
-                    fileWriter.close();
+                if (fileWriter != null) fileWriter.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-	
-	public static void listDir(String path, ArrayList<String> list) {
+
+    public static void listDir(String path, ArrayList<String> list) {
         File dir = new File(path);
         if (!dir.exists() || dir.isFile()) return;
 
@@ -70,19 +68,25 @@ public class FileManager {
             list.add(file.getAbsolutePath());
         }
     }
-	
-	public static String getLatSegmentOfFilePath(String path) {
-		return Uri.parse(path).getLastPathSegment();
-	}
-	
-	public static boolean ifFileFormatIsEqualTo(String path,String format){
-		try {
-			return Uri.parse(path).getLastPathSegment().substring(Uri.parse(path).getLastPathSegment().length() - ".".concat(format).length(), Uri.parse(path).getLastPathSegment().length()).equals(".".concat(format));
-		} catch(Exception e) {
-			return false;
-		}
-	}
-    
+
+    public static String getLatSegmentOfFilePath(String path) {
+        return Uri.parse(path).getLastPathSegment();
+    }
+
+    public static boolean ifFileFormatIsEqualTo(String path, String format) {
+        try {
+            return Uri.parse(path)
+                    .getLastPathSegment()
+                    .substring(
+                            Uri.parse(path).getLastPathSegment().length()
+                                    - ".".concat(format).length(),
+                            Uri.parse(path).getLastPathSegment().length())
+                    .equals(".".concat(format));
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public static String readFile(String path) {
         createNewFile(path);
 
@@ -111,7 +115,7 @@ public class FileManager {
 
         return sb.toString();
     }
-    
+
     public static void createNewFile(String path) {
         int lastSep = path.lastIndexOf(File.separator);
         if (lastSep > 0) {
@@ -127,12 +131,11 @@ public class FileManager {
             e.printStackTrace();
         }
     }
-    
+
     public static void makeDir(String path) {
         if (new File(path).exists()) {
             File file = new File(path);
             file.mkdirs();
         }
     }
-
 }
