@@ -26,8 +26,10 @@ public class Setting {
         public static final String ThemeType = "ThemeType";
         public static final String AceCodeEditorDarkTheme = "AceCodeEditorDarkTheme";
         public static final String SoraCodeEditorDarkTheme = "SoraCodeEditorDarkTheme";
-        public static final String AceCodeEditorDarkThemeSelectionPosition = "AceCodeEditorDarkThemeSelectionPosition";
-        public static final String SoraCodeEditorDarkThemeSelectionPosition = "SoraCodeEditorDarkThemeSelectionPosition";
+        public static final String AceCodeEditorDarkThemeSelectionPosition =
+                "AceCodeEditorDarkThemeSelectionPosition";
+        public static final String SoraCodeEditorDarkThemeSelectionPosition =
+                "SoraCodeEditorDarkThemeSelectionPosition";
     }
 
     public class Default {
