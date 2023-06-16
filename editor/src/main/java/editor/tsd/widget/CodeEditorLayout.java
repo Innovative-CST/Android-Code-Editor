@@ -118,4 +118,12 @@ public class CodeEditorLayout extends LinearLayout {
     public AceEditor getAceEditor() {
         return aceEditor;
     }
+    
+    public void moveCursorHorizontally(int steps) {
+        CurrentCodeEditor.moveCursorHorizontally(steps);
+    }
+    
+    public void moveCursorVertically(int steps) {
+        CurrentCodeEditor.moveCursorVertically(steps);
+    }
 }

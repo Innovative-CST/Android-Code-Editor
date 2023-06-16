@@ -143,4 +143,10 @@ public class AceEditor implements Editor {
         // Update theme
         aceEditor.loadUrl("javascript:setLanguageMode()");
     }
+
+    @Override
+    public void moveCursorHorizontally(int steps) {}
+
+    @Override
+    public void moveCursorVertically(int steps) {}
 }

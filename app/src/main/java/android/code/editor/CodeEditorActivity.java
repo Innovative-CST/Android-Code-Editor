@@ -5,6 +5,8 @@ import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.utils.Setting;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,13 @@ import editor.tsd.tools.Themes;
 import editor.tsd.widget.CodeEditorLayout;
 
 public class CodeEditorActivity extends AppCompatActivity {
+
+    public CodeEditorLayout codeEditor;
+    public ProgressBar progressbar;
+    public ImageView moveLeft;
+    public ImageView moveRight;
+    public ImageView moveUp;
+    public ImageView moveDown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +32,21 @@ public class CodeEditorActivity extends AppCompatActivity {
     }
 
     public void initActivity() {
-        CodeEditorLayout codeEditor = findViewById(R.id.editor);
-        findViewById(R.id.progressbar).setVisibility(View.VISIBLE);
+        // Initialize views
+        codeEditor = findViewById(R.id.editor);
+        progressbar = findViewById(R.id.progressbar);
+        moveLeft = findViewById(R.id.moveLeft);
+        moveRight = findViewById(R.id.moveRight);
+        moveUp = findViewById(R.id.moveUp);
+        moveDown = findViewById(R.id.moveDown);
+
+        progressbar.setVisibility(View.VISIBLE);
         codeEditor.setVisibility(View.GONE);
         codeEditor.setEditor(
                 Setting.SaveInFile.getSettingInt(
                         Setting.Key.CodeEditor, Setting.Default.CodeEditor, this));
         codeEditor.setCode(FileManager.readFile(getIntent().getStringExtra("path")));
-        findViewById(R.id.progressbar).setVisibility(View.GONE);
+        progressbar.setVisibility(View.GONE);
         codeEditor.setVisibility(View.VISIBLE);
         // Set editor theme
         if (Setting.SaveInFile.getSettingString(
@@ -68,5 +84,21 @@ public class CodeEditorActivity extends AppCompatActivity {
                                         .show();
                             }
                         });
+        moveLeft.setOnClickListener(
+                (view) -> {
+                    codeEditor.moveCursorHorizontally(-1);
+                });
+        moveRight.setOnClickListener(
+                (view) -> {
+                    codeEditor.moveCursorHorizontally(1);
+                });
+        moveUp.setOnClickListener(
+                (view) -> {
+                    codeEditor.moveCursorVertically(-1);
+                });
+        moveDown.setOnClickListener(
+                (view) -> {
+                    codeEditor.moveCursorVertically(1);
+                });
     }
 }

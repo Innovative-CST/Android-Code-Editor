@@ -28,6 +28,7 @@
              android:id="@+id/editor"/>
 
     </LinearLayout>
+    <include layout="@layout/code_editor_controller"/>
 
     <Button
          android:layout_height="wrap_content"

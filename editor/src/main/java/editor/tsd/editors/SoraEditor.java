@@ -175,4 +175,26 @@ public class SoraEditor implements Editor {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void moveCursorHorizontally(int steps) {
+        for (int position = 0; position < Math.abs(steps);position++) {
+            if (steps > 0) {
+                editor.moveSelectionRight();
+            } else {
+                editor.moveSelectionLeft();
+            }
+        }
+    }
+
+    @Override
+    public void moveCursorVertically(int steps) {
+        for (int position = 0; position < Math.abs(steps);position++) {
+            if (steps > 0) {
+                editor.moveSelectionDown();
+            } else {
+                editor.moveSelectionUp();
+            }
+        }
+    }
 }

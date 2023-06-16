@@ -12,4 +12,8 @@ public interface Editor {
     public void setLanguageMode(String LqnguageMode);
 
     public void setTheme(String theme);
+
+    public void moveCursorHorizontally(int steps);
+
+    public void moveCursorVertically(int steps);
 }
