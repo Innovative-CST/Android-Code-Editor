@@ -2,10 +2,12 @@ package editor.tsd.editors;
 
 import android.content.Context;
 import android.view.ViewGroup;
+import android.webkit.ConsoleMessage;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
+import android.widget.Toast;
 import editor.tsd.tools.Language;
 import editor.tsd.tools.Themes;
 import editor.tsd.widget.CodeEditorLayout;
@@ -145,8 +147,24 @@ public class AceEditor implements Editor {
     }
 
     @Override
-    public void moveCursorHorizontally(int steps) {}
+    public void moveCursorHorizontally(int steps) {
+        for (int position = 0; position < Math.abs(steps); position++) {
+            if (steps > 0) {
+                aceEditor.loadUrl("javascript:editor.navigateRight(1)");
+            } else {
+                aceEditor.loadUrl("javascript:editor.navigateLeft(1)");
+            }
+        }
+    }
 
     @Override
-    public void moveCursorVertically(int steps) {}
+    public void moveCursorVertically(int steps) {
+        for (int position = 0; position < Math.abs(steps); position++) {
+            if (steps > 0) {
+                aceEditor.loadUrl("javascript:editor.navigateDown(1)");
+            } else {
+                aceEditor.loadUrl("javascript:editor.navigateUp(1)");
+            }
+        }
+    }
 }
