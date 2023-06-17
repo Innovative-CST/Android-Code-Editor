@@ -4,6 +4,9 @@ import android.code.editor.files.utils.FileManager;
 import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.utils.Setting;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -88,17 +91,174 @@ public class CodeEditorActivity extends AppCompatActivity {
                 (view) -> {
                     codeEditor.moveCursorHorizontally(-1);
                 });
+        moveLeft.setOnTouchListener(
+                new View.OnTouchListener() {
+                    private Handler mHandler;
+                    private boolean isMoveLeftButtonPressed = false;
+                    private int holdedSince;
+
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        switch (event.getAction()) {
+                            case MotionEvent.ACTION_DOWN:
+                                if (!isMoveLeftButtonPressed) {
+                                    mHandler = new Handler(Looper.getMainLooper());
+                                    mHandler.postDelayed(mRunnable, 500);
+                                    isMoveLeftButtonPressed = true;
+                                    holdedSince = 0;
+                                }
+                                break;
+                            case MotionEvent.ACTION_UP:
+                                // Stop the action
+                                mHandler.removeCallbacks(mRunnable);
+                                isMoveLeftButtonPressed = false;
+                                break;
+                        }
+                        return false;
+                    }
+
+                    private Runnable mRunnable =
+                            new Runnable() {
+                                @Override
+                                public void run() {
+                                    codeEditor.moveCursorHorizontally(-1);
+                                    if (holdedSince < 1500) {
+                                        mHandler.postDelayed(this, 100);
+                                        holdedSince = holdedSince + 100;
+                                    } else {
+                                        mHandler.postDelayed(this, 50);
+                                    }
+                                }
+                            };
+                });
         moveRight.setOnClickListener(
                 (view) -> {
                     codeEditor.moveCursorHorizontally(1);
+                });
+        moveRight.setOnTouchListener(
+                new View.OnTouchListener() {
+                    private Handler mHandler;
+                    private boolean isMoveRightButtonPressed = false;
+                    private int holdedSince;
+
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        switch (event.getAction()) {
+                            case MotionEvent.ACTION_DOWN:
+                                if (!isMoveRightButtonPressed) {
+                                    mHandler = new Handler(Looper.getMainLooper());
+                                    mHandler.postDelayed(mRunnable, 500);
+                                    isMoveRightButtonPressed = true;
+                                    holdedSince = 0;
+                                }
+                                break;
+                            case MotionEvent.ACTION_UP:
+                                mHandler.removeCallbacks(mRunnable);
+                                isMoveRightButtonPressed = false;
+                                break;
+                        }
+                        return false;
+                    }
+
+                    private Runnable mRunnable =
+                            new Runnable() {
+                                @Override
+                                public void run() {
+                                    codeEditor.moveCursorHorizontally(1);
+                                    if (holdedSince < 1500) {
+                                        mHandler.postDelayed(this, 100);
+                                        holdedSince = holdedSince + 100;
+                                    } else {
+                                        mHandler.postDelayed(this, 50);
+                                    }
+                                }
+                            };
                 });
         moveUp.setOnClickListener(
                 (view) -> {
                     codeEditor.moveCursorVertically(-1);
                 });
+        moveUp.setOnTouchListener(
+                new View.OnTouchListener() {
+                    private Handler mHandler;
+                    private boolean isMoveUpButtonPressed = false;
+                    private int holdedSince;
+
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        switch (event.getAction()) {
+                            case MotionEvent.ACTION_DOWN:
+                                if (!isMoveUpButtonPressed) {
+                                    mHandler = new Handler(Looper.getMainLooper());
+                                    mHandler.postDelayed(mRunnable, 500);
+                                    isMoveUpButtonPressed = true;
+                                    holdedSince = 0;
+                                }
+                                break;
+                            case MotionEvent.ACTION_UP:
+                                mHandler.removeCallbacks(mRunnable);
+                                isMoveUpButtonPressed = false;
+                                break;
+                        }
+                        return false;
+                    }
+
+                    private Runnable mRunnable =
+                            new Runnable() {
+                                @Override
+                                public void run() {
+                                    codeEditor.moveCursorVertically(-1);
+                                    if (holdedSince < 1500) {
+                                        mHandler.postDelayed(this, 100);
+                                        holdedSince = holdedSince + 100;
+                                    } else {
+                                        mHandler.postDelayed(this, 50);
+                                    }
+                                }
+                            };
+                });
         moveDown.setOnClickListener(
                 (view) -> {
                     codeEditor.moveCursorVertically(1);
+                });
+        moveDown.setOnTouchListener(
+                new View.OnTouchListener() {
+                    private Handler mHandler;
+                    private boolean isMoveDownButtonPressed = false;
+                    private int holdedSince;
+
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        switch (event.getAction()) {
+                            case MotionEvent.ACTION_DOWN:
+                                if (!isMoveDownButtonPressed) {
+                                    mHandler = new Handler(Looper.getMainLooper());
+                                    mHandler.postDelayed(mRunnable, 500);
+                                    isMoveDownButtonPressed = true;
+                                    holdedSince = 0;
+                                }
+                                break;
+                            case MotionEvent.ACTION_UP:
+                                mHandler.removeCallbacks(mRunnable);
+                                isMoveDownButtonPressed = false;
+                                break;
+                        }
+                        return false;
+                    }
+
+                    private Runnable mRunnable =
+                            new Runnable() {
+                                @Override
+                                public void run() {
+                                    codeEditor.moveCursorVertically(1);
+                                    if (holdedSince < 1500) {
+                                        mHandler.postDelayed(this, 100);
+                                        holdedSince = holdedSince + 100;
+                                    } else {
+                                        mHandler.postDelayed(this, 50);
+                                    }
+                                }
+                            };
                 });
     }
 }
