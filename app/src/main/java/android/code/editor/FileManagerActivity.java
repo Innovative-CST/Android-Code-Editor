@@ -5,6 +5,7 @@ import android.code.editor.files.utils.FileManager;
 import android.code.editor.files.utils.FileTypeHandler;
 import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.ui.Utils;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -15,17 +16,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,45 +54,11 @@ public class FileManagerActivity extends AppCompatActivity {
         // Set Layout in Activity
         setContentView(R.layout.activity_file_manager);
         initActivity();
+        loadFileList(getIntent().getStringExtra("path"));
     }
 
     public void initActivity() {
         initViews();
-
-        ExecutorService loadFileList = Executors.newSingleThreadExecutor();
-
-        loadFileList.execute(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        // TODO: Implement this method
-
-                        runOnUiThread(
-                                new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        progressbar.setVisibility(View.VISIBLE);
-                                    }
-                                });
-
-                        // Get file path from intent and list dir in array
-                        FileManager.listDir(getIntent().getStringExtra("path"), listString);
-                        FileManager.setUpFileList(listMap, listString);
-
-                        runOnUiThread(
-                                new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        // Set Data in list
-                                        progressbar.setVisibility(View.GONE);
-                                        filelist = new FileList(listMap);
-                                        list.setAdapter(filelist);
-                                        list.setLayoutManager(
-                                                new LinearLayoutManager(FileManagerActivity.this));
-                                    }
-                                });
-                    }
-                });
     }
 
     @Override
@@ -120,12 +93,63 @@ public class FileManagerActivity extends AppCompatActivity {
             PopupMenu popupMenu =
                     new PopupMenu(FileManagerActivity.this, findViewById(R.id.menu_main_setting));
             Menu menu = popupMenu.getMenu();
+            menu.add("New folder");
             menu.add("Contributors");
             menu.add("Settings");
 
             popupMenu.setOnMenuItemClickListener(
                     item -> {
                         switch (item.getTitle().toString()) {
+                            case "New folder":
+                                MaterialAlertDialogBuilder dialog =
+                                        new MaterialAlertDialogBuilder(this);
+                                dialog.setTitle("Create new folder");
+                                dialog.setMessage("Enter folder name to create");
+                                TextInputLayout nameCont = new TextInputLayout(this);
+                                TextInputEditText path = new TextInputEditText(this);
+                                path.setHint("Enter folder name");
+                                nameCont.addView(path);
+                                dialog.setView(nameCont);
+                                dialog.setPositiveButton(
+                                        "Create",
+                                        (param0, param1) -> {
+                                            if (path.getText().length() == 0) {
+                                                Toast.makeText(
+                                                                FileManagerActivity.this,
+                                                                "Please enter a folder name",
+                                                                Toast.LENGTH_SHORT)
+                                                        .show();
+                                            } else if (!new File(
+                                                            getIntent()
+                                                                    .getStringExtra("path")
+                                                                    .concat(File.separator)
+                                                                    .concat(
+                                                                            path.getText()
+                                                                                    .toString()))
+                                                    .exists()) {
+                                                listMap.clear();
+                                                listString.clear();
+                                                FileManager.makeDir(
+                                                        getIntent()
+                                                                .getStringExtra("path")
+                                                                .concat(File.separator)
+                                                                .concat(path.getText().toString()));
+                                                loadFileList(getIntent().getStringExtra("path"));
+                                            } else {
+                                                Toast.makeText(
+                                                                FileManagerActivity.this,
+                                                                "Please enter a folder that does not exists",
+                                                                Toast.LENGTH_SHORT)
+                                                        .show();
+                                            }
+                                        });
+                                dialog.setNegativeButton(
+                                        "Cancel",
+                                        (param0, param1) -> {
+                                            dialog.create().dismiss();
+                                        });
+                                dialog.create().show();
+                                break;
                             case "Contributors":
                                 Intent intent = new Intent();
                                 intent.setClass(
@@ -169,6 +193,43 @@ public class FileManagerActivity extends AppCompatActivity {
         // Define view
         list = findViewById(R.id.list);
         progressbar = findViewById(R.id.progressbar);
+    }
+
+    public void loadFileList(String path) {
+        ExecutorService loadFileList = Executors.newSingleThreadExecutor();
+
+        loadFileList.execute(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        // TODO: Implement this method
+
+                        runOnUiThread(
+                                new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        progressbar.setVisibility(View.VISIBLE);
+                                    }
+                                });
+
+                        // Get file path from intent and list dir in array
+                        FileManager.listDir(path, listString);
+                        FileManager.setUpFileList(listMap, listString);
+
+                        runOnUiThread(
+                                new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // Set Data in list
+                                        progressbar.setVisibility(View.GONE);
+                                        filelist = new FileList(listMap);
+                                        list.setAdapter(filelist);
+                                        list.setLayoutManager(
+                                                new LinearLayoutManager(FileManagerActivity.this));
+                                    }
+                                });
+                    }
+                });
     }
 
     @Override

@@ -133,7 +133,7 @@ public class FileManager {
     }
 
     public static void makeDir(String path) {
-        if (new File(path).exists()) {
+        if (!new File(path).exists()) {
             File file = new File(path);
             file.mkdirs();
         }
