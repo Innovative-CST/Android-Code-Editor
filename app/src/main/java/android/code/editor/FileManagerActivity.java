@@ -11,6 +11,8 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -125,6 +127,46 @@ public class FileManagerActivity extends AppCompatActivity {
                                 TextInputEditText path = new TextInputEditText(this);
                                 path.setHint("Enter folder name");
                                 nameCont.addView(path);
+                                path.addTextChangedListener(
+                                        new TextWatcher() {
+                                            @Override
+                                            public void afterTextChanged(Editable arg0) {
+                                                // TODO: Implement this method
+                                            }
+
+                                            @Override
+                                            public void onTextChanged(
+                                                    CharSequence arg0,
+                                                    int arg1,
+                                                    int arg2,
+                                                    int arg3) {
+                                                // TODO: Implement this method
+                                                if (path.getText().length() == 0) {
+                                                    path.setError("Please enter a folder name");
+                                                } else if (new File(
+                                                                getIntent()
+                                                                        .getStringExtra("path")
+                                                                        .concat(File.separator)
+                                                                        .concat(
+                                                                                path.getText()
+                                                                                        .toString()))
+                                                        .exists()) {
+                                                    path.setError(
+                                                            "Please enter a folder that does not exists");
+                                                } else {
+                                                    path.setError(null);
+                                                }
+                                            }
+
+                                            @Override
+                                            public void beforeTextChanged(
+                                                    CharSequence arg0,
+                                                    int arg1,
+                                                    int arg2,
+                                                    int arg3) {
+                                                // TODO: Implement this method
+                                            }
+                                        });
                                 dialog.setView(nameCont);
                                 dialog.setPositiveButton(
                                         "Create",
