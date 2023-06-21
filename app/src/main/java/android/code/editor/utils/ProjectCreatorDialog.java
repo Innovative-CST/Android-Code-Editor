@@ -4,6 +4,8 @@ import android.code.editor.R;
 import android.code.editor.files.utils.FileManager;
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Toast;
 import androidx.fragment.app.DialogFragment;
@@ -30,10 +32,11 @@ public class ProjectCreatorDialog {
     private BottomSheetDialog projectTemplateBottomSheetDialog;
 
     private MaterialCardView html_template;
-    
+
     private onProjectListUpdate onProjectListUpdateListener;
 
-    public ProjectCreatorDialog(Context context, String filePath, onProjectListUpdate onProjectListUpdateListener) {
+    public ProjectCreatorDialog(
+            Context context, String filePath, onProjectListUpdate onProjectListUpdateListener) {
         this.context = context;
         this.filePath = filePath;
         this.onProjectListUpdateListener = onProjectListUpdateListener;
@@ -48,7 +51,7 @@ public class ProjectCreatorDialog {
     public void show() {
         projectTemplateBottomSheetDialog.show();
     }
-    
+
     public interface onProjectListUpdate {
         public void onRefresh();
     }
@@ -63,6 +66,35 @@ public class ProjectCreatorDialog {
                     TextInputEditText path = new TextInputEditText(context);
                     path.setHint("Enter folder name");
                     nameCont.addView(path);
+                    path.addTextChangedListener(
+                            new TextWatcher() {
+                                @Override
+                                public void afterTextChanged(Editable arg0) {
+                                    // TODO: Implement this method
+                                }
+
+                                @Override
+                                public void onTextChanged(
+                                        CharSequence arg0, int arg1, int arg2, int arg3) {
+                                    // TODO: Implement this method
+                                    if (path.getText().length() == 0) {
+                                        path.setError("Please enter a folder name");
+                                    } else if (new File(
+                                                    filePath.concat(File.separator)
+                                                            .concat(path.getText().toString()))
+                                            .exists()) {
+                                        path.setError("Please enter a folder that does not exists");
+                                    } else {
+                                        path.setError(null);
+                                    }
+                                }
+
+                                @Override
+                                public void beforeTextChanged(
+                                        CharSequence arg0, int arg1, int arg2, int arg3) {
+                                    // TODO: Implement this method
+                                }
+                            });
                     path.setFocusable(true);
                     dialog.setView(nameCont);
                     dialog.setPositiveButton(
