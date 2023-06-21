@@ -5,6 +5,7 @@ import android.code.editor.files.utils.FileManager;
 import android.code.editor.files.utils.FileTypeHandler;
 import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.ui.Utils;
+import android.code.editor.utils.ProjectCreatorDialog;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -92,12 +93,16 @@ public class FileManagerActivity extends AppCompatActivity {
                     new PopupMenu(FileManagerActivity.this, findViewById(R.id.menu_main_setting));
             Menu menu = popupMenu.getMenu();
             menu.add("New folder");
+            menu.add("New Project");
             menu.add("Contributors");
             menu.add("Settings");
 
             popupMenu.setOnMenuItemClickListener(
                     item -> {
                         switch (item.getTitle().toString()) {
+                            case "New Project":
+                                ProjectCreatorDialog projectDialog = new ProjectCreatorDialog(this).show();
+                                break;
                             case "New folder":
                                 MaterialAlertDialogBuilder dialog =
                                         new MaterialAlertDialogBuilder(this);
