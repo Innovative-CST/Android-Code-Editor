@@ -8,21 +8,22 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Toast;
+
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
-import io.github.rosemoe.sora.util.Logger;
-import java.io.File;
-import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import com.itsaky.androidide.logsender.LogSender;
+import java.io.File;
+import java.util.ArrayList;
 
 public class ProjectCreatorDialog {
     private String filePath;
