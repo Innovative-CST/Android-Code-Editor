@@ -1,28 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:paddingRight="8dp"
-    android:orientation="vertical"
-    android:paddingBottom="8dp"
-    android:paddingLeft="8dp"
-    android:id="@+id/root"
-    android:paddingTop="32dp">
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_height="match_parent"
+     android:layout_width="match_parent"
+     android:paddingRight="8dp"
+     android:orientation="vertical"
+     android:paddingBottom="8dp"
+     android:paddingLeft="8dp"
+     android:id="@+id/root"
+     android:paddingTop="32dp">
 
     <TextView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:textSize="16sp"
-        android:textColor="?attr/colorPrimary"
-        android:text="Project Template"
-        android:textStyle="bold"/>
+         android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:textSize="16sp"
+         android:textColor="?attr/colorPrimary"
+         android:text="Project Template"
+         android:textStyle="bold"/>
 
     <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:weightSum="2"
-        android:orientation="horizontal"/>
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:weightSum="2"
+         android:orientation="horizontal">
+
+        <com.google.android.material.card.MaterialCardView
+             android:layout_height="140dp"
+             android:layout_width="0dp"
+             android:layout_margin="8dp"
+             android:layout_weight="1"
+             android:clickable="true"
+             android:focusable="true"
+             android:id="@+id/html_template">
+
+            <RelativeLayout
+                 android:layout_height="match_parent"
+                 android:layout_width="match_parent"
+                 android:orientation="horizontal">
+
+                <ImageView
+                     android:layout_height="match_parent"
+                     android:layout_width="match_parent"
+                     android:src="@drawable/language_html"
+                     android:tint="?attr/colorPrimary"/>
+
+                <LinearLayout
+                     android:layout_height="wrap_content"
+                     android:layout_width="match_parent"
+                     android:background="?attr/colorSurfaceVariant"
+                     android:alpha="0.5"
+                     android:layout_alignParentBottom="true">
+
+                    <TextView
+                         android:layout_height="wrap_content"
+                         android:layout_width="match_parent"
+                         android:gravity="center"
+                         android:padding="8dp"
+                         android:textColor="?attr/colorPrimary"
+                         android:text="HTML"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -101,7 +101,20 @@ public class FileManagerActivity extends AppCompatActivity {
                     item -> {
                         switch (item.getTitle().toString()) {
                             case "New Project":
-                                ProjectCreatorDialog projectDialog = new ProjectCreatorDialog(this).show();
+                                ProjectCreatorDialog projectDialog =
+                                        new ProjectCreatorDialog(
+                                                this,
+                                                getIntent().getStringExtra("path"),
+                                                new ProjectCreatorDialog.onProjectListUpdate() {
+                                                    @Override
+                                                    public void onRefresh() {
+                                                        listMap.clear();
+                                                        listString.clear();
+                                                        loadFileList(
+                                                                getIntent().getStringExtra("path"));
+                                                    }
+                                                });
+                                projectDialog.show();
                                 break;
                             case "New folder":
                                 MaterialAlertDialogBuilder dialog =
@@ -170,6 +183,11 @@ public class FileManagerActivity extends AppCompatActivity {
             popupMenu.show();
         }
         return super.onOptionsItemSelected(arg0);
+    }
+
+    private static void onProjectListUpdate() {
+        // TODO: Implement this method
+
     }
 
     private void initViews() {
