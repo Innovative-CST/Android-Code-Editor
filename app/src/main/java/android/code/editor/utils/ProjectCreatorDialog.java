@@ -60,11 +60,11 @@ public class ProjectCreatorDialog {
         html_template.setOnClickListener(
                 (view) -> {
                     MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(context);
-                    dialog.setTitle("Create new folder");
+                    dialog.setTitle("Create new project");
                     dialog.setMessage("Enter project name to create");
                     TextInputLayout nameCont = new TextInputLayout(context);
                     TextInputEditText path = new TextInputEditText(context);
-                    path.setHint("Enter folder name");
+                    path.setHint("Enter project name");
                     nameCont.addView(path);
                     path.addTextChangedListener(
                             new TextWatcher() {
@@ -78,12 +78,15 @@ public class ProjectCreatorDialog {
                                         CharSequence arg0, int arg1, int arg2, int arg3) {
                                     // TODO: Implement this method
                                     if (path.getText().length() == 0) {
-                                        path.setError("Please enter a folder name");
+                                        path.setError("Please enter a project name");
                                     } else if (new File(
                                                     filePath.concat(File.separator)
                                                             .concat(path.getText().toString()))
                                             .exists()) {
-                                        path.setError("Please enter a folder that does not exists");
+                                        path.setError(
+                                                "Please enter a project that does not exists");
+                                    } else if (path.getText().toString().contains("/")) {
+                                        path.setError("Please do not enter / in project name");
                                     } else {
                                         path.setError(null);
                                     }
@@ -114,6 +117,12 @@ public class ProjectCreatorDialog {
                                                     context,
                                                     "File path already exists",
                                                     Toast.LENGTH_SHORT)
+                                            .show();
+                                } else if (path.getText().toString().contains("/")) {
+                                    Toast.makeText(
+                                                    context,
+                                                    "Please do not enter / in project name",
+                                                    Toast.LENGTH_LONG)
                                             .show();
                                 } else {
                                     _save_assets_folder(
