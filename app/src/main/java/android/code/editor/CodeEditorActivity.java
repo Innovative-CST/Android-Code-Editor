@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import editor.tsd.tools.Themes;
 import editor.tsd.widget.CodeEditorLayout;
 
 public class CodeEditorActivity extends AppCompatActivity {
