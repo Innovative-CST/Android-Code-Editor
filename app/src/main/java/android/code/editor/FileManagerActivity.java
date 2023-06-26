@@ -5,6 +5,7 @@ import android.code.editor.files.utils.FileManager;
 import android.code.editor.files.utils.FileTypeHandler;
 import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.ui.Utils;
+import android.code.editor.utils.FolderCreatorDialog;
 import android.code.editor.utils.ProjectCreatorDialog;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -45,8 +46,8 @@ public class FileManagerActivity extends AppCompatActivity {
     private RecyclerView list;
     private FileList filelist;
 
-    private ArrayList<String> listString = new ArrayList<>();
-    private ArrayList<HashMap<String, Object>> listMap = new ArrayList<>();
+    public ArrayList<String> listString = new ArrayList<>();
+    public ArrayList<HashMap<String, Object>> listMap = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,94 +120,7 @@ public class FileManagerActivity extends AppCompatActivity {
                                 projectDialog.show();
                                 break;
                             case "New folder":
-                                MaterialAlertDialogBuilder dialog =
-                                        new MaterialAlertDialogBuilder(this);
-                                dialog.setTitle("Create new folder");
-                                dialog.setMessage("Enter folder name to create");
-                                TextInputLayout nameCont = new TextInputLayout(this);
-                                TextInputEditText path = new TextInputEditText(this);
-                                path.setHint("Enter folder name");
-                                nameCont.addView(path);
-                                path.addTextChangedListener(
-                                        new TextWatcher() {
-                                            @Override
-                                            public void afterTextChanged(Editable arg0) {
-                                                // TODO: Implement this method
-                                            }
-
-                                            @Override
-                                            public void onTextChanged(
-                                                    CharSequence arg0,
-                                                    int arg1,
-                                                    int arg2,
-                                                    int arg3) {
-                                                // TODO: Implement this method
-                                                if (path.getText().length() == 0) {
-                                                    path.setError("Please enter a folder name");
-                                                } else if (new File(
-                                                                getIntent()
-                                                                        .getStringExtra("path")
-                                                                        .concat(File.separator)
-                                                                        .concat(
-                                                                                path.getText()
-                                                                                        .toString()))
-                                                        .exists()) {
-                                                    path.setError(
-                                                            "Please enter a folder that does not exists");
-                                                } else {
-                                                    path.setError(null);
-                                                }
-                                            }
-
-                                            @Override
-                                            public void beforeTextChanged(
-                                                    CharSequence arg0,
-                                                    int arg1,
-                                                    int arg2,
-                                                    int arg3) {
-                                                // TODO: Implement this method
-                                            }
-                                        });
-                                dialog.setView(nameCont);
-                                dialog.setPositiveButton(
-                                        "Create",
-                                        (param0, param1) -> {
-                                            if (path.getText().length() == 0) {
-                                                Toast.makeText(
-                                                                FileManagerActivity.this,
-                                                                "Please enter a folder name",
-                                                                Toast.LENGTH_SHORT)
-                                                        .show();
-                                            } else if (!new File(
-                                                            getIntent()
-                                                                    .getStringExtra("path")
-                                                                    .concat(File.separator)
-                                                                    .concat(
-                                                                            path.getText()
-                                                                                    .toString()))
-                                                    .exists()) {
-                                                listMap.clear();
-                                                listString.clear();
-                                                FileManager.makeDir(
-                                                        getIntent()
-                                                                .getStringExtra("path")
-                                                                .concat(File.separator)
-                                                                .concat(path.getText().toString()));
-                                                loadFileList(getIntent().getStringExtra("path"));
-                                            } else {
-                                                Toast.makeText(
-                                                                FileManagerActivity.this,
-                                                                "Please enter a folder that does not exists",
-                                                                Toast.LENGTH_SHORT)
-                                                        .show();
-                                            }
-                                        });
-                                dialog.setNegativeButton(
-                                        "Cancel",
-                                        (param0, param1) -> {
-                                            dialog.create().dismiss();
-                                        });
-                                dialog.create().show();
+                                new FolderCreatorDialog(this);
                                 break;
                             case "Contributors":
                                 Intent intent = new Intent();

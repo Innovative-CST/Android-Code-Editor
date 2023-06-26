@@ -24,7 +24,7 @@ android {
 		versionCode 1
 		versionName "1.0-Snapshot-" + getCommitHash()
 	}
-
+    
 	buildTypes {
 		release {
 			minifyEnabled false
