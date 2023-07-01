@@ -30,6 +30,9 @@ public class FileIcon {
                 case "json":
                     imageview.setImageResource(R.drawable.language_json);
                     break;
+                case "md":
+                    imageview.setImageResource(R.drawable.language_markdown);
+                    break;
                 default:
                     imageview.setImageResource(0);
                     break;
