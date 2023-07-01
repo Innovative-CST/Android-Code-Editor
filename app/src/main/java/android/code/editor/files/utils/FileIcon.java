@@ -21,6 +21,8 @@ public class FileIcon {
                 imageview.setImageResource(R.drawable.language_css);
             } else if (FileManager.ifFileFormatIsEqualTo(path, "js")) {
                 imageview.setImageResource(R.drawable.language_javascript);
+            } else if (FileManager.ifFileFormatIsEqualTo(path, "json")) {
+                imageview.setImageResource(R.drawable.language_json);
             } else {
                 imageview.setImageResource(0);
             }
