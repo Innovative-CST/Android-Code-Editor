@@ -315,6 +315,16 @@ public class CodeEditorActivity extends AppCompatActivity {
     }
 
     public void openFileInEditor(File file) {
-        
+        progressbar.setVisibility(View.VISIBLE);
+        codeEditor.setVisibility(View.GONE);
+
+        codeEditor.setCode(FileManager.readFile(file.getAbsolutePath()));
+
+        progressbar.setVisibility(View.GONE);
+        codeEditor.setVisibility(View.VISIBLE);
+
+        codeEditor.setLanguageMode(
+                LanguageModeHandler.getLanguageModeForExtension(
+                        FileTypeHandler.getFileFormat(file.getAbsolutePath())));
     }
 }
