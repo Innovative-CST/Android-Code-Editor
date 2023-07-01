@@ -123,7 +123,7 @@ public class AceEditor implements Editor {
                 aceJSInterface.languageMode = "css";
                 break;
             case Language.JavaScript:
-                aceJSInterface.languageMode = "js";
+                aceJSInterface.languageMode = "javascript";
                 break;
         }
         aceEditor.loadUrl("javascript:setLanguageMode()");
