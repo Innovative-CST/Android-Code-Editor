@@ -29,6 +29,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -142,6 +143,14 @@ public class FileManagerActivity extends AppCompatActivity {
 
     private void initViews() {
         // Setup toolbar
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(
+                (view) -> {
+                    Intent intent = new Intent();
+                    intent.putExtra("path", getIntent().getStringExtra("path"));
+                    intent.setClass(FileManagerActivity.this, CodeEditorActivity.class);
+                    startActivity(intent);
+                });
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -267,7 +276,8 @@ public class FileManagerActivity extends AppCompatActivity {
             fileTypeHandler.setTargetView(mainlayout);
             fileTypeHandler.startHandling();
             if (new File(_data.get(_position).get("path").toString()).isDirectory()) {
-                if (Git.isGitRepository(new File(new File(_data.get(_position).get("path").toString()), ".git"))) {
+                if (Git.isGitRepository(
+                        new File(new File(_data.get(_position).get("path").toString()), ".git"))) {
                     gitIcon.setVisibility(View.VISIBLE);
                 }
             }
