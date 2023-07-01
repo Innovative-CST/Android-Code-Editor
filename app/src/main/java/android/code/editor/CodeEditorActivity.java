@@ -336,6 +336,8 @@ public class CodeEditorActivity extends AppCompatActivity {
     }
 
     public void openFileInEditor(File file) {
+        fileNotOpenedArea.setVisibility(View.GONE);
+        editorArea.setVisibility(View.VISIBLE);
         progressbar.setVisibility(View.VISIBLE);
         codeEditor.setVisibility(View.GONE);
 
@@ -470,8 +472,7 @@ public class CodeEditorActivity extends AppCompatActivity {
                                     case "html":
                                     case "css":
                                     case "js":
-                                        openFileInEditor(
-                                                new File(FileTypeHandler.getFileFormat(path)));
+                                        openFileInEditor(new File(path));
                                         break;
                                     default:
                                         break;
