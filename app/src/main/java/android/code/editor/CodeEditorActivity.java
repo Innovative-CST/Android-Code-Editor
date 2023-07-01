@@ -45,7 +45,7 @@ public class CodeEditorActivity extends AppCompatActivity {
     public ImageView moveRight;
     public ImageView moveUp;
     public ImageView moveDown;
-    public File ParentDir;
+    public File DrawerListDir;
     public RecyclerView list;
     private FileList filelist;
     public ArrayList<String> listString = new ArrayList<>();
@@ -301,8 +301,8 @@ public class CodeEditorActivity extends AppCompatActivity {
 
         if (getIntent().hasExtra("path")) {
             if (new File(getIntent().getStringExtra("path")).isFile()) {
-                ParentDir = new File(getIntent().getStringExtra("path")).getParentFile();
-                loadFileList(ParentDir.getAbsolutePath());
+                DrawerListDir = new File(getIntent().getStringExtra("path")).getParentFile();
+                loadFileList(DrawerListDir.getAbsolutePath());
                 if (fileNotOpenedArea.getVisibility() == View.VISIBLE
                         || editorArea.getVisibility() == View.GONE) {
                     fileNotOpenedArea.setVisibility(View.GONE);
@@ -321,8 +321,8 @@ public class CodeEditorActivity extends AppCompatActivity {
                                 FileTypeHandler.getFileFormat(getIntent().getStringExtra("path"))));
 
             } else {
-                ParentDir = new File(getIntent().getStringExtra("path"));
-                loadFileList(ParentDir.getAbsolutePath());
+                DrawerListDir = new File(getIntent().getStringExtra("path"));
+                loadFileList(DrawerListDir.getAbsolutePath());
                 if (fileNotOpenedArea.getVisibility() == View.GONE
                         || editorArea.getVisibility() == View.VISIBLE) {
                     fileNotOpenedArea.setVisibility(View.VISIBLE);
@@ -345,8 +345,10 @@ public class CodeEditorActivity extends AppCompatActivity {
                 LanguageModeHandler.getLanguageModeForExtension(
                         FileTypeHandler.getFileFormat(file.getAbsolutePath())));
     }
-    
+
     public void loadFileList(String path) {
+        listString.clear();
+        listMap.clear();
         ExecutorService loadFileList = Executors.newSingleThreadExecutor();
 
         loadFileList.execute(
@@ -383,7 +385,6 @@ public class CodeEditorActivity extends AppCompatActivity {
                 });
     }
 
-    
     // Adapter of Recycler View
     private class FileList extends RecyclerView.Adapter<FileList.ViewHolder> {
 
@@ -430,6 +431,24 @@ public class CodeEditorActivity extends AppCompatActivity {
                             com.google.android.material.R.attr.colorOnSurface));
             path.setText(_data.get(_position).get("lastSegmentOfFilePath").toString());
             String path = _data.get(_position).get("path").toString();
+            mainlayout.setOnClickListener(
+                    (view) -> {
+                        if (new File(path).isDirectory()) {
+                            loadFileList(path);
+                        } else {
+                            switch (FileTypeHandler.getFileFormat(path)) {
+                                case "java":
+                                case "xml":
+                                case "html":
+                                case "css":
+                                case "js":
+                                    openFileInEditor(new File(FileTypeHandler.getFileFormat(path)));
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    });
         }
 
         @Override
