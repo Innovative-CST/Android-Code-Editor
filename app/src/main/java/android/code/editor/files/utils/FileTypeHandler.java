@@ -44,57 +44,9 @@ public class FileTypeHandler {
             final File FinalFile = file;
             switch (getFileFormat(file.getAbsolutePath())) {
                 case "java":
-                    view.setOnClickListener(
-                            new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent intent = new Intent();
-                                    intent.putExtra("path", file.getAbsolutePath());
-                                    intent.putExtra("LanguageMode", Language.Java);
-                                    intent.setClass(context, CodeEditorActivity.class);
-                                    context.startActivity(intent);
-                                }
-                            });
-                    break;
                 case "xml":
-                    view.setOnClickListener(
-                            new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent intent = new Intent();
-                                    intent.putExtra("path", file.getAbsolutePath());
-                                    intent.putExtra("LanguageMode", Language.XML);
-                                    intent.setClass(context, CodeEditorActivity.class);
-                                    context.startActivity(intent);
-                                }
-                            });
-                    break;
                 case "html":
-                    view.setOnClickListener(
-                            new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent intent = new Intent();
-                                    intent.putExtra("path", file.getAbsolutePath());
-                                    intent.putExtra("LanguageMode", Language.HTML);
-                                    intent.setClass(context, CodeEditorActivity.class);
-                                    context.startActivity(intent);
-                                }
-                            });
-                    break;
                 case "css":
-                    view.setOnClickListener(
-                            new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent intent = new Intent();
-                                    intent.putExtra("path", file.getAbsolutePath());
-                                    intent.putExtra("LanguageMode", Language.CSS);
-                                    intent.setClass(context, CodeEditorActivity.class);
-                                    context.startActivity(intent);
-                                }
-                            });
-                    break;
                 case "js":
                     view.setOnClickListener(
                             new View.OnClickListener() {
@@ -102,7 +54,6 @@ public class FileTypeHandler {
                                 public void onClick(View v) {
                                     Intent intent = new Intent();
                                     intent.putExtra("path", file.getAbsolutePath());
-                                    intent.putExtra("LanguageMode", Language.JavaScript);
                                     intent.setClass(context, CodeEditorActivity.class);
                                     context.startActivity(intent);
                                 }
@@ -115,7 +66,7 @@ public class FileTypeHandler {
         }
     }
 
-    private String getFileFormat(String path) {
+    public static String getFileFormat(String path) {
         int index = path.lastIndexOf('.');
         if (index > 0) {
             String extension = path.substring(index + 1);

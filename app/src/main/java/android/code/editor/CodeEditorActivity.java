@@ -1,7 +1,9 @@
 package android.code.editor;
 
 import android.code.editor.files.utils.FileManager;
+import android.code.editor.files.utils.FileTypeHandler;
 import android.code.editor.ui.MaterialColorHelper;
+import android.code.editor.utils.LanguageModeHandler;
 import android.code.editor.utils.Setting;
 import android.os.Bundle;
 import android.os.Handler;
@@ -280,10 +282,6 @@ public class CodeEditorActivity extends AppCompatActivity {
                                 this));
             }
         }
-        // Set Language Mode
-        if (getIntent().hasExtra("LanguageMode")) {
-            codeEditor.setLanguageMode(getIntent().getStringExtra("LanguageMode"));
-        }
 
         if (getIntent().hasExtra("path")) {
             if (new File(getIntent().getStringExtra("path")).isFile()) {
@@ -301,6 +299,10 @@ public class CodeEditorActivity extends AppCompatActivity {
                 progressbar.setVisibility(View.GONE);
                 codeEditor.setVisibility(View.VISIBLE);
 
+                codeEditor.setLanguageMode(
+                        LanguageModeHandler.getLanguageModeForExtension(
+                                FileTypeHandler.getFileFormat(getIntent().getStringExtra("path"))));
+
             } else {
                 ParentDir = new File(getIntent().getStringExtra("path"));
                 if (fileNotOpenedArea.getVisibility() == View.GONE
@@ -310,5 +312,9 @@ public class CodeEditorActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public void openFileInEditor(File file) {
+        
     }
 }
