@@ -1,28 +1,39 @@
 package android.code.editor;
 
+import android.code.editor.files.utils.FileIcon;
 import android.code.editor.files.utils.FileManager;
 import android.code.editor.files.utils.FileTypeHandler;
 import android.code.editor.ui.MaterialColorHelper;
+import android.code.editor.ui.Utils;
 import android.code.editor.utils.LanguageModeHandler;
 import android.code.editor.utils.Setting;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+import android.widget.TextView;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import editor.tsd.widget.CodeEditorLayout;
 
+import io.github.rosemoe.sora.util.ArrayList;
 import java.io.File;
+import java.util.HashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class CodeEditorActivity extends AppCompatActivity {
 
@@ -35,6 +46,10 @@ public class CodeEditorActivity extends AppCompatActivity {
     public ImageView moveUp;
     public ImageView moveDown;
     public File ParentDir;
+    public RecyclerView list;
+    private FileList filelist;
+    public ArrayList<String> listString = new ArrayList<>();
+    public ArrayList<HashMap<String, Object>> listMap = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +69,7 @@ public class CodeEditorActivity extends AppCompatActivity {
         moveDown = findViewById(R.id.moveDown);
         editorArea = findViewById(R.id.editorArea);
         fileNotOpenedArea = findViewById(R.id.fileNotOpenedArea);
+        list = findViewById(R.id.list);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -286,6 +302,7 @@ public class CodeEditorActivity extends AppCompatActivity {
         if (getIntent().hasExtra("path")) {
             if (new File(getIntent().getStringExtra("path")).isFile()) {
                 ParentDir = new File(getIntent().getStringExtra("path")).getParentFile();
+                loadFileList(ParentDir.getAbsolutePath());
                 if (fileNotOpenedArea.getVisibility() == View.VISIBLE
                         || editorArea.getVisibility() == View.GONE) {
                     fileNotOpenedArea.setVisibility(View.GONE);
@@ -305,6 +322,7 @@ public class CodeEditorActivity extends AppCompatActivity {
 
             } else {
                 ParentDir = new File(getIntent().getStringExtra("path"));
+                loadFileList(ParentDir.getAbsolutePath());
                 if (fileNotOpenedArea.getVisibility() == View.GONE
                         || editorArea.getVisibility() == View.VISIBLE) {
                     fileNotOpenedArea.setVisibility(View.VISIBLE);
@@ -326,5 +344,103 @@ public class CodeEditorActivity extends AppCompatActivity {
         codeEditor.setLanguageMode(
                 LanguageModeHandler.getLanguageModeForExtension(
                         FileTypeHandler.getFileFormat(file.getAbsolutePath())));
+    }
+    
+    public void loadFileList(String path) {
+        ExecutorService loadFileList = Executors.newSingleThreadExecutor();
+
+        loadFileList.execute(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        // TODO: Implement this method
+
+                        runOnUiThread(
+                                new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        progressbar.setVisibility(View.VISIBLE);
+                                    }
+                                });
+
+                        // Get file path from intent and list dir in array
+                        FileManager.listDir(path, listString);
+                        FileManager.setUpFileList(listMap, listString);
+
+                        runOnUiThread(
+                                new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // Set Data in list
+                                        progressbar.setVisibility(View.GONE);
+                                        filelist = new FileList(listMap);
+                                        list.setAdapter(filelist);
+                                        list.setLayoutManager(
+                                                new LinearLayoutManager(CodeEditorActivity.this));
+                                    }
+                                });
+                    }
+                });
+    }
+
+    
+    // Adapter of Recycler View
+    private class FileList extends RecyclerView.Adapter<FileList.ViewHolder> {
+
+        ArrayList<HashMap<String, Object>> _data;
+        private ImageView icon;
+        private ImageView gitIcon;
+        private TextView path;
+        private LinearLayout mainlayout;
+
+        public FileList(ArrayList<HashMap<String, Object>> _arr) {
+            _data = _arr;
+        }
+
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+            LayoutInflater _inflater = getLayoutInflater();
+            View _v = _inflater.inflate(R.layout.filelist, null);
+            RecyclerView.LayoutParams _lp =
+                    new RecyclerView.LayoutParams(
+                            ViewGroup.LayoutParams.MATCH_PARENT,
+                            ViewGroup.LayoutParams.WRAP_CONTENT);
+            _v.setLayoutParams(_lp);
+            return new ViewHolder(_v);
+        }
+
+        @Override
+        public void onBindViewHolder(ViewHolder _holder, final int _position) {
+            View _view = _holder.itemView;
+            mainlayout = _view.findViewById(R.id.layout);
+            icon = _view.findViewById(R.id.icon);
+            path = _view.findViewById(R.id.path);
+            gitIcon = _view.findViewById(R.id.git);
+            gitIcon.setVisibility(View.GONE);
+            FileIcon.setUpIcon(
+                    CodeEditorActivity.this, _data.get(_position).get("path").toString(), icon);
+            Utils.applyRippleEffect(
+                    mainlayout,
+                    MaterialColorHelper.getMaterialColor(
+                            CodeEditorActivity.this,
+                            com.google.android.material.R.attr.colorSurface),
+                    MaterialColorHelper.getMaterialColor(
+                            CodeEditorActivity.this,
+                            com.google.android.material.R.attr.colorOnSurface));
+            path.setText(_data.get(_position).get("lastSegmentOfFilePath").toString());
+            String path = _data.get(_position).get("path").toString();
+        }
+
+        @Override
+        public int getItemCount() {
+            return _data.size();
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+            public ViewHolder(View v) {
+                super(v);
+            }
+        }
     }
 }
