@@ -1,86 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/coordinator">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
-        android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
-        android:id="@+id/appbar">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:layout_height="?attr/actionBarSize"
-            android:layout_width="match_parent"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
-            android:id="@+id/toolbar"/>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-
-    <ProgressBar
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:visibility="gone"
-        android:indeterminate="true"
-        style="?android:progressBarStyleHorizontal"
-        android:id="@+id/progressbar"/>
+    android:id="@+id/drawer">
 
     <LinearLayout
-        android:id="@+id/editorArea"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
+            android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+            android:id="@+id/appbar">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_height="?attr/actionBarSize"
+                android:layout_width="match_parent"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+                android:id="@+id/toolbar"/>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <ProgressBar
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:indeterminate="true"
+            style="?android:progressBarStyleHorizontal"
+            android:id="@+id/progressbar"/>
+
+        <LinearLayout
+            android:id="@+id/editorArea"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:orientation="horizontal">
+
+                <editor.tsd.widget.CodeEditorLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    app:codeEditor="SoraCodeEditor"
+                    app:setCode=""
+                    android:id="@+id/editor"/>
+
+            </LinearLayout>
+            <include layout="@layout/code_editor_controller"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_weight="1"
-            android:layout_height="0dp"
             android:layout_width="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:id="@+id/fileNotOpenedArea">
 
-            <editor.tsd.widget.CodeEditorLayout
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                app:codeEditor="SoraCodeEditor"
-                app:setCode=""
-                android:id="@+id/editor"/>
+            <TextView
+                android:textColor="?attr/colorPrimary"
+                android:text="Android Code Editor"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:textColor="?attr/colorOnSurface"
+                android:text="Open file list from drawer"
+                android:layout_width="wrap_content"
+                android:textSize="12sp"
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
-        <include layout="@layout/code_editor_controller"/>
-
     </LinearLayout>
 
     <LinearLayout
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:id="@+id/fileNotOpenedArea">
-
-        <TextView
-            android:textColor="?attr/colorPrimary"
-            android:text="Android Code Editor"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:textColor="?attr/colorOnSurface"
-            android:text="Open file list from drawer"
-            android:layout_width="wrap_content"
-            android:textSize="12sp"
-            android:layout_height="wrap_content"/>
-
+        android:id="@+id/_nav_view"
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="?attr/colorSurface"
+        android:padding="16dp">
+        
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:id="@+id/list"/>
+        
     </LinearLayout>
 
-</LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

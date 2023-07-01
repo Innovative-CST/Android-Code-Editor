@@ -12,9 +12,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import editor.tsd.widget.CodeEditorLayout;
 
 import java.io.File;
@@ -55,21 +58,31 @@ public class CodeEditorActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle("Code Editor");
+        DrawerLayout drawer = findViewById(R.id.drawer);
+        ActionBarDrawerToggle toggle =
+                new ActionBarDrawerToggle(
+                        this, drawer, toolbar, R.string.app_name, R.string.app_name);
         toolbar.setTitleTextColor(
                 MaterialColorHelper.getMaterialColor(
                         this, com.google.android.material.R.attr.colorOnPrimary));
-        toolbar.getNavigationIcon()
-                .setTint(
-                        MaterialColorHelper.getMaterialColor(
-                                this, com.google.android.material.R.attr.colorOnPrimary));
         toolbar.setNavigationOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View arg0) {
                         // TODO: Implement this method
-                        onBackPressed();
+                        if (drawer.isDrawerVisible(GravityCompat.END)) {
+                            drawer.closeDrawer(GravityCompat.END);
+                        } else {
+                            drawer.openDrawer(GravityCompat.END);
+                        }
                     }
                 });
+        toggle.getDrawerArrowDrawable()
+                .setColor(
+                        MaterialColorHelper.getMaterialColor(
+                                this, com.google.android.material.R.attr.colorOnPrimary));
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
         moveLeft.setOnClickListener(
                 (view) -> {
