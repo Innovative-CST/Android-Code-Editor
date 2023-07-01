@@ -50,6 +50,7 @@ public class CodeEditorActivity extends AppCompatActivity {
     private FileList filelist;
     public ArrayList<String> listString = new ArrayList<>();
     public ArrayList<HashMap<String, Object>> listMap = new ArrayList<>();
+    public String selectPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -302,6 +303,7 @@ public class CodeEditorActivity extends AppCompatActivity {
         if (getIntent().hasExtra("path")) {
             if (new File(getIntent().getStringExtra("path")).isFile()) {
                 DrawerListDir = new File(getIntent().getStringExtra("path")).getParentFile();
+                selectPath = DrawerListDir.getAbsolutePath();
                 loadFileList(DrawerListDir.getAbsolutePath());
                 if (fileNotOpenedArea.getVisibility() == View.VISIBLE
                         || editorArea.getVisibility() == View.GONE) {
@@ -322,6 +324,7 @@ public class CodeEditorActivity extends AppCompatActivity {
 
             } else {
                 DrawerListDir = new File(getIntent().getStringExtra("path"));
+                selectPath = DrawerListDir.getAbsolutePath();
                 loadFileList(DrawerListDir.getAbsolutePath());
                 if (fileNotOpenedArea.getVisibility() == View.GONE
                         || editorArea.getVisibility() == View.VISIBLE) {
@@ -367,7 +370,14 @@ public class CodeEditorActivity extends AppCompatActivity {
 
                         // Get file path from intent and list dir in array
                         FileManager.listDir(path, listString);
+
                         FileManager.setUpFileList(listMap, listString);
+                        // For ..(Go back)
+                        if (!DrawerListDir.getAbsolutePath().equals(selectPath)) {
+                            HashMap<String, Object> _item = new HashMap<>();
+                            _item.put("goBack", "..");
+                            listMap.add(0, _item);
+                        }
 
                         runOnUiThread(
                                 new Runnable() {
@@ -419,36 +429,56 @@ public class CodeEditorActivity extends AppCompatActivity {
             path = _view.findViewById(R.id.path);
             gitIcon = _view.findViewById(R.id.git);
             gitIcon.setVisibility(View.GONE);
-            FileIcon.setUpIcon(
-                    CodeEditorActivity.this, _data.get(_position).get("path").toString(), icon);
-            Utils.applyRippleEffect(
-                    mainlayout,
-                    MaterialColorHelper.getMaterialColor(
-                            CodeEditorActivity.this,
-                            com.google.android.material.R.attr.colorSurface),
-                    MaterialColorHelper.getMaterialColor(
-                            CodeEditorActivity.this,
-                            com.google.android.material.R.attr.colorOnSurface));
-            path.setText(_data.get(_position).get("lastSegmentOfFilePath").toString());
-            String path = _data.get(_position).get("path").toString();
-            mainlayout.setOnClickListener(
-                    (view) -> {
-                        if (new File(path).isDirectory()) {
-                            loadFileList(path);
-                        } else {
-                            switch (FileTypeHandler.getFileFormat(path)) {
-                                case "java":
-                                case "xml":
-                                case "html":
-                                case "css":
-                                case "js":
-                                    openFileInEditor(new File(FileTypeHandler.getFileFormat(path)));
-                                    break;
-                                default:
-                                    break;
+            if (_data.get(_position).containsKey("goBack")) {
+                icon.setImageResource(R.drawable.ic_folder_black_24dp);
+                path.setText("..");
+                Utils.applyRippleEffect(
+                        mainlayout,
+                        MaterialColorHelper.getMaterialColor(
+                                CodeEditorActivity.this,
+                                com.google.android.material.R.attr.colorSurface),
+                        MaterialColorHelper.getMaterialColor(
+                                CodeEditorActivity.this,
+                                com.google.android.material.R.attr.colorOnSurface));
+                mainlayout.setOnClickListener(
+                        (view) -> {
+                            DrawerListDir = DrawerListDir.getParentFile();
+                            loadFileList(DrawerListDir.getAbsolutePath());
+                        });
+            } else {
+                FileIcon.setUpIcon(
+                        CodeEditorActivity.this, _data.get(_position).get("path").toString(), icon);
+                Utils.applyRippleEffect(
+                        mainlayout,
+                        MaterialColorHelper.getMaterialColor(
+                                CodeEditorActivity.this,
+                                com.google.android.material.R.attr.colorSurface),
+                        MaterialColorHelper.getMaterialColor(
+                                CodeEditorActivity.this,
+                                com.google.android.material.R.attr.colorOnSurface));
+                path.setText(_data.get(_position).get("lastSegmentOfFilePath").toString());
+                String path = _data.get(_position).get("path").toString();
+                mainlayout.setOnClickListener(
+                        (view) -> {
+                            if (new File(path).isDirectory()) {
+                                DrawerListDir = new File(path);
+                                loadFileList(path);
+                            } else {
+                                switch (FileTypeHandler.getFileFormat(path)) {
+                                    case "java":
+                                    case "xml":
+                                    case "html":
+                                    case "css":
+                                    case "js":
+                                        openFileInEditor(
+                                                new File(FileTypeHandler.getFileFormat(path)));
+                                        break;
+                                    default:
+                                        break;
+                                }
                             }
-                        }
-                    });
+                        });
+            }
         }
 
         @Override
