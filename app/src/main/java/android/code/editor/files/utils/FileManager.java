@@ -24,12 +24,12 @@ public class FileManager {
         }
         Collections.sort(listString, new FileComparator());
         int pos = 0;
-        for (int _repeat13 = 0; _repeat13 < (int) (listString.size()); _repeat13++) {
+        for (int _repeat13 = 0; _repeat13 < listString.size(); _repeat13++) {
             {
                 HashMap<String, Object> _item = new HashMap<>();
-                _item.put("path", listString.get((int) (pos)));
+                _item.put("path", listString.get(pos));
                 _item.put("lastSegmentOfFilePath", getLatSegmentOfFilePath(listString.get(pos)));
-                listMap.add((int) pos, _item);
+                listMap.add(pos, _item);
             }
 
             pos++;
