@@ -1,39 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-     xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:app="http://schemas.android.com/apk/res-auto"
-     android:layout_height="match_parent"
-     android:layout_width="match_parent"
-     android:orientation="vertical"
-     android:id="@+id/coordinator">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/coordinator">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
+        android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+        android:id="@+id/appbar">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_height="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+            android:id="@+id/toolbar"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <ProgressBar
-         android:layout_height="wrap_content"
-         android:layout_width="match_parent"
-         android:visibility="gone"
-         android:indeterminate="true"
-         style="?android:progressBarStyleHorizontal"
-         android:id="@+id/progressbar"/>
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:indeterminate="true"
+        style="?android:progressBarStyleHorizontal"
+        android:id="@+id/progressbar"/>
 
     <LinearLayout
-         android:layout_height="0dp"
-         android:layout_width="match_parent"
-         android:layout_weight="1">
+        android:id="@+id/editorArea"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:visibility="gone">
 
-        <editor.tsd.widget.CodeEditorLayout
-             android:layout_height="match_parent"
-             android:layout_width="match_parent"
-             app:codeEditor="SoraCodeEditor"
-             app:setCode=""
-             android:id="@+id/editor"/>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+            <editor.tsd.widget.CodeEditorLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                app:codeEditor="SoraCodeEditor"
+                app:setCode=""
+                android:id="@+id/editor"/>
+
+        </LinearLayout>
+        <include layout="@layout/code_editor_controller"/>
 
     </LinearLayout>
-    <include layout="@layout/code_editor_controller"/>
 
-    <Button
-         android:layout_height="wrap_content"
-         android:layout_width="match_parent"
-         android:id="@+id/toast"
-         android:text="Show Toast"/>
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:id="@+id/fileNotOpenedArea">
+
+        <TextView
+            android:textColor="?attr/colorPrimary"
+            android:text="Android Code Editor"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:textColor="?attr/colorOnSurface"
+            android:text="Open file list from drawer"
+            android:layout_width="wrap_content"
+            android:textSize="12sp"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
 </LinearLayout>

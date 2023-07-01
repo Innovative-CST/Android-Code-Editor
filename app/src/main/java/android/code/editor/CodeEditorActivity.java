@@ -9,21 +9,27 @@ import android.os.Looper;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import editor.tsd.widget.CodeEditorLayout;
+
+import java.io.File;
 
 public class CodeEditorActivity extends AppCompatActivity {
 
     public CodeEditorLayout codeEditor;
     public ProgressBar progressbar;
+    public LinearLayout editorArea;
+    public LinearLayout fileNotOpenedArea;
     public ImageView moveLeft;
     public ImageView moveRight;
     public ImageView moveUp;
     public ImageView moveDown;
+    public File ParentDir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,51 +47,30 @@ public class CodeEditorActivity extends AppCompatActivity {
         moveRight = findViewById(R.id.moveRight);
         moveUp = findViewById(R.id.moveUp);
         moveDown = findViewById(R.id.moveDown);
+        editorArea = findViewById(R.id.editorArea);
+        fileNotOpenedArea = findViewById(R.id.fileNotOpenedArea);
 
-        progressbar.setVisibility(View.VISIBLE);
-        codeEditor.setVisibility(View.GONE);
-        codeEditor.setEditor(
-                Setting.SaveInFile.getSettingInt(
-                        Setting.Key.CodeEditor, Setting.Default.CodeEditor, this));
-        codeEditor.setCode(FileManager.readFile(getIntent().getStringExtra("path")));
-        progressbar.setVisibility(View.GONE);
-        codeEditor.setVisibility(View.VISIBLE);
-        // Set editor theme
-        if (Setting.SaveInFile.getSettingString(
-                        Setting.Key.ThemeType, Setting.Default.ThemeType, this)
-                .equals(Setting.Value.Dark)) {
-            if (codeEditor.getCurrentEditorType() == CodeEditorLayout.SoraCodeEditor) {
-                codeEditor.setTheme(
-                        Setting.SaveInFile.getSettingString(
-                                Setting.Key.SoraCodeEditorDarkTheme,
-                                Setting.Default.SoraCodeEditorDarkTheme,
-                                this));
-            } else if (codeEditor.getCurrentEditorType() == CodeEditorLayout.AceCodeEditor) {
-                codeEditor.setTheme(
-                        Setting.SaveInFile.getSettingString(
-                                Setting.Key.AceCodeEditorDarkTheme,
-                                Setting.Default.SoraCodeEditorDarkTheme,
-                                this));
-            }
-        }
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Code Editor");
+        toolbar.setTitleTextColor(
+                MaterialColorHelper.getMaterialColor(
+                        this, com.google.android.material.R.attr.colorOnPrimary));
+        toolbar.getNavigationIcon()
+                .setTint(
+                        MaterialColorHelper.getMaterialColor(
+                                this, com.google.android.material.R.attr.colorOnPrimary));
+        toolbar.setNavigationOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View arg0) {
+                        // TODO: Implement this method
+                        onBackPressed();
+                    }
+                });
 
-        if (getIntent().hasExtra("LanguageMode")) {
-            codeEditor.setLanguageMode(getIntent().getStringExtra("LanguageMode"));
-        }
-
-        findViewById(R.id.toast)
-                .setOnClickListener(
-                        new View.OnClickListener() {
-                            @Override
-                            public void onClick(View arg0) {
-                                // TODO: Implement this method
-                                Toast.makeText(
-                                                CodeEditorActivity.this,
-                                                codeEditor.getCode(),
-                                                Toast.LENGTH_SHORT)
-                                        .show();
-                            }
-                        });
         moveLeft.setOnClickListener(
                 (view) -> {
                     codeEditor.moveCursorHorizontally(-1);
@@ -259,5 +244,58 @@ public class CodeEditorActivity extends AppCompatActivity {
                                 }
                             };
                 });
+
+        // Set Editor Type eg. AceEditor, SoraEditor
+        codeEditor.setEditor(
+                Setting.SaveInFile.getSettingInt(
+                        Setting.Key.CodeEditor, Setting.Default.CodeEditor, this));
+        // Set Editor Theme
+        if (Setting.SaveInFile.getSettingString(
+                        Setting.Key.ThemeType, Setting.Default.ThemeType, this)
+                .equals(Setting.Value.Dark)) {
+            if (codeEditor.getCurrentEditorType() == CodeEditorLayout.SoraCodeEditor) {
+                codeEditor.setTheme(
+                        Setting.SaveInFile.getSettingString(
+                                Setting.Key.SoraCodeEditorDarkTheme,
+                                Setting.Default.SoraCodeEditorDarkTheme,
+                                this));
+            } else if (codeEditor.getCurrentEditorType() == CodeEditorLayout.AceCodeEditor) {
+                codeEditor.setTheme(
+                        Setting.SaveInFile.getSettingString(
+                                Setting.Key.AceCodeEditorDarkTheme,
+                                Setting.Default.SoraCodeEditorDarkTheme,
+                                this));
+            }
+        }
+        // Set Language Mode
+        if (getIntent().hasExtra("LanguageMode")) {
+            codeEditor.setLanguageMode(getIntent().getStringExtra("LanguageMode"));
+        }
+
+        if (getIntent().hasExtra("path")) {
+            if (new File(getIntent().getStringExtra("path")).isFile()) {
+                ParentDir = new File(getIntent().getStringExtra("path")).getParentFile();
+                if (fileNotOpenedArea.getVisibility() == View.VISIBLE
+                        || editorArea.getVisibility() == View.GONE) {
+                    fileNotOpenedArea.setVisibility(View.GONE);
+                    editorArea.setVisibility(View.VISIBLE);
+                }
+                progressbar.setVisibility(View.VISIBLE);
+                codeEditor.setVisibility(View.GONE);
+
+                codeEditor.setCode(FileManager.readFile(getIntent().getStringExtra("path")));
+
+                progressbar.setVisibility(View.GONE);
+                codeEditor.setVisibility(View.VISIBLE);
+
+            } else {
+                ParentDir = new File(getIntent().getStringExtra("path"));
+                if (fileNotOpenedArea.getVisibility() == View.GONE
+                        || editorArea.getVisibility() == View.VISIBLE) {
+                    fileNotOpenedArea.setVisibility(View.VISIBLE);
+                    editorArea.setVisibility(View.GONE);
+                }
+            }
+        }
     }
 }
