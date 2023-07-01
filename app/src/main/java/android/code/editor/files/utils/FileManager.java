@@ -86,6 +86,10 @@ public class FileManager {
             return false;
         }
     }
+    
+    public static String getPathFormat(String path) {
+        return path.substring(path.lastIndexOf(".") + 1, path.length());
+    }
 
     public static String readFile(String path) {
         createNewFile(path);

@@ -11,20 +11,28 @@ public class FileIcon {
         if (new File(path).isDirectory()) {
             imageview.setImageResource(R.drawable.ic_folder_black_24dp);
         } else if (new File(path).isFile()) {
-            if (FileManager.ifFileFormatIsEqualTo(path, "java")) {
-                imageview.setImageResource(R.drawable.ic_language_java);
-            } else if (FileManager.ifFileFormatIsEqualTo(path, "xml")) {
-                imageview.setImageResource(R.drawable.file_xml_box);
-            } else if (FileManager.ifFileFormatIsEqualTo(path, "html")) {
-                imageview.setImageResource(R.drawable.language_html);
-            } else if (FileManager.ifFileFormatIsEqualTo(path, "css")) {
-                imageview.setImageResource(R.drawable.language_css);
-            } else if (FileManager.ifFileFormatIsEqualTo(path, "js")) {
-                imageview.setImageResource(R.drawable.language_javascript);
-            } else if (FileManager.ifFileFormatIsEqualTo(path, "json")) {
-                imageview.setImageResource(R.drawable.language_json);
-            } else {
-                imageview.setImageResource(0);
+            switch (FileManager.getPathFormat(path)) {
+                case "java":
+                    imageview.setImageResource(R.drawable.ic_language_java);
+                    break;
+                case "xml":
+                    imageview.setImageResource(R.drawable.file_xml_box);
+                    break;
+                case "html":
+                    imageview.setImageResource(R.drawable.language_html);
+                    break;
+                case "css":
+                    imageview.setImageResource(R.drawable.language_css);
+                    break;
+                case "js":
+                    imageview.setImageResource(R.drawable.language_javascript);
+                    break;
+                case "json":
+                    imageview.setImageResource(R.drawable.language_json);
+                    break;
+                default:
+                    imageview.setImageResource(0);
+                    break;
             }
         }
     }
