@@ -61,7 +61,7 @@ public class CodeEditorActivity extends AppCompatActivity {
 
     public void initActivity() {
         // Initialize views
-        codeEditor = findViewById(R.id.editor);
+        // codeEditor = findViewById(R.id.editor);
         progressbar = findViewById(R.id.progressbar);
         moveLeft = findViewById(R.id.moveLeft);
         moveRight = findViewById(R.id.moveRight);
@@ -69,6 +69,18 @@ public class CodeEditorActivity extends AppCompatActivity {
         moveDown = findViewById(R.id.moveDown);
         editorArea = findViewById(R.id.editorArea);
         fileNotOpenedArea = findViewById(R.id.fileNotOpenedArea);
+
+        
+        ViewGroup.LayoutParams layoutParams =
+                new ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+        // Assign the layout parameters to codeEditor
+        
+        codeEditor = new CodeEditorLayout(this);
+        codeEditor.setLayoutParams(layoutParams);
+        ((LinearLayout) findViewById(R.id.editorCont)).addView(codeEditor);
+        
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

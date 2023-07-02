@@ -24,6 +24,50 @@ public class CodeEditorLayout extends LinearLayout {
     public Context conText;
     public Editor CurrentCodeEditor;
 
+    public CodeEditorLayout(Context context) {
+        super(context);
+        this.conText = context;
+        try {
+            this.editor = AceCodeEditor;
+            this.code = "";
+        } finally {
+            init();
+        }
+    }
+
+    public CodeEditorLayout(Context context, int editor) {
+        super(context);
+        this.conText = context;
+        try {
+            this.editor = editor;
+            this.code = "";
+        } finally {
+            init();
+        }
+    }
+
+    public CodeEditorLayout(Context context, String code) {
+        super(context);
+        this.conText = context;
+        try {
+            this.editor = AceCodeEditor;
+            this.code = code;
+        } finally {
+            init();
+        }
+    }
+
+    public CodeEditorLayout(Context context, int editor, String code) {
+        super(context);
+        this.conText = context;
+        try {
+            this.editor = editor;
+            this.code = code;
+        } finally {
+            init();
+        }
+    }
+
     public CodeEditorLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         conText = context;
@@ -35,18 +79,23 @@ public class CodeEditorLayout extends LinearLayout {
             code = a.getString(R.styleable.CodeEditorLayout_setCode);
         } finally {
             // Set Code Editor as SoraEditor
-            if (editor == SoraCodeEditor) {
-                soraEditor = new SoraEditor(context);
-                CurrentCodeEditor = soraEditor;
-                soraEditor.setCode(code);
-                addView(soraEditor.getCodeEditor());
-            } else if (editor == AceCodeEditor) {
-                aceEditor = new AceEditor(context);
-                CurrentCodeEditor = aceEditor;
-                addView(aceEditor.getCodeEditor());
-                aceEditor.setCode(code);
-            }
+            init();
             a.recycle();
+        }
+    }
+
+    private void init() {
+        // Set Code Editor as SoraEditor
+        if (editor == SoraCodeEditor) {
+            soraEditor = new SoraEditor(conText);
+            CurrentCodeEditor = soraEditor;
+            soraEditor.setCode(code);
+            addView(soraEditor.getCodeEditor());
+        } else if (editor == AceCodeEditor) {
+            aceEditor = new AceEditor(conText);
+            CurrentCodeEditor = aceEditor;
+            addView(aceEditor.getCodeEditor());
+            aceEditor.setCode(code);
         }
     }
 
@@ -118,11 +167,11 @@ public class CodeEditorLayout extends LinearLayout {
     public AceEditor getAceEditor() {
         return aceEditor;
     }
-    
+
     public void moveCursorHorizontally(int steps) {
         CurrentCodeEditor.moveCursorHorizontally(steps);
     }
-    
+
     public void moveCursorVertically(int steps) {
         CurrentCodeEditor.moveCursorVertically(steps);
     }

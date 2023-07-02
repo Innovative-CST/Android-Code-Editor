@@ -51,12 +51,10 @@
                 android:layout_width="match_parent"
                 android:orientation="horizontal">
 
-                <editor.tsd.widget.CodeEditorLayout
-                    android:layout_height="match_parent"
+                <LinearLayout
+                    android:id="@+id/editorCont"
                     android:layout_width="match_parent"
-                    app:codeEditor="SoraCodeEditor"
-                    app:setCode=""
-                    android:id="@+id/editor"/>
+                    android:layout_height="match_parent"/>
 
             </LinearLayout>
             <include layout="@layout/code_editor_controller"/>
