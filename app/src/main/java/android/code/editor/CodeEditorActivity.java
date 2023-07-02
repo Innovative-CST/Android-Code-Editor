@@ -1,10 +1,10 @@
 package android.code.editor;
 
+import android.animation.ObjectAnimator;
 import android.code.editor.files.utils.FileIcon;
 import android.code.editor.files.utils.FileManager;
 import android.code.editor.files.utils.FileTypeHandler;
 import android.code.editor.ui.MaterialColorHelper;
-import android.code.editor.ui.Utils;
 import android.code.editor.utils.LanguageModeHandler;
 import android.code.editor.utils.Setting;
 import android.os.Bundle;
@@ -14,26 +14,25 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-
 import android.widget.TextView;
+
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 import editor.tsd.widget.CodeEditorLayout;
 
 import io.github.rosemoe.sora.util.ArrayList;
+
 import java.io.File;
-import java.util.HashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class CodeEditorActivity extends AppCompatActivity {
 
@@ -46,11 +45,8 @@ public class CodeEditorActivity extends AppCompatActivity {
     public ImageView moveUp;
     public ImageView moveDown;
     public File DrawerListDir;
-    public RecyclerView list;
-    private FileList filelist;
-    public ArrayList<String> listString = new ArrayList<>();
-    public ArrayList<HashMap<String, Object>> listMap = new ArrayList<>();
     public String selectPath;
+    private ObjectAnimator rotate = new ObjectAnimator();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +66,6 @@ public class CodeEditorActivity extends AppCompatActivity {
         moveDown = findViewById(R.id.moveDown);
         editorArea = findViewById(R.id.editorArea);
         fileNotOpenedArea = findViewById(R.id.fileNotOpenedArea);
-        list = findViewById(R.id.list);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -304,7 +299,6 @@ public class CodeEditorActivity extends AppCompatActivity {
             if (new File(getIntent().getStringExtra("path")).isFile()) {
                 DrawerListDir = new File(getIntent().getStringExtra("path")).getParentFile();
                 selectPath = DrawerListDir.getAbsolutePath();
-                loadFileList(DrawerListDir.getAbsolutePath());
                 if (fileNotOpenedArea.getVisibility() == View.VISIBLE
                         || editorArea.getVisibility() == View.GONE) {
                     fileNotOpenedArea.setVisibility(View.GONE);
@@ -325,13 +319,92 @@ public class CodeEditorActivity extends AppCompatActivity {
             } else {
                 DrawerListDir = new File(getIntent().getStringExtra("path"));
                 selectPath = DrawerListDir.getAbsolutePath();
-                loadFileList(DrawerListDir.getAbsolutePath());
                 if (fileNotOpenedArea.getVisibility() == View.GONE
                         || editorArea.getVisibility() == View.VISIBLE) {
                     fileNotOpenedArea.setVisibility(View.VISIBLE);
                     editorArea.setVisibility(View.GONE);
                 }
             }
+            fileTree(DrawerListDir, findViewById(R.id.list));
+        }
+    }
+
+    final class FileComparator implements Comparator<String> {
+        public int compare(String f1, String f2) {
+            if (f1 == f2) return 0;
+            if (new File(f1).isDirectory() && new File(f2).isFile()) return -1;
+            if (new File(f1).isFile() && new File(f2).isDirectory()) return 1;
+            return f1.compareToIgnoreCase(f2);
+        }
+    }
+
+    public void fileTree(File file, ViewGroup view) {
+        view.removeAllViews();
+        ArrayList<String> list = new ArrayList<String>();
+        FileManager.listDir(file.getAbsolutePath(), list);
+
+        Collections.sort(list, new FileComparator());
+        for (int pos = 0; pos < list.size(); pos++) {
+            File fil = new File(list.get(pos));
+            LayoutInflater layoutInflator = getLayoutInflater();
+            View layout = layoutInflator.inflate(R.layout.filelist, null);
+            if (fil.isDirectory()) {
+                layout.findViewById(R.id.expandCollapse).setVisibility(View.VISIBLE);
+                layout.findViewById(R.id.child).setVisibility(View.GONE);
+                ((ImageView) layout.findViewById(R.id.expandCollapse))
+                        .setImageResource(R.drawable.chevron_right);
+                layout.findViewById(R.id.layout)
+                        .setOnClickListener(
+                                (main) -> {
+                                    if (layout.findViewById(R.id.child).getVisibility()
+                                            == View.GONE) {
+                                        fileTree(
+                                                fil,
+                                                (LinearLayout) layout.findViewById(R.id.child));
+                                        layout.findViewById(R.id.child).setVisibility(View.VISIBLE);
+                                        rotate.setTarget(layout.findViewById(R.id.expandCollapse));
+                                        rotate.setPropertyName("rotation");
+                                        rotate.setFloatValues(0, 90);
+                                        rotate.setDuration(200);
+                                        rotate.setInterpolator(new LinearInterpolator());
+                                        rotate.start();
+                                    } else {
+                                        layout.findViewById(R.id.child).setVisibility(View.GONE);
+                                        ((LinearLayout) layout.findViewById(R.id.child))
+                                                .removeAllViews();
+                                        rotate.setTarget(layout.findViewById(R.id.expandCollapse));
+                                        rotate.setPropertyName("rotation");
+                                        rotate.setFloatValues(90, 0);
+                                        rotate.setDuration(200);
+                                        rotate.setInterpolator(new LinearInterpolator());
+                                        rotate.start();
+                                    }
+                                });
+            } else {
+                layout.findViewById(R.id.expandCollapse).setVisibility(View.INVISIBLE);
+                layout.findViewById(R.id.layout)
+                        .setOnClickListener(
+                                (main) -> {
+                                    switch (FileTypeHandler.getFileFormat(fil.getAbsolutePath())) {
+                                        case "java":
+                                        case "xml":
+                                        case "html":
+                                        case "css":
+                                        case "js":
+                                            openFileInEditor(fil);
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                });
+            }
+            FileIcon.setUpIcon(
+                    CodeEditorActivity.this,
+                    fil.getAbsolutePath(),
+                    (ImageView) layout.findViewById(R.id.icon));
+            ((TextView) layout.findViewById(R.id.path))
+                    .setText(FileManager.getLatSegmentOfFilePath(fil.getAbsolutePath()));
+            view.addView(layout);
         }
     }
 
@@ -349,148 +422,5 @@ public class CodeEditorActivity extends AppCompatActivity {
         codeEditor.setLanguageMode(
                 LanguageModeHandler.getLanguageModeForExtension(
                         FileTypeHandler.getFileFormat(file.getAbsolutePath())));
-    }
-
-    public void loadFileList(String path) {
-        listString.clear();
-        listMap.clear();
-        ExecutorService loadFileList = Executors.newSingleThreadExecutor();
-
-        loadFileList.execute(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        // TODO: Implement this method
-
-                        runOnUiThread(
-                                new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        progressbar.setVisibility(View.VISIBLE);
-                                    }
-                                });
-
-                        // Get file path from intent and list dir in array
-                        FileManager.listDir(path, listString);
-
-                        FileManager.setUpFileList(listMap, listString);
-                        // For ..(Go back)
-                        if (!DrawerListDir.getAbsolutePath().equals(selectPath)) {
-                            HashMap<String, Object> _item = new HashMap<>();
-                            _item.put("goBack", "..");
-                            listMap.add(0, _item);
-                        }
-
-                        runOnUiThread(
-                                new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        // Set Data in list
-                                        progressbar.setVisibility(View.GONE);
-                                        filelist = new FileList(listMap);
-                                        list.setAdapter(filelist);
-                                        list.setLayoutManager(
-                                                new LinearLayoutManager(CodeEditorActivity.this));
-                                    }
-                                });
-                    }
-                });
-    }
-
-    // Adapter of Recycler View
-    private class FileList extends RecyclerView.Adapter<FileList.ViewHolder> {
-
-        ArrayList<HashMap<String, Object>> _data;
-        private ImageView icon;
-        private ImageView gitIcon;
-        private TextView path;
-        private LinearLayout mainlayout;
-
-        public FileList(ArrayList<HashMap<String, Object>> _arr) {
-            _data = _arr;
-        }
-
-        @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-            LayoutInflater _inflater = getLayoutInflater();
-            View _v = _inflater.inflate(R.layout.filelist, null);
-            RecyclerView.LayoutParams _lp =
-                    new RecyclerView.LayoutParams(
-                            ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT);
-            _v.setLayoutParams(_lp);
-            return new ViewHolder(_v);
-        }
-
-        @Override
-        public void onBindViewHolder(ViewHolder _holder, final int _position) {
-            View _view = _holder.itemView;
-            mainlayout = _view.findViewById(R.id.layout);
-            icon = _view.findViewById(R.id.icon);
-            path = _view.findViewById(R.id.path);
-            gitIcon = _view.findViewById(R.id.git);
-            gitIcon.setVisibility(View.GONE);
-            if (_data.get(_position).containsKey("goBack")) {
-                icon.setImageResource(R.drawable.ic_folder_black_24dp);
-                path.setText("..");
-                Utils.applyRippleEffect(
-                        mainlayout,
-                        MaterialColorHelper.getMaterialColor(
-                                CodeEditorActivity.this,
-                                com.google.android.material.R.attr.colorSurface),
-                        MaterialColorHelper.getMaterialColor(
-                                CodeEditorActivity.this,
-                                com.google.android.material.R.attr.colorOnSurface));
-                mainlayout.setOnClickListener(
-                        (view) -> {
-                            DrawerListDir = DrawerListDir.getParentFile();
-                            loadFileList(DrawerListDir.getAbsolutePath());
-                        });
-            } else {
-                FileIcon.setUpIcon(
-                        CodeEditorActivity.this, _data.get(_position).get("path").toString(), icon);
-                Utils.applyRippleEffect(
-                        mainlayout,
-                        MaterialColorHelper.getMaterialColor(
-                                CodeEditorActivity.this,
-                                com.google.android.material.R.attr.colorSurface),
-                        MaterialColorHelper.getMaterialColor(
-                                CodeEditorActivity.this,
-                                com.google.android.material.R.attr.colorOnSurface));
-                path.setText(_data.get(_position).get("lastSegmentOfFilePath").toString());
-                String path = _data.get(_position).get("path").toString();
-                mainlayout.setOnClickListener(
-                        (view) -> {
-                            if (new File(path).isDirectory()) {
-                                DrawerListDir = new File(path);
-                                loadFileList(path);
-                            } else {
-                                switch (FileTypeHandler.getFileFormat(path)) {
-                                    case "java":
-                                    case "xml":
-                                    case "html":
-                                    case "css":
-                                    case "js":
-                                        openFileInEditor(new File(path));
-                                        break;
-                                    default:
-                                        break;
-                                }
-                            }
-                        });
-            }
-        }
-
-        @Override
-        public int getItemCount() {
-            return _data.size();
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            public ViewHolder(View v) {
-                super(v);
-            }
-        }
     }
 }

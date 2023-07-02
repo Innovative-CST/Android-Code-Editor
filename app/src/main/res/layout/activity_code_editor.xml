@@ -96,12 +96,25 @@
         android:layout_gravity="end"
         android:background="?attr/colorSurface"
         android:padding="16dp">
-        
-        <androidx.recyclerview.widget.RecyclerView
+
+        <ScrollView
             android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:id="@+id/list"/>
-        
+            android:layout_width="match_parent">
+
+            <HorizontalScrollView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent">
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:id="@+id/list"
+                    android:orientation="vertical"/>
+
+            </HorizontalScrollView>
+
+        </ScrollView>
+
     </LinearLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>
