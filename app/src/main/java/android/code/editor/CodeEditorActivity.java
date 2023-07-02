@@ -7,9 +7,11 @@ import android.code.editor.files.utils.FileTypeHandler;
 import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.utils.LanguageModeHandler;
 import android.code.editor.utils.Setting;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -349,6 +351,11 @@ public class CodeEditorActivity extends AppCompatActivity {
             File fil = new File(list.get(pos));
             LayoutInflater layoutInflator = getLayoutInflater();
             View layout = layoutInflator.inflate(R.layout.filelist, null);
+            int left = dpToPx(this, 8);
+            int top = dpToPx(this, 8);
+            int right = dpToPx(this, 8);
+            int bottom = dpToPx(this, 0);
+            layout.findViewById(R.id.layout).setPadding(left, top, right, bottom);
             if (fil.isDirectory()) {
                 layout.findViewById(R.id.expandCollapse).setVisibility(View.VISIBLE);
                 layout.findViewById(R.id.child).setVisibility(View.GONE);
@@ -408,6 +415,15 @@ public class CodeEditorActivity extends AppCompatActivity {
                     .setText(FileManager.getLatSegmentOfFilePath(fil.getAbsolutePath()));
             view.addView(layout);
         }
+    }
+
+    // Method to convert dp to pixels
+    private int dpToPx(Context context, int dp) {
+        return (int)
+                TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP,
+                        dp,
+                        context.getResources().getDisplayMetrics());
     }
 
     public void openFileInEditor(File file) {
