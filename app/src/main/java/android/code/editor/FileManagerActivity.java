@@ -268,7 +268,7 @@ public class FileManagerActivity extends AppCompatActivity {
                             com.google.android.material.R.attr.colorSurface),
                     MaterialColorHelper.getMaterialColor(
                             FileManagerActivity.this,
-                            com.google.android.material.R.attr.colorOnSurface));
+                            com.google.android.material.R.attr.colorSurfaceVariant));
             path.setText(_data.get(_position).get("lastSegmentOfFilePath").toString());
             String path = _data.get(_position).get("path").toString();
             FileTypeHandler fileTypeHandler = new FileTypeHandler(FileManagerActivity.this);
