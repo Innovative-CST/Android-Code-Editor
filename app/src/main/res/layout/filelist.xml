@@ -23,7 +23,8 @@
             android:visibility="gone"
             android:scaleType="fitEnd"
             android:layout_marginEnd="8dp"
-            android:id="@+id/expandCollapse"/>
+            android:id="@+id/expandCollapse"
+            android:tint="?attr/colorOnSurface"/>
 
         <ImageView
             android:layout_height="25dp"
