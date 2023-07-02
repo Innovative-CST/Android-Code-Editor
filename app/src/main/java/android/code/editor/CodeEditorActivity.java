@@ -46,6 +46,7 @@ public class CodeEditorActivity extends AppCompatActivity {
     public ImageView moveDown;
     public File DrawerListDir;
     public String selectPath;
+    public DrawerLayout drawer;
     private ObjectAnimator rotate = new ObjectAnimator();
 
     @Override
@@ -72,7 +73,7 @@ public class CodeEditorActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle("Code Editor");
-        DrawerLayout drawer = findViewById(R.id.drawer);
+        drawer = findViewById(R.id.drawer);
         ActionBarDrawerToggle toggle =
                 new ActionBarDrawerToggle(
                         this, drawer, toolbar, R.string.app_name, R.string.app_name);
@@ -392,6 +393,7 @@ public class CodeEditorActivity extends AppCompatActivity {
                                         case "css":
                                         case "js":
                                             openFileInEditor(fil);
+                                            drawer.closeDrawer(GravityCompat.END);
                                             break;
                                         default:
                                             break;
