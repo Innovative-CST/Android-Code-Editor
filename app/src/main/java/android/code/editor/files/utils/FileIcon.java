@@ -35,7 +35,7 @@ public class FileIcon {
                     imageview.setImageResource(R.drawable.language_markdown);
                     break;
                 default:
-                    imageview.setImageResource(0);
+                    imageview.setImageResource(R.drawable.icon_file);
                     break;
             }
         }
