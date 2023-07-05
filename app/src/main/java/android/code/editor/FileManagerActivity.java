@@ -74,11 +74,6 @@ public class FileManagerActivity extends AppCompatActivity {
                 getResources()
                         .getDrawable(
                                 R.drawable.more_vert_fill0_wght400_grad0_opsz48, this.getTheme());
-        icon.setColorFilter(
-                MaterialColorHelper.getMaterialColor(
-                        this, com.google.android.material.R.attr.colorOnPrimary),
-                PorterDuff.Mode.SRC_IN);
-
         item.setIcon(icon);
         return super.onPrepareOptionsMenu(arg0);
     }
@@ -155,13 +150,6 @@ public class FileManagerActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        toolbar.setTitleTextColor(
-                MaterialColorHelper.getMaterialColor(
-                        this, com.google.android.material.R.attr.colorOnPrimary));
-        toolbar.getNavigationIcon()
-                .setTint(
-                        MaterialColorHelper.getMaterialColor(
-                                this, com.google.android.material.R.attr.colorOnPrimary));
         toolbar.setNavigationOnClickListener(
                 new View.OnClickListener() {
                     @Override

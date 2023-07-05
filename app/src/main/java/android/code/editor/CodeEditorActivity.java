@@ -91,9 +91,6 @@ public class CodeEditorActivity extends AppCompatActivity {
         ActionBarDrawerToggle toggle =
                 new ActionBarDrawerToggle(
                         this, drawer, toolbar, R.string.app_name, R.string.app_name);
-        toolbar.setTitleTextColor(
-                MaterialColorHelper.getMaterialColor(
-                        this, com.google.android.material.R.attr.colorOnPrimary));
         toolbar.setNavigationOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -106,10 +103,6 @@ public class CodeEditorActivity extends AppCompatActivity {
                         }
                     }
                 });
-        toggle.getDrawerArrowDrawable()
-                .setColor(
-                        MaterialColorHelper.getMaterialColor(
-                                this, com.google.android.material.R.attr.colorOnPrimary));
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 

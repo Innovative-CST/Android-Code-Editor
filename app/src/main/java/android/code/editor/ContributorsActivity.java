@@ -122,13 +122,6 @@ public class ContributorsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        toolbar.setTitleTextColor(
-                MaterialColorHelper.getMaterialColor(
-                        this, com.google.android.material.R.attr.colorOnPrimary));
-        toolbar.getNavigationIcon()
-                .setTint(
-                        MaterialColorHelper.getMaterialColor(
-                                this, com.google.android.material.R.attr.colorOnPrimary));
         toolbar.setNavigationOnClickListener(
                 new View.OnClickListener() {
                     @Override

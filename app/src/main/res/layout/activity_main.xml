@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
-	 xmlns:android="http://schemas.android.com/apk/res/android"
-	 xmlns:app="http://schemas.android.com/apk/res-auto"
-	 android:layout_height="match_parent"
-	 android:layout_width="match_parent"
-	 android:background="#000000"
-	 android:id="@+id/coordinator">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="?attr/colorSurface"
+    android:id="@+id/coordinator">
 
-	<LinearLayout
-		 android:layout_height="match_parent"
-		 android:layout_width="match_parent"
-		 android:orientation="vertical"
-		 android:id="@+id/main">
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/main"
+        android:padding="16dp">
 
-		<ImageView
-			 android:layout_height="0dp"
-			 android:layout_width="match_parent"
-			 android:src="@drawable/ic_launcher_foreground"
-			 android:tint="#FFFFFF"
-			 android:layout_weight="1" />
+        <ImageView
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:src="@drawable/logo_black"
+            android:tint="?attr/colorOnSurface"
+            android:layout_weight="1"/>
 
-		<TextView
-			 android:layout_height="wrap_content"
-			 android:layout_width="wrap_content"
-			 android:visibility="gone"
-			 android:textColor="#FFFFFF"
-			 android:text="Tap to start"
-			 android:id="@+id/info"
-			 android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:textColor="?attr/colorOnSurface"
+            android:text="Tap to start"
+            android:id="@+id/info"
+            android:layout_gravity="center_horizontal"/>
 
-	</LinearLayout>
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -9,6 +9,6 @@
 		app:showAsAction="always"
 		android:actionLayout="@layout/activity_file_manager"
 		android:title="More"
-		android:iconTint="?attr/colorOnPrimary" />
+		app:iconTint="?attr/colorOnSurface" />
 
 </menu>

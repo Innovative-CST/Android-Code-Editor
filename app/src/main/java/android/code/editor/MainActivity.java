@@ -41,20 +41,6 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
         super.onCreate(savedInstanceState);
         MaterialColorHelper.setUpTheme(this);
         setContentView(R.layout.activity_main);
-        // Navigation
-        // modified by ashishtechnozone
-        if (Build.VERSION.SDK_INT >= 21) {
-            Window w = this.getWindow();
-            w.setNavigationBarColor(Color.parseColor("#000000"));
-        }
-        // StatusBar
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-            Window w = this.getWindow();
-            w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
-            w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            w.setStatusBarColor(Color.parseColor("#000000"));
-        }
 
         if (isStoagePermissionGranted(this)) {
             startActivtyLogic();

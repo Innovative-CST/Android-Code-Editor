@@ -21,7 +21,6 @@ import editor.tsd.tools.Themes;
 import editor.tsd.widget.CodeEditorLayout;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class SettingActivity extends AppCompatActivity {
     public Spinner editorChooser;
@@ -52,13 +51,6 @@ public class SettingActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        toolbar.setTitleTextColor(
-                MaterialColorHelper.getMaterialColor(
-                        this, com.google.android.material.R.attr.colorOnPrimary));
-        toolbar.getNavigationIcon()
-                .setTint(
-                        MaterialColorHelper.getMaterialColor(
-                                this, com.google.android.material.R.attr.colorOnPrimary));
         toolbar.setNavigationOnClickListener(
                 new View.OnClickListener() {
                     @Override
