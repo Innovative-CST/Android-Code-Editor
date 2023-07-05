@@ -30,6 +30,8 @@
 		<item name="colorOnSurfaceInverse">@color/brownish_md_theme_light_inverseOnSurface</item>
 		<item name="colorSurfaceInverse">@color/brownish_md_theme_light_inverseSurface</item>
 		<item name="colorPrimaryInverse">@color/brownish_md_theme_light_inversePrimary</item>
+        
+        <item name="android:windowLightStatusBar">false</item>
 	</style>
 	
 	<!-- Brownish Dark -->
@@ -61,6 +63,8 @@
 		<item name="colorOnSurfaceInverse">@color/brownish_md_theme_dark_inverseOnSurface</item>
 		<item name="colorSurfaceInverse">@color/brownish_md_theme_dark_inverseSurface</item>
 		<item name="colorPrimaryInverse">@color/brownish_md_theme_dark_inversePrimary</item>
+        
+        <item name="android:windowLightStatusBar">true</item>
 	</style>
 	
 	<!-- Light Blue Light -->
@@ -92,6 +96,8 @@
 		<item name="colorOnSurfaceInverse">@color/md_theme_light_inverseOnSurface</item>
 		<item name="colorSurfaceInverse">@color/md_theme_light_inverseSurface</item>
 		<item name="colorPrimaryInverse">@color/md_theme_light_inversePrimary</item>
+        
+        <item name="android:windowLightStatusBar">false</item>
 	</style>
 	
 	<!-- Light Blue Dark -->
@@ -123,6 +129,8 @@
 		<item name="colorOnSurfaceInverse">@color/md_theme_dark_inverseOnSurface</item>
 		<item name="colorSurfaceInverse">@color/md_theme_dark_inverseSurface</item>
 		<item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
+        
+        <item name="android:windowLightStatusBar">true</item>
 	</style>
 	
 	<!-- Green Light -->
@@ -154,6 +162,8 @@
 		<item name="colorOnSurfaceInverse">@color/green_md_theme_light_inverseOnSurface</item>
 		<item name="colorSurfaceInverse">@color/green_md_theme_light_inverseSurface</item>
 		<item name="colorPrimaryInverse">@color/green_md_theme_light_inversePrimary</item>
+        
+        <item name="android:windowLightStatusBar">false</item>
 	</style>
 
 	<!-- Green Dark -->
@@ -185,6 +195,8 @@
 		<item name="colorOnSurfaceInverse">@color/green_md_theme_dark_inverseOnSurface</item>
 		<item name="colorSurfaceInverse">@color/green_md_theme_dark_inverseSurface</item>
 		<item name="colorPrimaryInverse">@color/green_md_theme_dark_inversePrimary</item>
+        
+        <item name="android:windowLightStatusBar">true</item>
 	</style>
 
 </resources>
