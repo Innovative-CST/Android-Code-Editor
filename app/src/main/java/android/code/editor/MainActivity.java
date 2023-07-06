@@ -13,12 +13,14 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.Settings;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.CallSuper;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -70,25 +72,41 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
     }
 
     public static boolean isStoagePermissionGranted(Context context) {
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)
-                        == PackageManager.PERMISSION_DENIED
-                || ContextCompat.checkSelfPermission(
-                                context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                        == PackageManager.PERMISSION_DENIED) {
-            return false;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            return Environment.isExternalStorageManager();
         } else {
-            return true;
+            if (ContextCompat.checkSelfPermission(
+                                    context, Manifest.permission.READ_EXTERNAL_STORAGE)
+                            == PackageManager.PERMISSION_DENIED
+                    || ContextCompat.checkSelfPermission(
+                                    context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                            == PackageManager.PERMISSION_DENIED) {
+                return false;
+            } else {
+                return true;
+            }
         }
     }
 
     public static void _requestStoragePermission(Activity activity, int reqCode) {
-        ActivityCompat.requestPermissions(
-                activity,
-                new String[] {
-                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
-                },
-                reqCode);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            try {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                Uri uri = Uri.fromParts("package", activity.getPackageName(), null);
+                intent.setData(uri);
+                activity.startActivityForResult(intent, 100);
+            } catch (Exception e) {
+
+            }
+        } else {
+            ActivityCompat.requestPermissions(
+                    activity,
+                    new String[] {
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    },
+                    reqCode);
+        }
     }
 
     @Override
@@ -118,6 +136,28 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
                     startActivtyLogic();
                 }
                 break;
+        }
+    }
+
+    @Override
+    @CallSuper
+    protected void onActivityResult(int arg0, int arg1, Intent arg2) {
+        super.onActivityResult(arg0, arg1, arg2);
+        // TODO: Implement this method
+        if (isStoagePermissionGranted(this)) {
+            startActivtyLogic();
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                try {
+                    Intent intent =
+                            new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                    Uri uri = Uri.fromParts("package", getPackageName(), null);
+                    intent.setData(uri);
+                    startActivityForResult(intent, 100);
+                } catch (Exception e) {
+
+                }
+            }
         }
     }
 

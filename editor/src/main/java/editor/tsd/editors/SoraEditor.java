@@ -10,6 +10,8 @@ import editor.tsd.widget.CodeEditorLayout;
 
 import io.github.rosemoe.sora.langs.textmate.TextMateColorScheme;
 import io.github.rosemoe.sora.langs.textmate.TextMateLanguage;
+import io.github.rosemoe.sora.langs.textmate.registry.GrammarRegistry;
+import io.github.rosemoe.sora.langs.textmate.registry.ThemeRegistry;
 import io.github.rosemoe.sora.widget.CodeEditor;
 import io.github.rosemoe.sora.widget.schemes.EditorColorScheme;
 
@@ -178,7 +180,7 @@ public class SoraEditor implements Editor {
 
     @Override
     public void moveCursorHorizontally(int steps) {
-        for (int position = 0; position < Math.abs(steps);position++) {
+        for (int position = 0; position < Math.abs(steps); position++) {
             if (steps > 0) {
                 editor.moveSelectionRight();
             } else {
@@ -189,7 +191,7 @@ public class SoraEditor implements Editor {
 
     @Override
     public void moveCursorVertically(int steps) {
-        for (int position = 0; position < Math.abs(steps);position++) {
+        for (int position = 0; position < Math.abs(steps); position++) {
             if (steps > 0) {
                 editor.moveSelectionDown();
             } else {
