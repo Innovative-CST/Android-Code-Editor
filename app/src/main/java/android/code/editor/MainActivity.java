@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
         if (isStoagePermissionGranted(this)) {
             startActivtyLogic();
         } else {
-            _requestStoragePermission(this, 10);
+            showStoragePermissionDialog(this);
         }
     }
 
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
                 Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
                 Uri uri = Uri.fromParts("package", activity.getPackageName(), null);
                 intent.setData(uri);
-                activity.startActivityForResult(intent, 100);
+                activity.startActivityForResult(intent, reqCode);
             } catch (Exception e) {
 
             }
@@ -148,15 +148,7 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
             startActivtyLogic();
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                try {
-                    Intent intent =
-                            new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-                    Uri uri = Uri.fromParts("package", getPackageName(), null);
-                    intent.setData(uri);
-                    startActivityForResult(intent, 100);
-                } catch (Exception e) {
-
-                }
+                showRationaleOfStoragePermissionDialog(this);
             }
         }
     }
