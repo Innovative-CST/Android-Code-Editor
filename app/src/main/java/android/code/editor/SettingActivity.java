@@ -104,111 +104,87 @@ public class SettingActivity extends AppCompatActivity {
         theme6 = findViewById(R.id.ThemeContent6);
 
         theme1.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View arg0) {
-                        // TODO: Implement this method
-                        Snackbar snackbar =
-                                Snackbar.make(
-                                        findViewById(android.R.id.content),
-                                        "Theme will be changed when you restart.",
-                                        Snackbar.LENGTH_LONG);
-                        snackbar.show();
-                        Setting.SaveInFile.setSetting(
-                                Setting.Key.NewTheme, "BrownishLight", SettingActivity.this);
-                        Setting.SaveInFile.setSetting(
-                                Setting.Key.NewThemeType, Setting.Value.Light, SettingActivity.this);
-                    }
+                (view) -> {
+                    Snackbar snackbar =
+                            Snackbar.make(
+                                    findViewById(android.R.id.content),
+                                    "Theme will be changed when you restart.",
+                                    Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                    Setting.SaveInFile.setSetting(
+                            Setting.Key.NewTheme, "BrownishLight", SettingActivity.this);
+                    Setting.SaveInFile.setSetting(
+                            Setting.Key.NewThemeType, Setting.Value.Light, SettingActivity.this);
                 });
 
         theme2.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View arg0) {
-                        // TODO: Implement this method
-                        Snackbar snackbar =
-                                Snackbar.make(
-                                        findViewById(android.R.id.content),
-                                        "Theme will be changed when you restart.",
-                                        Snackbar.LENGTH_LONG);
-                        snackbar.show();
-                        Setting.SaveInFile.setSetting(
-                                Setting.Key.NewTheme, "BrownishDark", SettingActivity.this);
-                        Setting.SaveInFile.setSetting(
-                                Setting.Key.NewThemeType, Setting.Value.Dark, SettingActivity.this);
-                    }
+                (view) -> {
+                    Snackbar snackbar =
+                            Snackbar.make(
+                                    findViewById(android.R.id.content),
+                                    "Theme will be changed when you restart.",
+                                    Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                    Setting.SaveInFile.setSetting(
+                            Setting.Key.NewTheme, "BrownishDark", SettingActivity.this);
+                    Setting.SaveInFile.setSetting(
+                            Setting.Key.NewThemeType, Setting.Value.Dark, SettingActivity.this);
                 });
 
         theme3.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View arg0) {
-                        // TODO: Implement this method
-                        Snackbar snackbar =
-                                Snackbar.make(
-                                        findViewById(android.R.id.content),
-                                        "Theme will be changed when you restart.",
-                                        Snackbar.LENGTH_LONG);
-                        snackbar.show();
-                        Setting.SaveInFile.setSetting(
-                                Setting.Key.NewTheme, "LightBlueLight", SettingActivity.this);
-                        Setting.SaveInFile.setSetting(
-                                Setting.Key.NewThemeType, Setting.Value.Light, SettingActivity.this);
-                    }
+                (view) -> {
+                    Snackbar snackbar =
+                            Snackbar.make(
+                                    findViewById(android.R.id.content),
+                                    "Theme will be changed when you restart.",
+                                    Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                    Setting.SaveInFile.setSetting(
+                            Setting.Key.NewTheme, "LightBlueLight", SettingActivity.this);
+                    Setting.SaveInFile.setSetting(
+                            Setting.Key.NewThemeType, Setting.Value.Light, SettingActivity.this);
                 });
 
         theme4.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View arg0) {
-                        // TODO: Implement this method
-                        Snackbar snackbar =
-                                Snackbar.make(
-                                        findViewById(android.R.id.content),
-                                        "Theme will be changed when you restart.",
-                                        Snackbar.LENGTH_LONG);
-                        snackbar.show();
-                        Setting.SaveInFile.setSetting(
-                                Setting.Key.NewTheme, "LightBlueDark", SettingActivity.this);
-                        Setting.SaveInFile.setSetting(
-                                Setting.Key.NewThemeType, Setting.Value.Dark, SettingActivity.this);
-                    }
+                (view) -> {
+                    Snackbar snackbar =
+                            Snackbar.make(
+                                    findViewById(android.R.id.content),
+                                    "Theme will be changed when you restart.",
+                                    Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                    Setting.SaveInFile.setSetting(
+                            Setting.Key.NewTheme, "LightBlueDark", SettingActivity.this);
+                    Setting.SaveInFile.setSetting(
+                            Setting.Key.NewThemeType, Setting.Value.Dark, SettingActivity.this);
                 });
 
         theme5.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View arg0) {
-                        // TODO: Implement this method
-                        Snackbar snackbar =
-                                Snackbar.make(
-                                        findViewById(android.R.id.content),
-                                        "Theme will be changed when you restart.",
-                                        Snackbar.LENGTH_LONG);
-                        snackbar.show();
-                        Setting.SaveInFile.setSetting(
-                                Setting.Key.NewTheme, "LightGreen", SettingActivity.this);
-                        Setting.SaveInFile.setSetting(
-                                Setting.Key.NewThemeType, Setting.Value.Light, SettingActivity.this);
-                    }
+                (view) -> {
+                    Snackbar snackbar =
+                            Snackbar.make(
+                                    findViewById(android.R.id.content),
+                                    "Theme will be changed when you restart.",
+                                    Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                    Setting.SaveInFile.setSetting(
+                            Setting.Key.NewTheme, "LightGreen", SettingActivity.this);
+                    Setting.SaveInFile.setSetting(
+                            Setting.Key.NewThemeType, Setting.Value.Light, SettingActivity.this);
                 });
 
         theme6.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View arg0) {
-                        // TODO: Implement this method
-                        Snackbar snackbar =
-                                Snackbar.make(
-                                        findViewById(android.R.id.content),
-                                        "Theme will be changed when you restart.",
-                                        Snackbar.LENGTH_LONG);
-                        snackbar.show();
-                        Setting.SaveInFile.setSetting(
-                                Setting.Key.NewTheme, "DarkGreen", SettingActivity.this);
-                        Setting.SaveInFile.setSetting(
-                                Setting.Key.NewThemeType, Setting.Value.Dark, SettingActivity.this);
-                    }
+                (view) -> {
+                    Snackbar snackbar =
+                            Snackbar.make(
+                                    findViewById(android.R.id.content),
+                                    "Theme will be changed when you restart.",
+                                    Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                    Setting.SaveInFile.setSetting(
+                            Setting.Key.NewTheme, "DarkGreen", SettingActivity.this);
+                    Setting.SaveInFile.setSetting(
+                            Setting.Key.NewThemeType, Setting.Value.Dark, SettingActivity.this);
                 });
     }
 
