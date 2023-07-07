@@ -249,14 +249,6 @@ public class FileManagerActivity extends AppCompatActivity {
             gitIcon.setVisibility(View.GONE);
             FileIcon.setUpIcon(
                     FileManagerActivity.this, _data.get(_position).get("path").toString(), icon);
-            Utils.applyRippleEffect(
-                    mainlayout,
-                    MaterialColorHelper.getMaterialColor(
-                            FileManagerActivity.this,
-                            com.google.android.material.R.attr.colorSurface),
-                    MaterialColorHelper.getMaterialColor(
-                            FileManagerActivity.this,
-                            com.google.android.material.R.attr.colorSurfaceVariant));
             path.setText(_data.get(_position).get("lastSegmentOfFilePath").toString());
             String path = _data.get(_position).get("path").toString();
             FileTypeHandler fileTypeHandler = new FileTypeHandler(FileManagerActivity.this);

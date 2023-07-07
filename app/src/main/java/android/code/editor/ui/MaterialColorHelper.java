@@ -8,20 +8,6 @@ import android.graphics.Color;
 import com.google.android.material.color.MaterialColors;
 
 public class MaterialColorHelper {
-    public static int getMaterialColor(Context context, int res) {
-        return MaterialColors.getColor(context, res, "Passed color in parameter doesn't exists.");
-    }
-
-    public static int setColorTransparency(int color, String transparency) {
-		String hex;
-		hex = intColorToString(color);
-        return Color.parseColor("#".concat(transparency).concat(hex.substring(3, hex.length())));
-    }
-
-    public static String intColorToString(int color) {
-        return String.format("#%08X", (0xFFFFFFFF & color));
-    }
-
     public static void setUpTheme(Context context) {
         switch (Setting.SaveInFile.getSettingString(Setting.Key.Theme, Setting.Default.Theme, context)) {
             case "BrownishLight":
