@@ -228,7 +228,7 @@ public class SettingActivity extends AppCompatActivity {
                                         Setting.Key.ThemeType,
                                         Setting.Default.ThemeType,
                                         SettingActivity.this)
-                                .equals(Setting.Value.Dark)) {
+                                .equals(Setting.Value.Light)) {
                             Setting.SaveInFile.setSetting(
                                     Setting.Key.AceCodeEditorLightThemeSelectionPosition,
                                     arg2,
