@@ -9,7 +9,8 @@
     android:padding="8dp"
     android:orientation="vertical"
     android:focusable="true"
-    android:id="@+id/layout">
+    android:id="@+id/layout"
+    android:background="@drawable/ripple_on_color_surface">
 
     <LinearLayout
         android:layout_height="wrap_content"
