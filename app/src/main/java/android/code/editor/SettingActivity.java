@@ -41,7 +41,6 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle arg0) {
         MaterialColorHelper.setUpTheme(this);
         super.onCreate(arg0);
-        // TODO: Implement this method
         setContentView(R.layout.activity_setting);
         initActivity();
     }
@@ -55,7 +54,6 @@ public class SettingActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View arg0) {
-                        // TODO: Implement this method
                         onBackPressed();
                     }
                 });
@@ -201,6 +199,8 @@ public class SettingActivity extends AppCompatActivity {
                         Setting.Key.ThemeType, Setting.Default.ThemeType, this)
                 .equals(Setting.Value.Light)) {
             aceEditorThemes.addAll(new Themes().new AceEditorTheme().new Light().getThemes());
+
+            soraEditorThemes.addAll(new Themes().new SoraEditorTheme().new Light().getThemes());
         }
         aceEditorThemeChooser.setAdapter(new editorThemeChooserAdapter(aceEditorThemes));
         soraEditorThemeChooser.setAdapter(new editorThemeChooserAdapter(soraEditorThemes));
@@ -210,7 +210,6 @@ public class SettingActivity extends AppCompatActivity {
                     @Override
                     public void onItemSelected(
                             AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                        // TODO: Implement this method
                         if (Setting.SaveInFile.getSettingString(
                                         Setting.Key.ThemeType,
                                         Setting.Default.ThemeType,
@@ -241,9 +240,7 @@ public class SettingActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onNothingSelected(AdapterView<?> arg0) {
-                        // TODO: Implement this method
-                    }
+                    public void onNothingSelected(AdapterView<?> arg0) {}
                 });
 
         soraEditorThemeChooser.setOnItemSelectedListener(
@@ -251,7 +248,6 @@ public class SettingActivity extends AppCompatActivity {
                     @Override
                     public void onItemSelected(
                             AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                        // TODO: Implement this method
                         if (Setting.SaveInFile.getSettingString(
                                         Setting.Key.ThemeType,
                                         Setting.Default.ThemeType,
@@ -265,13 +261,24 @@ public class SettingActivity extends AppCompatActivity {
                                     Setting.Key.SoraCodeEditorDarkTheme,
                                     soraEditorThemes.get(arg2).toString(),
                                     SettingActivity.this);
+                        } else if (Setting.SaveInFile.getSettingString(
+                                        Setting.Key.ThemeType,
+                                        Setting.Default.ThemeType,
+                                        SettingActivity.this)
+                                .equals(Setting.Value.Light)) {
+                            Setting.SaveInFile.setSetting(
+                                    Setting.Key.SoraCodeEditorLightThemeSelectionPosition,
+                                    arg2,
+                                    SettingActivity.this);
+                            Setting.SaveInFile.setSetting(
+                                    Setting.Key.SoraCodeEditorLightTheme,
+                                    soraEditorThemes.get(arg2).toString(),
+                                    SettingActivity.this);
                         }
                     }
 
                     @Override
-                    public void onNothingSelected(AdapterView<?> arg0) {
-                        // TODO: Implement this method
-                    }
+                    public void onNothingSelected(AdapterView<?> arg0) {}
                 });
         if (Setting.SaveInFile.getSettingString(
                         Setting.Key.ThemeType, Setting.Default.ThemeType, SettingActivity.this)
@@ -291,11 +298,23 @@ public class SettingActivity extends AppCompatActivity {
                             this));
         }
 
-        soraEditorThemeChooser.setSelection(
-                Setting.SaveInFile.getSettingInt(
-                        Setting.Key.SoraCodeEditorDarkThemeSelectionPosition,
-                        Setting.Default.SoraCodeEditorDarkThemeSelectionPosition,
-                        this));
+        if (Setting.SaveInFile.getSettingString(
+                        Setting.Key.ThemeType, Setting.Default.ThemeType, SettingActivity.this)
+                .equals(Setting.Value.Dark)) {
+            soraEditorThemeChooser.setSelection(
+                    Setting.SaveInFile.getSettingInt(
+                            Setting.Key.SoraCodeEditorDarkThemeSelectionPosition,
+                            Setting.Default.SoraCodeEditorDarkThemeSelectionPosition,
+                            this));
+        } else if (Setting.SaveInFile.getSettingString(
+                        Setting.Key.ThemeType, Setting.Default.ThemeType, SettingActivity.this)
+                .equals(Setting.Value.Light)) {
+            soraEditorThemeChooser.setSelection(
+                    Setting.SaveInFile.getSettingInt(
+                            Setting.Key.SoraCodeEditorLightThemeSelectionPosition,
+                            Setting.Default.SoraCodeEditorLightThemeSelectionPosition,
+                            this));
+        }
     }
 
     public class editorThemeChooserAdapter extends BaseAdapter {
@@ -313,19 +332,16 @@ public class SettingActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // TODO: Implement this method
             return data.size();
         }
 
         @Override
         public long getItemId(int arg0) {
-            // TODO: Implement this method
             return arg0;
         }
 
         @Override
         public View getView(int arg0, View arg1, ViewGroup arg2) {
-            // TODO: Implement this method
             LayoutInflater _inflater = getLayoutInflater();
             View _view = arg1;
             if (_view == null) {
@@ -353,19 +369,16 @@ public class SettingActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // TODO: Implement this method
             return data.size();
         }
 
         @Override
         public long getItemId(int arg0) {
-            // TODO: Implement this method
             return arg0;
         }
 
         @Override
         public View getView(int arg0, View arg1, ViewGroup arg2) {
-            // TODO: Implement this method
             LayoutInflater _inflater = getLayoutInflater();
             View _view = arg1;
             if (_view == null) {

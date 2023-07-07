@@ -62,6 +62,18 @@ public class Themes {
                 return arr;
             }
         }
+        
+        public class Light implements ThemeSet {
+            public static final String Quietlight = "Quietlight";
+            public static final String Default = Quietlight;
+            
+            @Override
+            public ArrayList<String> getThemes() {
+                ArrayList<String> arr = new ArrayList<>();
+                arr.add(Quietlight);
+                return arr;
+            }
+        }
 
         @Override
         public ArrayList<String> getThemes() {

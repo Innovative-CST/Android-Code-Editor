@@ -157,6 +157,11 @@ public class SoraEditor implements Editor {
                 ThemeFileName = "monokai-color-theme.json";
                 initTheme(ThemeFile, ThemeFileName);
                 break;
+            case Themes.SoraEditorTheme.Light.Quietlight:
+                ThemeFile = "Editor/SoraEditor/quietlight.json";
+                ThemeFileName = "quietlight.json";
+                initTheme(ThemeFile, ThemeFileName);
+                break;
         }
     }
 

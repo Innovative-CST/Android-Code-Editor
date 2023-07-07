@@ -60,15 +60,15 @@ public class CodeEditorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_code_editor);
         initActivity();
     }
-    
+
     public void save() {
         if (openedFile != null) {
             if (codeEditor != null) {
                 /*try {
-                    Thread.sleep(5);*/
-                    FileManager.writeFile(openedFile.getAbsolutePath(), codeEditor.getCode());
+                Thread.sleep(5);*/
+                FileManager.writeFile(openedFile.getAbsolutePath(), codeEditor.getCode());
                 /*} catch (Exception e) {
-                    
+
                 }*/
             }
         }
@@ -317,7 +317,7 @@ public class CodeEditorActivity extends AppCompatActivity {
                 codeEditor.setTheme(
                         Setting.SaveInFile.getSettingString(
                                 Setting.Key.AceCodeEditorDarkTheme,
-                                Setting.Default.SoraCodeEditorDarkTheme,
+                                Setting.Default.AceCodeEditorDarkTheme,
                                 this));
             }
         } else if (Setting.SaveInFile.getSettingString(
@@ -328,6 +328,12 @@ public class CodeEditorActivity extends AppCompatActivity {
                         Setting.SaveInFile.getSettingString(
                                 Setting.Key.AceCodeEditorLightTheme,
                                 Setting.Default.AceCodeEditorLightTheme,
+                                this));
+            } else if (codeEditor.getCurrentEditorType() == CodeEditorLayout.SoraCodeEditor) {
+                codeEditor.setTheme(
+                        Setting.SaveInFile.getSettingString(
+                                Setting.Key.SoraCodeEditorLightTheme,
+                                Setting.Default.SoraCodeEditorLightTheme,
                                 this));
             }
         }
