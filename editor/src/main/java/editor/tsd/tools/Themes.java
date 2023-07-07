@@ -24,11 +24,17 @@ public class Themes {
         
         public class Light implements ThemeSet {
             public static final String Chrome = "Chrome";
+            public static final String Clouds = "Clouds";
+            public static final String Crimeson_Editor = "Crimeson_Editor";
+            public static final String Dawn = "Dawn";
             public static final String Default = Chrome;
 
             public ArrayList<String> getThemes() {
                 ArrayList<String> arr = new ArrayList<>();
                 arr.add(Chrome);
+                arr.add(Clouds);
+                arr.add(Crimeson_Editor);
+                arr.add(Dawn);
                 return arr;
             }
         }

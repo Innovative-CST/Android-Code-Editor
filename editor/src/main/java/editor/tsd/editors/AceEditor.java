@@ -142,6 +142,15 @@ public class AceEditor implements Editor {
             case Themes.AceEditorTheme.Light.Chrome:
                 aceJSInterface.setTheme("chrome");
                 break;
+            case Themes.AceEditorTheme.Light.Clouds:
+                aceJSInterface.setTheme("clouds");
+                break;
+            case Themes.AceEditorTheme.Light.Crimeson_Editor:
+                aceJSInterface.setTheme("crimeson_editor");
+                break;
+            case Themes.AceEditorTheme.Light.Dawn:
+                aceJSInterface.setTheme("dawn");
+                break;
         }
         // Update theme
         aceEditor.loadUrl("javascript:setLanguageMode()");

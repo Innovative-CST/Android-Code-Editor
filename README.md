@@ -19,6 +19,9 @@ Join our discord server to keep contact us about Android Code Editor.
         - [x] Dracula(Deprecated)
         - [x] Monokai
         - [x] Chrome
+        - [x] Clouds
+        - [x] Crimeson_Editor
+        - [x] Dawn
 - [x] Save(Auto) and Edit files.
 - [x] Create Projects.
 - [x] File Tree.
