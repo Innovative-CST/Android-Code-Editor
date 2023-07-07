@@ -115,10 +115,9 @@ public class SettingActivity extends AppCompatActivity {
                                         Snackbar.LENGTH_LONG);
                         snackbar.show();
                         Setting.SaveInFile.setSetting(
-                                Setting.Key.Theme, "BrownishLight", SettingActivity.this);
+                                Setting.Key.NewTheme, "BrownishLight", SettingActivity.this);
                         Setting.SaveInFile.setSetting(
-                                Setting.Key.ThemeType, Setting.Value.Light, SettingActivity.this);
-                        recreate();
+                                Setting.Key.NewThemeType, Setting.Value.Light, SettingActivity.this);
                     }
                 });
 
@@ -134,10 +133,9 @@ public class SettingActivity extends AppCompatActivity {
                                         Snackbar.LENGTH_LONG);
                         snackbar.show();
                         Setting.SaveInFile.setSetting(
-                                Setting.Key.Theme, "BrownishDark", SettingActivity.this);
+                                Setting.Key.NewTheme, "BrownishDark", SettingActivity.this);
                         Setting.SaveInFile.setSetting(
-                                Setting.Key.ThemeType, Setting.Value.Dark, SettingActivity.this);
-                        recreate();
+                                Setting.Key.NewThemeType, Setting.Value.Dark, SettingActivity.this);
                     }
                 });
 
@@ -153,10 +151,9 @@ public class SettingActivity extends AppCompatActivity {
                                         Snackbar.LENGTH_LONG);
                         snackbar.show();
                         Setting.SaveInFile.setSetting(
-                                Setting.Key.Theme, "LightBlueLight", SettingActivity.this);
+                                Setting.Key.NewTheme, "LightBlueLight", SettingActivity.this);
                         Setting.SaveInFile.setSetting(
-                                Setting.Key.ThemeType, Setting.Value.Light, SettingActivity.this);
-                        recreate();
+                                Setting.Key.NewThemeType, Setting.Value.Light, SettingActivity.this);
                     }
                 });
 
@@ -172,10 +169,9 @@ public class SettingActivity extends AppCompatActivity {
                                         Snackbar.LENGTH_LONG);
                         snackbar.show();
                         Setting.SaveInFile.setSetting(
-                                Setting.Key.Theme, "LightBlueDark", SettingActivity.this);
+                                Setting.Key.NewTheme, "LightBlueDark", SettingActivity.this);
                         Setting.SaveInFile.setSetting(
-                                Setting.Key.ThemeType, Setting.Value.Dark, SettingActivity.this);
-                        recreate();
+                                Setting.Key.NewThemeType, Setting.Value.Dark, SettingActivity.this);
                     }
                 });
 
@@ -191,10 +187,9 @@ public class SettingActivity extends AppCompatActivity {
                                         Snackbar.LENGTH_LONG);
                         snackbar.show();
                         Setting.SaveInFile.setSetting(
-                                Setting.Key.Theme, "LightGreen", SettingActivity.this);
+                                Setting.Key.NewTheme, "LightGreen", SettingActivity.this);
                         Setting.SaveInFile.setSetting(
-                                Setting.Key.ThemeType, Setting.Value.Light, SettingActivity.this);
-                        recreate();
+                                Setting.Key.NewThemeType, Setting.Value.Light, SettingActivity.this);
                     }
                 });
 
@@ -210,10 +205,9 @@ public class SettingActivity extends AppCompatActivity {
                                         Snackbar.LENGTH_LONG);
                         snackbar.show();
                         Setting.SaveInFile.setSetting(
-                                Setting.Key.Theme, "DarkGreen", SettingActivity.this);
+                                Setting.Key.NewTheme, "DarkGreen", SettingActivity.this);
                         Setting.SaveInFile.setSetting(
-                                Setting.Key.ThemeType, Setting.Value.Dark, SettingActivity.this);
-                        recreate();
+                                Setting.Key.NewThemeType, Setting.Value.Dark, SettingActivity.this);
                     }
                 });
     }
