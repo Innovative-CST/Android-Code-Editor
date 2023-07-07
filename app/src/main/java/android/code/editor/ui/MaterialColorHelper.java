@@ -6,25 +6,34 @@ import android.content.Context;
 
 public class MaterialColorHelper {
     public static void setUpTheme(Context context) {
-        switch (Setting.SaveInFile.getSettingString(Setting.Key.Theme, Setting.Default.Theme, context)) {
+        context.setTheme(getCurrentTheme(context));
+    }
+
+    public static int getCurrentTheme(Context context) {
+        int theme;
+        switch (Setting.SaveInFile.getSettingString(
+                Setting.Key.Theme, Setting.Default.Theme, context)) {
             case "BrownishLight":
-                context.setTheme(R.style.BrownishLight);
+                theme = R.style.BrownishLight;
                 break;
             case "BrownishDark":
-                context.setTheme(R.style.BrownishDark);
+                theme = R.style.BrownishDark;
                 break;
             case "LightBlueLight":
-                context.setTheme(R.style.LightBlueLight);
+                theme = R.style.LightBlueLight;
                 break;
             case "LightBlueDark":
-                context.setTheme(R.style.LightBlueDark);
+                theme = R.style.LightBlueDark;
                 break;
             case "LightGreen":
-                context.setTheme(R.style.GreenLight);
+                theme = R.style.GreenLight;
                 break;
             case "DarkGreen":
-                context.setTheme(R.style.GreenDark);
+                theme = R.style.GreenDark;
                 break;
+            default:
+                return R.style.GreenLight;
         }
+        return theme;
     }
 }
