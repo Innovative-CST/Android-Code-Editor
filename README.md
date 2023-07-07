@@ -20,6 +20,7 @@ Join our discord server to keep contact us about Android Code Editor.
     - Themes
         - [x] Dracula(Deprecated)
         - [x] Monokai
+        - [x] Chrome
 - [ ] Save and Edit files.
 - [x] Create Projects.
 - [x] File Tree.

@@ -21,6 +21,17 @@ public class Themes {
                 return arr;
             }
         }
+        
+        public class Light implements ThemeSet {
+            public static final String Chrome = "Chrome";
+            public static final String Default = Chrome;
+
+            public ArrayList<String> getThemes() {
+                ArrayList<String> arr = new ArrayList<>();
+                arr.add(Chrome);
+                return arr;
+            }
+        }
 
         @Override
         public ArrayList<String> getThemes() {

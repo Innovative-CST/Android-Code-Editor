@@ -26,8 +26,11 @@ public class Setting {
         public static final String NewTheme = "NewTheme";
         public static final String ThemeType = "ThemeType";
         public static final String NewThemeType = "NewThemeType";
+        public static final String AceCodeEditorLightTheme = "AceCodeEditorLightTheme";
         public static final String AceCodeEditorDarkTheme = "AceCodeEditorDarkTheme";
         public static final String SoraCodeEditorDarkTheme = "SoraCodeEditorDarkTheme";
+        public static final String AceCodeEditorLightThemeSelectionPosition =
+                "AceCodeEditorLightThemeSelectionPosition";
         public static final String AceCodeEditorDarkThemeSelectionPosition =
                 "AceCodeEditorDarkThemeSelectionPosition";
         public static final String SoraCodeEditorDarkThemeSelectionPosition =
@@ -40,8 +43,10 @@ public class Setting {
         public static final String NewTheme = Theme;
         public static final String ThemeType = Value.Dark;
         public static final String NewThemeType = ThemeType;
+        public static final String AceCodeEditorLightTheme = Themes.AceEditorTheme.Light.Default;
         public static final String AceCodeEditorDarkTheme = Themes.AceEditorTheme.Dark.Default;
         public static final String SoraCodeEditorDarkTheme = Themes.SoraEditorTheme.Dark.Default;
+        public static final int AceCodeEditorLightThemeSelectionPosition = 0;
         public static final int AceCodeEditorDarkThemeSelectionPosition = 1;
         public static final int SoraCodeEditorDarkThemeSelectionPosition = 1;
     }

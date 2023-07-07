@@ -197,6 +197,10 @@ public class SettingActivity extends AppCompatActivity {
             aceEditorThemes.addAll(new Themes().new AceEditorTheme().new Dark().getThemes());
 
             soraEditorThemes.addAll(new Themes().new SoraEditorTheme().new Dark().getThemes());
+        } else if (Setting.SaveInFile.getSettingString(
+                        Setting.Key.ThemeType, Setting.Default.ThemeType, this)
+                .equals(Setting.Value.Light)) {
+            aceEditorThemes.addAll(new Themes().new AceEditorTheme().new Light().getThemes());
         }
         aceEditorThemeChooser.setAdapter(new editorThemeChooserAdapter(aceEditorThemes));
         soraEditorThemeChooser.setAdapter(new editorThemeChooserAdapter(soraEditorThemes));
@@ -218,6 +222,19 @@ public class SettingActivity extends AppCompatActivity {
                                     SettingActivity.this);
                             Setting.SaveInFile.setSetting(
                                     Setting.Key.AceCodeEditorDarkTheme,
+                                    aceEditorThemes.get(arg2),
+                                    SettingActivity.this);
+                        } else if (Setting.SaveInFile.getSettingString(
+                                        Setting.Key.ThemeType,
+                                        Setting.Default.ThemeType,
+                                        SettingActivity.this)
+                                .equals(Setting.Value.Dark)) {
+                            Setting.SaveInFile.setSetting(
+                                    Setting.Key.AceCodeEditorLightThemeSelectionPosition,
+                                    arg2,
+                                    SettingActivity.this);
+                            Setting.SaveInFile.setSetting(
+                                    Setting.Key.AceCodeEditorLightTheme,
                                     aceEditorThemes.get(arg2),
                                     SettingActivity.this);
                         }
@@ -258,8 +275,8 @@ public class SettingActivity extends AppCompatActivity {
                 });
         aceEditorThemeChooser.setSelection(
                 Setting.SaveInFile.getSettingInt(
-                        Setting.Key.AceCodeEditorDarkThemeSelectionPosition,
-                        Setting.Default.AceCodeEditorDarkThemeSelectionPosition,
+                        Setting.Key.AceCodeEditorLightThemeSelectionPosition,
+                        Setting.Default.AceCodeEditorLightThemeSelectionPosition,
                         this));
         soraEditorThemeChooser.setSelection(
                 Setting.SaveInFile.getSettingInt(

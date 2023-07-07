@@ -139,6 +139,9 @@ public class AceEditor implements Editor {
             case Themes.AceEditorTheme.Dark.Monokai:
                 aceJSInterface.setTheme("monokai");
                 break;
+            case Themes.AceEditorTheme.Light.Chrome:
+                aceJSInterface.setTheme("chrome");
+                break;
         }
         // Update theme
         aceEditor.loadUrl("javascript:setLanguageMode()");

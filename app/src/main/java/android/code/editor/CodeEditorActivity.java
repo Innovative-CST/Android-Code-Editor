@@ -28,6 +28,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import editor.tsd.editors.AceEditor;
 import editor.tsd.widget.CodeEditorLayout;
 
 import io.github.rosemoe.sora.util.ArrayList;
@@ -70,17 +71,15 @@ public class CodeEditorActivity extends AppCompatActivity {
         editorArea = findViewById(R.id.editorArea);
         fileNotOpenedArea = findViewById(R.id.fileNotOpenedArea);
 
-        
         ViewGroup.LayoutParams layoutParams =
                 new ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
         // Assign the layout parameters to codeEditor
-        
+
         codeEditor = new CodeEditorLayout(this);
         codeEditor.setLayoutParams(layoutParams);
         ((LinearLayout) findViewById(R.id.editorCont)).addView(codeEditor);
-        
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -299,6 +298,16 @@ public class CodeEditorActivity extends AppCompatActivity {
                         Setting.SaveInFile.getSettingString(
                                 Setting.Key.AceCodeEditorDarkTheme,
                                 Setting.Default.SoraCodeEditorDarkTheme,
+                                this));
+            }
+        } else if (Setting.SaveInFile.getSettingString(
+                        Setting.Key.ThemeType, Setting.Default.ThemeType, this)
+                .equals(Setting.Value.Light)) {
+            if (codeEditor.getCurrentEditorType() == CodeEditorLayout.AceCodeEditor) {
+                codeEditor.setTheme(
+                        Setting.SaveInFile.getSettingString(
+                                Setting.Key.AceCodeEditorLightTheme,
+                                Setting.Default.AceCodeEditorLightTheme,
                                 this));
             }
         }
