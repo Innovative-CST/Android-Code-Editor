@@ -13,38 +13,24 @@ Join our discord server to keep contact us about Android Code Editor.
 ### TODO
 - [x] Mixed Editor Widget
 - [x] Sora Editor.
-	- Language Mode
-		- [x] Java
-		- [x] XML
-		- [x] HTML
-		- [x] CSS
-		- [x] JavaScript
     - Themes
         - [x] Darcula(Deprecated)
         - [x] Monokai
 - [x] Ace Editor.
-	- Language Mode
-		- [x] Java
-		- [x] JavaScript
-		- [x] HTML
-		- [x] CSS
-		- [x] XML
     - Themes
         - [x] Dracula(Deprecated)
         - [x] Monokai
-- [ ] Code Mirror.
-	- Language Mode
-		- [ ] Java
-		- [ ] JavaScript
-		- [ ] HTML
-		- [ ] CSS
-		- [ ] XML
-    - [ ] Themes
 - [ ] Save and Edit files.
-- [ ] Create Projects.
-- [ ] File Tree.
+- [x] Create Projects.
+- [x] File Tree.
 - [ ] Inbuilt browser for previewing HTML files.
 - [ ] Preview Mark Down file.
+- [x] Supported Language Modes
+    - [x] Java
+    - [x] JavaScript
+    - [x] HTML
+    - [x] CSS
+    - [x] XML
 
 ## Thanks to
 - [Pictogrammers](https://pictogrammers.com/) for awsome icons
