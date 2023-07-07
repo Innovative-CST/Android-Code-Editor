@@ -3,8 +3,6 @@
 “The Android code editor is an open-source project available on Github, developed with the love and contributions of developers. It supports both the Sora code editor and the Ace code editor, making it a versatile tool for writing and editing code on Android devices.”
 It is the beginning of this app and I hope it will available soon for users.
 
-#### Caution: file saving feature has not been implemented yet. So code editor does not save any changes you made to file.
-
 ## Discord
 Join our discord server to keep contact us about Android Code Editor.
 
@@ -21,7 +19,7 @@ Join our discord server to keep contact us about Android Code Editor.
         - [x] Dracula(Deprecated)
         - [x] Monokai
         - [x] Chrome
-- [ ] Save and Edit files.
+- [x] Save(Auto) and Edit files.
 - [x] Create Projects.
 - [x] File Tree.
 - [ ] Inbuilt browser for previewing HTML files.

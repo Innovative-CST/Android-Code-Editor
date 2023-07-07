@@ -51,6 +51,7 @@ public class CodeEditorActivity extends AppCompatActivity {
     public String selectPath;
     public DrawerLayout drawer;
     private ObjectAnimator rotate = new ObjectAnimator();
+    public File openedFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,25 @@ public class CodeEditorActivity extends AppCompatActivity {
         MaterialColorHelper.setUpTheme(this);
         setContentView(R.layout.activity_code_editor);
         initActivity();
+    }
+    
+    public void save() {
+        if (openedFile != null) {
+            if (codeEditor != null) {
+                /*try {
+                    Thread.sleep(5);*/
+                    FileManager.writeFile(openedFile.getAbsolutePath(), codeEditor.getCode());
+                /*} catch (Exception e) {
+                    
+                }*/
+            }
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        save();
     }
 
     public void initActivity() {
@@ -325,6 +345,7 @@ public class CodeEditorActivity extends AppCompatActivity {
                 codeEditor.setVisibility(View.GONE);
 
                 codeEditor.setCode(FileManager.readFile(getIntent().getStringExtra("path")));
+                openedFile = new File(getIntent().getStringExtra("path"));
 
                 progressbar.setVisibility(View.GONE);
                 codeEditor.setVisibility(View.VISIBLE);
@@ -413,6 +434,7 @@ public class CodeEditorActivity extends AppCompatActivity {
                                         case "html":
                                         case "css":
                                         case "js":
+                                            save();
                                             openFileInEditor(fil);
                                             drawer.closeDrawer(GravityCompat.END);
                                             break;
@@ -446,6 +468,7 @@ public class CodeEditorActivity extends AppCompatActivity {
         progressbar.setVisibility(View.VISIBLE);
         codeEditor.setVisibility(View.GONE);
 
+        openedFile = file;
         codeEditor.setCode(FileManager.readFile(file.getAbsolutePath()));
 
         progressbar.setVisibility(View.GONE);
