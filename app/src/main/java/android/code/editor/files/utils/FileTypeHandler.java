@@ -48,6 +48,7 @@ public class FileTypeHandler {
                 case "html":
                 case "css":
                 case "js":
+                case "md":
                     view.setOnClickListener(
                             new View.OnClickListener() {
                                 @Override

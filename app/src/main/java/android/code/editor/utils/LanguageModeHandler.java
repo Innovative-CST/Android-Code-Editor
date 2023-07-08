@@ -6,14 +6,16 @@ public class LanguageModeHandler {
     public static String getLanguageModeForExtension(String ext) {
         if (ext.equals("java")) {
             return Language.Java;
-        } else if(ext.equals("xml")) {
+        } else if (ext.equals("xml")) {
             return Language.XML;
-        } else if(ext.equals("html")) {
+        } else if (ext.equals("html")) {
             return Language.HTML;
-        } else if(ext.equals("css")) {
+        } else if (ext.equals("css")) {
             return Language.CSS;
-        } else {
+        } else if (ext.equals("md")) {
             return Language.JavaScript;
+        } else {
+            return Language.Markdown;
         }
     }
 }
