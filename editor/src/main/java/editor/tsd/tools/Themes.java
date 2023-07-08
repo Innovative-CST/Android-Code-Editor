@@ -21,7 +21,7 @@ public class Themes {
                 return arr;
             }
         }
-        
+
         public class Light implements ThemeSet {
             public static final String Chrome = "Chrome";
             public static final String Clouds = "Clouds";
@@ -65,15 +65,17 @@ public class Themes {
                 return arr;
             }
         }
-        
+
         public class Light implements ThemeSet {
             public static final String Quietlight = "Quietlight";
+            public static final String Solarized_Light = "Solarized_Light";
             public static final String Default = Quietlight;
-            
+
             @Override
             public ArrayList<String> getThemes() {
                 ArrayList<String> arr = new ArrayList<>();
                 arr.add(Quietlight);
+                arr.add(Solarized_Light);
                 return arr;
             }
         }
