@@ -1,5 +1,6 @@
-package android.code.editor;
+package android.code.editor.activity;
 
+import android.code.editor.R;
 import android.code.editor.files.utils.FileIcon;
 import android.code.editor.files.utils.FileManager;
 import android.code.editor.files.utils.FileTypeHandler;

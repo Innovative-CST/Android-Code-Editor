@@ -1,7 +1,7 @@
 package android.code.editor.files.utils;
 
-import android.code.editor.CodeEditorActivity;
-import android.code.editor.FileManagerActivity;
+import android.code.editor.activity.CodeEditorActivity;
+import android.code.editor.activity.FileManagerActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;

@@ -1,7 +1,8 @@
-package android.code.editor;
+package android.code.editor.activity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.code.editor.R;
 import android.code.editor.tsd.StoragePermission;
 import android.code.editor.ui.MaterialColorHelper;
 import android.content.Context;

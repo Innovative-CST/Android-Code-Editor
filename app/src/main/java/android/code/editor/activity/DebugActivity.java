@@ -1,5 +1,6 @@
-package android.code.editor;
+package android.code.editor.activity;
 
+import android.code.editor.R;
 import android.code.editor.ui.MaterialColorHelper;
 import android.content.ClipData;
 import android.content.ClipboardManager;

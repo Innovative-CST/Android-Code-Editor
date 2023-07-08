@@ -1,6 +1,6 @@
 package android.code.editor.utils;
 
-import android.code.editor.FileManagerActivity;
+import android.code.editor.activity.FileManagerActivity;
 import android.code.editor.files.utils.FileManager;
 import android.text.Editable;
 import android.text.TextWatcher;
