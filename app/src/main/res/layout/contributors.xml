@@ -1,56 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-	 xmlns:android="http://schemas.android.com/apk/res/android"
-	 xmlns:app="http://schemas.android.com/apk/res-auto"
-	 android:layout_height="match_parent"
-	 android:layout_width="match_parent"
-	 android:id="@+id/coordinator">
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_height="wrap_content"
+     android:layout_width="match_parent"
+     android:id="@+id/coordinator">
 
-	<LinearLayout
-		 android:layout_height="wrap_content"
-		 android:layout_width="wrap_content"
-		 android:orientation="horizontal">
+    <LinearLayout
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:orientation="horizontal">
 
-		<com.google.android.material.card.MaterialCardView
-			 android:layout_height="wrap_content"
-			 android:layout_width="wrap_content"
-			 app:cardElevation="8dp"
-			 app:cardUseCompatPadding="true"
-			 app:cardCornerRadius="60dp"
-			 app:cardPreventCornerOverlap="false">
+        <com.google.android.material.card.MaterialCardView
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             app:cardElevation="8dp"
+             app:cardUseCompatPadding="true"
+             app:cardCornerRadius="22dp"
+             app:cardPreventCornerOverlap="false">
 
-			<ImageView
-				 android:layout_height="40dp"
-				 android:layout_width="40dp"
-				 android:scaleType="centerCrop"
-				 android:id="@+id/profile" />
+            <ImageView
+                 android:layout_height="40dp"
+                 android:layout_width="40dp"
+                 android:scaleType="centerCrop"
+                 android:id="@+id/profile"/>
 
-		</com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
 
-		<LinearLayout
-			 android:layout_height="wrap_content"
-			 android:layout_width="wrap_content"
-			 android:gravity="center_vertical"
-			 android:orientation="vertical"
-			 android:layout_marginTop="8dp"
-			 android:layout_marginLeft="8dp">
+        <LinearLayout
+             android:layout_height="wrap_content"
+             android:layout_width="0dp"
+             android:gravity="center_vertical"
+             android:orientation="vertical"
+             android:layout_marginLeft="8dp"
+             android:layout_marginTop="8dp"
+             android:layout_weight="1">
 
-			<TextView
-				 android:layout_height="wrap_content"
-				 android:layout_width="wrap_content"
-				 android:textSize="14dp"
-				 android:textColor="?attr/colorOnSurface"
-				 android:id="@+id/name" />
+            <TextView
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                 android:textSize="14dp"
+                 android:textColor="?attr/colorOnSurface"
+                 android:id="@+id/name"/>
 
-			<TextView
-				 android:layout_height="wrap_content"
-				 android:layout_width="wrap_content"
-				 android:textSize="10dp"
-				 android:textColor="?attr/colorOnSurface"
-				 android:id="@+id/description" />
+            <TextView
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                 android:textSize="10dp"
+                 android:textColor="?attr/colorOnSurface"
+                 android:id="@+id/description"/>
 
-		</LinearLayout>
+        </LinearLayout>
 
-	</LinearLayout>
+        <ImageView
+             android:layout_height="20dp"
+             android:layout_width="20dp"
+             android:visibility="gone"
+             android:scaleType="centerCrop"
+             android:src="@drawable/information_outline"
+             android:tint="?attr/colorOnSurface"
+             android:id="@+id/infoInMarkDown"
+             android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -4,6 +4,7 @@ import android.code.editor.R;
 import android.code.editor.Sketchware.RequestNetwork;
 import android.code.editor.Sketchware.RequestNetworkController;
 import android.code.editor.ui.MaterialColorHelper;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -175,6 +176,21 @@ public class ContributorsActivity extends AppCompatActivity {
             description = _view.findViewById(R.id.description);
             name.setText(_data.get(_position).get("Name").toString());
             description.setText(_data.get(_position).get("Description").toString());
+            _view.findViewById(R.id.infoInMarkDown).setVisibility(View.GONE);
+            if (_data.get(_position).containsKey("markdownUrl")) {
+                _view.findViewById(R.id.infoInMarkDown).setVisibility(View.VISIBLE);
+                _view.findViewById(R.id.infoInMarkDown)
+                        .setOnClickListener(
+                                (view) -> {
+                                    Intent i = new Intent();
+                                    i.setClass(ContributorsActivity.this, MarkdownViewer.class);
+                                    i.putExtra("type", "url");
+                                    i.putExtra(
+                                            "data",
+                                            _data.get(_position).get("markdownUrl").toString());
+                                    startActivity(i);
+                                });
+            }
         }
 
         @Override

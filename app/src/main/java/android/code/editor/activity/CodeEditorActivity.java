@@ -343,23 +343,8 @@ public class CodeEditorActivity extends AppCompatActivity {
             if (new File(getIntent().getStringExtra("path")).isFile()) {
                 DrawerListDir = new File(getIntent().getStringExtra("path")).getParentFile();
                 selectPath = DrawerListDir.getAbsolutePath();
-                if (fileNotOpenedArea.getVisibility() == View.VISIBLE
-                        || editorArea.getVisibility() == View.GONE) {
-                    fileNotOpenedArea.setVisibility(View.GONE);
-                    editorArea.setVisibility(View.VISIBLE);
-                }
-                progressbar.setVisibility(View.VISIBLE);
-                codeEditor.setVisibility(View.GONE);
-
-                codeEditor.setCode(FileManager.readFile(getIntent().getStringExtra("path")));
                 openedFile = new File(getIntent().getStringExtra("path"));
-
-                progressbar.setVisibility(View.GONE);
-                codeEditor.setVisibility(View.VISIBLE);
-
-                codeEditor.setLanguageMode(
-                        LanguageModeHandler.getLanguageModeForExtension(
-                                FileTypeHandler.getFileFormat(getIntent().getStringExtra("path"))));
+                openFileInEditor(openedFile);
 
             } else {
                 DrawerListDir = new File(getIntent().getStringExtra("path"));
