@@ -42,6 +42,7 @@ public class Themes {
         @Override
         public ArrayList<String> getThemes() {
             ArrayList<String> arr = new ArrayList<String>();
+            arr.addAll(new Light().getThemes());
             arr.addAll(new Dark().getThemes());
             ArrayList<String> darkThemes = new Dark().getThemes();
             return arr;
@@ -80,6 +81,7 @@ public class Themes {
         @Override
         public ArrayList<String> getThemes() {
             ArrayList<String> arr = new ArrayList<String>();
+            arr.addAll(new Light().getThemes());
             arr.addAll(new Dark().getThemes());
             return arr;
         }
