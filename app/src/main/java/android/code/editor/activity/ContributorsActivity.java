@@ -92,6 +92,13 @@ public class ContributorsActivity extends AppCompatActivity {
                                             contributors
                                                     .getJSONObject(count)
                                                     .getString("Description"));
+                                    if (!contributors.getJSONObject(count).isNull("markdownUrl")) {
+                                        _item.put(
+                                                "markdownUrl",
+                                                contributors
+                                                        .getJSONObject(count)
+                                                        .getString("markdownUrl"));
+                                    }
                                     contributorsList.add(_item);
                                 }
                             }
