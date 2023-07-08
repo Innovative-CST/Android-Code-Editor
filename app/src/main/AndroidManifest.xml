@@ -43,6 +43,9 @@
         <activity
             android:name=".activity.SettingActivity"
             android:exported="true"/>
+        <activity
+            android:name=".activity.MarkdownViewer"
+            android:exported="true"/>
     </application>
 
 </manifest>
