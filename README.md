@@ -15,6 +15,7 @@ Join our discord server to keep contact us about Android Code Editor.
         - [x] Darcula(Deprecated)
         - [x] Monokai
         - [x] Quietlight
+        - [x] Solarized_Drak
 - [x] Ace Editor.
     - Themes
         - [x] Dracula(Deprecated)

@@ -52,6 +52,7 @@ public class Themes {
         public class Dark implements ThemeSet {
             @Deprecated public static final String Darcula = "Darcula";
             public static final String Monokai = "Monokai";
+            public static final String Solarized_Drak = "Solarized_Drak";
             public static final String Default = Monokai;
 
             @Override
@@ -59,6 +60,7 @@ public class Themes {
                 ArrayList<String> arr = new ArrayList<>();
                 arr.add(Darcula);
                 arr.add(Monokai);
+                arr.add(Solarized_Drak);
                 return arr;
             }
         }
