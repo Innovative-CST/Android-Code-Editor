@@ -36,6 +36,7 @@ Join our discord server to keep contact us about Android Code Editor.
     - [x] HTML
     - [x] CSS
     - [x] XML
+    - [x] Markdown
 
 ## Thanks to
 - [tiagohm](https://github.com/tiagohm) for [MarkdownView](https://github.com/tiagohm/MarkdownView)

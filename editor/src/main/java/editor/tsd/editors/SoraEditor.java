@@ -88,6 +88,11 @@ public class SoraEditor implements Editor {
                 tmLanguage = "Editor/SoraEditor/javascript/syntaxes/JavaScript.tmLanguage.json";
                 initLanguageMode(LanguageConfigration, tmLanguage);
                 break;
+            case Language.Markdown:
+                LanguageConfigration = "Editor/SoraEditor/markdown/language-configuration.json";
+                tmLanguage = "Editor/SoraEditor/markdown/syntaxes/JavaScript.tmLanguage.json";
+                initLanguageMode(LanguageConfigration, tmLanguage);
+                break;
         }
     }
 

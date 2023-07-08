@@ -125,6 +125,9 @@ public class AceEditor implements Editor {
             case Language.JavaScript:
                 aceJSInterface.languageMode = "javascript";
                 break;
+            case Language.Markdown:
+                aceJSInterface.languageMode = "markdown";
+                break;
         }
         aceEditor.loadUrl("javascript:setLanguageMode()");
     }
