@@ -38,6 +38,7 @@ Join our discord server to keep contact us about Android Code Editor.
     - [x] XML
 
 ## Thanks to
+- [tiagohm](https://github.com/tiagohm) for [MarkdownView](https://github.com/tiagohm/MarkdownView)
 - [Pictogrammers](https://pictogrammers.com/) for awsome icons
 - [Ajaxorg](https://github.com/ajaxorg) for [Ace Editor](https://github.com/ajaxorg/ace)
 - [Rosemoe](https://github.com/Rosemoe) for the [Sora Editor](https://github.com/Rosemoe/sora-editor)
