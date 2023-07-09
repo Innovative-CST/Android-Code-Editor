@@ -44,7 +44,8 @@ import java.io.File;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class CodeEditorActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+public class CodeEditorActivity extends AppCompatActivity
+        implements TabLayout.OnTabSelectedListener {
 
     public CodeEditorLayout codeEditor;
     public ProgressBar progressbar;
@@ -306,6 +307,63 @@ public class CodeEditorActivity extends AppCompatActivity implements TabLayout.O
                                 }
                             };
                 });
+        // Set Editor Type eg. AceEditor, SoraEditor
+        codeEditor.setEditor(
+                Setting.SaveInFile.getSettingInt(
+                        Setting.Key.CodeEditor, Setting.Default.CodeEditor, this));
+        // Set Editor Theme
+        if (Setting.SaveInFile.getSettingString(
+                        Setting.Key.ThemeType, Setting.Default.ThemeType, this)
+                .equals(Setting.Value.Dark)) {
+            if (codeEditor.getCurrentEditorType() == CodeEditorLayout.SoraCodeEditor) {
+                codeEditor.setTheme(
+                        Setting.SaveInFile.getSettingString(
+                                Setting.Key.SoraCodeEditorDarkTheme,
+                                Setting.Default.SoraCodeEditorDarkTheme,
+                                this));
+            } else if (codeEditor.getCurrentEditorType() == CodeEditorLayout.AceCodeEditor) {
+                codeEditor.setTheme(
+                        Setting.SaveInFile.getSettingString(
+                                Setting.Key.AceCodeEditorDarkTheme,
+                                Setting.Default.AceCodeEditorDarkTheme,
+                                this));
+            }
+        } else if (Setting.SaveInFile.getSettingString(
+                        Setting.Key.ThemeType, Setting.Default.ThemeType, this)
+                .equals(Setting.Value.Light)) {
+            if (codeEditor.getCurrentEditorType() == CodeEditorLayout.AceCodeEditor) {
+                codeEditor.setTheme(
+                        Setting.SaveInFile.getSettingString(
+                                Setting.Key.AceCodeEditorLightTheme,
+                                Setting.Default.AceCodeEditorLightTheme,
+                                this));
+            } else if (codeEditor.getCurrentEditorType() == CodeEditorLayout.SoraCodeEditor) {
+                codeEditor.setTheme(
+                        Setting.SaveInFile.getSettingString(
+                                Setting.Key.SoraCodeEditorLightTheme,
+                                Setting.Default.SoraCodeEditorLightTheme,
+                                this));
+            }
+        }
+
+        if (getIntent().hasExtra("path")) {
+            if (new File(getIntent().getStringExtra("path")).isFile()) {
+                DrawerListDir = new File(getIntent().getStringExtra("path")).getParentFile();
+                selectPath = DrawerListDir.getAbsolutePath();
+                openedFile = new File(getIntent().getStringExtra("path"));
+                openFileInEditor(openedFile);
+
+            } else {
+                DrawerListDir = new File(getIntent().getStringExtra("path"));
+                selectPath = DrawerListDir.getAbsolutePath();
+                if (fileNotOpenedArea.getVisibility() == View.GONE
+                        || editorArea.getVisibility() == View.VISIBLE) {
+                    fileNotOpenedArea.setVisibility(View.VISIBLE);
+                    editorArea.setVisibility(View.GONE);
+                }
+            }
+            fileTree(DrawerListDir, findViewById(R.id.list));
+        }
     }
 
     // OnTabSelectedListener
@@ -382,63 +440,6 @@ public class CodeEditorActivity extends AppCompatActivity implements TabLayout.O
             if (codeEditor != null) {
                 codeEditor.release();
             }
-        }
-        // Set Editor Type eg. AceEditor, SoraEditor
-        codeEditor.setEditor(
-                Setting.SaveInFile.getSettingInt(
-                        Setting.Key.CodeEditor, Setting.Default.CodeEditor, this));
-        // Set Editor Theme
-        if (Setting.SaveInFile.getSettingString(
-                        Setting.Key.ThemeType, Setting.Default.ThemeType, this)
-                .equals(Setting.Value.Dark)) {
-            if (codeEditor.getCurrentEditorType() == CodeEditorLayout.SoraCodeEditor) {
-                codeEditor.setTheme(
-                        Setting.SaveInFile.getSettingString(
-                                Setting.Key.SoraCodeEditorDarkTheme,
-                                Setting.Default.SoraCodeEditorDarkTheme,
-                                this));
-            } else if (codeEditor.getCurrentEditorType() == CodeEditorLayout.AceCodeEditor) {
-                codeEditor.setTheme(
-                        Setting.SaveInFile.getSettingString(
-                                Setting.Key.AceCodeEditorDarkTheme,
-                                Setting.Default.AceCodeEditorDarkTheme,
-                                this));
-            }
-        } else if (Setting.SaveInFile.getSettingString(
-                        Setting.Key.ThemeType, Setting.Default.ThemeType, this)
-                .equals(Setting.Value.Light)) {
-            if (codeEditor.getCurrentEditorType() == CodeEditorLayout.AceCodeEditor) {
-                codeEditor.setTheme(
-                        Setting.SaveInFile.getSettingString(
-                                Setting.Key.AceCodeEditorLightTheme,
-                                Setting.Default.AceCodeEditorLightTheme,
-                                this));
-            } else if (codeEditor.getCurrentEditorType() == CodeEditorLayout.SoraCodeEditor) {
-                codeEditor.setTheme(
-                        Setting.SaveInFile.getSettingString(
-                                Setting.Key.SoraCodeEditorLightTheme,
-                                Setting.Default.SoraCodeEditorLightTheme,
-                                this));
-            }
-        }
-
-        if (getIntent().hasExtra("path")) {
-            if (new File(getIntent().getStringExtra("path")).isFile()) {
-                DrawerListDir = new File(getIntent().getStringExtra("path")).getParentFile();
-                selectPath = DrawerListDir.getAbsolutePath();
-                openedFile = new File(getIntent().getStringExtra("path"));
-                openFileInEditor(openedFile);
-
-            } else {
-                DrawerListDir = new File(getIntent().getStringExtra("path"));
-                selectPath = DrawerListDir.getAbsolutePath();
-                if (fileNotOpenedArea.getVisibility() == View.GONE
-                        || editorArea.getVisibility() == View.VISIBLE) {
-                    fileNotOpenedArea.setVisibility(View.VISIBLE);
-                    editorArea.setVisibility(View.GONE);
-                }
-            }
-            fileTree(DrawerListDir, findViewById(R.id.list));
         }
     }
 
