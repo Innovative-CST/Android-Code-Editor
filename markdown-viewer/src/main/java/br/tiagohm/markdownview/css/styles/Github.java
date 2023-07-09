@@ -2,7 +2,7 @@ package br.tiagohm.markdownview.css.styles;
 
 public class Github extends Bootstrap {
     public Github() {
-        addRule("body", "line-height: 1.6", "padding: 30px");
+        addRule("body", "line-height: 1.6", "padding: 10px");
         addRule("h1", "font-size: 28px");
         addRule("h2", "font-size: 24px");
         addRule("h3", "font-size: 18px");
