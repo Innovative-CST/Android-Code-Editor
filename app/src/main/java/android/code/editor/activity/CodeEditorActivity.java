@@ -306,6 +306,7 @@ public class CodeEditorActivity extends AppCompatActivity {
                                 }
                             };
                 });
+        }
         
  // OnTabSelectedListener
 
@@ -552,7 +553,6 @@ public class CodeEditorActivity extends AppCompatActivity {
                 LanguageModeHandler.getLanguageModeForExtension(
                         FileTypeHandler.getFileFormat(file.getAbsolutePath())));
     }
-}
 
 private void updateTabs() {
     TaskExecutor.executeAsyncProvideError(
@@ -570,4 +570,5 @@ private void updateTabs() {
                 }
               });
         });
+        }
 }
