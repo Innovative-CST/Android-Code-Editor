@@ -1,15 +1,14 @@
-package com.raredev.vcspace.ui.viewmodel;
+package android.code.editor.ui.viewmodel;
 
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
-import com.raredev.vcspace.models.DocumentModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditorViewModel extends ViewModel {
+public class CodeEditorViewModel extends ViewModel {
 
   private MutableLiveData<List<DocumentModel>> documents = new MutableLiveData<>(new ArrayList<>());
   private MutableLiveData<Integer> currentPosition = new MutableLiveData<>(-1);
