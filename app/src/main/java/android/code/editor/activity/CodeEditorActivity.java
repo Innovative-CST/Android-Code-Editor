@@ -44,7 +44,7 @@ import java.io.File;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class CodeEditorActivity extends AppCompatActivity {
+public class CodeEditorActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
     public CodeEditorLayout codeEditor;
     public ProgressBar progressbar;

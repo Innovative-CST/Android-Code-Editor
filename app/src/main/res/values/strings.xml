@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Android Code Editor</string>
+    <string name="close">Close</string>
+    <string name="close_others">Close Others</string>
+    <string name="close_all">Close All</string>
+    
 </resources>
