@@ -14,14 +14,18 @@ import br.tiagohm.markdownview.css.styles.Github;
 import java.io.File;
 
 public class MarkdownViewer extends AppCompatActivity {
-    
+
     public MarkdownView markdown_view;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MaterialColorHelper.setUpTheme(this);
         setContentView(R.layout.activity_markdown_viewer);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        if (getIntent().hasExtra("title")) {
+            toolbar.setTitle(getIntent().getStringExtra("title"));
+        }
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
