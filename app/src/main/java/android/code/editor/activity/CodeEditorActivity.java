@@ -59,6 +59,7 @@ public class CodeEditorActivity extends AppCompatActivity
     public String selectPath;
     public DrawerLayout drawer;
     private ObjectAnimator rotate = new ObjectAnimator();
+    private ActivityEditorBinding binding;             
     public File openedFile;
     public CodeEditorViewModel viewModel;
 
