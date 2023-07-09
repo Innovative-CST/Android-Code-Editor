@@ -65,12 +65,7 @@ public class CodeEditorActivity extends AppCompatActivity {
     public void save() {
         if (openedFile != null) {
             if (codeEditor != null) {
-                /*try {
-                Thread.sleep(5);*/
                 FileManager.writeFile(openedFile.getAbsolutePath(), codeEditor.getCode());
-                /*} catch (Exception e) {
-
-                }*/
             }
         }
     }
