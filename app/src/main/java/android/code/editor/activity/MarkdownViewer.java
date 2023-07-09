@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import br.tiagohm.markdownview.MarkdownView;
 
+import br.tiagohm.markdownview.css.styles.Github;
 import java.io.File;
 
 public class MarkdownViewer extends AppCompatActivity {
@@ -32,6 +33,11 @@ public class MarkdownViewer extends AppCompatActivity {
                     }
                 });
         markdown_view = findViewById(R.id.markdown_view);
+        if (getIntent().hasExtra("style")) {
+            if (getIntent().getStringExtra("style").equals("github")) {
+                markdown_view.addStyleSheet(new Github());
+            }
+        }
         if (getIntent().getStringExtra("type").equals("url")) {
             markdown_view.loadMarkdownFromUrl(getIntent().getStringExtra("data"));
         } else if (getIntent().getStringExtra("type").equals("file")) {

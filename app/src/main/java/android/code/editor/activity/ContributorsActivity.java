@@ -192,6 +192,7 @@ public class ContributorsActivity extends AppCompatActivity {
                                     Intent i = new Intent();
                                     i.setClass(ContributorsActivity.this, MarkdownViewer.class);
                                     i.putExtra("type", "url");
+                                    i.putExtra("style", "github");
                                     i.putExtra(
                                             "data",
                                             _data.get(_position).get("markdownUrl").toString());
