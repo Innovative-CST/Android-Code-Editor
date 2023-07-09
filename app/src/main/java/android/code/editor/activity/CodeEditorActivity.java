@@ -15,6 +15,8 @@ import android.os.Looper;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
@@ -26,13 +28,17 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProvider;
 
 import editor.tsd.editors.AceEditor;
 import editor.tsd.widget.CodeEditorLayout;
 
 import io.github.rosemoe.sora.util.ArrayList;
+import com.google.android.material.tabs.TabLayout;
 
 import java.io.File;
 import java.util.Collections;
@@ -53,6 +59,7 @@ public class CodeEditorActivity extends AppCompatActivity {
     public DrawerLayout drawer;
     private ObjectAnimator rotate = new ObjectAnimator();
     public File openedFile;
+    public CodeEditorViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -299,7 +306,82 @@ public class CodeEditorActivity extends AppCompatActivity {
                                 }
                             };
                 });
+        
+ // OnTabSelectedListener
 
+  @Override
+  public void onTabUnselected(TabLayout.Tab p1) {}
+
+  @Override
+  public void onTabReselected(TabLayout.Tab p1) {
+    PopupMenu pm = new PopupMenu(this, p1.view);
+    pm.getMenu().add(R.string.close);
+    pm.getMenu().add(R.string.close_others);
+    pm.getMenu().add(R.string.close_all);
+    pm.setOnMenuItemClickListener(
+        item -> {
+          if (item.getTitle() == getString(R.string.close)) {
+            closeFile(viewModel.getCurrentPosition());
+          } else if (item.getTitle().equals(getString(R.string.close_others))) {
+            closeOthers();
+          } else if (item.getTitle().equals(getString(R.string.close_all))) {
+            closeAllFiles();
+          }
+          return true;
+        });
+    pm.show();
+  }
+
+  @Override
+  public void onTabSelected(TabLayout.Tab p1) {
+    viewModel.setCurrentPosition(p1.getPosition());
+  }
+
+ // Document closers
+
+  public void closeFile(int index) {
+    if (index >= 0 && index < viewModel.getOpenedDocumentCount()) {
+      CodeEditorLayout codeEditor = getCodeEditorAtIndex(index);
+      if (codeEditor != null) {
+        codeEditor.release();
+      }
+
+      viewModel.removeDocument(index);
+      binding.tabLayout.removeTabAt(index);
+      binding.container.removeViewAt(index);
+      updateTabs();
+    }
+  }
+
+  public void closeOthers() {
+    DocumentModel document = viewModel.getCurrentDocument();
+    if (document == null) return;
+
+    int index = 0;
+    while (viewModel.getOpenedDocumentCount() != 1) {
+      CodeEditorLayout codeEditor = getCodeEditorAtIndex(index);
+
+      if (codeEditor != null) {
+        if (document != codeEditor.getDocument()) {
+          closeFile(index);
+        } else {
+          index = 1;
+        }
+      }
+    }
+    viewModel.setCurrentPosition(viewModel.indexOf(document));
+  }
+
+  public void closeAllFiles() {
+    if (viewModel.getDocuments().isEmpty()) {
+      return;
+    }
+    for (int i = 0; i < viewModel.getOpenedDocumentCount(); i++) {
+      CodeEditorLayout codeEditor = getCodeEditorAtIndex(i);
+      if (codeEditor != null) {
+        codeEditor.release();
+      }
+          }      
         // Set Editor Type eg. AceEditor, SoraEditor
         codeEditor.setEditor(
                 Setting.SaveInFile.getSettingInt(
@@ -470,4 +552,22 @@ public class CodeEditorActivity extends AppCompatActivity {
                 LanguageModeHandler.getLanguageModeForExtension(
                         FileTypeHandler.getFileFormat(file.getAbsolutePath())));
     }
+}
+
+private void updateTabs() {
+    TaskExecutor.executeAsyncProvideError(
+        () -> getUniqueNames(),
+        (result, error) -> {
+          if (result == null || error != null) {
+            return;
+          }
+
+          result.forEach(
+              (index, name) -> {
+                TabLayout.Tab tab = binding.tabLayout.getTabAt(index);
+                if (tab != null) {
+                  tab.setText(name);
+                }
+              });
+        });
 }
