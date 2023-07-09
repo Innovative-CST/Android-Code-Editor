@@ -59,10 +59,18 @@ public class CodeEditorActivity extends AppCompatActivity
     public String selectPath;
     public DrawerLayout drawer;
     private ObjectAnimator rotate = new ObjectAnimator();
-    private ActivityEditorBinding binding;             
+    private ActivityCodeEditorBinding binding;             
     public File openedFile;
     public CodeEditorViewModel viewModel;
 
+   // Overrides
+
+   @Override
+   public View getLayout() {
+     binding = ActivityCodeEditorBinding.inflate(getLayoutInflater());
+     return binding.getRoot();
+   }               
+                
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,7 +115,7 @@ public class CodeEditorActivity extends AppCompatActivity
 
         // Assign the layout parameters to codeEditor
 
-        codeEditor = new CodeEditorLayout(this);
+        codeEditor = new CodeEditorLayout(this);    
         codeEditor.setLayoutParams(layoutParams);
         ((LinearLayout) findViewById(R.id.editorCont)).addView(codeEditor);
 
