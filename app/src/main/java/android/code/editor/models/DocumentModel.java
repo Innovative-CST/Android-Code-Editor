@@ -1,5 +1,6 @@
 package android.code.editor.models;
 
+import android.code.editor.files.utils.FileIcon;
 import java.io.File;
 
 public class DocumentModel {
