@@ -1,6 +1,7 @@
 package editor.tsd.editors;
 
 import android.content.Context;
+import android.view.ScaleGestureDetector;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
@@ -10,10 +11,12 @@ import editor.tsd.tools.Language;
 import editor.tsd.tools.Themes;
 import editor.tsd.widget.CodeEditorLayout;
 
-public class AceEditor implements Editor {
+public class AceEditor implements Editor, ScaleGestureDetector.OnScaleGestureListener {
     public Context context;
     public WebView aceEditor;
     public AceJSInterface aceJSInterface;
+    public float fontSize = 8;
+    private ScaleGestureDetector scaleGestureDetector;
 
     public AceEditor(Context c) {
         context = c;
@@ -45,12 +48,42 @@ public class AceEditor implements Editor {
 
         // load editor file
         aceEditor.loadUrl("file:///android_asset/Editor/Ace-Editor/AceEditor/index.html");
+
+        scaleGestureDetector = new ScaleGestureDetector(context, this);
+
+        aceEditor.setOnTouchListener(
+                (view, event) -> {
+                    scaleGestureDetector.onTouchEvent(event);
+                    return false;
+                });
     }
+
+    @Override
+    public boolean onScale(ScaleGestureDetector detector) {
+        float scaleFactor = detector.getScaleFactor();
+        float newSize = fontSize * scaleFactor;
+        fontSize = newSize;
+        setFontSize(newSize);
+        return true;
+    }
+
+    @Override
+    public boolean onScaleBegin(ScaleGestureDetector detector) {
+        return true;
+    }
+
+    @Override
+    public void onScaleEnd(ScaleGestureDetector detector) {}
 
     @Override
     public void setCode(String Code) {
         aceJSInterface.UpdateCode(Code);
         aceEditor.loadUrl("javascript:setCode()");
+    }
+
+    public void setFontSize(float size) {
+        aceJSInterface.setZoom(size);
+        aceEditor.loadUrl("javascript:updateFontSize()");
     }
 
     @Override
@@ -77,6 +110,7 @@ public class AceEditor implements Editor {
         public String languageMode;
         public String code;
         public String theme;
+        public float zoom = 8;
 
         public void UpdateCode(String Code) {
             code = Code;
@@ -104,6 +138,15 @@ public class AceEditor implements Editor {
         @JavascriptInterface
         public String setCode() {
             return code;
+        }
+
+        @JavascriptInterface
+        public String getZoom() {
+            return String.valueOf(this.zoom).concat("px");
+        }
+
+        public void setZoom(float zoom) {
+            this.zoom = zoom;
         }
     }
 

@@ -120,6 +120,10 @@
 			var fileFormat = aceEditor.getLanguageMode();
 			editor.session.setMode("ace/mode/" + fileFormat);
 		}
+        
+		function updateFontSize() {
+			document.getElementById('editor').style.fontSize = aceEditor.getZoom();
+		}
 
 		function setCode() {
 			editor.setValue(aceEditor.setCode());
