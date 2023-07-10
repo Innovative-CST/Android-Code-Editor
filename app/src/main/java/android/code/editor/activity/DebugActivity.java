@@ -4,6 +4,7 @@ import android.code.editor.R;
 import android.code.editor.ui.MaterialColorHelper;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -28,7 +29,7 @@ public class DebugActivity extends AppCompatActivity {
                     public boolean onLongClick(View arg0) {
                         // TODO: Implement this method
                         ((ClipboardManager)
-                                        getSystemService(getApplicationContext().CLIPBOARD_SERVICE))
+                                        getSystemService(Context.CLIPBOARD_SERVICE))
                                 .setPrimaryClip(
                                         ClipData.newPlainText(
                                                 "clipboard", error.getText().toString()));
