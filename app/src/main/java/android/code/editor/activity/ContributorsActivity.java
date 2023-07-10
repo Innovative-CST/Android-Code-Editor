@@ -128,6 +128,7 @@ public class ContributorsActivity extends AppCompatActivity {
     public void init() {
         // Setup Toolbat
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Contributors");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
