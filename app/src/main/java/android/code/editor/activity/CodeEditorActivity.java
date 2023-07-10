@@ -407,6 +407,36 @@ public class CodeEditorActivity extends AppCompatActivity
         viewModel.setCurrentPosition(p1.getPosition());
     }
 
+  // Document Opener
+
+  public void openFile(@NonNull FileIcon file) {
+    if (!file.isFile()) {
+      return;
+    }
+    viewModel.setDrawerState(false);
+    int index = openFileAndGetIndex(file);
+    viewModel.setCurrentPosition(index);
+  }
+
+  private int openFileAndGetIndex(@NonNull FileIcon file) {
+    int openedFileIndex = viewModel.indexOf(file.getPath());
+    if (openedFileIndex != -1) {
+      return openedFileIndex;
+    }
+    DocumentModel document = DocumentModel.FileIconToDocument(file);
+    int index = viewModel.getOpenedDocumentCount();
+
+    ILogger.debug(LOG_TAG, file.getName() + " Openening at index: " + index);
+
+    CodeEditorLayout codeEditor = new CodeEditorView(this, document);
+    binding.container.addView(codeEditor);
+
+    binding.tabLayout.addTab(binding.tabLayout.newTab());
+    viewModel.addDocument(document);
+    updateTabs();
+    return index;
+    }           
+
     // Document closers
 
     public void closeFile(int index) {
