@@ -1,65 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
-     xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:app="http://schemas.android.com/apk/res-auto"
-     android:layout_height="match_parent"
-     android:layout_width="match_parent"
-     android:id="@+id/coordinator">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:id="@+id/coordinator">
 
     <LinearLayout
-         android:layout_height="match_parent"
-         android:layout_width="match_parent"
-         android:visibility="gone"
-         android:background="?attr/colorSurface"
-         android:orientation="vertical"
-         android:id="@+id/main">
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
-             android:layout_height="wrap_content"
-             android:layout_width="match_parent"
-             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
-             android:id="@+id/appbar">
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
+            android:id="@+id/appbar">
 
             <com.google.android.material.appbar.MaterialToolbar
-                 android:layout_height="?attr/actionBarSize"
-                 android:layout_width="match_parent"
-                 android:id="@+id/toolbar" />
+                android:layout_height="?attr/actionBarSize"
+                android:layout_width="match_parent"
+                android:id="@+id/toolbar"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 
         <LinearLayout
-             android:layout_height="match_parent"
-             android:layout_width="match_parent"
-             android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:background="?attr/colorSurface"
+            android:orientation="vertical"
+            android:id="@+id/main">
 
-            <androidx.recyclerview.widget.RecyclerView
-                 android:layout_height="match_parent"
-                 android:layout_width="match_parent"
-                 android:id="@+id/list" />
+            <LinearLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:id="@+id/list"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal|center_vertical"
+            android:background="?attr/colorSurface"
+            android:orientation="vertical"
+            android:id="@+id/loading">
 
-    <LinearLayout
-         android:layout_height="match_parent"
-         android:layout_width="match_parent"
-         android:gravity="center_horizontal|center_vertical"
-         android:background="?attr/colorSurface"
-         android:orientation="vertical"
-         android:id="@+id/loading">
+            <ProgressBar
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:indeterminate="true"
+                android:id="@+id/progressbar"/>
 
-        <ProgressBar
-             android:layout_height="wrap_content"
-             android:layout_width="match_parent"
-             android:indeterminate="true"
-             android:id="@+id/progressbar" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textColor="?attr/colorOnSurface"
+                android:text="Please wait..."/>
 
-        <TextView
-             android:layout_height="wrap_content"
-             android:layout_width="wrap_content"
-             android:textColor="?attr/colorOnSurface"
-             android:text="Please wait..." />
+        </LinearLayout>
 
     </LinearLayout>
 
