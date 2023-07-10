@@ -9,6 +9,7 @@ import android.code.editor.files.utils.FileTypeHandler;
 import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.utils.LanguageModeHandler;
 import android.code.editor.utils.Setting;
+import android.code.editor.ui.viewmodel.CodeEditorViewModel;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
