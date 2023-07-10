@@ -29,7 +29,7 @@ Join our discord server to keep contact us about Android Code Editor.
 - [x] Create Projects.
 - [x] File Tree.
 - [ ] Inbuilt browser for previewing HTML files.
-- [ ] Preview Mark Down file.
+- [x] Preview Mark Down file.
 - [x] Supported Language Modes
     - [x] Java
     - [x] JavaScript
