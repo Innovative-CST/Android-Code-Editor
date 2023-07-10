@@ -9,11 +9,14 @@ import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.utils.LanguageModeHandler;
 import android.code.editor.utils.Setting;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +56,8 @@ public class CodeEditorActivity extends AppCompatActivity {
     public DrawerLayout drawer;
     private ObjectAnimator rotate = new ObjectAnimator();
     public File openedFile;
+    public Menu menu;
+    public MenuItem preview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -352,6 +357,13 @@ public class CodeEditorActivity extends AppCompatActivity {
             }
             fileTree(DrawerListDir, findViewById(R.id.list));
         }
+        if (preview != null && openedFile != null) {
+            if (FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("md")) {
+                preview.setVisible(true);
+            } else {
+                preview.setVisible(false);
+            }
+        }
     }
 
     final class FileComparator implements Comparator<String> {
@@ -361,6 +373,54 @@ public class CodeEditorActivity extends AppCompatActivity {
             if (new File(f1).isFile() && new File(f2).isDirectory()) return 1;
             return f1.compareToIgnoreCase(f2);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu arg0) {
+        super.onCreateOptionsMenu(arg0);
+        // TODO: Implement this method
+        getMenuInflater().inflate(R.menu.activity_code_editor, arg0);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu arg0) {
+        // TODO: Implement this method
+        menu = arg0;
+        preview = arg0.findItem(R.id.preview);
+        if (openedFile != null) {
+            if (FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("md")) {
+                preview.setVisible(true);
+            } else {
+                preview.setVisible(false);
+            }
+        } else {
+            preview.setVisible(false);
+        }
+        return super.onPrepareOptionsMenu(arg0);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem arg0) {
+        // TODO: Implement this method
+        if (arg0.getItemId() == R.id.preview) {
+            save();
+            if (openedFile != null) {
+                if (codeEditor != null) {
+                    Intent i = new Intent();
+                    i.setClass(CodeEditorActivity.this, MarkdownViewer.class);
+                    i.putExtra("type", "file");
+                    i.putExtra("style", "github");
+                    i.putExtra(
+                            "title",
+                            FileManager.getLatSegmentOfFilePath(openedFile.getAbsolutePath()));
+                    i.putExtra("data", openedFile.getAbsolutePath());
+                    startActivity(i);
+                }
+            }
+        }
+
+        return super.onOptionsItemSelected(arg0);
     }
 
     public void fileTree(File file, ViewGroup view) {
@@ -421,6 +481,7 @@ public class CodeEditorActivity extends AppCompatActivity {
                                         case "html":
                                         case "css":
                                         case "js":
+                                        case "md":
                                             save();
                                             openFileInEditor(fil);
                                             drawer.closeDrawer(GravityCompat.END);
@@ -450,6 +511,14 @@ public class CodeEditorActivity extends AppCompatActivity {
     }
 
     public void openFileInEditor(File file) {
+        if (preview != null) {
+            if (FileManager.getPathFormat(file.getAbsolutePath()).equals("md")) {
+                preview.setVisible(true);
+            } else {
+                preview.setVisible(false);
+            }
+        }
+
         fileNotOpenedArea.setVisibility(View.GONE);
         editorArea.setVisibility(View.VISIBLE);
         progressbar.setVisibility(View.VISIBLE);
