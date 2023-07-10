@@ -55,10 +55,6 @@
 		}
 	</style>
 
-	<script src="//cdn.jsdelivr.net/npm/eruda"></script>
-	<script>
-		eruda.init();
-	</script>
 	<script>
 		class MyJSInterface {
 			getCursorStyle() {
@@ -86,7 +82,7 @@
 		var enableBasicAutocompletion = JSInterface.getEnableBasicAutocompletion();
 		var enableSnippets = JSInterface.getEnableSnippets();
 		var enableLiveAutocompletion = JSInterface.getEnableLiveAutocompletion();
-		
+
 		// New editor
 		var editor = ace.edit("editor");
 		// Disable use soft tabs
@@ -107,15 +103,10 @@
 			editor.setTheme('ace/theme/' + aceEditor.getAceEditorTheme());
 		}
 
-		function setEditorFontSize() {
-			document.getElementById('editor').style.fontSize = aceEditor.getAceEditorFontSize();
+		function setLanguageMode() {
+			editor.session.setMode("ace/mode/" + aceEditor.getLanguageMode());
 		}
 
-		function setLanguageMode() {
-			var fileFormat = aceEditor.getLanguageMode();
-			editor.session.setMode("ace/mode/" + fileFormat);
-		}
-        
 		function updateFontSize() {
 			document.getElementById('editor').style.fontSize = aceEditor.getZoom();
 		}
@@ -124,11 +115,7 @@
 			editor.setValue(aceEditor.setCode());
 			editor.clearSelection();
 		}
-		
-		function getFileFormat(path){
-			return path.substring(path.lastIndexOf('.') + 1);
-		}
-		
+
 		function putCodeToJava() {
 			aceEditor.getCode(editor.getValue());
 		}
