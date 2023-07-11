@@ -525,6 +525,10 @@ public class CodeEditorActivity extends AppCompatActivity {
             FileTabDataItem obj = new FileTabDataItem();
             obj.filePath = file.getAbsolutePath();
             FileTabDataOperator.addPath(fileTabData, obj);
+            adapter.setActiveTab(FileTabDataOperator.getPosition(fileTabData, file.getAbsolutePath()));
+            adapter.notifyDataSetChanged();
+        } else {
+            adapter.setActiveTab(FileTabDataOperator.getPosition(fileTabData, file.getAbsolutePath()));
             adapter.notifyDataSetChanged();
         }
 
@@ -572,6 +576,15 @@ public class CodeEditorActivity extends AppCompatActivity {
                     data.remove(position);
                 }
             }
+        }
+        
+        public static int getPosition(ArrayList<FileTabDataItem> data, String path) {
+            for (int position = 0; position < data.size(); position++) {
+                if (data.get(position).filePath.equals(path)) {
+                    return position;
+                }
+            }
+            return -1;
         }
 
         public static void addPath(ArrayList<FileTabDataItem> data, FileTabDataItem obj) {

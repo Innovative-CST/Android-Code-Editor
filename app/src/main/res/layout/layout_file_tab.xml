@@ -18,6 +18,7 @@
         android:textColor="?attr/colorOnSurface"/>
 
     <ImageView
+        android:id="@+id/tabIndicator"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:src="@drawable/ic_file_tab_indicator"
