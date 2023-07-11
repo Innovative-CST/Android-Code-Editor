@@ -25,7 +25,6 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-
         <ProgressBar
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
@@ -33,6 +32,11 @@
             android:indeterminate="true"
             style="?android:progressBarStyleHorizontal"
             android:id="@+id/progressbar"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/fileTab"/>
 
         <LinearLayout
             android:id="@+id/editorArea"

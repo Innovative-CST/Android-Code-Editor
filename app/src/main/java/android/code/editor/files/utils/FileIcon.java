@@ -1,7 +1,6 @@
 package android.code.editor.files.utils;
 
 import android.code.editor.R;
-import android.code.editor.utils.Git;
 import android.content.Context;
 import android.widget.ImageView;
 

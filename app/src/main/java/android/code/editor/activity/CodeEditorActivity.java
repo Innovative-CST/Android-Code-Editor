@@ -2,6 +2,7 @@ package android.code.editor.activity;
 
 import android.animation.ObjectAnimator;
 import android.code.editor.R;
+import android.code.editor.adapter.FileTabAdapter;
 import android.code.editor.files.utils.FileIcon;
 import android.code.editor.files.utils.FileManager;
 import android.code.editor.files.utils.FileTypeHandler;
@@ -31,13 +32,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import editor.tsd.editors.AceEditor;
 import editor.tsd.widget.CodeEditorLayout;
 
-import io.github.rosemoe.sora.util.ArrayList;
-
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -58,6 +59,9 @@ public class CodeEditorActivity extends AppCompatActivity {
     public File openedFile;
     public Menu menu;
     public MenuItem preview;
+    public RecyclerView fileTab;
+    public FileTabAdapter adapter;
+    public ArrayList<FileTabDataItem> fileTabData = new ArrayList<FileTabDataItem>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +95,7 @@ public class CodeEditorActivity extends AppCompatActivity {
         moveDown = findViewById(R.id.moveDown);
         editorArea = findViewById(R.id.editorArea);
         fileNotOpenedArea = findViewById(R.id.fileNotOpenedArea);
+        fileTab = findViewById(R.id.fileTab);
 
         ViewGroup.LayoutParams layoutParams =
                 new ViewGroup.LayoutParams(
@@ -338,6 +343,11 @@ public class CodeEditorActivity extends AppCompatActivity {
                                 this));
             }
         }
+        
+        adapter = new FileTabAdapter(fileTabData, CodeEditorActivity.this);
+        fileTab.setAdapter(adapter);
+        fileTab.setLayoutManager(
+                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         if (getIntent().hasExtra("path")) {
             if (new File(getIntent().getStringExtra("path")).isFile()) {
@@ -511,6 +521,13 @@ public class CodeEditorActivity extends AppCompatActivity {
     }
 
     public void openFileInEditor(File file) {
+        if (!FileTabDataOperator.isContainsPath(fileTabData, file.getAbsolutePath())) {
+            FileTabDataItem obj = new FileTabDataItem();
+            obj.filePath = file.getAbsolutePath();
+            FileTabDataOperator.addPath(fileTabData, obj);
+            adapter.notifyDataSetChanged();
+        }
+
         if (preview != null) {
             if (FileManager.getPathFormat(file.getAbsolutePath()).equals("md")) {
                 preview.setVisible(true);
@@ -533,5 +550,34 @@ public class CodeEditorActivity extends AppCompatActivity {
         codeEditor.setLanguageMode(
                 LanguageModeHandler.getLanguageModeForExtension(
                         FileTypeHandler.getFileFormat(file.getAbsolutePath())));
+    }
+
+    public class FileTabDataItem {
+        public String filePath = "";
+    }
+
+    public class FileTabDataOperator {
+        public static boolean isContainsPath(ArrayList<FileTabDataItem> data, String path) {
+            for (int position = 0; position < data.size(); position++) {
+                if (data.get(position).filePath.equals(path)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static void removePath(ArrayList<FileTabDataItem> data, String path) {
+            for (int position = 0; position < data.size(); position++) {
+                if (data.get(position).filePath.equals(path)) {
+                    data.remove(position);
+                }
+            }
+        }
+
+        public static void addPath(ArrayList<FileTabDataItem> data, FileTabDataItem obj) {
+            if (!isContainsPath(data, obj.filePath)) {
+                data.add(obj);
+            }
+        }
     }
 }
