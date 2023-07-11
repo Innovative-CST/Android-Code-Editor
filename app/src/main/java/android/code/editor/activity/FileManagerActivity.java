@@ -130,11 +130,6 @@ public class FileManagerActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(arg0);
     }
 
-    private static void onProjectListUpdate() {
-        // TODO: Implement this method
-
-    }
-
     private void initViews() {
         // Setup toolbar
         FloatingActionButton fab = findViewById(R.id.fab);
