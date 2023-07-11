@@ -343,7 +343,7 @@ public class CodeEditorActivity extends AppCompatActivity {
                                 this));
             }
         }
-        
+
         adapter = new FileTabAdapter(fileTabData, CodeEditorActivity.this);
         fileTab.setAdapter(adapter);
         fileTab.setLayoutManager(
@@ -525,12 +525,9 @@ public class CodeEditorActivity extends AppCompatActivity {
             FileTabDataItem obj = new FileTabDataItem();
             obj.filePath = file.getAbsolutePath();
             FileTabDataOperator.addPath(fileTabData, obj);
-            adapter.setActiveTab(FileTabDataOperator.getPosition(fileTabData, file.getAbsolutePath()));
-            adapter.notifyDataSetChanged();
-        } else {
-            adapter.setActiveTab(FileTabDataOperator.getPosition(fileTabData, file.getAbsolutePath()));
-            adapter.notifyDataSetChanged();
         }
+        adapter.setActiveTab(FileTabDataOperator.getPosition(fileTabData, file.getAbsolutePath()));
+        adapter.notifyDataSetChanged();
 
         if (preview != null) {
             if (FileManager.getPathFormat(file.getAbsolutePath()).equals("md")) {
@@ -577,7 +574,7 @@ public class CodeEditorActivity extends AppCompatActivity {
                 }
             }
         }
-        
+
         public static int getPosition(ArrayList<FileTabDataItem> data, String path) {
             for (int position = 0; position < data.size(); position++) {
                 if (data.get(position).filePath.equals(path)) {
