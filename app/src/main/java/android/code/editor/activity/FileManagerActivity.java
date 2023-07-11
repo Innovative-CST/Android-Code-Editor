@@ -6,7 +6,6 @@ import android.code.editor.files.utils.FileManager;
 import android.code.editor.files.utils.FileTypeHandler;
 import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.utils.FolderCreatorDialog;
-import android.code.editor.utils.Git;
 import android.code.editor.utils.ProjectCreatorDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -245,8 +244,6 @@ public class FileManagerActivity extends AppCompatActivity {
             mainlayout = _view.findViewById(R.id.layout);
             icon = _view.findViewById(R.id.icon);
             path = _view.findViewById(R.id.path);
-            gitIcon = _view.findViewById(R.id.git);
-            gitIcon.setVisibility(View.GONE);
             FileIcon.setUpIcon(
                     FileManagerActivity.this, _data.get(_position).get("path").toString(), icon);
             path.setText(_data.get(_position).get("lastSegmentOfFilePath").toString());
@@ -255,12 +252,6 @@ public class FileManagerActivity extends AppCompatActivity {
             fileTypeHandler.handleFile(new File(path));
             fileTypeHandler.setTargetView(mainlayout);
             fileTypeHandler.startHandling();
-            if (new File(_data.get(_position).get("path").toString()).isDirectory()) {
-                if (Git.isGitRepository(
-                        new File(new File(_data.get(_position).get("path").toString()), ".git"))) {
-                    gitIcon.setVisibility(View.VISIBLE);
-                }
-            }
         }
 
         @Override

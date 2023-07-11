@@ -42,16 +42,6 @@
             android:layout_weight="1"
             android:id="@+id/path"/>
 
-        <ImageView
-            android:layout_height="25dp"
-            android:layout_width="25dp"
-            android:visibility="gone"
-            android:scaleType="fitCenter"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/git_icon"
-            android:tint="?attr/colorOnSurface"
-            android:id="@+id/git"/>
-
     </LinearLayout>
 
     <LinearLayout
