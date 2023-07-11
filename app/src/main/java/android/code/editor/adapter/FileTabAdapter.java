@@ -12,15 +12,17 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class FileTabAdapter extends RecyclerView.Adapter<FileTabAdapter.ViewHolder> {
     public ArrayList<CodeEditorActivity.FileTabDataItem> fileTabData =
             new ArrayList<CodeEditorActivity.FileTabDataItem>();
-    public Activity activity;
+    public CodeEditorActivity activity;
     public int activeTab;
 
-    public FileTabAdapter(ArrayList<CodeEditorActivity.FileTabDataItem> _arr, Activity activity) {
+    public FileTabAdapter(
+            ArrayList<CodeEditorActivity.FileTabDataItem> _arr, CodeEditorActivity activity) {
         this.activity = activity;
         fileTabData = _arr;
     }
@@ -47,6 +49,14 @@ public class FileTabAdapter extends RecyclerView.Adapter<FileTabAdapter.ViewHold
         } else {
             ((ImageView) _view.findViewById(R.id.tabIndicator)).setVisibility(View.GONE);
         }
+
+        _view.findViewById(R.id.root)
+                .setOnClickListener(
+                        (view) -> {
+                            activity.save();
+                            activity.openFileInEditor(
+                                    new File(fileTabData.get(_position).filePath));
+                        });
     }
 
     @Override
@@ -59,7 +69,7 @@ public class FileTabAdapter extends RecyclerView.Adapter<FileTabAdapter.ViewHold
             super(v);
         }
     }
-    
+
     public void setActiveTab(int pos) {
         activeTab = pos;
     }

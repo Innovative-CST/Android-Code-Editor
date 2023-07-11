@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
     android:orientation="vertical"
-    android:id="@+id/coordinator"
+    android:id="@+id/root"
     android:paddingLeft="8dp"
     android:background="@drawable/ripple_on_color_surface">
 
