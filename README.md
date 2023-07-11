@@ -3,6 +3,9 @@
 “The Android code editor is an open-source project available on Github, developed with the love and contributions of developers. It supports both the Sora code editor and the Ace code editor, making it a versatile tool for writing and editing code on Android devices.”
 It is the beginning of this app and I hope it will available soon for users.
 
+## WARNING
+Please keep a backup of files that you are trying to edit with Android Code Editor.
+
 ## Discord
 Join our discord server to keep contact us about Android Code Editor.
 
