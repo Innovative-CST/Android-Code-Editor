@@ -526,6 +526,7 @@ public class CodeEditorActivity extends AppCompatActivity {
             obj.filePath = file.getAbsolutePath();
             FileTabDataOperator.addPath(fileTabData, obj);
         }
+        adapter.fileTabData = fileTabData;
         adapter.setActiveTab(FileTabDataOperator.getPosition(fileTabData, file.getAbsolutePath()));
         adapter.notifyDataSetChanged();
 

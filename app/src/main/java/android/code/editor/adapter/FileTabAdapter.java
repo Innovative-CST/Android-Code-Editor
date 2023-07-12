@@ -1,6 +1,5 @@
 package android.code.editor.adapter;
 
-import android.app.Activity;
 import android.code.editor.R;
 import android.code.editor.activity.CodeEditorActivity;
 import android.code.editor.files.utils.FileManager;
@@ -62,6 +61,8 @@ public class FileTabAdapter extends RecyclerView.Adapter<FileTabAdapter.ViewHold
                                         new PopupMenu(activity, _view.findViewById(R.id.root));
                                 Menu menu = popupMenu.getMenu();
                                 menu.add("Close this");
+                                menu.add("Close others");
+                                menu.add("Close All");
 
                                 popupMenu.setOnMenuItemClickListener(
                                         item -> {
@@ -104,17 +105,44 @@ public class FileTabAdapter extends RecyclerView.Adapter<FileTabAdapter.ViewHold
                                                                         positionOfCloser);
                                                                 activity.openFileInEditor(
                                                                         new File(
-                                                                                fileTabData.get(positionOfCloser)
+                                                                                fileTabData.get(
+                                                                                                positionOfCloser)
                                                                                         .filePath));
                                                             }
                                                         }
                                                     } else {
                                                         activity.fileNotOpenedArea.setVisibility(
                                                                 View.VISIBLE);
-                                                        activity.editorArea.setVisibility(View.GONE);
+                                                        activity.editorArea.setVisibility(
+                                                                View.GONE);
                                                     }
+                                                    activity.fileTabData = fileTabData;
+                                                    activity.adapter.notifyDataSetChanged();
+                                                    break;
+                                                case "Close others":
+                                                    CodeEditorActivity.FileTabDataItem fileTabItem =
+                                                            fileTabData.get(
+                                                                    CodeEditorActivity
+                                                                            .FileTabDataOperator
+                                                                            .getPosition(
+                                                                                    fileTabData,
+                                                                                    fileTabData.get(
+                                                                                                    _position)
+                                                                                            .filePath));
+                                                    fileTabData.clear();
+                                                    activeTab = 0;
+                                                    fileTabData.add(fileTabItem);
                                                     activity.adapter.notifyDataSetChanged();
                                                     activity.fileTabData = fileTabData;
+                                                    break;
+                                                case "Close All":
+                                                    fileTabData.clear();
+                                                    activeTab = 0;
+                                                    activity.adapter.notifyDataSetChanged();
+                                                    activity.fileTabData = fileTabData;
+                                                    activity.fileNotOpenedArea.setVisibility(
+                                                            View.VISIBLE);
+                                                    activity.editorArea.setVisibility(View.GONE);
                                                     break;
                                             }
                                             return true;
