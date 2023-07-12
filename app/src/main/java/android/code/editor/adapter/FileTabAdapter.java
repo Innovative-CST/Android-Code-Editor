@@ -5,11 +5,13 @@ import android.code.editor.R;
 import android.code.editor.activity.CodeEditorActivity;
 import android.code.editor.files.utils.FileManager;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
@@ -44,12 +46,6 @@ public class FileTabAdapter extends RecyclerView.Adapter<FileTabAdapter.ViewHold
         View _view = _holder.itemView;
         ((TextView) _view.findViewById(R.id.fileName))
                 .setText(FileManager.getLatSegmentOfFilePath(fileTabData.get(_position).filePath));
-        if (activeTab == _position) {
-            ((ImageView) _view.findViewById(R.id.tabIndicator)).setVisibility(View.VISIBLE);
-        } else {
-            ((ImageView) _view.findViewById(R.id.tabIndicator)).setVisibility(View.GONE);
-        }
-
         _view.findViewById(R.id.root)
                 .setOnClickListener(
                         (view) -> {
@@ -57,6 +53,77 @@ public class FileTabAdapter extends RecyclerView.Adapter<FileTabAdapter.ViewHold
                             activity.openFileInEditor(
                                     new File(fileTabData.get(_position).filePath));
                         });
+        if (activeTab == _position) {
+            ((ImageView) _view.findViewById(R.id.tabIndicator)).setVisibility(View.VISIBLE);
+            _view.findViewById(R.id.root)
+                    .setOnClickListener(
+                            (view) -> {
+                                PopupMenu popupMenu =
+                                        new PopupMenu(activity, _view.findViewById(R.id.root));
+                                Menu menu = popupMenu.getMenu();
+                                menu.add("Close this");
+
+                                popupMenu.setOnMenuItemClickListener(
+                                        item -> {
+                                            switch (item.getTitle().toString()) {
+                                                case "Close this":
+                                                    int positionOfCloser =
+                                                            CodeEditorActivity.FileTabDataOperator
+                                                                    .getPosition(
+                                                                            fileTabData,
+                                                                            fileTabData.get(
+                                                                                            _position)
+                                                                                    .filePath);
+                                                    if (activeTab == positionOfCloser) {
+                                                        activity.save();
+                                                    }
+                                                    fileTabData.remove(positionOfCloser);
+
+                                                    if (fileTabData.size() != 0) {
+                                                        if (positionOfCloser == 0) {
+                                                            activity.adapter.setActiveTab(
+                                                                    positionOfCloser);
+                                                            activity.openFileInEditor(
+                                                                    new File(
+                                                                            fileTabData.get(
+                                                                                            positionOfCloser)
+                                                                                    .filePath));
+                                                        } else {
+                                                            if (positionOfCloser + 1
+                                                                    > fileTabData.size()) {
+                                                                activity.adapter.setActiveTab(
+                                                                        positionOfCloser - 1);
+                                                                activity.openFileInEditor(
+                                                                        new File(
+                                                                                fileTabData.get(
+                                                                                                positionOfCloser
+                                                                                                        - 1)
+                                                                                        .filePath));
+                                                            } else {
+                                                                activity.adapter.setActiveTab(
+                                                                        positionOfCloser);
+                                                                activity.openFileInEditor(
+                                                                        new File(
+                                                                                fileTabData.get(positionOfCloser)
+                                                                                        .filePath));
+                                                            }
+                                                        }
+                                                    } else {
+                                                        activity.fileNotOpenedArea.setVisibility(
+                                                                View.VISIBLE);
+                                                        activity.editorArea.setVisibility(View.GONE);
+                                                    }
+                                                    activity.adapter.notifyDataSetChanged();
+                                                    activity.fileTabData = fileTabData;
+                                                    break;
+                                            }
+                                            return true;
+                                        });
+                                popupMenu.show();
+                            });
+        } else {
+            ((ImageView) _view.findViewById(R.id.tabIndicator)).setVisibility(View.GONE);
+        }
     }
 
     @Override
