@@ -44,24 +44,19 @@ android {
 
 dependencies {
 	implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
-    
-	def editorGroupId = "io.github.Rosemoe.sora-editor"
+	implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
+	implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.code.gson:gson:2.8.7'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+    def editorGroupId = "io.github.Rosemoe.sora-editor"
 	implementation platform("$editorGroupId:bom:0.21.1")
 	implementation "$editorGroupId:editor"
 	implementation "$editorGroupId:language-textmate"
-	
-	implementation "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
-	implementation 'androidx.appcompat:appcompat:1.4.0'
-	
-	implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
 	implementation 'jp.wasabeef:glide-transformations:4.3.0'
-	implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
-
-	implementation 'com.google.code.gson:gson:2.8.7'
-	implementation 'com.squareup.okhttp3:okhttp:3.9.1'
-    
-	implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-	implementation 'com.google.android.material:material:1.8.0'
     
     implementation project(path:':markdown-viewer')
 	implementation project(path:':editor')
