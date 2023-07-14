@@ -46,6 +46,9 @@
         <activity
             android:name=".activity.MarkdownViewer"
             android:exported="true"/>
+        <activity
+            android:name=".activity.LicenseActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

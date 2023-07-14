@@ -86,6 +86,7 @@ public class FileManagerActivity extends AppCompatActivity {
             Menu menu = popupMenu.getMenu();
             menu.add("New folder");
             menu.add("New Project");
+            menu.add("Open Source Licenses");
             menu.add("Contributors");
             menu.add("Settings");
 
@@ -122,6 +123,11 @@ public class FileManagerActivity extends AppCompatActivity {
                                 setting.setClass(FileManagerActivity.this, SettingActivity.class);
                                 startActivity(setting);
                                 break;
+                            case "Open Source Licenses":
+                                Intent license = new Intent();
+                                license.setClass(FileManagerActivity.this, LicenseActivity.class);
+                                startActivity(license);
+                        break;
                         }
                         return true;
                     });
