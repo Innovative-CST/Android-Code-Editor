@@ -14,9 +14,11 @@ public class FileTypeHandler {
     private File file;
     private View view;
     private Context context;
+    public FileManagerActivity fileManagerActivity;
 
-    public FileTypeHandler(Context context) {
+    public FileTypeHandler(Context context, FileManagerActivity fileManagerActivity) {
         this.context = context;
+        this.fileManagerActivity = fileManagerActivity;
     }
 
     public void handleFile(File file) {
@@ -34,10 +36,7 @@ public class FileTypeHandler {
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent();
-                            intent.putExtra("path", file.getAbsolutePath());
-                            intent.setClass(context, FileManagerActivity.class);
-                            context.startActivity(intent);
+                            fileManagerActivity.loadFileList(file.getAbsolutePath());
                         }
                     });
         } else {

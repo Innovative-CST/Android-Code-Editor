@@ -41,6 +41,8 @@ public class FileManagerActivity extends AppCompatActivity {
     private ProgressBar progressbar;
     private RecyclerView list;
     private FileList filelist;
+    private String initialDir;
+    private String currentDir;
 
     public ArrayList<String> listString = new ArrayList<>();
     public ArrayList<HashMap<String, Object>> listMap = new ArrayList<>();
@@ -52,7 +54,9 @@ public class FileManagerActivity extends AppCompatActivity {
         // Set Layout in Activity
         setContentView(R.layout.activity_file_manager);
         initActivity();
-        loadFileList(getIntent().getStringExtra("path"));
+        initialDir = getIntent().getStringExtra("path");
+        currentDir = getIntent().getStringExtra("path");
+        loadFileList(initialDir);
     }
 
     public void initActivity() {
@@ -166,6 +170,9 @@ public class FileManagerActivity extends AppCompatActivity {
     }
 
     public void loadFileList(String path) {
+        listString.clear();
+        listMap.clear();
+        currentDir = path;
         ExecutorService loadFileList = Executors.newSingleThreadExecutor();
 
         loadFileList.execute(
@@ -204,14 +211,10 @@ public class FileManagerActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        // TODO: Implement this method
-        if (Environment.getExternalStorageDirectory()
-                .getAbsolutePath()
-                .equals(getIntent().getStringExtra("path"))) {
+        if (initialDir.equals(currentDir)) {
             finishAffinity();
         } else {
-            finish();
+            loadFileList(new File(currentDir).getParent());
         }
     }
 
@@ -263,7 +266,7 @@ public class FileManagerActivity extends AppCompatActivity {
                         icon);
                 path.setText(_data.get(_position - 1).get("lastSegmentOfFilePath").toString());
                 String path = _data.get(_position - 1).get("path").toString();
-                FileTypeHandler fileTypeHandler = new FileTypeHandler(FileManagerActivity.this);
+                FileTypeHandler fileTypeHandler = new FileTypeHandler(FileManagerActivity.this, FileManagerActivity.this);
                 fileTypeHandler.handleFile(new File(path));
                 fileTypeHandler.setTargetView(mainlayout);
                 fileTypeHandler.startHandling();
