@@ -32,7 +32,7 @@ public class MaterialColorHelper {
                 theme = R.style.GreenDark;
                 break;
             default:
-                return R.style.GreenLight;
+                return R.style.BrownishLight;
         }
         return theme;
     }
