@@ -45,7 +45,7 @@ public class Setting {
         public static final int CodeEditor = CodeEditorLayout.AceCodeEditor;
         public static final String Theme = "BrownishLight";
         public static final String NewTheme = Theme;
-        public static final String ThemeType = Value.Dark;
+        public static final String ThemeType = Value.Light;
         public static final String NewThemeType = ThemeType;
         public static final String AceCodeEditorLightTheme = Themes.AceEditorTheme.Light.Default;
         public static final String AceCodeEditorDarkTheme = Themes.AceEditorTheme.Dark.Default;
