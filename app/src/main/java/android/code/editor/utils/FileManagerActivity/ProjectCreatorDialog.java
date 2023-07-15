@@ -1,4 +1,4 @@
-package android.code.editor.utils;
+package android.code.editor.utils.FileManagerActivity;
 
 import android.code.editor.R;
 import android.code.editor.files.utils.FileManager;

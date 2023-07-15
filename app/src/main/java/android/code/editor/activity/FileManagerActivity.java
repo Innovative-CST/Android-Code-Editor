@@ -5,12 +5,11 @@ import android.code.editor.files.utils.FileIcon;
 import android.code.editor.files.utils.FileManager;
 import android.code.editor.files.utils.FileTypeHandler;
 import android.code.editor.ui.MaterialColorHelper;
-import android.code.editor.utils.FolderCreatorDialog;
-import android.code.editor.utils.ProjectCreatorDialog;
+import android.code.editor.utils.FileManagerActivity.FolderCreatorDialog;
+import android.code.editor.utils.FileManagerActivity.ProjectCreatorDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Environment;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.view.LayoutInflater;
@@ -266,7 +265,8 @@ public class FileManagerActivity extends AppCompatActivity {
                         icon);
                 path.setText(_data.get(_position - 1).get("lastSegmentOfFilePath").toString());
                 String path = _data.get(_position - 1).get("path").toString();
-                FileTypeHandler fileTypeHandler = new FileTypeHandler(FileManagerActivity.this, FileManagerActivity.this);
+                FileTypeHandler fileTypeHandler =
+                        new FileTypeHandler(FileManagerActivity.this, FileManagerActivity.this);
                 fileTypeHandler.handleFile(new File(path));
                 fileTypeHandler.setTargetView(mainlayout);
                 fileTypeHandler.startHandling();
