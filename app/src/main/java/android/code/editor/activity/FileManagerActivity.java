@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -127,7 +129,7 @@ public class FileManagerActivity extends AppCompatActivity {
                                 Intent license = new Intent();
                                 license.setClass(FileManagerActivity.this, LicenseActivity.class);
                                 startActivity(license);
-                        break;
+                                break;
                         }
                         return true;
                     });
@@ -228,7 +230,16 @@ public class FileManagerActivity extends AppCompatActivity {
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
+            if (viewType == 1) {
+                LayoutInflater _inflater = getLayoutInflater();
+                View _v = _inflater.inflate(R.layout.report_issues, null);
+                RecyclerView.LayoutParams _lp =
+                        new RecyclerView.LayoutParams(
+                                ViewGroup.LayoutParams.MATCH_PARENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT);
+                _v.setLayoutParams(_lp);
+                return new ViewHolder(_v);
+            }
             LayoutInflater _inflater = getLayoutInflater();
             View _v = _inflater.inflate(R.layout.filelist, null);
             RecyclerView.LayoutParams _lp =
@@ -241,23 +252,40 @@ public class FileManagerActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(ViewHolder _holder, final int _position) {
-            View _view = _holder.itemView;
-            mainlayout = _view.findViewById(R.id.layout);
-            icon = _view.findViewById(R.id.icon);
-            path = _view.findViewById(R.id.path);
-            FileIcon.setUpIcon(
-                    FileManagerActivity.this, _data.get(_position).get("path").toString(), icon);
-            path.setText(_data.get(_position).get("lastSegmentOfFilePath").toString());
-            String path = _data.get(_position).get("path").toString();
-            FileTypeHandler fileTypeHandler = new FileTypeHandler(FileManagerActivity.this);
-            fileTypeHandler.handleFile(new File(path));
-            fileTypeHandler.setTargetView(mainlayout);
-            fileTypeHandler.startHandling();
+            if (_position != 0) {
+                View _view = _holder.itemView;
+                mainlayout = _view.findViewById(R.id.layout);
+                icon = _view.findViewById(R.id.icon);
+                path = _view.findViewById(R.id.path);
+                FileIcon.setUpIcon(
+                        FileManagerActivity.this,
+                        _data.get(_position - 1).get("path").toString(),
+                        icon);
+                path.setText(_data.get(_position - 1).get("lastSegmentOfFilePath").toString());
+                String path = _data.get(_position - 1).get("path").toString();
+                FileTypeHandler fileTypeHandler = new FileTypeHandler(FileManagerActivity.this);
+                fileTypeHandler.handleFile(new File(path));
+                fileTypeHandler.setTargetView(mainlayout);
+                fileTypeHandler.startHandling();
+            } else {
+                View _view = _holder.itemView;
+                ((TextView) _view.findViewById(R.id.text)).setAutoLinkMask(Linkify.WEB_URLS);
+                ((TextView) _view.findViewById(R.id.text))
+                        .setMovementMethod(LinkMovementMethod.getInstance());
+            }
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            if (position == 0) {
+                return 1;
+            }
+            return 0;
         }
 
         @Override
         public int getItemCount() {
-            return _data.size();
+            return _data.size() + 1;
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {

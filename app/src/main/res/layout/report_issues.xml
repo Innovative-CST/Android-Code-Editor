@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:padding="8dp"
+    android:id="@+id/coordinator">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:padding="8dp"
+            android:background="?attr/colorPrimaryContainer">
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textColor="?attr/colorPrimary"
+                android:text="Please submit issues, pull request and your suggestion on GitHub at https://github.com/TS-Code-Editor/Android-Code-Editor"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
