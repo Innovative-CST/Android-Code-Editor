@@ -6,10 +6,10 @@ import android.content.Context;
 
 public class MaterialColorHelper {
     public static void setUpTheme(Context context) {
-        context.setTheme(getCurrentTheme(context));
+        // context.setTheme(getCurrentTheme(context));
     }
 
-    public static int getCurrentTheme(Context context) {
+    /*public static int getCurrentTheme(Context context) {
         int theme;
         switch (Setting.SaveInFile.getSettingString(
                 Setting.Key.Theme, Setting.Default.Theme, context)) {
@@ -35,5 +35,5 @@ public class MaterialColorHelper {
                 return R.style.BrownishLight;
         }
         return theme;
-    }
+    }*/
 }

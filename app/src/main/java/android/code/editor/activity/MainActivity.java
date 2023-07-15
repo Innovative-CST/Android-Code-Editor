@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import androidx.annotation.CallSuper;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -40,7 +41,14 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
     protected void onCreate(Bundle savedInstanceState) {
         // Enable logging in Sketchware pro
         // SketchLogger.startLogging();
-
+        switch (SettingActivity.getThemeTypeInInt(this)) {
+            case 0:
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                break;
+            case 1:
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                break;
+        }
         super.onCreate(savedInstanceState);
         MaterialColorHelper.setUpTheme(this);
         setContentView(R.layout.activity_main);

@@ -3,6 +3,7 @@ package android.code.editor.activity;
 import android.code.editor.R;
 import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.utils.Setting;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -26,17 +28,13 @@ import java.util.ArrayList;
 public class SettingActivity extends AppCompatActivity {
     public Spinner editorChooser;
     ArrayList<String> data = new ArrayList<>();
+    ArrayList<String> uiMode = new ArrayList<>();
     ArrayList<String> aceEditorThemes = new ArrayList<>();
     ArrayList<String> soraEditorThemes = new ArrayList<>();
 
-    public LinearLayout theme1;
-    public LinearLayout theme2;
-    public LinearLayout theme3;
-    public LinearLayout theme4;
-    public LinearLayout theme5;
-    public LinearLayout theme6;
     public Spinner aceEditorThemeChooser;
     public Spinner soraEditorThemeChooser;
+    public Spinner themeChooser;
 
     @Override
     protected void onCreate(Bundle arg0) {
@@ -62,6 +60,13 @@ public class SettingActivity extends AppCompatActivity {
         editorChooser = findViewById(R.id.editorChooser);
         aceEditorThemeChooser = findViewById(R.id.aceEditorThemeChooser);
         soraEditorThemeChooser = findViewById(R.id.soraEditorThemeChooser);
+        themeChooser = findViewById(R.id.themeChooser);
+
+        uiMode.add("Light");
+        uiMode.add("Dark");
+
+        themeChooser.setAdapter(new themeChooserAdapter(uiMode));
+        themeChooser.setSelection(getThemeTypeInInt(SettingActivity.this));
 
         data.add("Ace Code Editor");
         data.add("Sora Code Editor");
@@ -71,7 +76,6 @@ public class SettingActivity extends AppCompatActivity {
                 Setting.SaveInFile.getSettingInt(
                         Setting.Key.CodeEditor, Setting.Default.CodeEditor, this));
         initEditorThemeList();
-        initTheme();
         editorChooser.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -93,99 +97,52 @@ public class SettingActivity extends AppCompatActivity {
                     @Override
                     public void onNothingSelected(AdapterView<?> _param1) {}
                 });
+
+        themeChooser.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(
+                            AdapterView<?> _param1, View _param2, int _param3, long _param4) {
+                        if (_param3 == 0) {
+                            int theme = getThemeTypeInInt(SettingActivity.this);
+                            Setting.SaveInFile.setSetting(
+                                    Setting.Key.ThemeType,
+                                    Setting.Value.Light,
+                                    SettingActivity.this);
+                            if (!(theme == _param3)) {
+                                AppCompatDelegate.setDefaultNightMode(
+                                        AppCompatDelegate.MODE_NIGHT_NO);
+                            }
+                        } else if (_param3 == 1) {
+                            int theme = getThemeTypeInInt(SettingActivity.this);
+                            Setting.SaveInFile.setSetting(
+                                    Setting.Key.ThemeType,
+                                    Setting.Value.Dark,
+                                    SettingActivity.this);
+                            if (!(theme == _param3)) {
+                                AppCompatDelegate.setDefaultNightMode(
+                                        AppCompatDelegate.MODE_NIGHT_YES);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> _param1) {}
+                });
     }
 
-    public void initTheme() {
-        theme1 = findViewById(R.id.ThemeContent1);
-        theme2 = findViewById(R.id.ThemeContent2);
-        theme3 = findViewById(R.id.ThemeContent3);
-        theme4 = findViewById(R.id.ThemeContent4);
-        theme5 = findViewById(R.id.ThemeContent5);
-        theme6 = findViewById(R.id.ThemeContent6);
-
-        theme1.setOnClickListener(
-                (view) -> {
-                    Snackbar snackbar =
-                            Snackbar.make(
-                                    findViewById(android.R.id.content),
-                                    "Theme will be changed when you restart.",
-                                    Snackbar.LENGTH_LONG);
-                    snackbar.show();
-                    Setting.SaveInFile.setSetting(
-                            Setting.Key.NewTheme, "BrownishLight", SettingActivity.this);
-                    Setting.SaveInFile.setSetting(
-                            Setting.Key.NewThemeType, Setting.Value.Light, SettingActivity.this);
-                });
-
-        theme2.setOnClickListener(
-                (view) -> {
-                    Snackbar snackbar =
-                            Snackbar.make(
-                                    findViewById(android.R.id.content),
-                                    "Theme will be changed when you restart.",
-                                    Snackbar.LENGTH_LONG);
-                    snackbar.show();
-                    Setting.SaveInFile.setSetting(
-                            Setting.Key.NewTheme, "BrownishDark", SettingActivity.this);
-                    Setting.SaveInFile.setSetting(
-                            Setting.Key.NewThemeType, Setting.Value.Dark, SettingActivity.this);
-                });
-
-        theme3.setOnClickListener(
-                (view) -> {
-                    Snackbar snackbar =
-                            Snackbar.make(
-                                    findViewById(android.R.id.content),
-                                    "Theme will be changed when you restart.",
-                                    Snackbar.LENGTH_LONG);
-                    snackbar.show();
-                    Setting.SaveInFile.setSetting(
-                            Setting.Key.NewTheme, "LightBlueLight", SettingActivity.this);
-                    Setting.SaveInFile.setSetting(
-                            Setting.Key.NewThemeType, Setting.Value.Light, SettingActivity.this);
-                });
-
-        theme4.setOnClickListener(
-                (view) -> {
-                    Snackbar snackbar =
-                            Snackbar.make(
-                                    findViewById(android.R.id.content),
-                                    "Theme will be changed when you restart.",
-                                    Snackbar.LENGTH_LONG);
-                    snackbar.show();
-                    Setting.SaveInFile.setSetting(
-                            Setting.Key.NewTheme, "LightBlueDark", SettingActivity.this);
-                    Setting.SaveInFile.setSetting(
-                            Setting.Key.NewThemeType, Setting.Value.Dark, SettingActivity.this);
-                });
-
-        theme5.setOnClickListener(
-                (view) -> {
-                    Snackbar snackbar =
-                            Snackbar.make(
-                                    findViewById(android.R.id.content),
-                                    "Theme will be changed when you restart.",
-                                    Snackbar.LENGTH_LONG);
-                    snackbar.show();
-                    Setting.SaveInFile.setSetting(
-                            Setting.Key.NewTheme, "LightGreen", SettingActivity.this);
-                    Setting.SaveInFile.setSetting(
-                            Setting.Key.NewThemeType, Setting.Value.Light, SettingActivity.this);
-                });
-
-        theme6.setOnClickListener(
-                (view) -> {
-                    Snackbar snackbar =
-                            Snackbar.make(
-                                    findViewById(android.R.id.content),
-                                    "Theme will be changed when you restart.",
-                                    Snackbar.LENGTH_LONG);
-                    snackbar.show();
-                    Setting.SaveInFile.setSetting(
-                            Setting.Key.NewTheme, "DarkGreen", SettingActivity.this);
-                    Setting.SaveInFile.setSetting(
-                            Setting.Key.NewThemeType, Setting.Value.Dark, SettingActivity.this);
-                });
+    public static int getThemeTypeInInt(Context context) {
+        int val = 0;
+        switch (Setting.SaveInFile.getSettingString(
+                Setting.Key.ThemeType, Setting.Default.ThemeType, context)) {
+            case Setting.Value.Light:
+                val = 0;
+                break;
+            case Setting.Value.Dark:
+                val = 1;
+                break;
+        }
+        return val;
     }
 
     public void initEditorThemeList() {
@@ -316,6 +273,43 @@ public class SettingActivity extends AppCompatActivity {
                             Setting.Key.SoraCodeEditorLightThemeSelectionPosition,
                             Setting.Default.SoraCodeEditorLightThemeSelectionPosition,
                             this));
+        }
+    }
+
+    public class themeChooserAdapter extends BaseAdapter {
+        public ArrayList<String> data;
+        public TextView textView;
+
+        public themeChooserAdapter(ArrayList<String> data) {
+            this.data = data;
+        }
+
+        @Override
+        public String getItem(int _index) {
+            return data.get(_index);
+        }
+
+        @Override
+        public int getCount() {
+            return data.size();
+        }
+
+        @Override
+        public long getItemId(int arg0) {
+            return arg0;
+        }
+
+        @Override
+        public View getView(int arg0, View arg1, ViewGroup arg2) {
+            LayoutInflater _inflater = getLayoutInflater();
+            View _view = arg1;
+            if (_view == null) {
+                _view = _inflater.inflate(R.layout.one_line_item, null);
+            }
+            textView = _view.findViewById(R.id.item);
+            textView.setText(data.get(arg0));
+
+            return _view;
         }
     }
 
