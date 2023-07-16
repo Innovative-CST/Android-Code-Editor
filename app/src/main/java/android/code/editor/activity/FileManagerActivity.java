@@ -7,6 +7,7 @@ import android.code.editor.files.utils.FileTypeHandler;
 import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.utils.FileManagerActivity.FolderCreatorDialog;
 import android.code.editor.utils.FileManagerActivity.ProjectCreatorDialog;
+import android.code.editor.utils.FileManagerActivity.CloneRepository;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
