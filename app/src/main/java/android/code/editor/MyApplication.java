@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Process;
 import android.util.Log;
+import com.google.android.material.color.DynamicColors;
 
 public class MyApplication extends Application {
     private static Context mApplicationContext;
@@ -22,6 +23,8 @@ public class MyApplication extends Application {
     public void onCreate() {
 
         mApplicationContext = getApplicationContext();
+        
+        DynamicColors.applyToActivitiesIfAvailable(this);
 
         if (!Setting.SaveInFile.getSettingString(
                         Setting.Key.NewTheme, Setting.Default.NewTheme, this)
