@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements StoragePermission
             case 1:
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 break;
+            case 2:
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                break;
         }
         super.onCreate(savedInstanceState);
         MaterialColorHelper.setUpTheme(this);

@@ -18,7 +18,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:requestLegacyExternalStorage="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:forceDarkAllowed="false">
         <activity
             android:name=".activity.MainActivity"
             android:exported="true">
@@ -34,6 +35,7 @@
             android:name=".activity.FileManagerActivity"
             android:exported="true"/>
         <activity
+            android:configChanges="uiMode"
             android:windowSoftInputMode="adjustResize"
             android:name=".activity.CodeEditorActivity"
             android:exported="true"/>

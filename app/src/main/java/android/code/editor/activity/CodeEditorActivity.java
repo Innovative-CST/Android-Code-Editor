@@ -11,6 +11,7 @@ import android.code.editor.utils.LanguageModeHandler;
 import android.code.editor.utils.Setting;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -83,6 +84,13 @@ public class CodeEditorActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         save();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration arg0) {
+        super.onConfigurationChanged(arg0);
+        save();
+        recreate();
     }
 
     public void initActivity() {
@@ -341,6 +349,47 @@ public class CodeEditorActivity extends AppCompatActivity {
                                 Setting.Key.SoraCodeEditorLightTheme,
                                 Setting.Default.SoraCodeEditorLightTheme,
                                 this));
+            }
+        } else if (Setting.SaveInFile.getSettingString(
+                        Setting.Key.ThemeType, Setting.Default.ThemeType, this)
+                .equals(Setting.Value.System)) {
+            int nightModeFlags =
+                    this.getResources().getConfiguration().uiMode
+                            & Configuration.UI_MODE_NIGHT_MASK;
+            switch (nightModeFlags) {
+                case Configuration.UI_MODE_NIGHT_YES:
+                    if (codeEditor.getCurrentEditorType() == CodeEditorLayout.SoraCodeEditor) {
+                        codeEditor.setTheme(
+                                Setting.SaveInFile.getSettingString(
+                                        Setting.Key.SoraCodeEditorDarkTheme,
+                                        Setting.Default.SoraCodeEditorDarkTheme,
+                                        this));
+                    } else if (codeEditor.getCurrentEditorType()
+                            == CodeEditorLayout.AceCodeEditor) {
+                        codeEditor.setTheme(
+                                Setting.SaveInFile.getSettingString(
+                                        Setting.Key.AceCodeEditorDarkTheme,
+                                        Setting.Default.AceCodeEditorDarkTheme,
+                                        this));
+                    }
+                    break;
+
+                case Configuration.UI_MODE_NIGHT_NO:
+                    if (codeEditor.getCurrentEditorType() == CodeEditorLayout.AceCodeEditor) {
+                        codeEditor.setTheme(
+                                Setting.SaveInFile.getSettingString(
+                                        Setting.Key.AceCodeEditorLightTheme,
+                                        Setting.Default.AceCodeEditorLightTheme,
+                                        this));
+                    } else if (codeEditor.getCurrentEditorType()
+                            == CodeEditorLayout.SoraCodeEditor) {
+                        codeEditor.setTheme(
+                                Setting.SaveInFile.getSettingString(
+                                        Setting.Key.SoraCodeEditorLightTheme,
+                                        Setting.Default.SoraCodeEditorLightTheme,
+                                        this));
+                    }
+                    break;
             }
         }
 

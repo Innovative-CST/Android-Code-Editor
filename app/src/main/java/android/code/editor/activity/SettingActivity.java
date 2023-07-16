@@ -4,6 +4,7 @@ import android.code.editor.R;
 import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.utils.Setting;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,6 +65,7 @@ public class SettingActivity extends AppCompatActivity {
 
         uiMode.add("Light");
         uiMode.add("Dark");
+        uiMode.add("Follow System");
 
         themeChooser.setAdapter(new themeChooserAdapter(uiMode));
         themeChooser.setSelection(getThemeTypeInInt(SettingActivity.this));
@@ -123,6 +125,16 @@ public class SettingActivity extends AppCompatActivity {
                                 AppCompatDelegate.setDefaultNightMode(
                                         AppCompatDelegate.MODE_NIGHT_YES);
                             }
+                        } else if (_param3 == 2) {
+                            int theme = getThemeTypeInInt(SettingActivity.this);
+                            Setting.SaveInFile.setSetting(
+                                    Setting.Key.ThemeType,
+                                    Setting.Value.System,
+                                    SettingActivity.this);
+                            if (!(theme == _param3)) {
+                                AppCompatDelegate.setDefaultNightMode(
+                                        AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                            }
                         }
                     }
 
@@ -140,6 +152,9 @@ public class SettingActivity extends AppCompatActivity {
                 break;
             case Setting.Value.Dark:
                 val = 1;
+                break;
+            case Setting.Value.System:
+                val = 2;
                 break;
         }
         return val;
@@ -160,6 +175,28 @@ public class SettingActivity extends AppCompatActivity {
             aceEditorThemes.addAll(new Themes().new AceEditorTheme().new Light().getThemes());
 
             soraEditorThemes.addAll(new Themes().new SoraEditorTheme().new Light().getThemes());
+        } else if (Setting.SaveInFile.getSettingString(
+                        Setting.Key.ThemeType, Setting.Default.ThemeType, this)
+                .equals(Setting.Value.System)) {
+            int nightModeFlags =
+                    this.getResources().getConfiguration().uiMode
+                            & Configuration.UI_MODE_NIGHT_MASK;
+            switch (nightModeFlags) {
+                case Configuration.UI_MODE_NIGHT_YES:
+                    aceEditorThemes.addAll(
+                            new Themes().new AceEditorTheme().new Dark().getThemes());
+
+                    soraEditorThemes.addAll(
+                            new Themes().new SoraEditorTheme().new Dark().getThemes());
+                    break;
+                case Configuration.UI_MODE_NIGHT_NO:
+                    aceEditorThemes.addAll(
+                            new Themes().new AceEditorTheme().new Light().getThemes());
+
+                    soraEditorThemes.addAll(
+                            new Themes().new SoraEditorTheme().new Light().getThemes());
+                    break;
+            }
         }
         aceEditorThemeChooser.setAdapter(new editorThemeChooserAdapter(aceEditorThemes));
         soraEditorThemeChooser.setAdapter(new editorThemeChooserAdapter(soraEditorThemes));
@@ -195,6 +232,36 @@ public class SettingActivity extends AppCompatActivity {
                                     Setting.Key.AceCodeEditorLightTheme,
                                     aceEditorThemes.get(arg2),
                                     SettingActivity.this);
+                        } else if (Setting.SaveInFile.getSettingString(
+                                        Setting.Key.ThemeType,
+                                        Setting.Default.ThemeType,
+                                        SettingActivity.this)
+                                .equals(Setting.Value.System)) {
+                            int nightModeFlags =
+                                    SettingActivity.this.getResources().getConfiguration().uiMode
+                                            & Configuration.UI_MODE_NIGHT_MASK;
+                            switch (nightModeFlags) {
+                                case Configuration.UI_MODE_NIGHT_YES:
+                                    Setting.SaveInFile.setSetting(
+                                            Setting.Key.AceCodeEditorDarkThemeSelectionPosition,
+                                            arg2,
+                                            SettingActivity.this);
+                                    Setting.SaveInFile.setSetting(
+                                            Setting.Key.AceCodeEditorDarkTheme,
+                                            aceEditorThemes.get(arg2),
+                                            SettingActivity.this);
+                                    break;
+                                case Configuration.UI_MODE_NIGHT_NO:
+                                    Setting.SaveInFile.setSetting(
+                                            Setting.Key.AceCodeEditorLightThemeSelectionPosition,
+                                            arg2,
+                                            SettingActivity.this);
+                                    Setting.SaveInFile.setSetting(
+                                            Setting.Key.AceCodeEditorLightTheme,
+                                            aceEditorThemes.get(arg2),
+                                            SettingActivity.this);
+                                    break;
+                            }
                         }
                     }
 
@@ -233,6 +300,36 @@ public class SettingActivity extends AppCompatActivity {
                                     Setting.Key.SoraCodeEditorLightTheme,
                                     soraEditorThemes.get(arg2).toString(),
                                     SettingActivity.this);
+                        } else if (Setting.SaveInFile.getSettingString(
+                                        Setting.Key.ThemeType,
+                                        Setting.Default.ThemeType,
+                                        SettingActivity.this)
+                                .equals(Setting.Value.System)) {
+                            int nightModeFlags =
+                                    SettingActivity.this.getResources().getConfiguration().uiMode
+                                            & Configuration.UI_MODE_NIGHT_MASK;
+                            switch (nightModeFlags) {
+                                case Configuration.UI_MODE_NIGHT_YES:
+                                    Setting.SaveInFile.setSetting(
+                                            Setting.Key.SoraCodeEditorDarkThemeSelectionPosition,
+                                            arg2,
+                                            SettingActivity.this);
+                                    Setting.SaveInFile.setSetting(
+                                            Setting.Key.SoraCodeEditorDarkTheme,
+                                            soraEditorThemes.get(arg2).toString(),
+                                            SettingActivity.this);
+                                    break;
+                                case Configuration.UI_MODE_NIGHT_NO:
+                                    Setting.SaveInFile.setSetting(
+                                            Setting.Key.SoraCodeEditorLightThemeSelectionPosition,
+                                            arg2,
+                                            SettingActivity.this);
+                                    Setting.SaveInFile.setSetting(
+                                            Setting.Key.SoraCodeEditorLightTheme,
+                                            soraEditorThemes.get(arg2).toString(),
+                                            SettingActivity.this);
+                                    break;
+                            }
                         }
                     }
 
@@ -255,6 +352,28 @@ public class SettingActivity extends AppCompatActivity {
                             Setting.Key.AceCodeEditorLightThemeSelectionPosition,
                             Setting.Default.AceCodeEditorLightThemeSelectionPosition,
                             this));
+        } else if (Setting.SaveInFile.getSettingString(
+                        Setting.Key.ThemeType, Setting.Default.ThemeType, SettingActivity.this)
+                .equals(Setting.Value.System)) {
+            int nightModeFlags =
+                    SettingActivity.this.getResources().getConfiguration().uiMode
+                            & Configuration.UI_MODE_NIGHT_MASK;
+            switch (nightModeFlags) {
+                case Configuration.UI_MODE_NIGHT_YES:
+                    aceEditorThemeChooser.setSelection(
+                            Setting.SaveInFile.getSettingInt(
+                                    Setting.Key.AceCodeEditorDarkThemeSelectionPosition,
+                                    Setting.Default.AceCodeEditorDarkThemeSelectionPosition,
+                                    this));
+                    break;
+                case Configuration.UI_MODE_NIGHT_NO:
+                    aceEditorThemeChooser.setSelection(
+                            Setting.SaveInFile.getSettingInt(
+                                    Setting.Key.AceCodeEditorLightThemeSelectionPosition,
+                                    Setting.Default.AceCodeEditorLightThemeSelectionPosition,
+                                    this));
+                    break;
+            }
         }
 
         if (Setting.SaveInFile.getSettingString(
@@ -273,6 +392,28 @@ public class SettingActivity extends AppCompatActivity {
                             Setting.Key.SoraCodeEditorLightThemeSelectionPosition,
                             Setting.Default.SoraCodeEditorLightThemeSelectionPosition,
                             this));
+        } else if (Setting.SaveInFile.getSettingString(
+                        Setting.Key.ThemeType, Setting.Default.ThemeType, SettingActivity.this)
+                .equals(Setting.Value.System)) {
+            int nightModeFlags =
+                    SettingActivity.this.getResources().getConfiguration().uiMode
+                            & Configuration.UI_MODE_NIGHT_MASK;
+            switch (nightModeFlags) {
+                case Configuration.UI_MODE_NIGHT_YES:
+                    soraEditorThemeChooser.setSelection(
+                            Setting.SaveInFile.getSettingInt(
+                                    Setting.Key.SoraCodeEditorDarkThemeSelectionPosition,
+                                    Setting.Default.SoraCodeEditorDarkThemeSelectionPosition,
+                                    this));
+                    break;
+                case Configuration.UI_MODE_NIGHT_NO:
+                    soraEditorThemeChooser.setSelection(
+                            Setting.SaveInFile.getSettingInt(
+                                    Setting.Key.SoraCodeEditorLightThemeSelectionPosition,
+                                    Setting.Default.SoraCodeEditorLightThemeSelectionPosition,
+                                    this));
+                    break;
+            }
         }
     }
 
