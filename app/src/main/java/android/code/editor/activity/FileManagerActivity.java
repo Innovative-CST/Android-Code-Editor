@@ -52,9 +52,9 @@ public class FileManagerActivity extends AppCompatActivity {
         MaterialColorHelper.setUpTheme(this);
         // Set Layout in Activity
         setContentView(R.layout.activity_file_manager);
-        initActivity();
         initialDir = getIntent().getStringExtra("path");
         currentDir = getIntent().getStringExtra("path");
+        initActivity();
         loadFileList(initialDir);
     }
 
@@ -147,7 +147,7 @@ public class FileManagerActivity extends AppCompatActivity {
         fab.setOnClickListener(
                 (view) -> {
                     Intent intent = new Intent();
-                    intent.putExtra("path", getIntent().getStringExtra("path"));
+                    intent.putExtra("path", currentDir);
                     intent.setClass(FileManagerActivity.this, CodeEditorActivity.class);
                     startActivity(intent);
                 });
