@@ -92,6 +92,7 @@ public class FileManagerActivity extends AppCompatActivity {
             Menu menu = popupMenu.getMenu();
             menu.add("New folder");
             menu.add("New Project");
+            menu.add("Clone git repository");
             menu.add("Open Source Licenses");
             menu.add("Contributors");
             menu.add("Settings");
