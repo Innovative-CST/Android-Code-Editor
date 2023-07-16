@@ -119,6 +119,9 @@ public class FileManagerActivity extends AppCompatActivity {
                             case "New folder":
                                 new FolderCreatorDialog(this);
                                 break;
+                            case "Clone git repository":
+                                new CloneRepository(this);
+                                break;
                             case "Contributors":
                                 Intent intent = new Intent();
                                 intent.setClass(
