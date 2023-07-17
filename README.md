@@ -1,4 +1,13 @@
 ![Logo](/assets/description.jpg)
+
+![CI](https://github.com/TS-Code-Editor/Android-Code-Editor/actions/workflows/android.yml/badge.svg)
+[![License](https://img.shields.io/github/license/TS-Code-Editor/Android-Code-Editor)](https://github.com/TS-Code-Editor/Android-Code-Editor/blob/main/LICENSE)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/94a4082a551c496cae031bcdb6f2040d)](https://codacy.com/gh/TS-Code-Editor/Android-Code-Editor/dashboard)
+![Commit Activity](https://img.shields.io/github/commit-activity/m/TS-Code-Editor/Android-Code-Editor)
+[![Chat on Discord](https://img.shields.io/discord/1069271293150625853)](https://discord.gg/RM5qaZs4kd)
+[![Total downloads](https://img.shields.io/github/downloads/TS-Code-Editor/Android-Code-Editor/total)](https://github.com/TS-Code-Editor/Android-Code-Editor/releases)
+![Repository Size](https://img.shields.io/github/repo-size/TS-Code-Editor/Android-Code-Editor)
+
 ## Android Code Editor
 “The Android code editor is an open-source project available on Github, developed with the love and contributions of developers. It supports both the Sora code editor and the Ace code editor, making it a versatile tool for writing and editing code on Android devices.”
 It is the beginning of this app and I hope it will available soon for users.
