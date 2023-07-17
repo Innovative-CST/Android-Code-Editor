@@ -15,7 +15,7 @@ import android.code.editor.databinding.LayoutTextinputBinding;
 import android.code.editor.progressdialog.ProgressDialog;
 import android.code.editor.progressdialog.ProgressStyle;
 import android.code.editor.task.TaskExecutor;
-import android.code.editor.util.ToastUtils;
+import android.code.editor.common.ToastUtils;
 import java.io.File;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.ProgressMonitor;
