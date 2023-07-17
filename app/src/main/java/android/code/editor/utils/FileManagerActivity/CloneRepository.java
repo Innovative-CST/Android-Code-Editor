@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import com.blankj.utilcode.util.ThreadUtils;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -15,7 +16,6 @@ import android.code.editor.databinding.LayoutTextinputBinding;
 import android.code.editor.progressdialog.ProgressDialog;
 import android.code.editor.progressdialog.ProgressStyle;
 import android.code.editor.task.TaskExecutor;
-import android.code.editor.common.ToastUtils;
 import java.io.File;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.ProgressMonitor;
@@ -124,7 +124,7 @@ public class CloneRepository {
                 if (result != null && error == null) {
                   result.close();
 
-                  ToastUtils.showShort(
+                  Toast.showShort(
                       context.getString(R.string.successfully_cloned), ToastUtils.TYPE_ERROR);
                   listener.onCloneSuccess(output);
                   return;
