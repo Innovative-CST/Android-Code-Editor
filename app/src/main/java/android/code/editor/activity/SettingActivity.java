@@ -11,22 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
-
-import com.google.android.material.snackbar.Snackbar;
 
 import editor.tsd.tools.Themes;
 import editor.tsd.widget.CodeEditorLayout;
 
 import java.util.ArrayList;
 
-public class SettingActivity extends AppCompatActivity {
+public class SettingActivity extends BaseActivity {
     public Spinner editorChooser;
     ArrayList<String> data = new ArrayList<>();
     ArrayList<String> uiMode = new ArrayList<>();
@@ -39,8 +35,8 @@ public class SettingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle arg0) {
-        MaterialColorHelper.setUpTheme(this);
         super.onCreate(arg0);
+        MaterialColorHelper.setUpTheme(this);
         setContentView(R.layout.activity_setting);
         initActivity();
     }

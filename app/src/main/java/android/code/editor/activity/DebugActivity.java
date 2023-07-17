@@ -9,9 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class DebugActivity extends AppCompatActivity {
+public class DebugActivity extends BaseActivity {
     // Debug activity will not work properly if error is occured in a activty with which the app is
     // opened eg. MainActivty
     private TextView error;

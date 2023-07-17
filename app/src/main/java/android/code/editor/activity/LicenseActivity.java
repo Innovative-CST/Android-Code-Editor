@@ -8,7 +8,6 @@ import android.text.util.Linkify;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import java.io.BufferedReader;
@@ -16,7 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class LicenseActivity extends AppCompatActivity {
+public class LicenseActivity extends BaseActivity {
 
     private TextView licenseText;
 

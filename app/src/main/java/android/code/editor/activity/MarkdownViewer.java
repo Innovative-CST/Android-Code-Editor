@@ -5,15 +5,14 @@ import android.code.editor.ui.MaterialColorHelper;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import br.tiagohm.markdownview.MarkdownView;
-
 import br.tiagohm.markdownview.css.styles.Github;
+
 import java.io.File;
 
-public class MarkdownViewer extends AppCompatActivity {
+public class MarkdownViewer extends BaseActivity {
 
     public MarkdownView markdown_view;
 
