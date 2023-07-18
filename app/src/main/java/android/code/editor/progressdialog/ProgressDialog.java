@@ -7,7 +7,7 @@ import android.view.View;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import android.code.editor.util.Utils;
+import android.code.editor.utils.Util;
 
 public class ProgressDialog {
 
