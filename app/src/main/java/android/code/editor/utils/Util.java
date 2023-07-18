@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.util.TypedValue;
 
-public class Utils {
+public class Util {
 
   private static Context mContext;
 
