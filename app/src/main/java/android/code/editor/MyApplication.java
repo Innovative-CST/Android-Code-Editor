@@ -15,7 +15,7 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatDelegate;
 import com.google.android.material.color.DynamicColors;
 
-public class MyApplication extends Application implements Application.ActivityLifecycleCallbacks {
+public class MyApplication extends Application {
     private static Context mApplicationContext;
     private Thread.UncaughtExceptionHandler uncaughtExceptionHandler;
 
@@ -74,38 +74,4 @@ public class MyApplication extends Application implements Application.ActivityLi
                 });
         super.onCreate();
     }
-
-    @Override
-    public void onActivityCreated(Activity arg0, Bundle arg1) {}
-
-    @Override
-    public void onActivityStarted(Activity arg0) {}
-
-    @Override
-    public void onActivityResumed(Activity arg0) {
-        switch (SettingActivity.getThemeTypeInInt(arg0)) {
-            case 0:
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                break;
-            case 1:
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                break;
-            case 2:
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                break;
-        }
-    }
-
-    @Override
-    public void onActivityPaused(Activity arg0) {
-    }
-
-    @Override
-    public void onActivityStopped(Activity arg0) {}
-
-    @Override
-    public void onActivitySaveInstanceState(Activity arg0, Bundle arg1) {}
-
-    @Override
-    public void onActivityDestroyed(Activity arg0) {}
 }
