@@ -1,6 +1,7 @@
 package android.code.editor.activity;
 
 import android.code.editor.R;
+import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.utils.Setting;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.color.DynamicColors;
 
 import editor.tsd.tools.Themes;
 import editor.tsd.widget.CodeEditorLayout;
@@ -52,6 +55,9 @@ public class SettingActivity extends BaseActivity {
                         onBackPressed();
                     }
                 });
+
+        initThemeList();
+
         editorChooser = findViewById(R.id.editorChooser);
         aceEditorThemeChooser = findViewById(R.id.aceEditorThemeChooser);
         soraEditorThemeChooser = findViewById(R.id.soraEditorThemeChooser);
@@ -135,6 +141,32 @@ public class SettingActivity extends BaseActivity {
                     @Override
                     public void onNothingSelected(AdapterView<?> _param1) {}
                 });
+    }
+
+    public void initThemeList() {
+        if (!DynamicColors.isDynamicColorAvailable()) {
+            View theme1 = getLayoutInflater().inflate(R.layout.theme_chooser_item, null);
+            theme1.findViewById(R.id.color)
+                    .setBackgroundResource(R.color.theme_1_md_theme_light_primary);
+            ((ViewGroup) findViewById(R.id.themes)).addView(theme1);
+            theme1.findViewById(R.id.color).setOnClickListener(
+                    (view) -> {
+                        Setting.SaveInFile.setSetting(
+                                Setting.Key.Theme, MaterialColorHelper.AppTheme, this);
+                        refreshThemeColorStatusIfRequired();
+                    });
+
+            View theme2 = getLayoutInflater().inflate(R.layout.theme_chooser_item, null);
+            theme2.findViewById(R.id.color)
+                    .setBackgroundResource(R.color.theme_2_md_theme_light_primary);
+            ((ViewGroup) findViewById(R.id.themes)).addView(theme2);
+            theme2.findViewById(R.id.color).setOnClickListener(
+                    (view) -> {
+                        Setting.SaveInFile.setSetting(
+                                Setting.Key.Theme, MaterialColorHelper.AppTheme2, this);
+                        refreshThemeColorStatusIfRequired();
+                    });
+        }
     }
 
     public static int getThemeTypeInInt(Context context) {

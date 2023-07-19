@@ -30,23 +30,6 @@ public class MyApplication extends Application {
 
         DynamicColors.applyToActivitiesIfAvailable(this);
 
-        if (!Setting.SaveInFile.getSettingString(
-                        Setting.Key.NewTheme, Setting.Default.NewTheme, this)
-                .equals(
-                        Setting.SaveInFile.getSettingString(
-                                Setting.Key.Theme, Setting.Default.Theme, this))) {
-            Setting.SaveInFile.setSetting(
-                    Setting.Key.Theme,
-                    Setting.SaveInFile.getSettingString(
-                            Setting.Key.NewTheme, Setting.Default.NewTheme, this),
-                    this);
-            Setting.SaveInFile.setSetting(
-                    Setting.Key.ThemeType,
-                    Setting.SaveInFile.getSettingString(
-                            Setting.Key.NewThemeType, Setting.Default.NewThemeType, this),
-                    this);
-        }
-
         this.uncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
 
         Thread.setDefaultUncaughtExceptionHandler(

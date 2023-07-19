@@ -36,9 +36,9 @@
                 android:layout_width="wrap_content"
                 android:layout_margin="8dp"
                 android:textSize="22sp"
+                android:textColor="?attr/colorPrimary"
                 android:text="Editor"
-                android:textStyle="bold"
-                android:textColor="?attr/colorPrimary"/>
+                android:textStyle="bold"/>
 
             <LinearLayout
                 android:layout_height="wrap_content"
@@ -57,15 +57,15 @@
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textSize="16sp"
-                        android:text="Editor"
-                        android:textColor="?attr/colorOnSurface"/>
+                        android:textColor="?attr/colorOnSurface"
+                        android:text="Editor"/>
 
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textSize="11sp"
-                        android:text="Choose an code editor for you which is good for you."
-                        android:textColor="?attr/colorOnSurface"/>
+                        android:textColor="?attr/colorOnSurface"
+                        android:text="Choose an code editor for you which is good for you."/>
 
                 </LinearLayout>
 
@@ -95,15 +95,15 @@
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textSize="16sp"
-                        android:text="Ace Editor Theme"
-                        android:textColor="?attr/colorOnSurface"/>
+                        android:textColor="?attr/colorOnSurface"
+                        android:text="Ace Editor Theme"/>
 
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textSize="11sp"
-                        android:text="Choose a theme for Ace Editor."
-                        android:textColor="?attr/colorOnSurface"/>
+                        android:textColor="?attr/colorOnSurface"
+                        android:text="Choose a theme for Ace Editor."/>
 
                 </LinearLayout>
 
@@ -133,15 +133,15 @@
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textSize="16sp"
-                        android:text="Sora Editor Theme"
-                        android:textColor="?attr/colorOnSurface"/>
+                        android:textColor="?attr/colorOnSurface"
+                        android:text="Sora Editor Theme"/>
 
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textSize="11sp"
-                        android:text="Choose a theme for Sora Editor."
-                        android:textColor="?attr/colorOnSurface"/>
+                        android:textColor="?attr/colorOnSurface"
+                        android:text="Choose a theme for Sora Editor."/>
 
                 </LinearLayout>
 
@@ -153,15 +153,29 @@
                 </Spinner>
 
             </LinearLayout>
-            
+
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_margin="8dp"
                 android:textSize="22sp"
+                android:textColor="?attr/colorPrimary"
                 android:text="App Theme"
-                android:textStyle="bold"
-                android:textColor="?attr/colorPrimary"/>
+                android:textStyle="bold"/>
+
+            <HorizontalScrollView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/themes">
+
+                    </LinearLayout>
+
+            </HorizontalScrollView>
 
             <LinearLayout
                 android:layout_height="wrap_content"
@@ -180,15 +194,15 @@
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textSize="16sp"
-                        android:text="UI mode"
-                        android:textColor="?attr/colorOnSurface"/>
+                        android:textColor="?attr/colorOnSurface"
+                        android:text="UI mode"/>
 
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textSize="11sp"
-                        android:text="Choose UI mode for IDE"
-                        android:textColor="?attr/colorOnSurface"/>
+                        android:textColor="?attr/colorOnSurface"
+                        android:text="Choose UI mode for IDE"/>
 
                 </LinearLayout>
 

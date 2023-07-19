@@ -1,6 +1,7 @@
 package android.code.editor.utils;
 
 import android.code.editor.files.utils.FileManager;
+import android.code.editor.ui.MaterialColorHelper;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -43,8 +44,7 @@ public class Setting {
 
     public class Default {
         public static final int CodeEditor = CodeEditorLayout.AceCodeEditor;
-        public static final String Theme = "BrownishLight";
-        public static final String NewTheme = Theme;
+        public static final String Theme = MaterialColorHelper.AppTheme;
         public static final String ThemeType = Value.Light;
         public static final String NewThemeType = ThemeType;
         public static final String AceCodeEditorLightTheme = Themes.AceEditorTheme.Light.Default;
