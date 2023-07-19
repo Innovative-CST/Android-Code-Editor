@@ -166,6 +166,17 @@ public class SettingActivity extends BaseActivity {
                                 Setting.Key.Theme, MaterialColorHelper.AppTheme2, this);
                         refreshThemeColorStatusIfRequired();
                     });
+
+            View theme3 = getLayoutInflater().inflate(R.layout.theme_chooser_item, null);
+            theme3.findViewById(R.id.color)
+                    .setBackgroundResource(R.color.theme_3_md_theme_light_primary);
+            ((ViewGroup) findViewById(R.id.themes)).addView(theme3);
+            theme3.findViewById(R.id.color).setOnClickListener(
+                    (view) -> {
+                        Setting.SaveInFile.setSetting(
+                                Setting.Key.Theme, MaterialColorHelper.AppTheme3, this);
+                        refreshThemeColorStatusIfRequired();
+                    });
         }
     }
 
