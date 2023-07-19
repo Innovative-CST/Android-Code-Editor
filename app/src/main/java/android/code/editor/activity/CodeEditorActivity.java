@@ -6,7 +6,6 @@ import android.code.editor.adapter.FileTabAdapter;
 import android.code.editor.files.utils.FileIcon;
 import android.code.editor.files.utils.FileManager;
 import android.code.editor.files.utils.FileTypeHandler;
-import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.utils.LanguageModeHandler;
 import android.code.editor.utils.Setting;
 import android.content.Context;
@@ -66,7 +65,6 @@ public class CodeEditorActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MaterialColorHelper.setUpTheme(this);
         setContentView(R.layout.activity_code_editor);
         initActivity();
     }

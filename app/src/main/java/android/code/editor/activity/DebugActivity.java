@@ -1,7 +1,6 @@
 package android.code.editor.activity;
 
 import android.code.editor.R;
-import android.code.editor.ui.MaterialColorHelper;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -17,7 +16,6 @@ public class DebugActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MaterialColorHelper.setUpTheme(this);
         setContentView(R.layout.activity_debug);
         error = findViewById(R.id.error);
         error.setText(getIntent().getStringExtra("error").toString());

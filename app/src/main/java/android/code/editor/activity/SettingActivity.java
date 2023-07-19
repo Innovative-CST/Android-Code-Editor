@@ -1,7 +1,6 @@
 package android.code.editor.activity;
 
 import android.code.editor.R;
-import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.utils.Setting;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -36,7 +35,6 @@ public class SettingActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
-        MaterialColorHelper.setUpTheme(this);
         setContentView(R.layout.activity_setting);
         initActivity();
     }

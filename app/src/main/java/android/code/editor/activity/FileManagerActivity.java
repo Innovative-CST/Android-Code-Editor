@@ -4,7 +4,6 @@ import android.code.editor.R;
 import android.code.editor.files.utils.FileIcon;
 import android.code.editor.files.utils.FileManager;
 import android.code.editor.files.utils.FileTypeHandler;
-import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.utils.FileManagerActivity.FolderCreatorDialog;
 import android.code.editor.utils.FileManagerActivity.ProjectCreatorDialog;
 import android.content.Intent;
@@ -48,7 +47,6 @@ public class FileManagerActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MaterialColorHelper.setUpTheme(this);
         // Set Layout in Activity
         setContentView(R.layout.activity_file_manager);
         initialDir = getIntent().getStringExtra("path");

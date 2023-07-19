@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.Activity;
 import android.code.editor.R;
 import android.code.editor.tsd.StoragePermission;
-import android.code.editor.ui.MaterialColorHelper;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -36,7 +35,6 @@ public class MainActivity extends BaseActivity implements StoragePermission {
         // Enable logging in Sketchware pro
         // SketchLogger.startLogging();
         super.onCreate(savedInstanceState);
-        MaterialColorHelper.setUpTheme(this);
         setContentView(R.layout.activity_main);
 
         if (isStoagePermissionGranted(this)) {

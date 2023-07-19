@@ -1,7 +1,6 @@
 package android.code.editor.activity;
 
 import android.code.editor.R;
-import android.code.editor.ui.MaterialColorHelper;
 import android.os.Bundle;
 import android.view.View;
 
@@ -19,7 +18,6 @@ public class MarkdownViewer extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MaterialColorHelper.setUpTheme(this);
         setContentView(R.layout.activity_markdown_viewer);
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (getIntent().hasExtra("title")) {
