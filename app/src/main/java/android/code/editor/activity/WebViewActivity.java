@@ -195,10 +195,10 @@ public class WebViewActivity extends BaseActivity {
 
     if (id == R.id.back) {
       if (webView.canGoBack()) webView.goBack();
-      else ToastUtils.showShort("Can't go back...", Toast.TYPE_ERROR);
+      else Toast.showShort("Can't go back...", Toast.TYPE_ERROR);
     } else if (id == R.id.forward) {
       if (webView.canGoForward()) webView.goForward();
-      else ToastUtils.showShort("Can't go forward...", Toast.TYPE_ERROR);
+      else Toast.showShort("Can't go forward...", Toast.TYPE_ERROR);
     } else if (id == R.id.zooming) {
       webView.getSettings().setSupportZoom(!item.isChecked());
       item.setChecked(!item.isChecked());
