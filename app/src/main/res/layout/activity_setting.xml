@@ -35,10 +35,9 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_margin="8dp"
-                android:textSize="22sp"
+                android:textSize="14sp"
                 android:textColor="?attr/colorPrimary"
-                android:text="Editor"
-                android:textStyle="bold"/>
+                android:text="Editor"/>
 
             <LinearLayout
                 android:layout_height="wrap_content"
@@ -158,10 +157,9 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_margin="8dp"
-                android:textSize="22sp"
+                android:textSize="14sp"
                 android:textColor="?attr/colorPrimary"
-                android:text="App Theme"
-                android:textStyle="bold"/>
+                android:text="App Theme"/>
 
             <HorizontalScrollView
                 android:layout_height="wrap_content"
