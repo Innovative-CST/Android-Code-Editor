@@ -2,6 +2,7 @@ package android.code.editor.activity;
 
 import android.code.editor.R;
 import android.code.editor.ui.MaterialColorHelper;
+import android.code.editor.utils.RadioOptionChooser;
 import android.code.editor.utils.Setting;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -25,7 +26,6 @@ import editor.tsd.widget.CodeEditorLayout;
 import java.util.ArrayList;
 
 public class SettingActivity extends BaseActivity {
-    public Spinner editorChooser;
     ArrayList<String> data = new ArrayList<>();
     ArrayList<String> uiMode = new ArrayList<>();
     ArrayList<String> aceEditorThemes = new ArrayList<>();
@@ -58,10 +58,13 @@ public class SettingActivity extends BaseActivity {
 
         initThemeList();
 
-        editorChooser = findViewById(R.id.editorChooser);
         aceEditorThemeChooser = findViewById(R.id.aceEditorThemeChooser);
         soraEditorThemeChooser = findViewById(R.id.soraEditorThemeChooser);
         themeChooser = findViewById(R.id.themeChooser);
+        
+        findViewById(R.id.editorChooserContainer).setOnClickListener((view) -> {
+            new RadioOptionChooser(this, R.layout.layout_editor_chooser_radio_group, "Choose an editor");
+        });
 
         uiMode.add("Light");
         uiMode.add("Dark");
@@ -73,32 +76,7 @@ public class SettingActivity extends BaseActivity {
         data.add("Ace Code Editor");
         data.add("Sora Code Editor");
 
-        editorChooser.setAdapter(new editorChooserAdapter(data));
-        editorChooser.setSelection(
-                Setting.SaveInFile.getSettingInt(
-                        Setting.Key.CodeEditor, Setting.Default.CodeEditor, this));
         initEditorThemeList();
-        editorChooser.setOnItemSelectedListener(
-                new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(
-                            AdapterView<?> _param1, View _param2, int _param3, long _param4) {
-                        if (_param3 == 0) {
-                            Setting.SaveInFile.setSetting(
-                                    Setting.Key.CodeEditor,
-                                    CodeEditorLayout.AceCodeEditor,
-                                    SettingActivity.this);
-                        } else if (_param3 == 1) {
-                            Setting.SaveInFile.setSetting(
-                                    Setting.Key.CodeEditor,
-                                    CodeEditorLayout.SoraCodeEditor,
-                                    SettingActivity.this);
-                        }
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> _param1) {}
-                });
 
         themeChooser.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
@@ -535,42 +513,6 @@ public class SettingActivity extends BaseActivity {
             textView = _view.findViewById(R.id.item);
             textView.setText(data.get(arg0));
 
-            return _view;
-        }
-    }
-
-    public class editorChooserAdapter extends BaseAdapter {
-        ArrayList<String> data;
-        public TextView textView;
-
-        public editorChooserAdapter(ArrayList<String> _arr) {
-            data = _arr;
-        }
-
-        @Override
-        public String getItem(int _index) {
-            return data.get(_index);
-        }
-
-        @Override
-        public int getCount() {
-            return data.size();
-        }
-
-        @Override
-        public long getItemId(int arg0) {
-            return arg0;
-        }
-
-        @Override
-        public View getView(int arg0, View arg1, ViewGroup arg2) {
-            LayoutInflater _inflater = getLayoutInflater();
-            View _view = arg1;
-            if (_view == null) {
-                _view = _inflater.inflate(R.layout.one_line_item, null);
-            }
-            textView = _view.findViewById(R.id.item);
-            textView.setText(data.get(arg0));
             return _view;
         }
     }

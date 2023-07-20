@@ -50,7 +50,8 @@
                     android:layout_width="wrap_content"
                     android:padding="8dp"
                     android:orientation="vertical"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:id="@+id/editorChooserContainer">
 
                     <TextView
                         android:layout_height="wrap_content"
@@ -67,13 +68,6 @@
                         android:text="Choose an code editor for you which is good for you."/>
 
                 </LinearLayout>
-
-                <Spinner
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:id="@+id/editorChooser">
-
-                </Spinner>
 
             </LinearLayout>
 
