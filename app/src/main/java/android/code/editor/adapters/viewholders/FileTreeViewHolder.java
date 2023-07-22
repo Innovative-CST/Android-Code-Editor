@@ -4,6 +4,7 @@ import android.code.editor.R;
 import android.code.editor.activity.CodeEditorActivity;
 import android.code.editor.files.utils.FileIcon;
 import android.code.editor.files.utils.FileManager;
+import android.code.editor.files.utils.FileTypeHandler;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +12,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.core.view.GravityCompat;
 import androidx.transition.ChangeImageTransform;
 import androidx.transition.TransitionManager;
+
 import com.unnamed.b.atv.model.TreeNode;
+
 import java.io.File;
 
 public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
@@ -24,10 +29,10 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
     public TextView path;
     public CodeEditorActivity editorActivity;
 
-    public FileTreeViewHolder(Context context , CodeEditorActivity editorActivity) {
+    public FileTreeViewHolder(Context context, CodeEditorActivity editorActivity) {
         super(context);
         this.context = context;
-        this.editorActivity= editorActivity;
+        this.editorActivity = editorActivity;
     }
 
     @Override
@@ -35,7 +40,7 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
         view =
                 ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
                         .inflate(R.layout.layout_file_tree_view, null);
-        view = applyPadding(node, (LinearLayout)view, CodeEditorActivity.dpToPx(context, 15));
+        view = applyPadding(node, (LinearLayout) view, CodeEditorActivity.dpToPx(context, 15));
         icon = view.findViewById(R.id.icon);
         expandCollapse = view.findViewById(R.id.expandCollapse);
         path = view.findViewById(R.id.path);
@@ -43,7 +48,7 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
         if (file.isDirectory()) {
             updateExpandCollapseIcon(expandCollapse, node.isExpanded());
             expandCollapse.setVisibility(View.VISIBLE);
-            expandCollapse.setOnClickListener(
+            view.setOnClickListener(
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View arg0) {
@@ -61,6 +66,23 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
                     });
         } else {
             expandCollapse.setVisibility(View.INVISIBLE);
+            view.setOnClickListener(
+                    (view) -> {
+                        switch (FileTypeHandler.getFileFormat(file.getAbsolutePath())) {
+                            case "java":
+                            case "xml":
+                            case "html":
+                            case "css":
+                            case "js":
+                            case "md":
+                                editorActivity.save();
+                                editorActivity.openFileInEditor(file);
+                                editorActivity.drawer.closeDrawer(GravityCompat.END);
+                                break;
+                            default:
+                                break;
+                        }
+                    });
         }
         path.setText(FileManager.getLatSegmentOfFilePath(file.getAbsolutePath()));
         return view;
