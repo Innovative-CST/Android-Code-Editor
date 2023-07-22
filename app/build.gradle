@@ -60,4 +60,5 @@ dependencies {
     
     implementation project(path:':markdown-viewer')
 	implementation project(path:':editor')
+    implementation project(path:':treeview')
 }

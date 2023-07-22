@@ -3,9 +3,10 @@ package android.code.editor.activity;
 import android.animation.ObjectAnimator;
 import android.code.editor.R;
 import android.code.editor.adapter.FileTabAdapter;
-import android.code.editor.files.utils.FileIcon;
+import android.code.editor.adapters.viewholders.FileTreeViewHolder;
 import android.code.editor.files.utils.FileManager;
 import android.code.editor.files.utils.FileTypeHandler;
+import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.utils.LanguageModeHandler;
 import android.code.editor.utils.Setting;
 import android.content.Context;
@@ -15,17 +16,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.TypedValue;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
@@ -34,11 +32,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.unnamed.b.atv.model.TreeNode;
+import com.unnamed.b.atv.view.AndroidTreeView;
+import com.unnamed.b.atv.view.TreeNodeWrapperView;
 import editor.tsd.widget.CodeEditorLayout;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 public class CodeEditorActivity extends BaseActivity {
@@ -58,6 +58,7 @@ public class CodeEditorActivity extends BaseActivity {
     public File openedFile;
     public Menu menu;
     public MenuItem preview;
+    public TreeNode root;
     public RecyclerView fileTab;
     public FileTabAdapter adapter;
     public ArrayList<FileTabDataItem> fileTabData = new ArrayList<FileTabDataItem>();
@@ -411,7 +412,13 @@ public class CodeEditorActivity extends BaseActivity {
                     editorArea.setVisibility(View.GONE);
                 }
             }
-            fileTree(DrawerListDir, findViewById(R.id.list));
+            // fileTree(DrawerListDir, findViewById(R.id.list));
+            root = TreeNode.root();
+            fileTree(DrawerListDir);
+            AndroidTreeView tView = new AndroidTreeView(this, root);
+            TreeNodeWrapperView treeView = new TreeNodeWrapperView(this, MaterialColorHelper.getCurrentTheme(this));
+            treeView.getNodeContainer().addView(tView.getView());
+            ((LinearLayout)findViewById(R.id.list)).addView(treeView);
         }
         if (preview != null && openedFile != null) {
             if (FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("md")) {
@@ -479,6 +486,18 @@ public class CodeEditorActivity extends BaseActivity {
         return super.onOptionsItemSelected(arg0);
     }
 
+    public void fileTree(File file) {
+        if (file.isDirectory()) {
+            File[] files = file.listFiles();
+            for (File dir : files) {
+                TreeNode child = new TreeNode(dir);
+                child.setViewHolder(new FileTreeViewHolder(this));
+                root.addChild(child);
+            }
+        }
+    }
+
+    /*
     public void fileTree(File file, ViewGroup view) {
         if (view.getId() == R.id.list) {
             view.removeAllViews();
@@ -607,6 +626,7 @@ public class CodeEditorActivity extends BaseActivity {
             }
         }
     }
+    */
 
     // Method to convert dp to pixels
     private int dpToPx(Context context, int dp) {

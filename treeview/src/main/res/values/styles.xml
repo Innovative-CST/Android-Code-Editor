@@ -1,0 +1,6 @@
+<resources
+    xmlns:tools="http://schemas.android.com/tools">
+    <style name="TreeNodeStyle">
+        <item name="android:paddingLeft">20dp</item>
+    </style>
+</resources>
