@@ -412,11 +412,11 @@ public class CodeEditorActivity extends BaseActivity {
                     editorArea.setVisibility(View.GONE);
                 }
             }
-            // fileTree(DrawerListDir, findViewById(R.id.list));
             root = TreeNode.root();
             fileTree(DrawerListDir);
             AndroidTreeView tView = new AndroidTreeView(this, root);
-            TreeNodeWrapperView treeView = new TreeNodeWrapperView(this, MaterialColorHelper.getCurrentTheme(this));
+            TreeNodeWrapperView treeView = new TreeNodeWrapperView(this, com.unnamed.b.atv.R.style.TreeNodeStyle);
+            tView.setDefaultAnimation(true);
             treeView.getNodeContainer().addView(tView.getView());
             ((LinearLayout)findViewById(R.id.list)).addView(treeView);
         }
@@ -491,7 +491,7 @@ public class CodeEditorActivity extends BaseActivity {
             File[] files = file.listFiles();
             for (File dir : files) {
                 TreeNode child = new TreeNode(dir);
-                child.setViewHolder(new FileTreeViewHolder(this));
+                child.setViewHolder(new FileTreeViewHolder(this, CodeEditorActivity.this));
                 root.addChild(child);
             }
         }
@@ -629,7 +629,7 @@ public class CodeEditorActivity extends BaseActivity {
     */
 
     // Method to convert dp to pixels
-    private int dpToPx(Context context, int dp) {
+    public static int dpToPx(Context context, int dp) {
         return (int)
                 TypedValue.applyDimension(
                         TypedValue.COMPLEX_UNIT_DIP,

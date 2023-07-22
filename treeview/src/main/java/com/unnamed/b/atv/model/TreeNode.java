@@ -24,12 +24,12 @@ public class TreeNode {
     private TreeNode mParent;
     private boolean mSelected;
     private boolean mSelectable = true;
-    private final List<TreeNode> children;
+    public final List<TreeNode> children;
     private BaseNodeViewHolder mViewHolder;
     private TreeNodeClickListener mClickListener;
     private TreeNodeLongClickListener mLongClickListener;
     private Object mValue;
-    private boolean mExpanded;
+    public boolean mExpanded;
 
     public static TreeNode root() {
         TreeNode root = new TreeNode(null);
