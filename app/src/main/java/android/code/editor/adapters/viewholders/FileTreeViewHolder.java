@@ -2,6 +2,7 @@ package android.code.editor.adapters.viewholders;
 
 import android.code.editor.R;
 import android.code.editor.files.utils.FileIcon;
+import android.code.editor.files.utils.FileManager;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,7 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
         } else {
             expandCollapse.setVisibility(View.INVISIBLE);
         }
+        path.setText(FileManager.getLatSegmentOfFilePath(file.getAbsolutePath()));
         return view;
     }
 
