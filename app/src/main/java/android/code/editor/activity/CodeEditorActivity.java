@@ -464,25 +464,9 @@ public class CodeEditorActivity extends BaseActivity {
 
   public void fileTree(File file) {
     if (file.isDirectory()) {
-      ArrayList<File> list = new ArrayList<File>();
-      for (File dir : file.listFiles()) {
-        list.add(dir);
-      }
-      Collections.sort(list, new FileComparator());
-      for (int pos = 0; pos < list.size(); pos++) {
-        TreeNode child = new TreeNode(list.get(pos));
+        TreeNode child = new TreeNode(file);
         child.setViewHolder(new FileTreeViewHolder(this, this));
         root.addChild(child);
-      }
-    }
-  }
-
-  final class FileComparator implements Comparator<File> {
-    public int compare(File f1, File f2) {
-      if (f1 == f2) return 0;
-      if (f1.isDirectory() && f2.isFile()) return -1;
-      if (f1.isFile() && f2.isDirectory()) return 1;
-      return f1.getAbsolutePath().compareToIgnoreCase(f2.getAbsolutePath());
     }
   }
 
