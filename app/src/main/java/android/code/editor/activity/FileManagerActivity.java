@@ -101,7 +101,7 @@ public class FileManagerActivity extends BaseActivity {
                           public void onRefresh() {
                             listMap.clear();
                             listString.clear();
-                            loadFileList(getIntent().getStringExtra("path"));
+                            loadFileList(currentDir);
                           }
                         });
                 projectDialog.show();

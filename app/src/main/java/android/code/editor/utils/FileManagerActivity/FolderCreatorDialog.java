@@ -58,7 +58,7 @@ public class FolderCreatorDialog {
             activity.listString.clear();
             FileManager.makeDir(
                 activity.currentDir.concat(File.separator).concat(path.getText().toString()));
-            activity.loadFileList(activity.getIntent().getStringExtra("path"));
+            activity.loadFileList(activity.currentDir);
           } else {
             Toast.makeText(
                     activity, "Please enter a folder that does not exists", Toast.LENGTH_SHORT)
