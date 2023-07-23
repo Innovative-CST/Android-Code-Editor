@@ -17,6 +17,9 @@ import androidx.transition.ChangeImageTransform;
 import androidx.transition.TransitionManager;
 import com.unnamed.b.atv.model.TreeNode;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
   public Context context;
@@ -87,10 +90,24 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
 
   public void listDirInNode(TreeNode node, File file) {
     node.children.clear();
+    ArrayList<File> list = new ArrayList<File>();
     for (File dir : file.listFiles()) {
-      TreeNode child = new TreeNode(dir);
+      list.add(dir);
+    }
+    Collections.sort(list, new FileComparator());
+    for (int pos = 0; pos < list.size(); pos++) {
+      TreeNode child = new TreeNode(list.get(pos));
       child.setViewHolder(new FileTreeViewHolder(context, editorActivity));
       node.addChild(child);
+    }
+  }
+
+  final class FileComparator implements Comparator<File> {
+    public int compare(File f1, File f2) {
+      if (f1 == f2) return 0;
+      if (f1.isDirectory() && f2.isFile()) return -1;
+      if (f1.isFile() && f2.isDirectory()) return 1;
+      return f1.getAbsolutePath().compareToIgnoreCase(f2.getAbsolutePath());
     }
   }
 
