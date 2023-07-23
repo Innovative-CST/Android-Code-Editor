@@ -32,11 +32,7 @@ public class FolderCreatorDialog {
             if (path.getText().length() == 0) {
               path.setError("Please enter a folder name");
             } else if (new File(
-                    activity
-                        .getIntent()
-                        .getStringExtra("path")
-                        .concat(File.separator)
-                        .concat(path.getText().toString()))
+                    activity.currentDir.concat(File.separator).concat(path.getText().toString()))
                 .exists()) {
               path.setError("Please enter a folder that does not exists");
             } else {
@@ -56,20 +52,12 @@ public class FolderCreatorDialog {
           if (path.getText().length() == 0) {
             Toast.makeText(activity, "Please enter a folder name", Toast.LENGTH_SHORT).show();
           } else if (!new File(
-                  activity
-                      .getIntent()
-                      .getStringExtra("path")
-                      .concat(File.separator)
-                      .concat(path.getText().toString()))
+                  activity.currentDir.concat(File.separator).concat(path.getText().toString()))
               .exists()) {
             activity.listMap.clear();
             activity.listString.clear();
             FileManager.makeDir(
-                activity
-                    .getIntent()
-                    .getStringExtra("path")
-                    .concat(File.separator)
-                    .concat(path.getText().toString()));
+                activity.currentDir.concat(File.separator).concat(path.getText().toString()));
             activity.loadFileList(activity.getIntent().getStringExtra("path"));
           } else {
             Toast.makeText(

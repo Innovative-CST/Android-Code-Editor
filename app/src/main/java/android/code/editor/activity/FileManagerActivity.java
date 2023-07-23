@@ -36,7 +36,7 @@ public class FileManagerActivity extends BaseActivity {
   private RecyclerView list;
   private FileList filelist;
   private String initialDir;
-  private String currentDir;
+  public String currentDir;
 
   public ArrayList<String> listString = new ArrayList<>();
   public ArrayList<HashMap<String, Object>> listMap = new ArrayList<>();
@@ -95,7 +95,7 @@ public class FileManagerActivity extends BaseActivity {
                 ProjectCreatorDialog projectDialog =
                     new ProjectCreatorDialog(
                         this,
-                        getIntent().getStringExtra("path"),
+                        currentDir,
                         new ProjectCreatorDialog.onProjectListUpdate() {
                           @Override
                           public void onRefresh() {
