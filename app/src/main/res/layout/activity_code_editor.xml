@@ -71,7 +71,7 @@
             android:id="@+id/fileNotOpenedArea">
 
             <TextView
-                android:textColor="?attr/colorPrimary"
+                android:textColor="?attr/colorSecondary"
                 android:text="Android Code Editor"
                 android:textSize="22sp"
                 android:textStyle="bold"
