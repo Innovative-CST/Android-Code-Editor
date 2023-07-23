@@ -6,7 +6,7 @@ android {
     compileSdk 32
     buildToolsVersion "33.0.2"
     useLibrary 'org.apache.http.legacy'
-	namespace "editor.tsd"
+    namespace "editor.tsd"
 
     defaultConfig {
         minSdk 21
@@ -21,17 +21,17 @@ android {
     }
     
     compileOptions {
-		sourceCompatibility JavaVersion.VERSION_17
-		targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
 	}
 	
-	buildFeatures {
+    buildFeatures {
         viewBinding true
     }
 }
 
 dependencies {
-	def editorGroupId = "io.github.Rosemoe.sora-editor"
+    def editorGroupId = "io.github.Rosemoe.sora-editor"
     implementation platform("$editorGroupId:bom:0.21.1")
     implementation "$editorGroupId:editor"
     implementation "$editorGroupId:language-textmate"
