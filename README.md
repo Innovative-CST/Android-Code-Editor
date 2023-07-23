@@ -51,6 +51,7 @@ Join our discord server to keep contact us about Android Code Editor.
     - [x] Markdown
 
 ## Thanks to
+- [bmelnychuk](https://github.com/bmelnychuk) for [AndroidTreeView](https://github.com/bmelnychuk/AndroidTreeView)
 - [tiagohm](https://github.com/tiagohm) for [MarkdownView](https://github.com/tiagohm/MarkdownView)
 - [Pictogrammers](https://pictogrammers.com/) for awsome icons
 - [Ajaxorg](https://github.com/ajaxorg) for [Ace Editor](https://github.com/ajaxorg/ace)
