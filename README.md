@@ -22,27 +22,14 @@ Join our discord server to keep contact us about Android Code Editor.
 
 ### TODO
 - [x] Mixed Editor Widget
-- [x] Sora Editor.
-    - Themes
-        - [x] Darcula(Deprecated)
-        - [x] Monokai
-        - [x] Quietlight
-        - [x] Solarized_Drak
-        - [x] Solarized_Light
-- [x] Ace Editor.
-    - Themes
-        - [x] Dracula(Deprecated)
-        - [x] Monokai
-        - [x] Chrome
-        - [x] Clouds
-        - [x] Crimeson_Editor
-        - [x] Dawn
+    - [x] Sora Editor.
+    - [x] Ace Editor.
 - [x] Save(Auto) and Edit files.
 - [x] Create Projects.
 - [x] File Tree.
 - [ ] Inbuilt browser for previewing HTML files.
 - [x] Preview Mark Down file.
-- [x] Supported Language Modes
+- [ ] Supported Language Modes
     - [x] Java
     - [x] JavaScript
     - [x] HTML
