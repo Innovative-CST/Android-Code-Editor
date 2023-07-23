@@ -1,6 +1,5 @@
 package android.code.editor.activity;
 
-import android.animation.ObjectAnimator;
 import android.code.editor.R;
 import android.code.editor.adapter.FileTabAdapter;
 import android.code.editor.adapters.viewholders.FileTreeViewHolder;
@@ -51,7 +50,6 @@ public class CodeEditorActivity extends BaseActivity {
   public File DrawerListDir;
   public String selectPath;
   public DrawerLayout drawer;
-  private ObjectAnimator rotate = new ObjectAnimator();
   public File openedFile;
   public Menu menu;
   public MenuItem preview;
@@ -418,15 +416,6 @@ public class CodeEditorActivity extends BaseActivity {
     }
   }
 
-  final class FileComparator implements Comparator<String> {
-    public int compare(String f1, String f2) {
-      if (f1 == f2) return 0;
-      if (new File(f1).isDirectory() && new File(f2).isFile()) return -1;
-      if (new File(f1).isFile() && new File(f2).isDirectory()) return 1;
-      return f1.compareToIgnoreCase(f2);
-    }
-  }
-
   @Override
   public boolean onCreateOptionsMenu(Menu arg0) {
     super.onCreateOptionsMenu(arg0);
@@ -479,25 +468,16 @@ public class CodeEditorActivity extends BaseActivity {
       for (File dir : file.listFiles()) {
         list.add(dir);
       }
-      Collections.sort(list, new FileComparator2());
+      Collections.sort(list, new FileComparator());
       for (int pos = 0; pos < list.size(); pos++) {
         TreeNode child = new TreeNode(list.get(pos));
         child.setViewHolder(new FileTreeViewHolder(this, this));
         root.addChild(child);
       }
     }
-
-    /* if (file.isDirectory()) {
-      File[] files = file.listFiles();
-      for (File dir : files) {
-        TreeNode child = new TreeNode(dir);
-        child.setViewHolder(new FileTreeViewHolder(this, CodeEditorActivity.this));
-        root.addChild(child);
-      }
-    }*/
   }
 
-  final class FileComparator2 implements Comparator<File> {
+  final class FileComparator implements Comparator<File> {
     public int compare(File f1, File f2) {
       if (f1 == f2) return 0;
       if (f1.isDirectory() && f2.isFile()) return -1;
@@ -505,137 +485,6 @@ public class CodeEditorActivity extends BaseActivity {
       return f1.getAbsolutePath().compareToIgnoreCase(f2.getAbsolutePath());
     }
   }
-
-  /*
-  public void fileTree(File file, ViewGroup view) {
-      if (view.getId() == R.id.list) {
-          view.removeAllViews();
-          LayoutInflater layoutInflator = getLayoutInflater();
-          View layout = layoutInflator.inflate(R.layout.filelist, null);
-          if (file.isDirectory()) {
-              layout.findViewById(R.id.expandCollapse).setVisibility(View.VISIBLE);
-              layout.findViewById(R.id.child).setVisibility(View.GONE);
-              ((ImageView) layout.findViewById(R.id.expandCollapse))
-                      .setImageResource(R.drawable.chevron_right);
-              layout.findViewById(R.id.layout)
-                      .setOnClickListener(
-                              (main) -> {
-                                  if (layout.findViewById(R.id.child).getVisibility()
-                                          == View.GONE) {
-                                      fileTree(
-                                              file,
-                                              (LinearLayout) layout.findViewById(R.id.child));
-                                      layout.findViewById(R.id.child).setVisibility(View.VISIBLE);
-                                      rotate.setTarget(layout.findViewById(R.id.expandCollapse));
-                                      rotate.setPropertyName("rotation");
-                                      rotate.setFloatValues(0, 90);
-                                      rotate.setDuration(200);
-                                      rotate.setInterpolator(new LinearInterpolator());
-                                      rotate.start();
-                                  } else {
-                                      layout.findViewById(R.id.child).setVisibility(View.GONE);
-                                      ((LinearLayout) layout.findViewById(R.id.child))
-                                              .removeAllViews();
-                                      rotate.setTarget(layout.findViewById(R.id.expandCollapse));
-                                      rotate.setPropertyName("rotation");
-                                      rotate.setFloatValues(90, 0);
-                                      rotate.setDuration(200);
-                                      rotate.setInterpolator(new LinearInterpolator());
-                                      rotate.start();
-                                  }
-                              });
-          }
-          FileIcon.setUpIcon(
-                  CodeEditorActivity.this,
-                  file.getAbsolutePath(),
-                  (ImageView) layout.findViewById(R.id.icon));
-          ((TextView) layout.findViewById(R.id.path))
-                  .setText(FileManager.getLatSegmentOfFilePath(file.getAbsolutePath()));
-          view.addView(layout);
-      } else {
-          view.removeAllViews();
-          ArrayList<String> list = new ArrayList<String>();
-          FileManager.listDir(file.getAbsolutePath(), list);
-
-          Collections.sort(list, new FileComparator());
-          for (int pos = 0; pos < list.size(); pos++) {
-              File fil = new File(list.get(pos));
-              LayoutInflater layoutInflator = getLayoutInflater();
-              View layout = layoutInflator.inflate(R.layout.filelist, null);
-              int left = dpToPx(this, 8);
-              int top = dpToPx(this, 8);
-              int right = dpToPx(this, 8);
-              int bottom = dpToPx(this, 0);
-              layout.findViewById(R.id.layout).setPadding(left, top, right, bottom);
-              if (fil.isDirectory()) {
-                  layout.findViewById(R.id.expandCollapse).setVisibility(View.VISIBLE);
-                  layout.findViewById(R.id.child).setVisibility(View.GONE);
-                  ((ImageView) layout.findViewById(R.id.expandCollapse))
-                          .setImageResource(R.drawable.chevron_right);
-                  layout.findViewById(R.id.layout)
-                          .setOnClickListener(
-                                  (main) -> {
-                                      if (layout.findViewById(R.id.child).getVisibility()
-                                              == View.GONE) {
-                                          fileTree(
-                                                  fil,
-                                                  (LinearLayout) layout.findViewById(R.id.child));
-                                          layout.findViewById(R.id.child)
-                                                  .setVisibility(View.VISIBLE);
-                                          rotate.setTarget(
-                                                  layout.findViewById(R.id.expandCollapse));
-                                          rotate.setPropertyName("rotation");
-                                          rotate.setFloatValues(0, 90);
-                                          rotate.setDuration(200);
-                                          rotate.setInterpolator(new LinearInterpolator());
-                                          rotate.start();
-                                      } else {
-                                          layout.findViewById(R.id.child)
-                                                  .setVisibility(View.GONE);
-                                          ((LinearLayout) layout.findViewById(R.id.child))
-                                                  .removeAllViews();
-                                          rotate.setTarget(
-                                                  layout.findViewById(R.id.expandCollapse));
-                                          rotate.setPropertyName("rotation");
-                                          rotate.setFloatValues(90, 0);
-                                          rotate.setDuration(200);
-                                          rotate.setInterpolator(new LinearInterpolator());
-                                          rotate.start();
-                                      }
-                                  });
-              } else {
-                  layout.findViewById(R.id.expandCollapse).setVisibility(View.INVISIBLE);
-                  layout.findViewById(R.id.layout)
-                          .setOnClickListener(
-                                  (main) -> {
-                                      switch (FileTypeHandler.getFileFormat(
-                                              fil.getAbsolutePath())) {
-                                          case "java":
-                                          case "xml":
-                                          case "html":
-                                          case "css":
-                                          case "js":
-                                          case "md":
-                                              save();
-                                              openFileInEditor(fil);
-                                              drawer.closeDrawer(GravityCompat.END);
-                                              break;
-                                          default:
-                                              break;
-                                      }
-                                  });
-              }
-              FileIcon.setUpIcon(
-                      CodeEditorActivity.this,
-                      fil.getAbsolutePath(),
-                      (ImageView) layout.findViewById(R.id.icon));
-              ((TextView) layout.findViewById(R.id.path))
-                      .setText(FileManager.getLatSegmentOfFilePath(fil.getAbsolutePath()));
-              view.addView(layout);
-          }
-      }
-  }
-  */
 
   // Method to convert dp to pixels
   public static int dpToPx(Context context, int dp) {
