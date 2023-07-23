@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 import androidx.core.view.GravityCompat;
 import androidx.transition.ChangeImageTransform;
 import androidx.transition.TransitionManager;
@@ -20,6 +21,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
   public Context context;
@@ -46,21 +49,69 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
     path = view.findViewById(R.id.path);
     FileIcon.setUpIcon(context, file.getAbsolutePath(), icon);
     if (file.isDirectory()) {
-      updateExpandCollapseIcon(expandCollapse, node.isExpanded());
       expandCollapse.setVisibility(View.VISIBLE);
+      updateExpandCollapseIcon(expandCollapse, node.isExpanded());
       view.setOnClickListener(
           new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
               if (node.isExpanded()) {
-                node.setExpanded(false);
-                node.children.clear();
-                getTreeView().collapseNode(node);
-                updateExpandCollapseIcon(expandCollapse, node.isExpanded());
+                ExecutorService loadFiles = Executors.newSingleThreadExecutor();
+                loadFiles.execute(
+                    new Runnable() {
+                      @Override
+                      public void run() {
+                        editorActivity.runOnUiThread(
+                            new Runnable() {
+                              @Override
+                              public void run() {
+                                ((ViewFlipper) view.findViewById(R.id.viewFlipper))
+                                    .setDisplayedChild(1);
+                                node.setExpanded(false);
+                              }
+                            });
+
+                        node.children.clear();
+                        editorActivity.runOnUiThread(
+                            new Runnable() {
+                              @Override
+                              public void run() {
+                                ((ViewFlipper) view.findViewById(R.id.viewFlipper))
+                                    .setDisplayedChild(0);
+                                getTreeView().collapseNode(node);
+                                updateExpandCollapseIcon(expandCollapse, node.isExpanded());
+                              }
+                            });
+                      }
+                    });
               } else {
-                listDirInNode(node, file);
-                getTreeView().expandNode(node);
-                updateExpandCollapseIcon(expandCollapse, node.isExpanded());
+                ExecutorService loadFiles = Executors.newSingleThreadExecutor();
+                loadFiles.execute(
+                    new Runnable() {
+                      @Override
+                      public void run() {
+                        editorActivity.runOnUiThread(
+                            new Runnable() {
+                              @Override
+                              public void run() {
+                                ((ViewFlipper) view.findViewById(R.id.viewFlipper))
+                                    .setDisplayedChild(1);
+                              }
+                            });
+
+                        listDirInNode(node, file);
+                        editorActivity.runOnUiThread(
+                            new Runnable() {
+                              @Override
+                              public void run() {
+                                getTreeView().expandNode(node);
+                                ((ViewFlipper) view.findViewById(R.id.viewFlipper))
+                                    .setDisplayedChild(0);
+                                updateExpandCollapseIcon(expandCollapse, node.isExpanded());
+                              }
+                            });
+                      }
+                    });
               }
             }
           });
