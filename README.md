@@ -24,6 +24,8 @@ Join our discord server to keep contact us about Android Code Editor.
 - [x] Mixed Editor Widget
     - [x] Sora Editor.
     - [x] Ace Editor.
+- [x] Dynamic colors
+- [x] Theme palette(Only available if Dynamic colors not available in device)
 - [x] Save(Auto) and Edit files.
 - [x] Create Projects.
 - [x] File Tree.
