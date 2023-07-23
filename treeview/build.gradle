@@ -6,7 +6,7 @@ android {
     compileSdk 32
     buildToolsVersion "33.0.2"
     useLibrary 'org.apache.http.legacy'
-	namespace "com.unnamed.b.atv"
+    namespace "com.unnamed.b.atv"
 
     defaultConfig {
         minSdk 21
@@ -19,17 +19,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    
+
     compileOptions {
-		sourceCompatibility JavaVersion.VERSION_17
-		targetCompatibility JavaVersion.VERSION_17
-	}
-	
-	buildFeatures {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
         viewBinding true
     }
 }
 
 dependencies {
-	implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'androidx.appcompat:appcompat:1.4.0'
 }
