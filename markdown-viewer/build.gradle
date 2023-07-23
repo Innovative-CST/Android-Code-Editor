@@ -1,5 +1,5 @@
 plugins {
-	id 'com.android.library'
+    id 'com.android.library'
 }
 
 android {
@@ -12,7 +12,6 @@ android {
         versionName "0.19.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
     
     namespace 'br.tiagohm.markdownview'
