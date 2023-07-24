@@ -62,7 +62,7 @@
         <item name="colorPrimaryInverse">@color/theme_2_md_theme_dark_inversePrimary</item>
  
         <item name="android:windowLightStatusBar">false</item>
-        <item name="android:statusBarColor">@color/theme_1_md_theme_dark_surface</item>
+        <item name="android:statusBarColor">@color/theme_2_md_theme_dark_surface</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
     
@@ -95,7 +95,7 @@
         <item name="colorPrimaryInverse">@color/theme_3_md_theme_dark_inversePrimary</item>
 
         <item name="android:windowLightStatusBar">false</item>
-        <item name="android:statusBarColor">@color/theme_1_md_theme_dark_surface</item>
+        <item name="android:statusBarColor">@color/theme_3_md_theme_dark_surface</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
     
@@ -128,7 +128,7 @@
         <item name="colorPrimaryInverse">@color/theme_4_md_theme_dark_inversePrimary</item>
  
         <item name="android:windowLightStatusBar">false</item>
-        <item name="android:statusBarColor">@color/theme_1_md_theme_dark_surface</item>
+        <item name="android:statusBarColor">@color/theme_4_md_theme_dark_surface</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
 </resources>
