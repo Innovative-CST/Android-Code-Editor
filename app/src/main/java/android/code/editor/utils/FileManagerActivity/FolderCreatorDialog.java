@@ -17,20 +17,22 @@ public class FolderCreatorDialog {
     MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(activity);
     dialog.setTitle("Create new folder");
     dialog.setMessage("Enter folder name to create");
-    ViewGroup nameCont = (LinearLayout)activity.getLayoutInflater().inflate(android.code.editor.R.layout.layout_edittext_dialog, null);
+    ViewGroup nameCont =
+        (LinearLayout)
+            activity
+                .getLayoutInflater()
+                .inflate(android.code.editor.R.layout.layout_edittext_dialog, null);
     EditText path = nameCont.findViewById(android.code.editor.R.id.edittext1);
-    TextInputLayout textInputLayout = nameCont.findViewById(android.code.editor.R.id.TextInputLayout1);
+    TextInputLayout textInputLayout =
+        nameCont.findViewById(android.code.editor.R.id.TextInputLayout1);
     textInputLayout.setHint("Enter folder name");
     path.addTextChangedListener(
         new TextWatcher() {
           @Override
-          public void afterTextChanged(Editable arg0) {
-            // TODO: Implement this method
-          }
+          public void afterTextChanged(Editable arg0) {}
 
           @Override
           public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-            // TODO: Implement this method
             if (path.getText().length() == 0) {
               path.setError("Please enter a folder name");
             } else if (new File(
@@ -43,9 +45,7 @@ public class FolderCreatorDialog {
           }
 
           @Override
-          public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-            // TODO: Implement this method
-          }
+          public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {}
         });
     dialog.setView(nameCont);
     dialog.setPositiveButton(
