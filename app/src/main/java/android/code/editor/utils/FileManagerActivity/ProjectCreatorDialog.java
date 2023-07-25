@@ -7,6 +7,10 @@ import android.content.res.AssetManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
@@ -58,20 +62,21 @@ public class ProjectCreatorDialog {
           MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(context);
           dialog.setTitle("Create new project");
           dialog.setMessage("Enter project name to create");
-          TextInputLayout nameCont = new TextInputLayout(context);
-          TextInputEditText path = new TextInputEditText(context);
-          path.setHint("Enter project name");
-          nameCont.addView(path);
+          ViewGroup nameCont =
+              ((LinearLayout)
+                  ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
+                      .inflate(android.code.editor.R.layout.layout_edittext_dialog, null));
+          EditText path = nameCont.findViewById(android.code.editor.R.id.edittext1);
+          TextInputLayout textInputLayout =
+              nameCont.findViewById(android.code.editor.R.id.TextInputLayout1);
+          textInputLayout.setHint("Enter folder name");
           path.addTextChangedListener(
               new TextWatcher() {
                 @Override
-                public void afterTextChanged(Editable arg0) {
-                  // TODO: Implement this method
-                }
+                public void afterTextChanged(Editable arg0) {}
 
                 @Override
                 public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-                  // TODO: Implement this method
                   if (path.getText().length() == 0) {
                     path.setError("Please enter a project name");
                   } else if (new File(
@@ -86,11 +91,8 @@ public class ProjectCreatorDialog {
                 }
 
                 @Override
-                public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-                  // TODO: Implement this method
-                }
+                public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {}
               });
-          path.setFocusable(true);
           dialog.setView(nameCont);
           dialog.setPositiveButton(
               "Create",
@@ -194,7 +196,6 @@ public class ProjectCreatorDialog {
       try {
         files = assetManager.list(_folder);
       } catch (java.io.IOException e) {
-        Log.e("tag", "Failed to get asset file list", e);
       }
       if (files != null)
         for (String filename : files) {
@@ -206,7 +207,7 @@ public class ProjectCreatorDialog {
               new java.io.File(_to).mkdir();
 
               java.io.File outFile = new java.io.File(_to, filename);
-              if (!(outFile.exists())) { // File does not exist...
+              if (!(outFile.exists())) {
                 out = new java.io.FileOutputStream(outFile);
                 copyFile(in, out);
               }
@@ -214,26 +215,23 @@ public class ProjectCreatorDialog {
             } else {
 
               java.io.File outFile = new java.io.File(_to, filename);
-              if (!(outFile.exists())) { // File does not exist...
+              if (!(outFile.exists())) {
                 out = new java.io.FileOutputStream(outFile);
                 copyFile(in, out);
               }
             }
           } catch (java.io.IOException e) {
-            Log.e("tag", "Failed to copy asset file: " + filename, e);
           } finally {
             if (in != null) {
               try {
                 in.close();
               } catch (java.io.IOException e) {
-                // NOOP
               }
             }
             if (out != null) {
               try {
                 out.close();
               } catch (java.io.IOException e) {
-                // NOOP
               }
             }
           }
