@@ -49,7 +49,6 @@ public class MainActivity extends BaseActivity {
         new View.OnClickListener() {
           @Override
           public void onClick(View arg0) {
-            // TODO: Implement this method
             Intent intent = new Intent();
             intent.putExtra("path", Environment.getExternalStorageDirectory().getAbsolutePath());
             intent.setClass(MainActivity.this, FileManagerActivity.class);
@@ -96,7 +95,6 @@ public class MainActivity extends BaseActivity {
   @Override
   public void onRequestPermissionsResult(int arg0, String[] arg1, int[] arg2) {
     super.onRequestPermissionsResult(arg0, arg1, arg2);
-    // TODO: Implement this method
     switch (arg0) {
       case 1:
       case -1:
@@ -127,7 +125,6 @@ public class MainActivity extends BaseActivity {
   @CallSuper
   protected void onActivityResult(int arg0, int arg1, Intent arg2) {
     super.onActivityResult(arg0, arg1, arg2);
-    // TODO: Implement this method
     if (isStoagePermissionGranted(this)) {
       startActivtyLogic();
     } else {
