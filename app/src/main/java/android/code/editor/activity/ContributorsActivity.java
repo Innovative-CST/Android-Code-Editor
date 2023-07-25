@@ -1,8 +1,8 @@
 package android.code.editor.activity;
 
 import android.code.editor.R;
-import android.code.editor.Sketchware.RequestNetwork;
-import android.code.editor.Sketchware.RequestNetworkController;
+import android.code.editor.utils.sketchware.RequestNetwork;
+import android.code.editor.utils.sketchware.RequestNetworkController;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;

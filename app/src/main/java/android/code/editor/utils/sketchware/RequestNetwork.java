@@ -1,4 +1,4 @@
-package android.code.editor.Sketchware;
+package android.code.editor.utils.sketchware;
 
 import android.app.Activity;
 import java.util.HashMap;
