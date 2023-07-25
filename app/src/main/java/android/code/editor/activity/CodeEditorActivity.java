@@ -1,7 +1,7 @@
 package android.code.editor.activity;
 
 import android.code.editor.R;
-import android.code.editor.adapter.FileTabAdapter;
+import android.code.editor.adapters.viewholders.FileTabAdapter;
 import android.code.editor.adapters.viewholders.FileTreeViewHolder;
 import android.code.editor.files.utils.FileManager;
 import android.code.editor.files.utils.FileTypeHandler;

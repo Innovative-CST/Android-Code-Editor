@@ -1,4 +1,4 @@
-package android.code.editor.adapter;
+package android.code.editor.adapters.viewholders;
 
 import android.code.editor.R;
 import android.code.editor.activity.CodeEditorActivity;
