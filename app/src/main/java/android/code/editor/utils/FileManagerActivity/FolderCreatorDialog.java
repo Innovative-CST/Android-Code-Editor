@@ -4,9 +4,11 @@ import android.code.editor.activity.FileManagerActivity;
 import android.code.editor.files.utils.FileManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import java.io.File;
 
@@ -15,10 +17,10 @@ public class FolderCreatorDialog {
     MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(activity);
     dialog.setTitle("Create new folder");
     dialog.setMessage("Enter folder name to create");
-    TextInputLayout nameCont = new TextInputLayout(activity);
-    TextInputEditText path = new TextInputEditText(activity);
-    path.setHint("Enter folder name");
-    nameCont.addView(path);
+    ViewGroup nameCont = (LinearLayout)activity.getLayoutInflater().inflate(android.code.editor.R.layout.layout_edittext_dialog, null);
+    EditText path = nameCont.findViewById(android.code.editor.R.id.edittext1);
+    TextInputLayout textInputLayout = nameCont.findViewById(android.code.editor.R.id.TextInputLayout1);
+    textInputLayout.setHint("Enter folder name");
     path.addTextChangedListener(
         new TextWatcher() {
           @Override
