@@ -3,7 +3,6 @@ package android.code.editor.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.code.editor.R;
-import android.code.editor.tsd.StoragePermission;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,7 +20,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-public class MainActivity extends BaseActivity implements StoragePermission {
+public class MainActivity extends BaseActivity {
 
   private boolean isRequested;
   private MaterialAlertDialogBuilder MaterialDialog;
@@ -42,7 +41,6 @@ public class MainActivity extends BaseActivity implements StoragePermission {
     }
   }
 
-  @Override
   public void startActivtyLogic() {
     info = findViewById(R.id.info);
     main = findViewById(R.id.main);
