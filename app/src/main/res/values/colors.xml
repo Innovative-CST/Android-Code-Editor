@@ -129,7 +129,7 @@
     <color name="theme_2_md_theme_dark_surfaceTint">#FBBB49</color>
     <color name="theme_2_md_theme_dark_outlineVariant">#4E4539</color>
     <color name="theme_2_md_theme_dark_scrim">#000000</color>
-    
+
     <color name="theme_3_md_theme_light_primary">#676000</color>
     <color name="theme_3_md_theme_light_onPrimary">#FFFFFF</color>
     <color name="theme_3_md_theme_light_primaryContainer">#F3E658</color>

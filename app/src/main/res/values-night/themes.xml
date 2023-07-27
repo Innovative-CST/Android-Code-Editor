@@ -1,6 +1,8 @@
-<resources 
+<resources
     xmlns:tools="http://schemas.android.com/tools">
-    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+    <style
+        name="AppTheme"
+        parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/theme_1_md_theme_dark_primary</item>
         <item name="colorOnPrimary">@color/theme_1_md_theme_dark_onPrimary</item>
         <item name="colorPrimaryContainer">@color/theme_1_md_theme_dark_primaryContainer</item>
@@ -27,13 +29,17 @@
         <item name="colorOnSurfaceInverse">@color/theme_1_md_theme_dark_inverseOnSurface</item>
         <item name="colorSurfaceInverse">@color/theme_1_md_theme_dark_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/theme_1_md_theme_dark_inversePrimary</item>
- 
+
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:statusBarColor">@color/theme_1_md_theme_dark_surface</item>
-        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <item
+            name="android:forceDarkAllowed"
+            tools:targetApi="q">false</item>
     </style>
-    
-    <style name="AppTheme2" parent="Theme.Material3.DayNight.NoActionBar">
+
+    <style
+        name="AppTheme2"
+        parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/theme_2_md_theme_dark_primary</item>
         <item name="colorOnPrimary">@color/theme_2_md_theme_dark_onPrimary</item>
         <item name="colorPrimaryContainer">@color/theme_2_md_theme_dark_primaryContainer</item>
@@ -60,13 +66,17 @@
         <item name="colorOnSurfaceInverse">@color/theme_2_md_theme_dark_inverseOnSurface</item>
         <item name="colorSurfaceInverse">@color/theme_2_md_theme_dark_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/theme_2_md_theme_dark_inversePrimary</item>
- 
+
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:statusBarColor">@color/theme_2_md_theme_dark_surface</item>
-        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <item
+            name="android:forceDarkAllowed"
+            tools:targetApi="q">false</item>
     </style>
-    
-    <style name="AppTheme3" parent="Theme.Material3.DayNight.NoActionBar">
+
+    <style
+        name="AppTheme3"
+        parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/theme_3_md_theme_dark_primary</item>
         <item name="colorOnPrimary">@color/theme_3_md_theme_dark_onPrimary</item>
         <item name="colorPrimaryContainer">@color/theme_3_md_theme_dark_primaryContainer</item>
@@ -96,10 +106,14 @@
 
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:statusBarColor">@color/theme_3_md_theme_dark_surface</item>
-        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <item
+            name="android:forceDarkAllowed"
+            tools:targetApi="q">false</item>
     </style>
-    
-    <style name="AppTheme4" parent="Theme.Material3.DayNight.NoActionBar">
+
+    <style
+        name="AppTheme4"
+        parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/theme_4_md_theme_dark_primary</item>
         <item name="colorOnPrimary">@color/theme_4_md_theme_dark_onPrimary</item>
         <item name="colorPrimaryContainer">@color/theme_4_md_theme_dark_primaryContainer</item>
@@ -126,9 +140,11 @@
         <item name="colorOnSurfaceInverse">@color/theme_4_md_theme_dark_inverseOnSurface</item>
         <item name="colorSurfaceInverse">@color/theme_4_md_theme_dark_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/theme_4_md_theme_dark_inversePrimary</item>
- 
+
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:statusBarColor">@color/theme_4_md_theme_dark_surface</item>
-        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <item
+            name="android:forceDarkAllowed"
+            tools:targetApi="q">false</item>
     </style>
 </resources>
