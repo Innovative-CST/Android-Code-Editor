@@ -20,7 +20,7 @@
             <com.google.android.material.appbar.MaterialToolbar
                 android:layout_height="?attr/actionBarSize"
                 android:layout_width="match_parent"
-                android:id="@+id/toolbar"/>
+                android:id="@+id/toolbar" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -40,7 +40,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:id="@+id/list"/>
+                    android:id="@+id/list" />
 
             </LinearLayout>
 
@@ -58,13 +58,13 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:indeterminate="true"
-                android:id="@+id/progressbar"/>
+                android:id="@+id/progressbar" />
 
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textColor="?attr/colorOnSurface"
-                android:text="Please wait..."/>
+                android:text="Please wait..." />
 
         </LinearLayout>
 

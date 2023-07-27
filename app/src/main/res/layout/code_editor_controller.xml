@@ -20,7 +20,7 @@
             android:layout_width="0dp"
             android:src="@drawable/chevron_left"
             android:layout_weight="1"
-            android:id="@+id/moveLeft"/>
+            android:id="@+id/moveLeft" />
 
         <ImageView
             android:tint="?attr/colorOnSurface"
@@ -28,16 +28,15 @@
             android:layout_width="0dp"
             android:src="@drawable/chevron_right"
             android:layout_weight="1"
-            android:id="@+id/moveRight"/>
+            android:id="@+id/moveRight" />
 
         <ImageView
-            
             android:tint="?attr/colorOnSurface"
             android:layout_height="24dp"
             android:layout_width="0dp"
             android:src="@drawable/chevron_up"
             android:layout_weight="1"
-            android:id="@+id/moveUp"/>
+            android:id="@+id/moveUp" />
 
         <ImageView
             android:tint="?attr/colorOnSurface"
@@ -45,7 +44,7 @@
             android:layout_width="0dp"
             android:src="@drawable/chevron_down"
             android:layout_weight="1"
-            android:id="@+id/moveDown"/>
+            android:id="@+id/moveDown" />
 
     </LinearLayout>
 

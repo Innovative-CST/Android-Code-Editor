@@ -15,13 +15,13 @@
         android:layout_width="wrap_content"
         android:padding="8dp"
         android:textSize="14sp"
-        android:textColor="?attr/colorOnSurface"/>
+        android:textColor="?attr/colorOnSurface" />
 
     <ImageView
         android:id="@+id/tabIndicator"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:src="@drawable/ic_file_tab_indicator"
-        android:tint="?attr/colorSecondary"/>
+        android:tint="?attr/colorSecondary" />
 
 </LinearLayout>

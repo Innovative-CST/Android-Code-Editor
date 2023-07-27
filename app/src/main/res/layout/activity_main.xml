@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:src="@drawable/logo_black"
             android:tint="?attr/colorOnSurface"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
         <TextView
             android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
             android:textColor="?attr/colorOnSurface"
             android:text="Tap to start"
             android:id="@+id/info"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
 

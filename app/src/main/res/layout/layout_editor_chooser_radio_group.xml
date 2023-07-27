@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout 
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -15,13 +15,13 @@
             android:id="@+id/radioOption1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ace Code Editor"/>
+            android:text="Ace Code Editor" />
 
         <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/radioOption2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sora Code Editor"/>
+            android:text="Sora Code Editor" />
 
     </RadioGroup>
 

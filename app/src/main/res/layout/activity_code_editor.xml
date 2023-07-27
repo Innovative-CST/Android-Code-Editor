@@ -21,7 +21,7 @@
             <com.google.android.material.appbar.MaterialToolbar
                 android:layout_height="?attr/actionBarSize"
                 android:layout_width="match_parent"
-                android:id="@+id/toolbar"/>
+                android:id="@+id/toolbar" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -31,12 +31,12 @@
             android:visibility="gone"
             android:indeterminate="true"
             style="?android:progressBarStyleHorizontal"
-            android:id="@+id/progressbar"/>
+            android:id="@+id/progressbar" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:id="@+id/fileTab"/>
+            android:id="@+id/fileTab" />
 
         <LinearLayout
             android:id="@+id/editorArea"
@@ -55,10 +55,10 @@
                 <LinearLayout
                     android:id="@+id/editorCont"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
-            <include layout="@layout/code_editor_controller"/>
+            <include layout="@layout/code_editor_controller" />
 
         </LinearLayout>
 
@@ -76,14 +76,14 @@
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:textColor="?attr/colorOnSurface"
                 android:text="Open file list from drawer"
                 android:layout_width="wrap_content"
                 android:textSize="12sp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
     </LinearLayout>
@@ -108,7 +108,7 @@
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
                     android:id="@+id/list"
-                    android:orientation="vertical"/>
+                    android:orientation="vertical" />
 
             </HorizontalScrollView>
 

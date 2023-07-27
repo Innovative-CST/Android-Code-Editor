@@ -17,7 +17,7 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_height="?attr/actionBarSize"
             android:layout_width="match_parent"
-            android:id="@+id/toolbar"/>
+            android:id="@+id/toolbar" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -37,7 +37,7 @@
                 android:layout_margin="8dp"
                 android:textSize="14sp"
                 android:textColor="?attr/colorPrimary"
-                android:text="Editor"/>
+                android:text="Editor" />
 
             <LinearLayout
                 android:layout_height="wrap_content"
@@ -58,14 +58,14 @@
                         android:layout_width="wrap_content"
                         android:textSize="16sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:text="Editor"/>
+                        android:text="Editor" />
 
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textSize="11sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:text="Choose an code editor for you which is good for you."/>
+                        android:text="Choose an code editor for you which is good for you." />
 
                 </LinearLayout>
 
@@ -89,14 +89,14 @@
                         android:layout_width="wrap_content"
                         android:textSize="16sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:text="Ace Editor Theme"/>
+                        android:text="Ace Editor Theme" />
 
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textSize="11sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:text="Choose a theme for Ace Editor."/>
+                        android:text="Choose a theme for Ace Editor." />
 
                 </LinearLayout>
 
@@ -127,14 +127,14 @@
                         android:layout_width="wrap_content"
                         android:textSize="16sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:text="Sora Editor Theme"/>
+                        android:text="Sora Editor Theme" />
 
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textSize="11sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:text="Choose a theme for Sora Editor."/>
+                        android:text="Choose a theme for Sora Editor." />
 
                 </LinearLayout>
 
@@ -153,7 +153,7 @@
                 android:layout_margin="8dp"
                 android:textSize="14sp"
                 android:textColor="?attr/colorPrimary"
-                android:text="App Theme"/>
+                android:text="App Theme" />
 
             <HorizontalScrollView
                 android:layout_height="wrap_content"
@@ -187,14 +187,14 @@
                         android:layout_width="wrap_content"
                         android:textSize="16sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:text="UI mode"/>
+                        android:text="UI mode" />
 
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textSize="11sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:text="Choose UI mode for IDE"/>
+                        android:text="Choose UI mode for IDE" />
 
                 </LinearLayout>
 
