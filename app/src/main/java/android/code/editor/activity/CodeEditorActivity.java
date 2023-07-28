@@ -34,8 +34,6 @@ import com.unnamed.b.atv.view.TreeNodeWrapperView;
 import editor.tsd.widget.CodeEditorLayout;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class CodeEditorActivity extends BaseActivity {
 
@@ -120,7 +118,6 @@ public class CodeEditorActivity extends BaseActivity {
         new View.OnClickListener() {
           @Override
           public void onClick(View arg0) {
-            // TODO: Implement this method
             if (drawer.isDrawerVisible(GravityCompat.END)) {
               drawer.closeDrawer(GravityCompat.END);
             } else {
@@ -408,7 +405,8 @@ public class CodeEditorActivity extends BaseActivity {
       ((LinearLayout) findViewById(R.id.list)).addView(treeView);
     }
     if (preview != null && openedFile != null) {
-      if (FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("md")) {
+      if (FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("md")
+          || FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("html")) {
         preview.setVisible(true);
       } else {
         preview.setVisible(false);
@@ -430,7 +428,8 @@ public class CodeEditorActivity extends BaseActivity {
     menu = arg0;
     preview = arg0.findItem(R.id.preview);
     if (openedFile != null) {
-      if (FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("md")) {
+      if (FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("md")
+          || FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("html")) {
         preview.setVisible(true);
       } else {
         preview.setVisible(false);
@@ -448,13 +447,21 @@ public class CodeEditorActivity extends BaseActivity {
       save();
       if (openedFile != null) {
         if (codeEditor != null) {
-          Intent i = new Intent();
-          i.setClass(CodeEditorActivity.this, MarkdownViewer.class);
-          i.putExtra("type", "file");
-          i.putExtra("style", "github");
-          i.putExtra("title", FileManager.getLatSegmentOfFilePath(openedFile.getAbsolutePath()));
-          i.putExtra("data", openedFile.getAbsolutePath());
-          startActivity(i);
+          if (FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("md")) {
+            Intent i = new Intent();
+            i.setClass(CodeEditorActivity.this, MarkdownViewer.class);
+            i.putExtra("type", "file");
+            i.putExtra("style", "github");
+            i.putExtra("title", FileManager.getLatSegmentOfFilePath(openedFile.getAbsolutePath()));
+            i.putExtra("data", openedFile.getAbsolutePath());
+            startActivity(i);
+          } else {
+            Intent i = new Intent();
+            i.setClass(CodeEditorActivity.this, WebViewActivity.class);
+            i.putExtra("type", "file");
+            i.putExtra("data", openedFile.getAbsolutePath());
+            startActivity(i);
+          }
         }
       }
     }
@@ -464,9 +471,9 @@ public class CodeEditorActivity extends BaseActivity {
 
   public void fileTree(File file) {
     if (file.isDirectory()) {
-        TreeNode child = new TreeNode(file);
-        child.setViewHolder(new FileTreeViewHolder(this, this));
-        root.addChild(child);
+      TreeNode child = new TreeNode(file);
+      child.setViewHolder(new FileTreeViewHolder(this, this));
+      root.addChild(child);
     }
   }
 
@@ -488,7 +495,8 @@ public class CodeEditorActivity extends BaseActivity {
     adapter.notifyDataSetChanged();
 
     if (preview != null) {
-      if (FileManager.getPathFormat(file.getAbsolutePath()).equals("md")) {
+      if (FileManager.getPathFormat(file.getAbsolutePath()).equals("md")
+          || FileManager.getPathFormat(file.getAbsolutePath()).equals("html")) {
         preview.setVisible(true);
       } else {
         preview.setVisible(false);

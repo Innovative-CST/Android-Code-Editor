@@ -51,6 +51,9 @@
         <activity
             android:name=".activity.LicenseActivity"
             android:exported="true"/>
+        <activity
+            android:name=".activity.WebViewActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
