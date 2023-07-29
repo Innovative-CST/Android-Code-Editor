@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -17,7 +16,6 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import java.io.File;
@@ -128,7 +126,8 @@ public class ProjectCreatorDialog {
         });
   }
 
-  public static void _FindAndReplace(final String _path, final String _find, final String _replace) {
+  public static void _FindAndReplace(
+      final String _path, final String _find, final String _replace) {
     ArrayList<String> findAndReplace = new ArrayList<String>();
     FileManager.listDir(_path, findAndReplace);
     try {
