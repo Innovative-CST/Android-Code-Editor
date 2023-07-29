@@ -4,6 +4,7 @@ import android.code.editor.R;
 import android.code.editor.files.utils.FileIcon;
 import android.code.editor.files.utils.FileManager;
 import android.code.editor.files.utils.FileTypeHandler;
+import android.code.editor.utils.FileManagerActivity.FileCreatorDialog;
 import android.code.editor.utils.FileManagerActivity.FolderCreatorDialog;
 import android.code.editor.utils.FileManagerActivity.ProjectCreatorDialog;
 import android.content.Intent;
@@ -83,6 +84,7 @@ public class FileManagerActivity extends BaseActivity {
           new PopupMenu(FileManagerActivity.this, findViewById(R.id.menu_main_setting));
       Menu menu = popupMenu.getMenu();
       menu.add("New folder");
+      menu.add("New file");
       menu.add("New Project");
       menu.add("Open Source Licenses");
       menu.add("Contributors");
@@ -108,6 +110,9 @@ public class FileManagerActivity extends BaseActivity {
                 break;
               case "New folder":
                 new FolderCreatorDialog(this);
+                break;
+              case "New file":
+                new FileCreatorDialog(this);
                 break;
               case "Contributors":
                 Intent intent = new Intent();
