@@ -23,7 +23,6 @@ public class DebugActivity extends BaseActivity {
         new View.OnLongClickListener() {
           @Override
           public boolean onLongClick(View arg0) {
-            // TODO: Implement this method
             ((ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE))
                 .setPrimaryClip(ClipData.newPlainText("clipboard", error.getText().toString()));
             return true;

@@ -30,7 +30,6 @@ public class LicenseActivity extends BaseActivity {
         new View.OnClickListener() {
           @Override
           public void onClick(View arg0) {
-            // TODO: Implement this method
             onBackPressed();
           }
         });

@@ -60,14 +60,12 @@ public class FileManagerActivity extends BaseActivity {
   @Override
   public boolean onCreateOptionsMenu(Menu arg0) {
     super.onCreateOptionsMenu(arg0);
-    // TODO: Implement this method
     getMenuInflater().inflate(R.menu.filemanager_activity_menu, arg0);
     return true;
   }
 
   @Override
   public boolean onPrepareOptionsMenu(Menu arg0) {
-    // TODO: Implement this method
     MenuItem item = arg0.findItem(R.id.menu_main_setting);
     Drawable icon =
         getResources()
@@ -78,7 +76,6 @@ public class FileManagerActivity extends BaseActivity {
 
   @Override
   public boolean onOptionsItemSelected(MenuItem arg0) {
-    // TODO: Implement this method
     if (arg0.getItemId() == R.id.menu_main_setting) {
       PopupMenu popupMenu =
           new PopupMenu(FileManagerActivity.this, findViewById(R.id.menu_main_setting));
@@ -155,7 +152,6 @@ public class FileManagerActivity extends BaseActivity {
         new View.OnClickListener() {
           @Override
           public void onClick(View arg0) {
-            // TODO: Implement this method
             onBackPressed();
           }
         });
@@ -174,8 +170,6 @@ public class FileManagerActivity extends BaseActivity {
         new Runnable() {
           @Override
           public void run() {
-            // TODO: Implement this method
-
             runOnUiThread(
                 new Runnable() {
                   @Override

@@ -417,14 +417,12 @@ public class CodeEditorActivity extends BaseActivity {
   @Override
   public boolean onCreateOptionsMenu(Menu arg0) {
     super.onCreateOptionsMenu(arg0);
-    // TODO: Implement this method
     getMenuInflater().inflate(R.menu.activity_code_editor, arg0);
     return true;
   }
 
   @Override
   public boolean onPrepareOptionsMenu(Menu arg0) {
-    // TODO: Implement this method
     menu = arg0;
     preview = arg0.findItem(R.id.preview);
     if (openedFile != null) {
@@ -442,7 +440,6 @@ public class CodeEditorActivity extends BaseActivity {
 
   @Override
   public boolean onOptionsItemSelected(MenuItem arg0) {
-    // TODO: Implement this method
     if (arg0.getItemId() == R.id.preview) {
       save();
       if (openedFile != null) {
