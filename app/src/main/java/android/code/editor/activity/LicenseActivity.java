@@ -40,7 +40,7 @@ public class LicenseActivity extends BaseActivity {
     licenseText.setText(readFileFromAssets(getAssets(), "oos.text"));
   }
 
-  public String readFileFromAssets(AssetManager assetManager, String fileName) {
+  public static String readFileFromAssets(AssetManager assetManager, String fileName) {
     StringBuilder stringBuilder = new StringBuilder();
     try {
       InputStream inputStream = assetManager.open(fileName);

@@ -1,7 +1,10 @@
 package android.code.editor.utils.FileManagerActivity;
 
 import android.code.editor.activity.FileManagerActivity;
+import android.code.editor.activity.LicenseActivity;
 import android.code.editor.files.utils.FileManager;
+import android.code.editor.utils.FileManagerActivity.ProjectCreatorDialog;
+import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.ViewGroup;
@@ -69,7 +72,14 @@ public class FileCreatorDialog {
             activity.listMap.clear();
             activity.listString.clear();
             FileManager.writeFile(
-                activity.currentDir.concat(File.separator).concat(path.getText().toString()), "");
+                activity.currentDir.concat(File.separator).concat(path.getText().toString()),
+                getFileTemplate(
+                    new File(
+                        activity
+                            .currentDir
+                            .concat(File.separator)
+                            .concat(path.getText().toString())),
+                    activity));
             activity.loadFileList(activity.currentDir);
           } else if (new File(
                   activity.currentDir.concat(File.separator).concat(path.getText().toString()))
@@ -85,5 +95,29 @@ public class FileCreatorDialog {
           dialog.create().dismiss();
         });
     dialog.create().show();
+  }
+
+  public static String getFileTemplate(File path, Context context) {
+    String content = "";
+    String pathToCopyText = "";
+    switch (FileManager.getPathFormat(path.getAbsolutePath())) {
+      case "html":
+        pathToCopyText = "Templates/NewFiles/template_01.html";
+        content = LicenseActivity.readFileFromAssets(context.getAssets(), pathToCopyText);
+        content =
+            content.replace(
+                "${Project_Name}",
+                FileManager.getLatSegmentOfFilePath(path.getParentFile().getAbsolutePath()));
+        break;
+      case "css":
+        pathToCopyText = "Templates/NewFiles/template_02.css";
+        content = LicenseActivity.readFileFromAssets(context.getAssets(), pathToCopyText);
+        break;
+      case "js":
+        pathToCopyText = "Templates/NewFiles/template_03.js";
+        content = LicenseActivity.readFileFromAssets(context.getAssets(), pathToCopyText);
+        break;
+    }
+    return content;
   }
 }

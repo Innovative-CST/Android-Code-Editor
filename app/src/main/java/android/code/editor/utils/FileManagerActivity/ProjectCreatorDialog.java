@@ -128,7 +128,7 @@ public class ProjectCreatorDialog {
         });
   }
 
-  public void _FindAndReplace(final String _path, final String _find, final String _replace) {
+  public static void _FindAndReplace(final String _path, final String _find, final String _replace) {
     ArrayList<String> findAndReplace = new ArrayList<String>();
     FileManager.listDir(_path, findAndReplace);
     try {
