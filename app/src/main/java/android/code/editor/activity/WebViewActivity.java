@@ -1,7 +1,6 @@
 package android.code.editor.activity;
 
 import android.code.editor.R;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.ViewGroupCompat;
 
 public class WebViewActivity extends BaseActivity {
 
@@ -57,7 +55,13 @@ public class WebViewActivity extends BaseActivity {
               consoleTextView.setText(console.message());
               TextView consoleDetail = view.findViewById(R.id.console_detail);
               consoleDetail.setText(
-                  console.sourceId().concat(":").concat(String.valueOf(console.lineNumber())).concat("[").concat(String.valueOf(console.messageLevel())).concat("]"));
+                  console
+                      .sourceId()
+                      .concat(":")
+                      .concat(String.valueOf(console.lineNumber()))
+                      .concat("[")
+                      .concat(String.valueOf(console.messageLevel()))
+                      .concat("]"));
               consoleView.addView(view, 0);
             }
             return super.onConsoleMessage(console);
