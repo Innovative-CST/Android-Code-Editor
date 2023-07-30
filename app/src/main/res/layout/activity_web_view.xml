@@ -23,16 +23,15 @@
     <LinearLayout
         android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:weightSum="100"
         android:background="?attr/colorSurface"
         android:layout_weight="1"
         android:orientation="vertical">
 
         <ScrollView
-            android:layout_height="0dp"
+            android:layout_height="100dp"
             android:layout_width="match_parent"
             android:background="?attr/colorSurface"
-            android:layout_weight="30">
+            android:id="@+id/console_content">
 
             <LinearLayout
                 android:id="@+id/console"
@@ -42,10 +41,16 @@
 
         </ScrollView>
 
+        <View
+            android:id="@+id/console_slider"
+            android:layout_height="5dp"
+            android:layout_width="match_parent"
+            android:background="?attr/colorOnSurfaceVariant"/>
+
         <LinearLayout
+            android:layout_weight="1"
             android:layout_height="0dp"
-            android:layout_width="wrap_content"
-            android:layout_weight="70">
+            android:layout_width="wrap_content">
 
             <android.webkit.WebView
                 android:layout_height="match_parent"

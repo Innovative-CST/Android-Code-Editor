@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.ConsoleMessage;
@@ -12,6 +13,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 
@@ -19,6 +21,7 @@ public class WebViewActivity extends BaseActivity {
 
   private WebView webview;
   private LinearLayout consoleView;
+  private ScrollView console_content;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class WebViewActivity extends BaseActivity {
 
     webview = findViewById(R.id.webview);
     consoleView = findViewById(R.id.console);
+    console_content = findViewById(R.id.console_content);
     webview.getSettings().setJavaScriptEnabled(true);
     webview.getSettings().setSupportZoom(true);
     webview.getSettings().setAllowContentAccess(true);
@@ -72,6 +76,32 @@ public class WebViewActivity extends BaseActivity {
         && getIntent().getStringExtra("type").equals("file")) {
       webview.loadUrl("file:".concat(getIntent().getStringExtra("data")));
     }
+    findViewById(R.id.console_slider)
+        .setOnTouchListener(
+            new View.OnTouchListener() {
+              int initialHeight;
+              float initialY;
+
+              @Override
+              public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                  case MotionEvent.ACTION_DOWN:
+                    initialHeight = console_content.getHeight();
+                    initialY = motionEvent.getRawY();
+                    return true;
+                  case MotionEvent.ACTION_MOVE:
+                    float currentY = motionEvent.getRawY();
+                    float dy = currentY - initialY;
+                    if ((initialHeight + (int) dy) >= 0) {
+                      ViewGroup.LayoutParams layoutParams = console_content.getLayoutParams();
+                      layoutParams.height = initialHeight + (int) dy;
+                      console_content.setLayoutParams(layoutParams);
+                    }
+                    return true;
+                }
+                return false;
+              }
+            });
   }
 
   @Override
