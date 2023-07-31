@@ -66,6 +66,12 @@ public class FileCreatorDialog {
               .substring(path.getText().toString().length() - 1)
               .equals(".")) {
             Toast.makeText(activity, "Please enter a valid name", Toast.LENGTH_SHORT).show();
+          } else if (new File(
+                  activity.currentDir.concat(File.separator).concat(path.getText().toString()))
+              .exists()) {
+            Toast.makeText(
+                    activity, "Please enter a file name that does not exists", Toast.LENGTH_SHORT)
+                .show();
           } else if (!new File(
                   activity.currentDir.concat(File.separator).concat(path.getText().toString()))
               .exists()) {
@@ -81,12 +87,6 @@ public class FileCreatorDialog {
                             .concat(path.getText().toString())),
                     activity));
             activity.loadFileList(activity.currentDir);
-          } else if (new File(
-                  activity.currentDir.concat(File.separator).concat(path.getText().toString()))
-              .exists()) {
-            Toast.makeText(
-                    activity, "Please enter a file name that does not exists", Toast.LENGTH_SHORT)
-                .show();
           }
         });
     dialog.setNegativeButton(
@@ -116,6 +116,17 @@ public class FileCreatorDialog {
       case "js":
         pathToCopyText = "Templates/NewFiles/template_03.js";
         content = LicenseActivity.readFileFromAssets(context.getAssets(), pathToCopyText);
+        break;
+      case "java":
+        pathToCopyText = "Templates/NewFiles/template_04.java";
+        content = LicenseActivity.readFileFromAssets(context.getAssets(), pathToCopyText);
+        content =
+            content.replace(
+                "${Class_Name}",
+                FileManager.getLatSegmentOfFilePath(path.getAbsolutePath())
+                    .substring(
+                        0,
+                        FileManager.getLatSegmentOfFilePath(path.getAbsolutePath()).length() - 5));
         break;
     }
     return content;
