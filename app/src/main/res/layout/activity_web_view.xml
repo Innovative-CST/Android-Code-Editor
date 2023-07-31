@@ -24,8 +24,9 @@
         android:layout_height="0dp"
         android:layout_width="match_parent"
         android:background="?attr/colorSurface"
+        android:orientation="vertical"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:id="@+id/mainContainer">
 
         <ScrollView
             android:layout_height="100dp"
@@ -34,28 +35,32 @@
             android:id="@+id/console_content">
 
             <LinearLayout
-                android:id="@+id/console"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:orientation="vertical" />
+                android:orientation="vertical"
+                android:id="@+id/console">
+
+            </LinearLayout>
 
         </ScrollView>
 
         <View
-            android:id="@+id/console_slider"
             android:layout_height="5dp"
             android:layout_width="match_parent"
-            android:background="?attr/colorOnSurfaceVariant"/>
+            android:background="?attr/colorOnSurfaceVariant"
+            android:id="@+id/console_slider" />
 
         <LinearLayout
-            android:layout_weight="1"
             android:layout_height="0dp"
-            android:layout_width="wrap_content">
+            android:layout_width="wrap_content"
+            android:layout_weight="1">
 
             <android.webkit.WebView
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:id="@+id/webview" />
+                android:id="@+id/webview">
+
+            </android.webkit.WebView>
 
         </LinearLayout>
 

@@ -60,21 +60,18 @@ public class WebViewActivity extends BaseActivity {
               consoleTextView.setText(console.message());
               TextView consoleDetail = view.findViewById(R.id.console_detail);
               consoleDetail.setText(
-                  console
-                      .sourceId()
-                      .concat(":")
-                      .concat(String.valueOf(console.lineNumber())));
+                  console.sourceId().concat(":").concat(String.valueOf(console.lineNumber())));
               consoleView.addView(view, 0);
-                        consoleDetail.setTextColor(Color.GRAY);
-                        if (console.messageLevel().equals(ConsoleMessage.MessageLevel.DEBUG)) {
-                            consoleTextView.setTextColor(Color.CYAN);
-                        } else if (console.messageLevel().equals(ConsoleMessage.MessageLevel.ERROR)) {
-                            consoleTextView.setTextColor(Color.RED);
-                        } else if (console.messageLevel().equals(ConsoleMessage.MessageLevel.TIP)) {
-                            consoleTextView.setTextColor(Color.CYAN);
-                        } else if (console.messageLevel().equals(ConsoleMessage.MessageLevel.WARNING)) {
-                            consoleTextView.setTextColor(Color.parseColor("#F28500"));
-                        }
+              consoleDetail.setTextColor(Color.GRAY);
+              if (console.messageLevel().equals(ConsoleMessage.MessageLevel.DEBUG)) {
+                consoleTextView.setTextColor(Color.CYAN);
+              } else if (console.messageLevel().equals(ConsoleMessage.MessageLevel.ERROR)) {
+                consoleTextView.setTextColor(Color.RED);
+              } else if (console.messageLevel().equals(ConsoleMessage.MessageLevel.TIP)) {
+                consoleTextView.setTextColor(Color.CYAN);
+              } else if (console.messageLevel().equals(ConsoleMessage.MessageLevel.WARNING)) {
+                consoleTextView.setTextColor(Color.parseColor("#F28500"));
+              }
             }
             return super.onConsoleMessage(console);
           }
@@ -101,9 +98,14 @@ public class WebViewActivity extends BaseActivity {
                     float currentY = motionEvent.getRawY();
                     float dy = currentY - initialY;
                     if ((initialHeight + (int) dy) >= 0) {
-                      ViewGroup.LayoutParams layoutParams = console_content.getLayoutParams();
-                      layoutParams.height = initialHeight + (int) dy;
-                      console_content.setLayoutParams(layoutParams);
+                      if ((initialHeight
+                              + (int) dy
+                              + CodeEditorActivity.dpToPx(WebViewActivity.this, 5))
+                          <= findViewById(R.id.mainContainer).getHeight()) {
+                        ViewGroup.LayoutParams layoutParams = console_content.getLayoutParams();
+                        layoutParams.height = initialHeight + (int) dy;
+                        console_content.setLayoutParams(layoutParams);
+                      }
                     }
                     return true;
                 }
