@@ -3,7 +3,6 @@ package android.code.editor.utils.FileManagerActivity;
 import android.code.editor.activity.FileManagerActivity;
 import android.code.editor.activity.LicenseActivity;
 import android.code.editor.files.utils.FileManager;
-import android.code.editor.utils.FileManagerActivity.ProjectCreatorDialog;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
