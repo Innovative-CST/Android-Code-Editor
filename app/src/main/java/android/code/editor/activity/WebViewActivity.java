@@ -1,6 +1,7 @@
 package android.code.editor.activity;
 
 import android.code.editor.R;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
@@ -62,11 +63,18 @@ public class WebViewActivity extends BaseActivity {
                   console
                       .sourceId()
                       .concat(":")
-                      .concat(String.valueOf(console.lineNumber()))
-                      .concat("[")
-                      .concat(String.valueOf(console.messageLevel()))
-                      .concat("]"));
+                      .concat(String.valueOf(console.lineNumber())));
               consoleView.addView(view, 0);
+                        consoleDetail.setTextColor(Color.GRAY);
+                        if (console.messageLevel().equals(ConsoleMessage.MessageLevel.DEBUG)) {
+                            consoleTextView.setTextColor(Color.CYAN);
+                        } else if (console.messageLevel().equals(ConsoleMessage.MessageLevel.ERROR)) {
+                            consoleTextView.setTextColor(Color.RED);
+                        } else if (console.messageLevel().equals(ConsoleMessage.MessageLevel.TIP)) {
+                            consoleTextView.setTextColor(Color.CYAN);
+                        } else if (console.messageLevel().equals(ConsoleMessage.MessageLevel.WARNING)) {
+                            consoleTextView.setTextColor(Color.parseColor("#F28500"));
+                        }
             }
             return super.onConsoleMessage(console);
           }
