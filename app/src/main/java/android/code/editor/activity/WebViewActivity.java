@@ -49,6 +49,8 @@ public class WebViewActivity extends BaseActivity {
     webview.getSettings().setSupportZoom(true);
     webview.getSettings().setAllowContentAccess(true);
     webview.getSettings().setAllowFileAccess(true);
+    webview.getSettings().setLoadsImagesAutomatically(true);
+    webview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
     webview.setWebChromeClient(
         new WebChromeClient() {
           @Override
