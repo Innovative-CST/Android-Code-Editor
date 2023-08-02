@@ -86,6 +86,7 @@ public class FileManagerActivity extends BaseActivity {
       menu.add("Open Source Licenses");
       menu.add("Contributors");
       menu.add("Settings");
+      menu.add("Relationship");
 
       popupMenu.setOnMenuItemClickListener(
           item -> {
@@ -125,6 +126,12 @@ public class FileManagerActivity extends BaseActivity {
                 Intent license = new Intent();
                 license.setClass(FileManagerActivity.this, LicenseActivity.class);
                 startActivity(license);
+                break;
+              case "Relationship":
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("myket://details?id=[android.code.editor]"));
+                startActivity(intent);
                 break;
             }
             return true;
