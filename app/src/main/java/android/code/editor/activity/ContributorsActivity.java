@@ -34,7 +34,7 @@ public class ContributorsActivity extends BaseActivity {
   private RecyclerView list;
 
   public String contributorsData =
-      "https://raw.githubusercontent.com/TS-Code-Editor/Android-Code-Editor/main/assets/contributors.json";
+      "https://raw.githubusercontent.com/PHANTOMLOCAL/Android-Code-Editor/main/assets/contributors.json";
 
   public RequestNetwork reqNetwork;
 
