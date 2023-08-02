@@ -128,10 +128,10 @@ public class FileManagerActivity extends BaseActivity {
                 startActivity(license);
                 break;
               case "Relationship":
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("myket://details?id=[android.code.editor]"));
-                startActivity(intent);
+                Intent myket = new Intent();
+                myket.setAction(Intent.ACTION_VIEW);
+                myket.setData(Uri.parse("myket://details?id=android.code.editor"));
+                startActivity(myket);
                 break;
             }
             return true;
