@@ -9,7 +9,6 @@ import android.code.editor.utils.FileManagerActivity.FolderCreatorDialog;
 import android.code.editor.utils.FileManagerActivity.ProjectCreatorDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.net;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
