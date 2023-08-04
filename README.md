@@ -15,6 +15,9 @@ It is the beginning of this app and I hope it will available soon for users.
 ## WARNING
 Please keep a backup of files that you are trying to edit with Android Code Editor.
 
+## Note
+This program is in beta mode and it has not been released in any market. If it is released, the Google Play link will be placed here
+
 ## Discord
 Join our discord server to keep contact us about Android Code Editor.
 
