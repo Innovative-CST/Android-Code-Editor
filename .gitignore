@@ -2,5 +2,6 @@
 .gradle
 app/build
 editor/build
+secrets.properties
 treeview/build
 app/src/main/java/android/code/editor/SketchLogger.java

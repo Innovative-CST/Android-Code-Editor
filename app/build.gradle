@@ -2,6 +2,27 @@ plugins {
     id 'com.android.application'
 }
 
+def KEYSTOREPASSWORD = System.getenv('KEYSTOREPASSWORD')
+def secretsPropertiesFile = file('../secrets.properties')
+def secretsProperties = new Properties()
+
+if (secretsPropertiesFile.exists()) {
+    secretsProperties.load(new FileInputStream(secretsPropertiesFile))
+}
+
+def signingEnabled = false
+def password = ""
+
+if (KEYSTOREPASSWORD != "") {
+    password = KEYSTOREPASSWORD
+    signingEnabled = true
+} else if (secretsPropertiesFile.exists()) {
+    if (secretsProperties.getProperty('keyStorePassword') != null) {
+        password = secretsProperties.getProperty('keyStorePassword')
+        signingEnabled = true
+    }
+}
+
 android {
     compileSdk 32
     buildToolsVersion "33.0.2"
@@ -39,6 +60,25 @@ android {
 
     buildFeatures {
         viewBinding true
+    }
+    
+    signingConfigs {
+        release {
+            if (signingEnabled) {
+                storeFile file("../keystore.jks")
+                storePassword password
+                keyAlias "AndroidCodeEditor"
+                keyPassword password
+            }
+        }
+        debug {
+            if (signingEnabled) {
+                storeFile file("../keystore.jks")
+                storePassword password
+                keyAlias "AndroidCodeEditor"
+                keyPassword password
+            }
+        }
     }
 }
 

@@ -2,10 +2,10 @@
 # Original at https://github.com/tyron12233/CodeAssist/blob/main/.github/workflows/build-apk.yml
 # Changes: Minor adjustments, removal of Cancel previous runs step, but every change can be found with a simple diff.
 
-name: Android CI
+name: Android CI[PR]
 
 on:
-  push:
+  pull_request:
 
 jobs:
   buildApkFile:
@@ -22,13 +22,6 @@ jobs:
           
       - name: Allow gradlew permission
         run: chmod +x ./gradlew
-        
-      - name: Set environmental variables
-        shell: bash
-        env:
-          JSON_CONTENT: ${{ secrets.KEYSTOREPASSWORD }}
-        run: |
-          printf 'KEYSTOREPASSWORD<<EOF\n%s\nEOF\n' "$JSON_CONTENT" >> $GITHUB_ENV
 
       - name: Build debug APK
         run: ./gradlew assembleDebug --warning-mode all
