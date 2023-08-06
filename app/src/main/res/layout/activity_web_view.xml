@@ -35,10 +35,27 @@
             android:id="@+id/console_content">
 
             <LinearLayout
-                android:id="@+id/console"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:orientation="vertical" />
+                android:orientation="vertical">
+
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:background="?attr/colorSurface"
+                    android:textColor="?attr/colorOnSurface"
+                    android:hint="Execute"
+                    android:id="@+id/execute"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true" />
+
+                <LinearLayout
+                    android:id="@+id/console"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical" />
+
+            </LinearLayout>
 
         </ScrollView>
 

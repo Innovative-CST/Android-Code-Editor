@@ -21,14 +21,17 @@ import android.code.editor.R;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ScrollView;
@@ -40,6 +43,7 @@ public class WebViewActivity extends BaseActivity {
   private WebView webview;
   private LinearLayout consoleView;
   private ScrollView console_content;
+  private EditText executeCodeInWebView;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +102,22 @@ public class WebViewActivity extends BaseActivity {
         && getIntent().getStringExtra("type").equals("file")) {
       webview.loadUrl("file:".concat(getIntent().getStringExtra("data")));
     }
+
+    executeCodeInWebView = findViewById(R.id.execute);
+    executeCodeInWebView.setOnEditorActionListener(
+        new TextView.OnEditorActionListener() {
+          @Override
+          public boolean onEditorAction(TextView edittext, int action, KeyEvent event) {
+            if (action == EditorInfo.IME_ACTION_DONE
+                || event.getAction() == KeyEvent.ACTION_DOWN
+                    && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+              webview.loadUrl("javascript:".concat(edittext.getText().toString()));
+              return true;
+            }
+            return false;
+          }
+        });
+
     findViewById(R.id.console_slider)
         .setOnTouchListener(
             new View.OnTouchListener() {
@@ -159,7 +179,9 @@ public class WebViewActivity extends BaseActivity {
           item -> {
             switch (item.getTitle().toString()) {
               case "Clear Console Log":
-                consoleView.removeAllViews();
+                if (consoleView != null) {
+                  consoleView.removeAllViews();
+                }
                 break;
             }
             return true;
