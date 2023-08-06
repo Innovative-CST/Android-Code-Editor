@@ -13,7 +13,7 @@ if (secretsPropertiesFile.exists()) {
 def signingEnabled = false
 def password = ""
 
-if (KEYSTOREPASSWORD != "") {
+if (KEYSTOREPASSWORD != null) {
     password = KEYSTOREPASSWORD
     signingEnabled = true
 } else if (secretsPropertiesFile.exists()) {
