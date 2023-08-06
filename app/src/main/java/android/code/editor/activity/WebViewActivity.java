@@ -112,6 +112,7 @@ public class WebViewActivity extends BaseActivity {
                 || event.getAction() == KeyEvent.ACTION_DOWN
                     && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
               webview.loadUrl("javascript:".concat(edittext.getText().toString()));
+              edittext.setText("");
               return true;
             }
             return false;
