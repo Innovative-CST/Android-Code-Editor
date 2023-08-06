@@ -18,6 +18,7 @@
 package android.code.editor.utils;
 
 import android.code.editor.R;
+import android.code.editor.activity.WebViewActivity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,6 +67,29 @@ public class RadioOptionChooser {
           ((MaterialRadioButton) dialogView.findViewById(R.id.radioOption2)).setChecked(true);
         }
       }
+    } else if (layout == R.layout.layout_console_chooser_radio_group) {
+      dialogView
+          .findViewById(R.id.radioOption1)
+          .setOnClickListener(
+              (view) -> {
+                radioButtonOnClick(view);
+              });
+      dialogView
+          .findViewById(R.id.radioOption2)
+          .setOnClickListener(
+              (view) -> {
+                radioButtonOnClick(view);
+              });
+
+      if (Setting.SaveInFile.getSettingInt(
+              Setting.Key.ConsoleMode, Setting.Default.ConsoleMode, context)
+          == WebViewActivity.Console.NONE) {
+        ((MaterialRadioButton) dialogView.findViewById(R.id.radioOption1)).setChecked(true);
+      } else if (Setting.SaveInFile.getSettingInt(
+              Setting.Key.ConsoleMode, Setting.Default.ConsoleMode, context)
+          == WebViewActivity.Console.DEFAULT) {
+        ((MaterialRadioButton) dialogView.findViewById(R.id.radioOption2)).setChecked(true);
+      }
     }
     dialog.setView(dialogView);
 
@@ -84,6 +108,16 @@ public class RadioOptionChooser {
       } else if (selectedId == R.id.radioOption2) {
         Setting.SaveInFile.setSetting(
             Setting.Key.CodeEditor, CodeEditorLayout.SoraCodeEditor, context);
+      }
+    } else if (layout == R.layout.layout_console_chooser_radio_group) {
+      RadioGroup radioGroup = ((RadioGroup) ((MaterialRadioButton) view).getParent());
+      int selectedId = view.getId();
+      if (selectedId == R.id.radioOption1) {
+        Setting.SaveInFile.setSetting(
+            Setting.Key.ConsoleMode, WebViewActivity.Console.NONE, context);
+      } else if (selectedId == R.id.radioOption2) {
+        Setting.SaveInFile.setSetting(
+            Setting.Key.ConsoleMode, WebViewActivity.Console.DEFAULT, context);
       }
     }
     builder.dismiss();

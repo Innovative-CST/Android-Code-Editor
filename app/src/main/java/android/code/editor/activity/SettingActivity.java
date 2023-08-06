@@ -81,6 +81,13 @@ public class SettingActivity extends BaseActivity {
                   this, R.layout.layout_editor_chooser_radio_group, "Choose an editor");
             });
 
+    findViewById(R.id.consoleChooserContainer)
+        .setOnClickListener(
+            (view) -> {
+              new RadioOptionChooser(
+                  this, R.layout.layout_console_chooser_radio_group, "Choose a console log");
+            });
+
     uiMode.add("Light");
     uiMode.add("Dark");
     uiMode.add("Follow System");

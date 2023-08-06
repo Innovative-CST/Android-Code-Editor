@@ -18,6 +18,7 @@
 package android.code.editor.activity;
 
 import android.code.editor.R;
+import android.code.editor.utils.Setting;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -66,6 +67,7 @@ public class WebViewActivity extends BaseActivity {
     webview = findViewById(R.id.webview);
     consoleView = findViewById(R.id.console);
     console_content = findViewById(R.id.console_content);
+    executeCodeInWebView = findViewById(R.id.execute);
     webview.getSettings().setJavaScriptEnabled(true);
     webview.getSettings().setSupportZoom(true);
     webview.getSettings().setAllowContentAccess(true);
@@ -75,23 +77,28 @@ public class WebViewActivity extends BaseActivity {
           @Override
           public boolean onConsoleMessage(ConsoleMessage console) {
             if (consoleView != null) {
-              ViewGroup view =
-                  ((ViewGroup) getLayoutInflater().inflate(R.layout.layout_console_log_item, null));
-              TextView consoleTextView = view.findViewById(R.id.console);
-              consoleTextView.setText(console.message());
-              TextView consoleDetail = view.findViewById(R.id.console_detail);
-              consoleDetail.setText(
-                  console.sourceId().concat(":").concat(String.valueOf(console.lineNumber())));
-              consoleView.addView(view, 0);
-              consoleDetail.setTextColor(Color.GRAY);
-              if (console.messageLevel().equals(ConsoleMessage.MessageLevel.DEBUG)) {
-                consoleTextView.setTextColor(Color.CYAN);
-              } else if (console.messageLevel().equals(ConsoleMessage.MessageLevel.ERROR)) {
-                consoleTextView.setTextColor(Color.RED);
-              } else if (console.messageLevel().equals(ConsoleMessage.MessageLevel.TIP)) {
-                consoleTextView.setTextColor(Color.CYAN);
-              } else if (console.messageLevel().equals(ConsoleMessage.MessageLevel.WARNING)) {
-                consoleTextView.setTextColor(Color.parseColor("#F28500"));
+              if (Setting.SaveInFile.getSettingInt(
+                      Setting.Key.ConsoleMode, Setting.Default.ConsoleMode, WebViewActivity.this)
+                  == Console.DEFAULT) {
+                ViewGroup view =
+                    ((ViewGroup)
+                        getLayoutInflater().inflate(R.layout.layout_console_log_item, null));
+                TextView consoleTextView = view.findViewById(R.id.console);
+                consoleTextView.setText(console.message());
+                TextView consoleDetail = view.findViewById(R.id.console_detail);
+                consoleDetail.setText(
+                    console.sourceId().concat(":").concat(String.valueOf(console.lineNumber())));
+                consoleView.addView(view, 0);
+                consoleDetail.setTextColor(Color.GRAY);
+                if (console.messageLevel().equals(ConsoleMessage.MessageLevel.DEBUG)) {
+                  consoleTextView.setTextColor(Color.CYAN);
+                } else if (console.messageLevel().equals(ConsoleMessage.MessageLevel.ERROR)) {
+                  consoleTextView.setTextColor(Color.RED);
+                } else if (console.messageLevel().equals(ConsoleMessage.MessageLevel.TIP)) {
+                  consoleTextView.setTextColor(Color.CYAN);
+                } else if (console.messageLevel().equals(ConsoleMessage.MessageLevel.WARNING)) {
+                  consoleTextView.setTextColor(Color.parseColor("#F28500"));
+                }
               }
             }
             return super.onConsoleMessage(console);
@@ -103,21 +110,26 @@ public class WebViewActivity extends BaseActivity {
       webview.loadUrl("file:".concat(getIntent().getStringExtra("data")));
     }
 
-    executeCodeInWebView = findViewById(R.id.execute);
-    executeCodeInWebView.setOnEditorActionListener(
-        new TextView.OnEditorActionListener() {
-          @Override
-          public boolean onEditorAction(TextView edittext, int action, KeyEvent event) {
-            if (action == EditorInfo.IME_ACTION_DONE
-                || event.getAction() == KeyEvent.ACTION_DOWN
-                    && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-              webview.loadUrl("javascript:".concat(edittext.getText().toString()));
-              edittext.setText("");
-              return true;
+    if (Setting.SaveInFile.getSettingInt(Setting.Key.ConsoleMode, Setting.Default.ConsoleMode, this)
+        == Console.DEFAULT) {
+      findViewById(R.id.console_slider).setVisibility(View.VISIBLE);
+      console_content.setVisibility(View.VISIBLE);
+
+      executeCodeInWebView.setOnEditorActionListener(
+          new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView edittext, int action, KeyEvent event) {
+              if (action == EditorInfo.IME_ACTION_DONE
+                  || event.getAction() == KeyEvent.ACTION_DOWN
+                      && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                webview.loadUrl("javascript:".concat(edittext.getText().toString()));
+                edittext.setText("");
+                return true;
+              }
+              return false;
             }
-            return false;
-          }
-        });
+          });
+    }
 
     findViewById(R.id.console_slider)
         .setOnTouchListener(
@@ -155,40 +167,56 @@ public class WebViewActivity extends BaseActivity {
   @Override
   public boolean onCreateOptionsMenu(Menu arg0) {
     super.onCreateOptionsMenu(arg0);
-    getMenuInflater().inflate(R.menu.web_view_activity_menu, arg0);
-    return true;
+    if (Setting.SaveInFile.getSettingInt(Setting.Key.ConsoleMode, Setting.Default.ConsoleMode, this)
+        == Console.DEFAULT) {
+      getMenuInflater().inflate(R.menu.web_view_activity_menu, arg0);
+      return true;
+    }
+    return false;
   }
 
   @Override
   public boolean onPrepareOptionsMenu(Menu arg0) {
-    MenuItem item = arg0.findItem(R.id.menu_main_setting);
-    Drawable icon =
-        getResources()
-            .getDrawable(R.drawable.more_vert_fill0_wght400_grad0_opsz48, this.getTheme());
-    item.setIcon(icon);
+    if (Setting.SaveInFile.getSettingInt(Setting.Key.ConsoleMode, Setting.Default.ConsoleMode, this)
+        == Console.DEFAULT) {
+      MenuItem item = arg0.findItem(R.id.menu_main_setting);
+      Drawable icon =
+          getResources()
+              .getDrawable(R.drawable.more_vert_fill0_wght400_grad0_opsz48, this.getTheme());
+      item.setIcon(icon);
+    }
     return super.onPrepareOptionsMenu(arg0);
   }
 
   @Override
   public boolean onOptionsItemSelected(MenuItem arg0) {
     if (arg0.getItemId() == R.id.menu_main_setting) {
-      PopupMenu popupMenu = new PopupMenu(this, findViewById(R.id.menu_main_setting));
-      Menu menu = popupMenu.getMenu();
-      menu.add("Clear Console Log");
+      if (Setting.SaveInFile.getSettingInt(
+              Setting.Key.ConsoleMode, Setting.Default.ConsoleMode, this)
+          == Console.DEFAULT) {
+        PopupMenu popupMenu = new PopupMenu(this, findViewById(R.id.menu_main_setting));
+        Menu menu = popupMenu.getMenu();
+        menu.add("Clear Console Log");
 
-      popupMenu.setOnMenuItemClickListener(
-          item -> {
-            switch (item.getTitle().toString()) {
-              case "Clear Console Log":
-                if (consoleView != null) {
-                  consoleView.removeAllViews();
-                }
-                break;
-            }
-            return true;
-          });
-      popupMenu.show();
+        popupMenu.setOnMenuItemClickListener(
+            item -> {
+              switch (item.getTitle().toString()) {
+                case "Clear Console Log":
+                  if (consoleView != null) {
+                    consoleView.removeAllViews();
+                  }
+                  break;
+              }
+              return true;
+            });
+        popupMenu.show();
+      }
     }
     return super.onOptionsItemSelected(arg0);
+  }
+
+  public class Console {
+    public static final int DEFAULT = 0;
+    public static final int NONE = 1;
   }
 }
