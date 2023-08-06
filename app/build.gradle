@@ -96,7 +96,7 @@ dependencies {
     implementation "$editorGroupId:editor"
     implementation "$editorGroupId:language-textmate"
     implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
-    
+
     implementation project(path:':markdown-viewer')
     implementation project(path:':editor')
     implementation project(path:':treeview')
