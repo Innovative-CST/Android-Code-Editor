@@ -37,7 +37,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
-import com.bumptech.glide.request.RequestOptions;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.json.*;
@@ -169,7 +168,6 @@ public class ContributorsActivity extends BaseActivity {
       Glide.with(ContributorsActivity.this)
           .load(Uri.parse(_data.get(_position).get("Image").toString()))
           .thumbnail(0.10F)
-          .apply(RequestOptions.bitmapTransform(multi))
           .into(profile);
       name = _view.findViewById(R.id.name);
       description = _view.findViewById(R.id.description);
