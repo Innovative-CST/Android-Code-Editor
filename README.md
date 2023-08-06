@@ -9,8 +9,13 @@
 ![Repository Size](https://img.shields.io/github/repo-size/TS-Code-Editor/Android-Code-Editor)
 
 ## Android Code Editor
+
 “The Android code editor is an open-source project available on Github, developed with the love and contributions of developers. It supports both the Sora code editor and the Ace code editor, making it a versatile tool for writing and editing code on Android devices.”
 It is the beginning of this app and I hope it will available soon for users.
+
+<a href="https://www.amazon.com/gp/mas/dl/android?p=android.code.editor">
+  <img width="200px" src="https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/devportal2/res/images/amazon-appstore-badge-english-black.png" alt="Get it on Amazon Appstore" />
+</a>
 
 ## WARNING
 Please keep a backup of files that you are trying to edit with Android Code Editor.
