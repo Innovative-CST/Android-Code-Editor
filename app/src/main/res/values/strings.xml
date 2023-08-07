@@ -1,3 +1,26 @@
 <resources>
+    <string name="ace_editor_theme">Ace Editor Theme</string>
+    <string name="android_code_editor">Android Code Editor</string>
     <string name="app_name">Android Code Editor</string>
+    <string name="app_theme">App theme</string>
+    <string name="contributors">Contributors</string>
+    <string name="choose_ace_editor_theme">Choose a theme for Ace Editor.</string>
+    <string name="choose_code_editor">Choose an code editor for you which is good for you.</string>
+    <string name="choose_console_log">Choose a console log.</string>
+    <string name="choose_sora_editor_theme">Choose a theme for Sora Editor.</string>
+    <string name="choose_ui_mode_for_ide">Choose UI mode for IDE</string>
+    <string name="code_editor">Code Editor</string>
+    <string name="console_log">Console log</string>
+    <string name="editor">Editor</string>
+    <string name="execute">Execute</string>
+    <string name="more">More</string>
+    <string name="open_file_fist_from_drawer">Open file list from drawer</string>
+    <string name="please_wait">Please wait...</string>
+    <string name="preview">Preview</string>
+    <string name="project_template">Project Template</string>
+    <string name="report_issues">Please submit issues, pull request and your suggestion on GitHub at https://github.com/TS-Code-Editor/Android-Code-Editor</string>
+    <string name="sora_editor_theme">Sora Editor Theme</string>
+    <string name="tap_to_start">Tap to start</string>
+    <string name="ui_mode">UI mode</string>
+    <string name="webview">WebView</string>
 </resources>

@@ -37,7 +37,7 @@
                 android:layout_margin="8dp"
                 android:textSize="14sp"
                 android:textColor="?attr/colorPrimary"
-                android:text="Editor" />
+                android:text="@string/editor" />
 
             <LinearLayout
                 android:layout_height="wrap_content"
@@ -58,14 +58,14 @@
                         android:layout_width="wrap_content"
                         android:textSize="16sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:text="Editor" />
+                        android:text="@string/editor" />
 
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textSize="11sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:text="Choose an code editor for you which is good for you." />
+                        android:text="@string/choose_code_editor" />
 
                 </LinearLayout>
 
@@ -89,14 +89,14 @@
                         android:layout_width="wrap_content"
                         android:textSize="16sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:text="Ace Editor Theme" />
+                        android:text="@string/ace_editor_theme" />
 
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textSize="11sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:text="Choose a theme for Ace Editor." />
+                        android:text="@string/choose_ace_editor_theme" />
 
                 </LinearLayout>
 
@@ -127,14 +127,14 @@
                         android:layout_width="wrap_content"
                         android:textSize="16sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:text="Sora Editor Theme" />
+                        android:text="@string/sora_editor_theme" />
 
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textSize="11sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:text="Choose a theme for Sora Editor." />
+                        android:text="@string/choose_sora_editor_theme" />
 
                 </LinearLayout>
 
@@ -166,14 +166,14 @@
                         android:layout_width="wrap_content"
                         android:textSize="16sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:text="Console log" />
+                        android:text="@string/console_log" />
 
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textSize="11sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:text="Choose a console log." />
+                        android:text="@string/choose_console_log" />
 
                 </LinearLayout>
 
@@ -185,7 +185,7 @@
                 android:layout_margin="8dp"
                 android:textSize="14sp"
                 android:textColor="?attr/colorPrimary"
-                android:text="App Theme" />
+                android:text="@string/app_theme" />
 
             <HorizontalScrollView
                 android:layout_height="wrap_content"
@@ -195,9 +195,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:orientation="horizontal"
-                    android:id="@+id/themes">
-
-                    </LinearLayout>
+                    android:id="@+id/themes" />
 
             </HorizontalScrollView>
 
@@ -219,14 +217,14 @@
                         android:layout_width="wrap_content"
                         android:textSize="16sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:text="UI mode" />
+                        android:text="@string/ui_mode" />
 
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textSize="11sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:text="Choose UI mode for IDE" />
+                        android:text="@string/choose_ui_mode_for_ide" />
 
                 </LinearLayout>
 

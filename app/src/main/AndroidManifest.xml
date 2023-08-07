@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission
-            android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
-            android:minSdkVersion="30"
-            tools:ignore="ScopedStorage"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        android:minSdkVersion="30"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".MyApplication"
@@ -24,36 +24,36 @@
             android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.DebugActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".activity.FileManagerActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:configChanges="uiMode"
             android:windowSoftInputMode="adjustResize"
             android:name=".activity.CodeEditorActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".activity.ContributorsActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".activity.SettingActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".activity.MarkdownViewer"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".activity.LicenseActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".activity.WebViewActivity"
-            android:exported="true"/>
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -120,7 +120,7 @@ public class ContributorsActivity extends BaseActivity {
   public void init() {
     // Setup Toolbat
     Toolbar toolbar = findViewById(R.id.toolbar);
-    toolbar.setTitle("Contributors");
+    toolbar.setTitle(R.string.contributors);
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setHomeButtonEnabled(true);

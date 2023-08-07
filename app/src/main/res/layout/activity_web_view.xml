@@ -45,7 +45,7 @@
                     android:layout_width="match_parent"
                     android:background="?attr/colorSurface"
                     android:textColor="?attr/colorOnSurface"
-                    android:hint="Execute"
+                    android:hint="@string/execute"
                     android:id="@+id/execute"
                     android:imeOptions="actionDone"
                     android:singleLine="true" />

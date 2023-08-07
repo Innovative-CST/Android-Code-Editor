@@ -8,6 +8,6 @@
         android:orderInCategory="100"
         app:showAsAction="always"
         android:actionLayout="@layout/activity_code_editor"
-        android:title="Preview"
+        android:title="@string/preview"
         app:iconTint="?attr/colorOnSurface" />
 </menu>

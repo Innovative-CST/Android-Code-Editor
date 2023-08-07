@@ -164,6 +164,7 @@ public class FileManagerActivity extends BaseActivity {
                     startActivity(intent);
                 });
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.android_code_editor);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);

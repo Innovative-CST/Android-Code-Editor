@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textColor="?attr/colorSecondary"
-                android:text="Please submit issues, pull request and your suggestion on GitHub at https://github.com/TS-Code-Editor/Android-Code-Editor" />
+                android:text="@string/report_issues" />
 
         </LinearLayout>
 

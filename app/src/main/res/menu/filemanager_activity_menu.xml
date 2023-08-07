@@ -8,6 +8,6 @@
         android:orderInCategory="100"
         app:showAsAction="always"
         android:actionLayout="@layout/activity_file_manager"
-        android:title="More"
+        android:title="@string/more"
         app:iconTint="?attr/colorOnSurface" />
 </menu>

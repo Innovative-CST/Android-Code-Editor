@@ -127,7 +127,7 @@ public class CodeEditorActivity extends BaseActivity {
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setHomeButtonEnabled(true);
-    getSupportActionBar().setTitle("Code Editor");
+    getSupportActionBar().setTitle(R.string.code_editor);
     drawer = findViewById(R.id.drawer);
     ActionBarDrawerToggle toggle =
         new ActionBarDrawerToggle(this, drawer, toolbar, R.string.app_name, R.string.app_name);
