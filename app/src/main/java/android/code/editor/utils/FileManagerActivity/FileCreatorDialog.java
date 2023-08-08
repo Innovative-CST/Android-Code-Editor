@@ -17,6 +17,7 @@
 
 package android.code.editor.utils.FileManagerActivity;
 
+import android.code.editor.R;
 import android.code.editor.activity.FileManagerActivity;
 import android.code.editor.activity.LicenseActivity;
 import android.code.editor.files.utils.FileManager;
@@ -34,8 +35,8 @@ import java.io.File;
 public class FileCreatorDialog {
   public FileCreatorDialog(FileManagerActivity activity) {
     MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(activity);
-    dialog.setTitle("Create new file");
-    dialog.setMessage("Enter file name to create");
+    dialog.setTitle(R.string.create_new_file);
+    dialog.setMessage(R.string.enter_file_name_to_create);
     ViewGroup nameCont =
         (LinearLayout)
             activity
@@ -44,7 +45,7 @@ public class FileCreatorDialog {
     EditText path = nameCont.findViewById(android.code.editor.R.id.edittext1);
     TextInputLayout textInputLayout =
         nameCont.findViewById(android.code.editor.R.id.TextInputLayout1);
-    textInputLayout.setHint("Enter file name");
+    textInputLayout.setHint(R.string.enter_file_name);
     path.addTextChangedListener(
         new TextWatcher() {
           @Override
@@ -53,16 +54,16 @@ public class FileCreatorDialog {
           @Override
           public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
             if (path.getText().length() == 0) {
-              path.setError("Please enter a file name");
+              path.setError(activity.getString(R.string.please_enter_a_file_name));
             } else if (path.getText()
                 .toString()
                 .substring(path.getText().toString().length() - 1)
                 .equals(".")) {
-              path.setError("Please enter a valid name");
+              path.setError(activity.getString(R.string.please_enter_a_valid_name));
             } else if (new File(
                     activity.currentDir.concat(File.separator).concat(path.getText().toString()))
                 .exists()) {
-              path.setError("Please enter a file name that does not exists");
+              path.setError(activity.getString(R.string.please_enter_a_file_name_that_does_not_exists));
             } else {
               path.setError(null);
             }

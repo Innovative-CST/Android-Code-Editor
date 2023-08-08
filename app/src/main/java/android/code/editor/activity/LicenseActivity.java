@@ -39,7 +39,7 @@ public class LicenseActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_license);
     Toolbar toolbar = findViewById(R.id.toolbar);
-    toolbar.setTitle("Open Source Licenses");
+    toolbar.setTitle(R.string.open_source_licenses);
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setHomeButtonEnabled(true);

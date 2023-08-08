@@ -52,7 +52,7 @@ public class WebViewActivity extends BaseActivity {
     setContentView(R.layout.activity_web_view);
 
     Toolbar toolbar = findViewById(R.id.toolbar);
-    toolbar.setTitle("WebView");
+    toolbar.setTitle(R.string.webview);
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setHomeButtonEnabled(true);

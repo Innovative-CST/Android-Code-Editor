@@ -185,7 +185,7 @@
                 android:layout_margin="8dp"
                 android:textSize="14sp"
                 android:textColor="?attr/colorPrimary"
-                android:text="@string/app_theme" />
+                android:text="@string/general" />
 
             <HorizontalScrollView
                 android:layout_height="wrap_content"

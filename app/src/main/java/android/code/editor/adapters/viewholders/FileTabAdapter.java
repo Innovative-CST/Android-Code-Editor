@@ -22,6 +22,7 @@ import android.code.editor.activity.CodeEditorActivity;
 import android.code.editor.files.utils.FileManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -75,14 +76,19 @@ public class FileTabAdapter extends RecyclerView.Adapter<FileTabAdapter.ViewHold
               (view) -> {
                 PopupMenu popupMenu = new PopupMenu(activity, _view.findViewById(R.id.root));
                 Menu menu = popupMenu.getMenu();
-                menu.add("Close this");
-                menu.add("Close others");
-                menu.add("Close All");
+                menu.add(R.string.close_this);
+                menu.add(R.string.close_others);
+                menu.add(R.string.close_all);
 
                 popupMenu.setOnMenuItemClickListener(
-                    item -> {
-                      switch (item.getTitle().toString()) {
-                        case "Close this":
+                    new PopupMenu.OnMenuItemClickListener() {
+
+                      @Override
+                      public boolean onMenuItemClick(MenuItem menuItem) {
+                        if (menuItem
+                            .getTitle()
+                            .toString()
+                            .equals(activity.getString(R.string.close_this))) {
                           int positionOfCloser =
                               CodeEditorActivity.FileTabDataOperator.getPosition(
                                   fileTabData, fileTabData.get(_position).filePath);
@@ -113,8 +119,20 @@ public class FileTabAdapter extends RecyclerView.Adapter<FileTabAdapter.ViewHold
                           }
                           activity.fileTabData = fileTabData;
                           activity.adapter.notifyDataSetChanged();
-                          break;
-                        case "Close others":
+                        } else if (menuItem
+                            .getTitle()
+                            .toString()
+                            .equals(activity.getString(R.string.close_all))) {
+                          fileTabData.clear();
+                          activeTab = 0;
+                          activity.adapter.notifyDataSetChanged();
+                          activity.fileTabData = fileTabData;
+                          activity.fileNotOpenedArea.setVisibility(View.VISIBLE);
+                          activity.editorArea.setVisibility(View.GONE);
+                        } else if (menuItem
+                            .getTitle()
+                            .toString()
+                            .equals(activity.getString(R.string.close_others))) {
                           CodeEditorActivity.FileTabDataItem fileTabItem =
                               fileTabData.get(
                                   CodeEditorActivity.FileTabDataOperator.getPosition(
@@ -124,17 +142,10 @@ public class FileTabAdapter extends RecyclerView.Adapter<FileTabAdapter.ViewHold
                           fileTabData.add(fileTabItem);
                           activity.adapter.notifyDataSetChanged();
                           activity.fileTabData = fileTabData;
-                          break;
-                        case "Close All":
-                          fileTabData.clear();
-                          activeTab = 0;
-                          activity.adapter.notifyDataSetChanged();
-                          activity.fileTabData = fileTabData;
-                          activity.fileNotOpenedArea.setVisibility(View.VISIBLE);
-                          activity.editorArea.setVisibility(View.GONE);
-                          break;
+                        }
+
+                        return true;
                       }
-                      return true;
                     });
                 popupMenu.show();
               });
