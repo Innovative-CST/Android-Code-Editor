@@ -35,6 +35,9 @@ Join our discord server to keep contact us about Android Code Editor.
 - [x] Create Projects.
 - [x] File Tree.
 - [ ] Inbuilt browser for previewing HTML files.
+    - [x] Console Log
+    - [x] Basic WebView
+    - [ ] Additional features
 - [x] Preview Mark Down file.
 - [ ] Supported Language Modes
     - [x] Java
@@ -43,6 +46,7 @@ Join our discord server to keep contact us about Android Code Editor.
     - [x] CSS
     - [x] XML
     - [x] Markdown
+    - [ ] JSON
 
 ## Thanks to
 - [bmelnychuk](https://github.com/bmelnychuk) for [AndroidTreeView](https://github.com/bmelnychuk/AndroidTreeView)
