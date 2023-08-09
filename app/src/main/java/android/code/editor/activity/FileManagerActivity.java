@@ -126,6 +126,7 @@ public class FileManagerActivity extends BaseActivity {
                             loadFileList(currentDir);
                           }
                         });
+                projectDialog.show();
               } else if (title.equals(getString(R.string.contributors))) {
                 Intent intent = new Intent();
                 intent.setClass(FileManagerActivity.this, ContributorsActivity.class);

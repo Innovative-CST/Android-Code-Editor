@@ -47,6 +47,7 @@ public class Setting {
     public static final String SoraCodeEditorLightTheme = "SoraCodeEditorLightTheme";
     public static final String SoraCodeEditorDarkTheme = "SoraCodeEditorDarkTheme";
     public static final String ConsoleMode = "ConsoleMode";
+    public static final String Language = "Language";
     public static final String AceCodeEditorLightThemeSelectionPosition =
         "AceCodeEditorLightThemeSelectionPosition";
     public static final String AceCodeEditorDarkThemeSelectionPosition =
@@ -67,6 +68,7 @@ public class Setting {
     public static final String SoraCodeEditorLightTheme = Themes.SoraEditorTheme.Light.Default;
     public static final String SoraCodeEditorDarkTheme = Themes.SoraEditorTheme.Dark.Default;
     public static final int ConsoleMode = WebViewActivity.Console.DEFAULT;
+    public static final String Language = Languages.Default;
     public static final int AceCodeEditorLightThemeSelectionPosition = 0;
     public static final int AceCodeEditorDarkThemeSelectionPosition = 1;
     public static final int SoraCodeEditorLightThemeSelectionPosition = 0;

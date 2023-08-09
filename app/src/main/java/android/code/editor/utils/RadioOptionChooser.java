@@ -18,6 +18,7 @@
 package android.code.editor.utils;
 
 import android.code.editor.R;
+import android.code.editor.activity.SettingActivity;
 import android.code.editor.activity.WebViewActivity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -90,6 +91,27 @@ public class RadioOptionChooser {
           == WebViewActivity.Console.DEFAULT) {
         ((MaterialRadioButton) dialogView.findViewById(R.id.radioOption2)).setChecked(true);
       }
+    } else if (layout == R.layout.layout_language_chooser_radio_group) {
+      dialogView
+          .findViewById(R.id.radioOption1)
+          .setOnClickListener(
+              (view) -> {
+                radioButtonOnClick(view);
+              });
+      dialogView
+          .findViewById(R.id.radioOption2)
+          .setOnClickListener(
+              (view) -> {
+                radioButtonOnClick(view);
+              });
+      if (Setting.SaveInFile.getSettingString(Setting.Key.Language, Languages.English, context)
+          == Languages.English) {
+        ((MaterialRadioButton) dialogView.findViewById(R.id.radioOption1)).setChecked(true);
+      } else if (Setting.SaveInFile.getSettingString(
+              Setting.Key.Language, Languages.English, context)
+          == Languages.Hindi) {
+        ((MaterialRadioButton) dialogView.findViewById(R.id.radioOption2)).setChecked(true);
+      }
     }
     dialog.setView(dialogView);
 
@@ -118,6 +140,17 @@ public class RadioOptionChooser {
       } else if (selectedId == R.id.radioOption2) {
         Setting.SaveInFile.setSetting(
             Setting.Key.ConsoleMode, WebViewActivity.Console.DEFAULT, context);
+      }
+    } else if (layout == R.layout.layout_language_chooser_radio_group) {
+      int selectedId = view.getId();
+      if (selectedId == R.id.radioOption1) {
+        Setting.SaveInFile.setSetting(Setting.Key.Language, Languages.Default, context);
+        ((SettingActivity) context).setLangugeMode();
+        ((SettingActivity) context).refreshActivityIfRequired();
+      } else if (selectedId == R.id.radioOption2) {
+        Setting.SaveInFile.setSetting(Setting.Key.Language, Languages.Hindi, context);
+        ((SettingActivity) context).setLangugeMode();
+        ((SettingActivity) context).refreshActivityIfRequired();
       }
     }
     builder.dismiss();

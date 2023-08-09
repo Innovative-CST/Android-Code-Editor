@@ -78,14 +78,21 @@ public class SettingActivity extends BaseActivity {
         .setOnClickListener(
             (view) -> {
               new RadioOptionChooser(
-                  this, R.layout.layout_editor_chooser_radio_group, "Choose an editor");
+                  this, R.layout.layout_editor_chooser_radio_group, getString(R.string.choose_an_editor));
             });
 
     findViewById(R.id.consoleChooserContainer)
         .setOnClickListener(
             (view) -> {
               new RadioOptionChooser(
-                  this, R.layout.layout_console_chooser_radio_group, "Choose a console log");
+                  this, R.layout.layout_console_chooser_radio_group, getString(R.string.choose_a_console_log));
+            });
+
+    findViewById(R.id.languageChooserContainer)
+        .setOnClickListener(
+            (view) -> {
+              new RadioOptionChooser(
+                  this, R.layout.layout_language_chooser_radio_group, getString(R.string.choose_a_language));
             });
 
     uiMode.add("Light");
@@ -145,7 +152,7 @@ public class SettingActivity extends BaseActivity {
               (view) -> {
                 Setting.SaveInFile.setSetting(
                     Setting.Key.Theme, MaterialColorHelper.AppTheme, this);
-                refreshThemeColorStatusIfRequired();
+                refreshActivityIfRequired();
               });
 
       View theme2 = getLayoutInflater().inflate(R.layout.theme_chooser_item, null);
@@ -157,7 +164,7 @@ public class SettingActivity extends BaseActivity {
               (view) -> {
                 Setting.SaveInFile.setSetting(
                     Setting.Key.Theme, MaterialColorHelper.AppTheme2, this);
-                refreshThemeColorStatusIfRequired();
+                refreshActivityIfRequired();
               });
 
       View theme3 = getLayoutInflater().inflate(R.layout.theme_chooser_item, null);
@@ -169,7 +176,7 @@ public class SettingActivity extends BaseActivity {
               (view) -> {
                 Setting.SaveInFile.setSetting(
                     Setting.Key.Theme, MaterialColorHelper.AppTheme3, this);
-                refreshThemeColorStatusIfRequired();
+                refreshActivityIfRequired();
               });
 
       View theme4 = getLayoutInflater().inflate(R.layout.theme_chooser_item, null);
@@ -181,7 +188,7 @@ public class SettingActivity extends BaseActivity {
               (view) -> {
                 Setting.SaveInFile.setSetting(
                     Setting.Key.Theme, MaterialColorHelper.AppTheme4, this);
-                refreshThemeColorStatusIfRequired();
+                refreshActivityIfRequired();
               });
 
       View theme5 = getLayoutInflater().inflate(R.layout.theme_chooser_item, null);
@@ -193,7 +200,7 @@ public class SettingActivity extends BaseActivity {
               (view) -> {
                 Setting.SaveInFile.setSetting(
                     Setting.Key.Theme, MaterialColorHelper.AppTheme5, this);
-                refreshThemeColorStatusIfRequired();
+                refreshActivityIfRequired();
               });
     }
   }

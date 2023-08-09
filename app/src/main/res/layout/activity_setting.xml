@@ -236,6 +236,31 @@
                 </Spinner>
 
             </LinearLayout>
+            
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:padding="8dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:id="@+id/languageChooserContainer">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="?attr/colorOnSurface"
+                        android:text="@string/language" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 

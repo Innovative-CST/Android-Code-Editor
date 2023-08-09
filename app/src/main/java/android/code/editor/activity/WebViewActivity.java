@@ -196,16 +196,14 @@ public class WebViewActivity extends BaseActivity {
           == Console.DEFAULT) {
         PopupMenu popupMenu = new PopupMenu(this, findViewById(R.id.menu_main_setting));
         Menu menu = popupMenu.getMenu();
-        menu.add("Clear Console Log");
+        menu.add(R.string.clear_console_log);
 
         popupMenu.setOnMenuItemClickListener(
             item -> {
-              switch (item.getTitle().toString()) {
-                case "Clear Console Log":
-                  if (consoleView != null) {
-                    consoleView.removeAllViews();
-                  }
-                  break;
+              if (item.getTitle().toString().equals(getString(R.string.clear_console_log))) {
+                if (consoleView != null) {
+                  consoleView.removeAllViews();
+                }
               }
               return true;
             });

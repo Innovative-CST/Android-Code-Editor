@@ -18,58 +18,86 @@
 package android.code.editor.activity;
 
 import android.code.editor.ui.MaterialColorHelper;
+import android.code.editor.utils.Setting;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import com.google.android.material.color.DynamicColors;
+import java.util.Locale;
 
 public class BaseActivity extends AppCompatActivity {
-    public int theme;
+  public int theme;
+  public String language;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (!DynamicColors.isDynamicColorAvailable()) {
-            theme = MaterialColorHelper.getCurrentTheme(this);
-            MaterialColorHelper.setUpTheme(this);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    if (!DynamicColors.isDynamicColorAvailable()) {
+      theme = MaterialColorHelper.getCurrentTheme(this);
+      MaterialColorHelper.setUpTheme(this);
+    }
+    language = getAppliedLanguage();
+    Log.e("BaseActivity", language);
+    refreshThemeStatusIfRequired();
+    setLangugeMode();
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    refreshThemeStatusIfRequired();
+    setLangugeMode();
+    refreshActivityIfRequired();
+  }
+
+  public void refreshThemeStatusIfRequired() {
+    switch (SettingActivity.getThemeTypeInInt(this)) {
+      case 0:
+        if (AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_NO) {
+          AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
-        refreshThemeStatusIfRequired();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        refreshThemeColorStatusIfRequired();
-        refreshThemeStatusIfRequired();
-    }
-
-    public void refreshThemeColorStatusIfRequired() {
-        if (!DynamicColors.isDynamicColorAvailable()) {
-            if (MaterialColorHelper.getCurrentTheme(this) != theme) {
-                recreate();
-            }
+        break;
+      case 1:
+        if (AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_YES) {
+          AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         }
-    }
-
-    public void refreshThemeStatusIfRequired() {
-        switch (SettingActivity.getThemeTypeInInt(this)) {
-            case 0:
-                if (AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_NO) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                }
-                break;
-            case 1:
-                if (AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_YES) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                }
-                break;
-            case 2:
-                if (AppCompatDelegate.getDefaultNightMode()
-                        != AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM) {
-                    AppCompatDelegate.setDefaultNightMode(
-                            AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                }
-                break;
+        break;
+      case 2:
+        if (AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM) {
+          AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         }
+        break;
     }
+  }
+
+  public void refreshActivityIfRequired() {
+    if (!(language.equals(getAppliedLanguage()))
+        || (!DynamicColors.isDynamicColorAvailable()
+            && MaterialColorHelper.getCurrentTheme(this) != theme)) {
+      recreate();
+    }
+  }
+
+  public void setLangugeMode() {
+    updateAppLanguage(
+        Setting.SaveInFile.getSettingString(Setting.Key.Language, Setting.Default.Language, this));
+  }
+
+  public void updateAppLanguage(String languageCode) {
+    Locale locale = new Locale(languageCode);
+    Configuration config = new Configuration();
+    config.setLocale(locale);
+    getBaseContext()
+        .getResources()
+        .updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+  }
+
+  public String getAppliedLanguage() {
+    Configuration config = getResources().getConfiguration();
+    Locale currentLocale = config.locale;
+    String currentLanguage = currentLocale.getLanguage();
+    return currentLanguage;
+  }
 }

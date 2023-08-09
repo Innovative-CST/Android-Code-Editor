@@ -17,6 +17,7 @@
 
 package android.code.editor.utils.FileManagerActivity;
 
+import android.code.editor.R;
 import android.code.editor.activity.FileManagerActivity;
 import android.code.editor.files.utils.FileManager;
 import android.text.Editable;
@@ -85,7 +86,7 @@ public class FolderCreatorDialog {
           }
         });
     dialog.setNegativeButton(
-        "Cancel",
+        R.string.cancel,
         (param0, param1) -> {
           dialog.create().dismiss();
         });

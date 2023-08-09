@@ -74,20 +74,20 @@ public class FileCreatorDialog {
         });
     dialog.setView(nameCont);
     dialog.setPositiveButton(
-        "Create",
+        R.string.create,
         (param0, param1) -> {
           if (path.getText().length() == 0) {
-            Toast.makeText(activity, "Please enter a file name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, R.string.please_enter_a_file_name, Toast.LENGTH_SHORT).show();
           } else if (path.getText()
               .toString()
               .substring(path.getText().toString().length() - 1)
               .equals(".")) {
-            Toast.makeText(activity, "Please enter a valid name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, R.string.please_enter_a_valid_name, Toast.LENGTH_SHORT).show();
           } else if (new File(
                   activity.currentDir.concat(File.separator).concat(path.getText().toString()))
               .exists()) {
             Toast.makeText(
-                    activity, "Please enter a file name that does not exists", Toast.LENGTH_SHORT)
+                    activity, R.string.please_enter_a_file_name_that_does_not_exists, Toast.LENGTH_SHORT)
                 .show();
           } else if (!new File(
                   activity.currentDir.concat(File.separator).concat(path.getText().toString()))
@@ -107,7 +107,7 @@ public class FileCreatorDialog {
           }
         });
     dialog.setNegativeButton(
-        "Cancel",
+        R.string.cancel,
         (param0, param1) -> {
           dialog.create().dismiss();
         });
