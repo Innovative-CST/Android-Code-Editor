@@ -20,6 +20,7 @@ package android.code.editor.activity;
 import android.code.editor.ui.MaterialColorHelper;
 import android.code.editor.utils.Setting;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
@@ -87,11 +88,10 @@ public class BaseActivity extends AppCompatActivity {
 
   public void updateAppLanguage(String languageCode) {
     Locale locale = new Locale(languageCode);
-    Configuration config = new Configuration();
-    config.setLocale(locale);
-    getBaseContext()
-        .getResources()
-        .updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+    Resources resources = getResources();
+    Configuration configuration = resources.getConfiguration();
+    configuration.setLocale(locale);
+    resources.updateConfiguration(configuration, resources.getDisplayMetrics());
   }
 
   public String getAppliedLanguage() {
