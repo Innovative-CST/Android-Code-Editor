@@ -17,98 +17,70 @@
  *
  * ***** END LICENSE BLOCK ***** 
 -->
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Ace Editor</title>
-	<script src="../js/ace.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../js/ext-language_tools.js"></script>
-	<script src="../js/ext-beautify.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <script src="js/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/ext-language_tools.js"></script>
+    <title>CodeEditor</title>
 </head>
 
 <body>
-	<div id="editor"></div>
+    <!-- Project -->
+    <div id="editor"></div>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
 
-	<style>
-		body {
-			padding: 0;
-			margin: 0;
-		}
+        #editor {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
 
-		#editor {
-			width: 100vw;
-			height: 100vh;
-		}
-	</style>
-
-	<script>
-		class MyJSInterface {
-			getCursorStyle() {
-				return 'slim';
-			}
-			getUseSoftTabs() {
-				return true;
-			}
-			getEnableSnippets() {
-				return true;
-			}
-			getEnableLiveAutocompletion() {
-				return true;
-			}
-			getEnableBasicAutocompletion() {
-				return true;
-			}
-		}
-
-		// Variables
-		var path;
-		var JSInterface = new MyJSInterface();
-		var setUseSoftTabs = JSInterface.getUseSoftTabs();
-		var cursorStyle = JSInterface.getCursorStyle();
-		var enableBasicAutocompletion = JSInterface.getEnableBasicAutocompletion();
-		var enableSnippets = JSInterface.getEnableSnippets();
-		var enableLiveAutocompletion = JSInterface.getEnableLiveAutocompletion();
-
-		// New editor
-		var editor = ace.edit("editor");
-		// Disable use soft tabs
-		editor.session.setUseSoftTabs(setUseSoftTabs);
-		// enable autocompletion and snippetssnippets
-		editor.setOptions({
-			cursorStyle: cursorStyle,
-			enableBasicAutocompletion: enableBasicAutocompletion,
-			enableSnippets: enableSnippets,
-			enableLiveAutocompletion: enableLiveAutocompletion,
-			useWorker: false,
-		});
-		setEditorTheme();
-		setCode();
+    <script>
+        var editor = ace.edit("editor");
+        editor.session.setUseSoftTabs(true);
+        editor.setOptions({
+            cursorStyle: "slim",
+            enableBasicAutocompletion: true,
+            enableSnippets: true,
+            enableLiveAutocompletion: true,
+            useWorker: true,
+        });
+        setEditorTheme();
+        setCode();
         setLanguageMode();
 
-		function setEditorTheme() {
-			editor.setTheme('ace/theme/' + aceEditor.getAceEditorTheme());
-		}
+        function setEditorTheme() {
+            editor.setTheme('ace/theme/' + aceEditor.getAceEditorTheme());
+        }
 
-		function setLanguageMode() {
-			editor.session.setMode("ace/mode/" + aceEditor.getLanguageMode());
-		}
+        function setLanguageMode() {
+            editor.session.setMode("ace/mode/" + aceEditor.getLanguageMode());
+        }
 
-		function updateFontSize() {
-			document.getElementById('editor').style.fontSize = aceEditor.getZoom();
-		}
+        function updateFontSize() {
+            document.getElementById('editor').style.fontSize = aceEditor.getZoom();
+        }
 
-		function setCode() {
-			editor.setValue(aceEditor.setCode());
-			editor.clearSelection();
-		}
+        function setCode() {
+            editor.setValue(aceEditor.setCode());
+            editor.clearSelection();
+        }
 
-		function putCodeToJava() {
-			aceEditor.getCode(editor.getValue());
-		}
-	</script>
+        function putCodeToJava() {
+            aceEditor.getCode(editor.getValue());
+        }
+    </script>
 </body>
 
 </html>
