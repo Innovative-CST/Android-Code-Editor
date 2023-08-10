@@ -49,6 +49,7 @@ Join our discord server to keep contact us about Android Code Editor.
     - [ ] JSON
 
 ## Thanks to
+- [JetBrains](https://www.jetbrains.com) for [JetBrains font](https://www.jetbrains.com/lp/mono)
 - [bmelnychuk](https://github.com/bmelnychuk) for [AndroidTreeView](https://github.com/bmelnychuk/AndroidTreeView)
 - [tiagohm](https://github.com/tiagohm) for [MarkdownView](https://github.com/tiagohm/MarkdownView)
 - [Pictogrammers](https://pictogrammers.com/) for awsome icons

@@ -19,6 +19,7 @@ package editor.tsd.editors;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.view.ViewGroup;
 import editor.tsd.tools.Language;
 import editor.tsd.tools.Themes;
@@ -46,7 +47,8 @@ public class SoraEditor implements Editor {
     ViewGroup.LayoutParams codeEditor_LayoutParams =
         new ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
+    Typeface font = Typeface.createFromAsset(context.getAssets(), "Editor/SoraEditor/jetbrains.ttf");
+    editor.setTypefaceText(font);
     editor.setLayoutParams(codeEditor_LayoutParams);
   }
 
