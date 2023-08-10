@@ -33,8 +33,8 @@ import java.io.File;
 public class FolderCreatorDialog {
   public FolderCreatorDialog(FileManagerActivity activity) {
     MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(activity);
-    dialog.setTitle("Create new folder");
-    dialog.setMessage("Enter folder name to create");
+    dialog.setTitle(R.string.create_new_folder);
+    dialog.setMessage(R.string.to_create_folder_enter_name);
     ViewGroup nameCont =
         (LinearLayout)
             activity
@@ -43,7 +43,7 @@ public class FolderCreatorDialog {
     EditText path = nameCont.findViewById(android.code.editor.R.id.edittext1);
     TextInputLayout textInputLayout =
         nameCont.findViewById(android.code.editor.R.id.TextInputLayout1);
-    textInputLayout.setHint("Enter folder name");
+    textInputLayout.setHint(R.string.enter_folder_name);
     path.addTextChangedListener(
         new TextWatcher() {
           @Override
@@ -52,11 +52,12 @@ public class FolderCreatorDialog {
           @Override
           public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
             if (path.getText().length() == 0) {
-              path.setError("Please enter a folder name");
+              path.setError(activity.getString(R.string.please_enter_a_folder_name));
             } else if (new File(
                     activity.currentDir.concat(File.separator).concat(path.getText().toString()))
                 .exists()) {
-              path.setError("Please enter a folder that does not exists");
+              path.setError(
+                  activity.getString(R.string.please_enter_a_folder_name_that_does_not_exists));
             } else {
               path.setError(null);
             }
@@ -67,10 +68,11 @@ public class FolderCreatorDialog {
         });
     dialog.setView(nameCont);
     dialog.setPositiveButton(
-        "Create",
+        R.string.create,
         (param0, param1) -> {
           if (path.getText().length() == 0) {
-            Toast.makeText(activity, "Please enter a folder name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, R.string.please_enter_a_folder_name, Toast.LENGTH_SHORT)
+                .show();
           } else if (!new File(
                   activity.currentDir.concat(File.separator).concat(path.getText().toString()))
               .exists()) {
@@ -81,7 +83,9 @@ public class FolderCreatorDialog {
             activity.loadFileList(activity.currentDir);
           } else {
             Toast.makeText(
-                    activity, "Please enter a folder that does not exists", Toast.LENGTH_SHORT)
+                    activity,
+                    R.string.please_enter_a_folder_name_that_does_not_exists,
+                    Toast.LENGTH_SHORT)
                 .show();
           }
         });

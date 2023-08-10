@@ -75,8 +75,8 @@ public class ProjectCreatorDialog {
     html_template.setOnClickListener(
         (view) -> {
           MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(context);
-          dialog.setTitle("Create new project");
-          dialog.setMessage("Enter project name to create");
+          dialog.setTitle(R.string.create_new_project);
+          dialog.setMessage(R.string.to_create_project_enter_name);
           ViewGroup nameCont =
               ((LinearLayout)
                   ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
@@ -84,7 +84,7 @@ public class ProjectCreatorDialog {
           EditText path = nameCont.findViewById(android.code.editor.R.id.edittext1);
           TextInputLayout textInputLayout =
               nameCont.findViewById(android.code.editor.R.id.TextInputLayout1);
-          textInputLayout.setHint("Enter folder name");
+          textInputLayout.setHint(R.string.enter_project_name);
           path.addTextChangedListener(
               new TextWatcher() {
                 @Override
@@ -93,13 +93,13 @@ public class ProjectCreatorDialog {
                 @Override
                 public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
                   if (path.getText().length() == 0) {
-                    path.setError("Please enter a project name");
+                    path.setError(context.getString(R.string.please_enter_a_project_name));
                   } else if (new File(
                           filePath.concat(File.separator).concat(path.getText().toString()))
                       .exists()) {
-                    path.setError("Please enter a project that does not exists");
+                    path.setError(context.getString(R.string.please_enter_a_file_name_that_does_not_exists));
                   } else if (path.getText().toString().contains("/")) {
-                    path.setError("Please do not enter / in project name");
+                    path.setError(context.getString(R.string.please_do_not_enter_slash_in_project_name));
                   } else {
                     path.setError(null);
                   }
@@ -110,17 +110,17 @@ public class ProjectCreatorDialog {
               });
           dialog.setView(nameCont);
           dialog.setPositiveButton(
-              "Create",
+              R.string.create,
               (param0, param1) -> {
                 if (path.getText().length() == 0) {
-                  Toast.makeText(context, "Please enter a project name", Toast.LENGTH_SHORT).show();
+                  Toast.makeText(context, R.string.please_enter_a_project_name, Toast.LENGTH_SHORT).show();
                 } else if (new File(
                         filePath.concat(File.separator).concat(path.getText().toString()))
                     .exists()) {
-                  Toast.makeText(context, "File path already exists", Toast.LENGTH_SHORT).show();
+                  Toast.makeText(context, R.string.please_enter_a_file_name_that_does_not_exists, Toast.LENGTH_SHORT).show();
                 } else if (path.getText().toString().contains("/")) {
                   Toast.makeText(
-                          context, "Please do not enter / in project name", Toast.LENGTH_LONG)
+                          context, R.string.please_do_not_enter_slash_in_project_name, Toast.LENGTH_LONG)
                       .show();
                 } else {
                   _save_assets_folder(
@@ -135,7 +135,7 @@ public class ProjectCreatorDialog {
                 }
               });
           dialog.setNegativeButton(
-              "Cancel",
+              R.string.cancel,
               (param0, param1) -> {
                 dialog.create().dismiss();
               });

@@ -36,7 +36,7 @@ public class FileCreatorDialog {
   public FileCreatorDialog(FileManagerActivity activity) {
     MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(activity);
     dialog.setTitle(R.string.create_new_file);
-    dialog.setMessage(R.string.enter_file_name_to_create);
+    dialog.setMessage(R.string.to_create_file_enter_name);
     ViewGroup nameCont =
         (LinearLayout)
             activity
@@ -63,7 +63,8 @@ public class FileCreatorDialog {
             } else if (new File(
                     activity.currentDir.concat(File.separator).concat(path.getText().toString()))
                 .exists()) {
-              path.setError(activity.getString(R.string.please_enter_a_file_name_that_does_not_exists));
+              path.setError(
+                  activity.getString(R.string.please_enter_a_file_name_that_does_not_exists));
             } else {
               path.setError(null);
             }
@@ -87,7 +88,9 @@ public class FileCreatorDialog {
                   activity.currentDir.concat(File.separator).concat(path.getText().toString()))
               .exists()) {
             Toast.makeText(
-                    activity, R.string.please_enter_a_file_name_that_does_not_exists, Toast.LENGTH_SHORT)
+                    activity,
+                    R.string.please_enter_a_file_name_that_does_not_exists,
+                    Toast.LENGTH_SHORT)
                 .show();
           } else if (!new File(
                   activity.currentDir.concat(File.separator).concat(path.getText().toString()))

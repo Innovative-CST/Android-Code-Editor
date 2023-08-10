@@ -48,6 +48,7 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
   public ImageView expandCollapse;
   public TextView path;
   public CodeEditorActivity editorActivity;
+  public ViewFlipper viewFlipper;
 
   public FileTreeViewHolder(Context context, CodeEditorActivity editorActivity) {
     super(context);
@@ -64,6 +65,7 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
     icon = view.findViewById(R.id.icon);
     expandCollapse = view.findViewById(R.id.expandCollapse);
     path = view.findViewById(R.id.path);
+    viewFlipper = view.findViewById(R.id.viewFlipper);
     FileIcon.setUpIcon(context, file.getAbsolutePath(), icon);
     if (file.isDirectory()) {
       expandCollapse.setVisibility(View.VISIBLE);
@@ -102,33 +104,7 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
                       }
                     });
               } else {
-                ExecutorService loadFiles = Executors.newSingleThreadExecutor();
-                loadFiles.execute(
-                    new Runnable() {
-                      @Override
-                      public void run() {
-                        editorActivity.runOnUiThread(
-                            new Runnable() {
-                              @Override
-                              public void run() {
-                                ((ViewFlipper) view.findViewById(R.id.viewFlipper))
-                                    .setDisplayedChild(1);
-                              }
-                            });
-
-                        listDirInNode(node, file);
-                        editorActivity.runOnUiThread(
-                            new Runnable() {
-                              @Override
-                              public void run() {
-                                getTreeView().expandNode(node);
-                                ((ViewFlipper) view.findViewById(R.id.viewFlipper))
-                                    .setDisplayedChild(0);
-                                updateExpandCollapseIcon(expandCollapse, node.isExpanded());
-                              }
-                            });
-                      }
-                    });
+                expandNode(node, file);
               }
             }
           });
@@ -168,6 +144,45 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
       child.setViewHolder(new FileTreeViewHolder(context, editorActivity));
       node.addChild(child);
     }
+  }
+
+  public void expandNode(TreeNode node, File file) {
+    ExecutorService loadFiles = Executors.newSingleThreadExecutor();
+    loadFiles.execute(
+        new Runnable() {
+          @Override
+          public void run() {
+            editorActivity.runOnUiThread(
+                new Runnable() {
+                  @Override
+                  public void run() {
+                    ((ViewFlipper) view.findViewById(R.id.viewFlipper)).setDisplayedChild(1);
+                  }
+                });
+
+            listDirInNode(node, file);
+
+            editorActivity.runOnUiThread(
+                new Runnable() {
+                  @Override
+                  public void run() {
+                    getTreeView().expandNode(node);
+                    ((ViewFlipper) view.findViewById(R.id.viewFlipper)).setDisplayedChild(0);
+                    updateExpandCollapseIcon(expandCollapse, node.isExpanded());
+                    if (node.getChildren().size() == 1) {
+                      expandNode(
+                          node.getChildren().get(0), (File) node.getChildren().get(0).getValue());
+                      ((FileTreeViewHolder) node.getChildren().get(0).getViewHolder())
+                          .viewFlipper.setDisplayedChild(0);
+                      updateExpandCollapseIcon(
+                          ((FileTreeViewHolder) node.getChildren().get(0).getViewHolder())
+                              .expandCollapse,
+                          node.getChildren().get(0).isExpanded());
+                    }
+                  }
+                });
+          }
+        });
   }
 
   final class FileComparator implements Comparator<File> {
