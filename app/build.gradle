@@ -92,7 +92,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.7'
     implementation 'com.squareup.okhttp3:okhttp:3.9.1'
     def editorGroupId = "io.github.Rosemoe.sora-editor"
-    implementation platform("$editorGroupId:bom:0.21.1")
+    implementation platform("$editorGroupId:bom:0.22.0")
     implementation "$editorGroupId:editor"
     implementation "$editorGroupId:language-textmate"
     implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'

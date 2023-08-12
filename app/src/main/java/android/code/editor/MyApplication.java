@@ -25,7 +25,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Process;
 import android.util.Log;
+import android.widget.Toast;
 import com.google.android.material.color.DynamicColors;
+import editor.tsd.editors.sora.lang.textmate.provider.TextMateProvider;
+import io.github.rosemoe.sora.langs.textmate.registry.FileProviderRegistry;
+import io.github.rosemoe.sora.langs.textmate.registry.provider.AssetsFileResolver;
 
 public class MyApplication extends Application {
   private static Context mApplicationContext;
@@ -65,5 +69,11 @@ public class MyApplication extends Application {
           }
         });
     super.onCreate();
+    FileProviderRegistry.getInstance().addFileProvider(new AssetsFileResolver(getAssets()));
+    try {
+      TextMateProvider.loadGrammars();
+    } catch (Exception e) {
+      Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+    }
   }
 }

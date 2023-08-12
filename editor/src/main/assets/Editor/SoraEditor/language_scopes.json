@@ -1,0 +1,9 @@
+{
+  "js": "source.js",
+  "json": "source.json",
+  "java": "source.java",
+  "md": "text.html.markdown",
+  "css": "source.css",
+  "html": "text.html.basic",
+  "xml": "text.xml"
+}
