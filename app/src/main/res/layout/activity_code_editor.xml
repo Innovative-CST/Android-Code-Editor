@@ -58,7 +58,7 @@
                     android:layout_height="match_parent" />
 
             </LinearLayout>
-            <include layout="@layout/code_editor_controller" />
+            <include layout="@layout/code_editor_controller" android:id="@+id/editorController"/>
 
         </LinearLayout>
 

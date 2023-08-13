@@ -114,8 +114,8 @@ public class FileTabAdapter extends RecyclerView.Adapter<FileTabAdapter.ViewHold
                               }
                             }
                           } else {
-                            activity.fileNotOpenedArea.setVisibility(View.VISIBLE);
-                            activity.editorArea.setVisibility(View.GONE);
+                            activity.binding.fileNotOpenedArea.setVisibility(View.VISIBLE);
+                            activity.binding.editorArea.setVisibility(View.GONE);
                           }
                           activity.fileTabData = fileTabData;
                           activity.adapter.notifyDataSetChanged();
@@ -127,8 +127,8 @@ public class FileTabAdapter extends RecyclerView.Adapter<FileTabAdapter.ViewHold
                           activeTab = 0;
                           activity.adapter.notifyDataSetChanged();
                           activity.fileTabData = fileTabData;
-                          activity.fileNotOpenedArea.setVisibility(View.VISIBLE);
-                          activity.editorArea.setVisibility(View.GONE);
+                          activity.binding.fileNotOpenedArea.setVisibility(View.VISIBLE);
+                          activity.binding.editorArea.setVisibility(View.GONE);
                         } else if (menuItem
                             .getTitle()
                             .toString()

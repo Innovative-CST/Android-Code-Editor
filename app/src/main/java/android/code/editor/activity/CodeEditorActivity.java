@@ -20,6 +20,7 @@ package android.code.editor.activity;
 import android.code.editor.R;
 import android.code.editor.adapters.viewholders.FileTabAdapter;
 import android.code.editor.adapters.viewholders.FileTreeViewHolder;
+import android.code.editor.databinding.ActivityCodeEditorBinding;
 import android.code.editor.files.utils.FileManager;
 import android.code.editor.files.utils.FileTypeHandler;
 import android.code.editor.utils.LanguageModeHandler;
@@ -55,13 +56,6 @@ import java.util.ArrayList;
 public class CodeEditorActivity extends BaseActivity {
 
   public CodeEditorLayout codeEditor;
-  public ProgressBar progressbar;
-  public LinearLayout editorArea;
-  public LinearLayout fileNotOpenedArea;
-  public ImageView moveLeft;
-  public ImageView moveRight;
-  public ImageView moveUp;
-  public ImageView moveDown;
   public File DrawerListDir;
   public String selectPath;
   public DrawerLayout drawer;
@@ -73,11 +67,20 @@ public class CodeEditorActivity extends BaseActivity {
   public FileTabAdapter adapter;
   public ArrayList<FileTabDataItem> fileTabData = new ArrayList<FileTabDataItem>();
 
+  public ActivityCodeEditorBinding binding;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_code_editor);
+    binding = ActivityCodeEditorBinding.inflate(getLayoutInflater());
+    setContentView(binding.getRoot());
     initActivity();
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    binding = null;
   }
 
   public void save() {
@@ -102,16 +105,7 @@ public class CodeEditorActivity extends BaseActivity {
   }
 
   public void initActivity() {
-    // Initialize views
-    // codeEditor = findViewById(R.id.editor);
-    progressbar = findViewById(R.id.progressbar);
-    moveLeft = findViewById(R.id.moveLeft);
-    moveRight = findViewById(R.id.moveRight);
-    moveUp = findViewById(R.id.moveUp);
-    moveDown = findViewById(R.id.moveDown);
-    editorArea = findViewById(R.id.editorArea);
-    fileNotOpenedArea = findViewById(R.id.fileNotOpenedArea);
-    fileTab = findViewById(R.id.fileTab);
+    fileTab = binding.fileTab;
 
     ViewGroup.LayoutParams layoutParams =
         new ViewGroup.LayoutParams(
@@ -121,14 +115,14 @@ public class CodeEditorActivity extends BaseActivity {
 
     codeEditor = new CodeEditorLayout(this);
     codeEditor.setLayoutParams(layoutParams);
-    ((LinearLayout) findViewById(R.id.editorCont)).addView(codeEditor);
+    binding.editorCont.addView(codeEditor);
 
-    Toolbar toolbar = findViewById(R.id.toolbar);
+    Toolbar toolbar = binding.toolbar;
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setHomeButtonEnabled(true);
     getSupportActionBar().setTitle(R.string.code_editor);
-    drawer = findViewById(R.id.drawer);
+    drawer = binding.drawer;
     ActionBarDrawerToggle toggle =
         new ActionBarDrawerToggle(this, drawer, toolbar, R.string.app_name, R.string.app_name);
     toolbar.setNavigationOnClickListener(
@@ -145,11 +139,11 @@ public class CodeEditorActivity extends BaseActivity {
     drawer.addDrawerListener(toggle);
     toggle.syncState();
 
-    moveLeft.setOnClickListener(
+    binding.editorController.moveLeft.setOnClickListener(
         (view) -> {
           codeEditor.moveCursorHorizontally(-1);
         });
-    moveLeft.setOnTouchListener(
+    binding.editorController.moveLeft.setOnTouchListener(
         new View.OnTouchListener() {
           private Handler mHandler;
           private boolean isMoveLeftButtonPressed = false;
@@ -189,11 +183,11 @@ public class CodeEditorActivity extends BaseActivity {
                 }
               };
         });
-    moveRight.setOnClickListener(
+    binding.editorController.moveRight.setOnClickListener(
         (view) -> {
           codeEditor.moveCursorHorizontally(1);
         });
-    moveRight.setOnTouchListener(
+    binding.editorController.moveRight.setOnTouchListener(
         new View.OnTouchListener() {
           private Handler mHandler;
           private boolean isMoveRightButtonPressed = false;
@@ -232,11 +226,11 @@ public class CodeEditorActivity extends BaseActivity {
                 }
               };
         });
-    moveUp.setOnClickListener(
+    binding.editorController.moveUp.setOnClickListener(
         (view) -> {
           codeEditor.moveCursorVertically(-1);
         });
-    moveUp.setOnTouchListener(
+    binding.editorController.moveUp.setOnTouchListener(
         new View.OnTouchListener() {
           private Handler mHandler;
           private boolean isMoveUpButtonPressed = false;
@@ -275,11 +269,11 @@ public class CodeEditorActivity extends BaseActivity {
                 }
               };
         });
-    moveDown.setOnClickListener(
+    binding.editorController.moveDown.setOnClickListener(
         (view) -> {
           codeEditor.moveCursorVertically(1);
         });
-    moveDown.setOnTouchListener(
+    binding.editorController.moveDown.setOnTouchListener(
         new View.OnTouchListener() {
           private Handler mHandler;
           private boolean isMoveDownButtonPressed = false;
@@ -406,10 +400,10 @@ public class CodeEditorActivity extends BaseActivity {
       } else {
         DrawerListDir = new File(getIntent().getStringExtra("path"));
         selectPath = DrawerListDir.getAbsolutePath();
-        if (fileNotOpenedArea.getVisibility() == View.GONE
-            || editorArea.getVisibility() == View.VISIBLE) {
-          fileNotOpenedArea.setVisibility(View.VISIBLE);
-          editorArea.setVisibility(View.GONE);
+        if (binding.fileNotOpenedArea.getVisibility() == View.GONE
+            || binding.editorArea.getVisibility() == View.VISIBLE) {
+          binding.fileNotOpenedArea.setVisibility(View.VISIBLE);
+          binding.editorArea.setVisibility(View.GONE);
         }
       }
       root = TreeNode.root();
@@ -419,7 +413,7 @@ public class CodeEditorActivity extends BaseActivity {
           new TreeNodeWrapperView(this, com.unnamed.b.atv.R.style.TreeNodeStyle);
       tView.setDefaultAnimation(true);
       treeView.getNodeContainer().addView(tView.getView());
-      ((LinearLayout) findViewById(R.id.list)).addView(treeView);
+      binding.list.addView(treeView);
     }
     if (preview != null && openedFile != null) {
       if (FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("md")
@@ -517,15 +511,15 @@ public class CodeEditorActivity extends BaseActivity {
       }
     }
 
-    fileNotOpenedArea.setVisibility(View.GONE);
-    editorArea.setVisibility(View.VISIBLE);
-    progressbar.setVisibility(View.VISIBLE);
+    binding.fileNotOpenedArea.setVisibility(View.GONE);
+    binding.editorArea.setVisibility(View.VISIBLE);
+    binding.progressbar.setVisibility(View.VISIBLE);
     codeEditor.setVisibility(View.GONE);
 
     openedFile = file;
     codeEditor.setCode(FileManager.readFile(file.getAbsolutePath()));
 
-    progressbar.setVisibility(View.GONE);
+    binding.progressbar.setVisibility(View.GONE);
     codeEditor.setVisibility(View.VISIBLE);
 
     codeEditor.setLanguageMode(
