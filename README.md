@@ -50,6 +50,7 @@ Join our discord server to keep contact us about Android Code Editor.
 
 ## Thanks to
 - [JetBrains](https://www.jetbrains.com) for [JetBrains font](https://www.jetbrains.com/lp/mono)
+- [Vivek Kumar Sahani](https://github.com/itsvks19) for providing [languages.json](https://github.com/TS-Code-Editor/Android-Code-Editor/blob/main/editor/src/main/assets/Editor/SoraEditor/languages.json) and [language_scopes.json](https://github.com/TS-Code-Editor/Android-Code-Editor/blob/main/editor/src/main/assets/Editor/SoraEditor/language_scopes.json)
 - [bmelnychuk](https://github.com/bmelnychuk) for [AndroidTreeView](https://github.com/bmelnychuk/AndroidTreeView)
 - [tiagohm](https://github.com/tiagohm) for [MarkdownView](https://github.com/tiagohm/MarkdownView)
 - [Pictogrammers](https://pictogrammers.com/) for awsome icons
