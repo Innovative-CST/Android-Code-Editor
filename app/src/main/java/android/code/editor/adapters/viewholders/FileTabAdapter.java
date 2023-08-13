@@ -100,15 +100,18 @@ public class FileTabAdapter extends RecyclerView.Adapter<FileTabAdapter.ViewHold
                           if (fileTabData.size() != 0) {
                             if (positionOfCloser == 0) {
                               activity.adapter.setActiveTab(positionOfCloser);
+                              activity.save();
                               activity.openFileInEditor(
                                   new File(fileTabData.get(positionOfCloser).filePath));
                             } else {
                               if (positionOfCloser + 1 > fileTabData.size()) {
                                 activity.adapter.setActiveTab(positionOfCloser - 1);
+                                activity.save();
                                 activity.openFileInEditor(
                                     new File(fileTabData.get(positionOfCloser - 1).filePath));
                               } else {
                                 activity.adapter.setActiveTab(positionOfCloser);
+                                activity.save();
                                 activity.openFileInEditor(
                                     new File(fileTabData.get(positionOfCloser).filePath));
                               }
@@ -123,6 +126,7 @@ public class FileTabAdapter extends RecyclerView.Adapter<FileTabAdapter.ViewHold
                             .getTitle()
                             .toString()
                             .equals(activity.getString(R.string.close_all))) {
+                          activity.save();
                           fileTabData.clear();
                           activeTab = 0;
                           activity.adapter.notifyDataSetChanged();
