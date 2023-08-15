@@ -46,8 +46,6 @@ public class MainActivity extends BaseActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    // Enable logging in Sketchware pro
-    // SketchLogger.startLogging();
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 

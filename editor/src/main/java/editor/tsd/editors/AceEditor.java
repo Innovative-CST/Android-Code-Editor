@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import editor.tsd.tools.EditorListeners;
 import editor.tsd.tools.Language;
 import editor.tsd.tools.Themes;
 import editor.tsd.widget.CodeEditorLayout;
@@ -33,6 +34,7 @@ public class AceEditor implements Editor, ScaleGestureDetector.OnScaleGestureLis
   public AceJSInterface aceJSInterface;
   public float fontSize = 8;
   private ScaleGestureDetector scaleGestureDetector;
+  private EditorListeners listener;
 
   public AceEditor(Context c) {
     context = c;
@@ -103,14 +105,9 @@ public class AceEditor implements Editor, ScaleGestureDetector.OnScaleGestureLis
   }
 
   @Override
-  public String getCode() {
+  public void getCode(EditorListeners listener) {
     aceEditor.loadUrl("javascript:putCodeToJava()");
-    try {
-      Thread.sleep(5);
-    } catch (InterruptedException e) {
-      System.out.println(e);
-    }
-    return aceJSInterface.code;
+    this.listener = listener;
   }
 
   public WebView getCodeEditor() {
@@ -149,6 +146,9 @@ public class AceEditor implements Editor, ScaleGestureDetector.OnScaleGestureLis
     @JavascriptInterface
     public void getCode(String Code) {
       code = Code;
+      if (listener != null) {
+        listener.onReceviedCode(code);
+      }
     }
 
     @JavascriptInterface

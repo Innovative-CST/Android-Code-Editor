@@ -65,7 +65,12 @@ public class FileTabAdapter extends RecyclerView.Adapter<FileTabAdapter.ViewHold
         .findViewById(R.id.root)
         .setOnClickListener(
             (view) -> {
-              activity.save();
+              CodeEditorActivity.FileTabDataItem obj =
+                  new CodeEditorActivity().new FileTabDataItem();
+              obj.editor = activity.codeEditor;
+              obj.filePath = activity.fileTabData.get(activeTab).filePath;
+              fileTabData.set(activeTab, obj);
+              activity.fileTabData = fileTabData;
               activity.openFileInEditor(new File(fileTabData.get(_position).filePath));
             });
     if (activeTab == _position) {
@@ -93,46 +98,59 @@ public class FileTabAdapter extends RecyclerView.Adapter<FileTabAdapter.ViewHold
                               CodeEditorActivity.FileTabDataOperator.getPosition(
                                   fileTabData, fileTabData.get(_position).filePath);
                           if (activeTab == positionOfCloser) {
-                            activity.save();
-                          }
-                          fileTabData.remove(positionOfCloser);
+                            activity.save(
+                                new CodeEditorActivity.TaskListener() {
+                                  @Override
+                                  public void onTaskComplete() {
+                                    fileTabData.remove(positionOfCloser);
 
-                          if (fileTabData.size() != 0) {
-                            if (positionOfCloser == 0) {
-                              activity.adapter.setActiveTab(positionOfCloser);
-                              activity.save();
-                              activity.openFileInEditor(
-                                  new File(fileTabData.get(positionOfCloser).filePath));
-                            } else {
-                              if (positionOfCloser + 1 > fileTabData.size()) {
-                                activity.adapter.setActiveTab(positionOfCloser - 1);
-                                activity.save();
-                                activity.openFileInEditor(
-                                    new File(fileTabData.get(positionOfCloser - 1).filePath));
-                              } else {
-                                activity.adapter.setActiveTab(positionOfCloser);
-                                activity.save();
-                                activity.openFileInEditor(
-                                    new File(fileTabData.get(positionOfCloser).filePath));
-                              }
-                            }
-                          } else {
-                            activity.binding.fileNotOpenedArea.setVisibility(View.VISIBLE);
-                            activity.binding.editorArea.setVisibility(View.GONE);
+                                    if (fileTabData.size() != 0) {
+                                      if (positionOfCloser == 0) {
+                                        activity.adapter.setActiveTab(positionOfCloser);
+                                        activity.openFileInEditor(
+                                            new File(fileTabData.get(positionOfCloser).filePath));
+                                      } else {
+                                        if (positionOfCloser + 1 > fileTabData.size()) {
+                                          activity.adapter.setActiveTab(positionOfCloser - 1);
+                                          activity.openFileInEditor(
+                                              new File(
+                                                  fileTabData.get(positionOfCloser - 1).filePath));
+                                        } else {
+                                          activity.adapter.setActiveTab(positionOfCloser);
+                                          activity.openFileInEditor(
+                                              new File(fileTabData.get(positionOfCloser).filePath));
+                                        }
+                                      }
+                                    } else {
+                                      activity.codeEditor = null;
+                                      activity.openedFile = null;
+                                      activity.binding.fileNotOpenedArea.setVisibility(
+                                          View.VISIBLE);
+                                      activity.binding.editorArea.setVisibility(View.GONE);
+                                    }
+                                    activity.fileTabData = fileTabData;
+                                    activity.adapter.notifyDataSetChanged();
+                                  }
+                                });
                           }
-                          activity.fileTabData = fileTabData;
-                          activity.adapter.notifyDataSetChanged();
                         } else if (menuItem
                             .getTitle()
                             .toString()
                             .equals(activity.getString(R.string.close_all))) {
-                          activity.save();
-                          fileTabData.clear();
-                          activeTab = 0;
-                          activity.adapter.notifyDataSetChanged();
-                          activity.fileTabData = fileTabData;
-                          activity.binding.fileNotOpenedArea.setVisibility(View.VISIBLE);
-                          activity.binding.editorArea.setVisibility(View.GONE);
+                          activity.save(
+                              new CodeEditorActivity.TaskListener() {
+                                @Override
+                                public void onTaskComplete() {
+                                  fileTabData.clear();
+                                  activeTab = 0;
+                                  activity.adapter.notifyDataSetChanged();
+                                  activity.fileTabData = fileTabData;
+                                  activity.codeEditor = null;
+                                  activity.openedFile = null;
+                                  activity.binding.fileNotOpenedArea.setVisibility(View.VISIBLE);
+                                  activity.binding.editorArea.setVisibility(View.GONE);
+                                }
+                              });
                         } else if (menuItem
                             .getTitle()
                             .toString()

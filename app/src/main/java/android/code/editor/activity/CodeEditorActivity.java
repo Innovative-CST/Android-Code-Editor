@@ -37,7 +37,9 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.annotation.MainThread;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -46,9 +48,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.unnamed.b.atv.model.TreeNode;
 import com.unnamed.b.atv.view.AndroidTreeView;
 import com.unnamed.b.atv.view.TreeNodeWrapperView;
+import editor.tsd.tools.EditorListeners;
 import editor.tsd.widget.CodeEditorLayout;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class CodeEditorActivity extends BaseActivity {
 
@@ -80,18 +85,72 @@ public class CodeEditorActivity extends BaseActivity {
     binding = null;
   }
 
+  @Override
+  protected void onPause() {
+    save();
+    super.onPause();
+  }
+
+  @Override
+  @MainThread
+  public void onBackPressed() {
+    showLoadingDialog();
+    save(
+        new TaskListener() {
+          @Override
+          public void onTaskComplete() {
+            dismissLoading();
+            finish();
+          }
+        });
+  }
+
   public void save() {
     if (openedFile != null) {
       if (codeEditor != null) {
-        FileManager.writeFile(openedFile.getAbsolutePath(), codeEditor.getCode());
+        EditorListeners listener =
+            new EditorListeners() {
+              @Override
+              public void onReceviedCode(String code) {
+                FileManager.writeFile(openedFile.getAbsolutePath(), code);
+              }
+            };
+        codeEditor.getCode(listener);
       }
     }
   }
 
-  @Override
-  protected void onPause() {
-    super.onPause();
-    save();
+  public void save(TaskListener taskCompleteListener) {
+    if (openedFile != null) {
+      if (codeEditor != null) {
+        EditorListeners listener =
+            new EditorListeners() {
+              @Override
+              public void onReceviedCode(String code) {
+                ExecutorService backgroundTask = Executors.newSingleThreadExecutor();
+                backgroundTask.execute(
+                    new Runnable() {
+                      @Override
+                      public void run() {
+                        FileManager.writeFile(openedFile.getAbsolutePath(), code);
+                        runOnUiThread(
+                            new Runnable() {
+                              @Override
+                              public void run() {
+                                taskCompleteListener.onTaskComplete();
+                              }
+                            });
+                      }
+                    });
+              }
+            };
+        codeEditor.getCode(listener);
+      } else {
+        taskCompleteListener.onTaskComplete();
+      }
+    } else {
+      taskCompleteListener.onTaskComplete();
+    }
   }
 
   @Override
@@ -103,17 +162,6 @@ public class CodeEditorActivity extends BaseActivity {
 
   public void initActivity() {
     fileTab = binding.fileTab;
-
-    ViewGroup.LayoutParams layoutParams =
-        new ViewGroup.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
-    // Assign the layout parameters to codeEditor
-
-    codeEditor = new CodeEditorLayout(this);
-    codeEditor.setLayoutParams(layoutParams);
-    binding.editorCont.addView(codeEditor);
-
     Toolbar toolbar = binding.toolbar;
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -310,6 +358,178 @@ public class CodeEditorActivity extends BaseActivity {
               };
         });
 
+    adapter = new FileTabAdapter(fileTabData, CodeEditorActivity.this);
+    fileTab.setAdapter(adapter);
+    fileTab.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+    if (getIntent().hasExtra("path")) {
+      if (new File(getIntent().getStringExtra("path")).isFile()) {
+        DrawerListDir = new File(getIntent().getStringExtra("path")).getParentFile();
+        selectPath = DrawerListDir.getAbsolutePath();
+        openedFile = new File(getIntent().getStringExtra("path"));
+        openFileInEditor(openedFile);
+
+      } else {
+        DrawerListDir = new File(getIntent().getStringExtra("path"));
+        selectPath = DrawerListDir.getAbsolutePath();
+        if (binding.fileNotOpenedArea.getVisibility() == View.GONE
+            || binding.editorArea.getVisibility() == View.VISIBLE) {
+          binding.fileNotOpenedArea.setVisibility(View.VISIBLE);
+          binding.editorArea.setVisibility(View.GONE);
+        }
+      }
+      root = TreeNode.root();
+      fileTree(DrawerListDir);
+      AndroidTreeView tView = new AndroidTreeView(this, root);
+      TreeNodeWrapperView treeView =
+          new TreeNodeWrapperView(this, com.unnamed.b.atv.R.style.TreeNodeStyle);
+      tView.setDefaultAnimation(true);
+      treeView.getNodeContainer().addView(tView.getView());
+      binding.list.addView(treeView);
+    }
+    if (preview != null && openedFile != null) {
+      if (FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("md")
+          || FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("html")) {
+        preview.setVisible(true);
+      } else {
+        preview.setVisible(false);
+      }
+    }
+
+    if (codeEditor != null) {
+      initEditor();
+    }
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu arg0) {
+    super.onCreateOptionsMenu(arg0);
+    getMenuInflater().inflate(R.menu.activity_code_editor, arg0);
+    return true;
+  }
+
+  @Override
+  public boolean onPrepareOptionsMenu(Menu arg0) {
+    menu = arg0;
+    preview = arg0.findItem(R.id.preview);
+    if (openedFile != null) {
+      if (FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("md")
+          || FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("html")) {
+        preview.setVisible(true);
+      } else {
+        preview.setVisible(false);
+      }
+    } else {
+      preview.setVisible(false);
+    }
+    return super.onPrepareOptionsMenu(arg0);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem arg0) {
+    if (arg0.getItemId() == R.id.preview) {
+      save();
+      if (openedFile != null) {
+        if (codeEditor != null) {
+          if (FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("md")) {
+            Intent i = new Intent();
+            i.setClass(CodeEditorActivity.this, MarkdownViewer.class);
+            i.putExtra("type", "file");
+            i.putExtra("style", "github");
+            i.putExtra("title", FileManager.getLatSegmentOfFilePath(openedFile.getAbsolutePath()));
+            i.putExtra("data", openedFile.getAbsolutePath());
+            startActivity(i);
+          } else {
+            Intent i = new Intent();
+            i.setClass(CodeEditorActivity.this, WebViewActivity.class);
+            i.putExtra("type", "file");
+            i.putExtra("data", openedFile.getAbsolutePath());
+            startActivity(i);
+          }
+        }
+      }
+    }
+
+    return super.onOptionsItemSelected(arg0);
+  }
+
+  public void fileTree(File file) {
+    if (file.isDirectory()) {
+      TreeNode child = new TreeNode(file);
+      child.setViewHolder(new FileTreeViewHolder(this, this));
+      root.addChild(child);
+    }
+  }
+
+  // Method to convert dp to pixels
+  public static int dpToPx(Context context, int dp) {
+    return (int)
+        TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
+  }
+
+  public void openFileInEditor(File file) {
+    showLoadingDialog();
+    save(
+        new TaskListener() {
+          @Override
+          public void onTaskComplete() {
+            if (!FileTabDataOperator.isContainsPath(fileTabData, file.getAbsolutePath())) {
+              FileTabDataItem obj = new FileTabDataItem();
+              obj.filePath = file.getAbsolutePath();
+              binding.editorCont.removeAllViews();
+              ViewGroup.LayoutParams layoutParams =
+                  new ViewGroup.LayoutParams(
+                      ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+              codeEditor = new CodeEditorLayout(CodeEditorActivity.this);
+              codeEditor.setLayoutParams(layoutParams);
+              obj.editor = codeEditor;
+              binding.editorCont.addView(codeEditor);
+              FileTabDataOperator.addPath(fileTabData, obj);
+              initEditor();
+            } else {
+              CodeEditorActivity.this.codeEditor = null;
+              binding.editorCont.removeAllViews();
+              CodeEditorActivity.this.codeEditor =
+                  fileTabData.get(
+                          FileTabDataOperator.getPosition(fileTabData, file.getAbsolutePath()))
+                      .editor;
+              binding.editorCont.addView(codeEditor);
+            }
+            adapter.fileTabData = fileTabData;
+            adapter.setActiveTab(
+                FileTabDataOperator.getPosition(fileTabData, file.getAbsolutePath()));
+            adapter.notifyDataSetChanged();
+
+            if (preview != null) {
+              if (FileManager.getPathFormat(file.getAbsolutePath()).equals("md")
+                  || FileManager.getPathFormat(file.getAbsolutePath()).equals("html")) {
+                preview.setVisible(true);
+              } else {
+                preview.setVisible(false);
+              }
+            }
+
+            binding.fileNotOpenedArea.setVisibility(View.GONE);
+            binding.editorArea.setVisibility(View.VISIBLE);
+            binding.progressbar.setVisibility(View.VISIBLE);
+            codeEditor.setVisibility(View.GONE);
+
+            openedFile = file;
+            codeEditor.setCode(FileManager.readFile(file.getAbsolutePath()));
+
+            binding.progressbar.setVisibility(View.GONE);
+            codeEditor.setVisibility(View.VISIBLE);
+
+            codeEditor.setLanguageMode(
+                LanguageModeHandler.getLanguageModeForExtension(
+                    FileTypeHandler.getFileFormat(file.getAbsolutePath())));
+            dismissLoading();
+          }
+        });
+  }
+
+  public void initEditor() {
     // Set Editor Type eg. AceEditor, SoraEditor
     codeEditor.setEditor(
         Setting.SaveInFile.getSettingInt(Setting.Key.CodeEditor, Setting.Default.CodeEditor, this));
@@ -382,150 +602,11 @@ public class CodeEditorActivity extends BaseActivity {
           break;
       }
     }
-
-    adapter = new FileTabAdapter(fileTabData, CodeEditorActivity.this);
-    fileTab.setAdapter(adapter);
-    fileTab.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
-    if (getIntent().hasExtra("path")) {
-      if (new File(getIntent().getStringExtra("path")).isFile()) {
-        DrawerListDir = new File(getIntent().getStringExtra("path")).getParentFile();
-        selectPath = DrawerListDir.getAbsolutePath();
-        openedFile = new File(getIntent().getStringExtra("path"));
-        openFileInEditor(openedFile);
-
-      } else {
-        DrawerListDir = new File(getIntent().getStringExtra("path"));
-        selectPath = DrawerListDir.getAbsolutePath();
-        if (binding.fileNotOpenedArea.getVisibility() == View.GONE
-            || binding.editorArea.getVisibility() == View.VISIBLE) {
-          binding.fileNotOpenedArea.setVisibility(View.VISIBLE);
-          binding.editorArea.setVisibility(View.GONE);
-        }
-      }
-      root = TreeNode.root();
-      fileTree(DrawerListDir);
-      AndroidTreeView tView = new AndroidTreeView(this, root);
-      TreeNodeWrapperView treeView =
-          new TreeNodeWrapperView(this, com.unnamed.b.atv.R.style.TreeNodeStyle);
-      tView.setDefaultAnimation(true);
-      treeView.getNodeContainer().addView(tView.getView());
-      binding.list.addView(treeView);
-    }
-    if (preview != null && openedFile != null) {
-      if (FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("md")
-          || FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("html")) {
-        preview.setVisible(true);
-      } else {
-        preview.setVisible(false);
-      }
-    }
-  }
-
-  @Override
-  public boolean onCreateOptionsMenu(Menu arg0) {
-    super.onCreateOptionsMenu(arg0);
-    getMenuInflater().inflate(R.menu.activity_code_editor, arg0);
-    return true;
-  }
-
-  @Override
-  public boolean onPrepareOptionsMenu(Menu arg0) {
-    menu = arg0;
-    preview = arg0.findItem(R.id.preview);
-    if (openedFile != null) {
-      if (FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("md")
-          || FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("html")) {
-        preview.setVisible(true);
-      } else {
-        preview.setVisible(false);
-      }
-    } else {
-      preview.setVisible(false);
-    }
-    return super.onPrepareOptionsMenu(arg0);
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem arg0) {
-    if (arg0.getItemId() == R.id.preview) {
-      save();
-      if (openedFile != null) {
-        if (codeEditor != null) {
-          if (FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("md")) {
-            Intent i = new Intent();
-            i.setClass(CodeEditorActivity.this, MarkdownViewer.class);
-            i.putExtra("type", "file");
-            i.putExtra("style", "github");
-            i.putExtra("title", FileManager.getLatSegmentOfFilePath(openedFile.getAbsolutePath()));
-            i.putExtra("data", openedFile.getAbsolutePath());
-            startActivity(i);
-          } else {
-            Intent i = new Intent();
-            i.setClass(CodeEditorActivity.this, WebViewActivity.class);
-            i.putExtra("type", "file");
-            i.putExtra("data", openedFile.getAbsolutePath());
-            startActivity(i);
-          }
-        }
-      }
-    }
-
-    return super.onOptionsItemSelected(arg0);
-  }
-
-  public void fileTree(File file) {
-    if (file.isDirectory()) {
-      TreeNode child = new TreeNode(file);
-      child.setViewHolder(new FileTreeViewHolder(this, this));
-      root.addChild(child);
-    }
-  }
-
-  // Method to convert dp to pixels
-  public static int dpToPx(Context context, int dp) {
-    return (int)
-        TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
-  }
-
-  public void openFileInEditor(File file) {
-    if (!FileTabDataOperator.isContainsPath(fileTabData, file.getAbsolutePath())) {
-      FileTabDataItem obj = new FileTabDataItem();
-      obj.filePath = file.getAbsolutePath();
-      FileTabDataOperator.addPath(fileTabData, obj);
-    }
-    adapter.fileTabData = fileTabData;
-    adapter.setActiveTab(FileTabDataOperator.getPosition(fileTabData, file.getAbsolutePath()));
-    adapter.notifyDataSetChanged();
-
-    if (preview != null) {
-      if (FileManager.getPathFormat(file.getAbsolutePath()).equals("md")
-          || FileManager.getPathFormat(file.getAbsolutePath()).equals("html")) {
-        preview.setVisible(true);
-      } else {
-        preview.setVisible(false);
-      }
-    }
-
-    binding.fileNotOpenedArea.setVisibility(View.GONE);
-    binding.editorArea.setVisibility(View.VISIBLE);
-    binding.progressbar.setVisibility(View.VISIBLE);
-    codeEditor.setVisibility(View.GONE);
-
-    openedFile = file;
-    codeEditor.setCode(FileManager.readFile(file.getAbsolutePath()));
-
-    binding.progressbar.setVisibility(View.GONE);
-    codeEditor.setVisibility(View.VISIBLE);
-
-    codeEditor.setLanguageMode(
-        LanguageModeHandler.getLanguageModeForExtension(
-            FileTypeHandler.getFileFormat(file.getAbsolutePath())));
   }
 
   public class FileTabDataItem {
     public String filePath = "";
+    public CodeEditorLayout editor;
   }
 
   public class FileTabDataOperator {
@@ -560,5 +641,23 @@ public class CodeEditorActivity extends BaseActivity {
         data.add(obj);
       }
     }
+  }
+
+  public interface TaskListener {
+    void onTaskComplete();
+  }
+
+  private AlertDialog loading;
+
+  public void showLoadingDialog() {
+    AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+    dialog.setView(getLayoutInflater().inflate(R.layout.layout_loading_progress, null));
+    dialog.setCancelable(false);
+    loading = dialog.create();
+    loading.show();
+  }
+
+  public void dismissLoading() {
+    loading.dismiss();
   }
 }

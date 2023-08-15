@@ -17,10 +17,12 @@
 
 package editor.tsd.editors;
 
+import editor.tsd.tools.EditorListeners;
+
 public interface Editor {
   public void setCode(String Code);
 
-  public String getCode();
+  public void getCode(EditorListeners listener);
 
   public int getCodeEditorType();
 

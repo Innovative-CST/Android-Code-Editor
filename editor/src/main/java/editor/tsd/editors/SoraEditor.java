@@ -22,6 +22,7 @@ import android.graphics.Typeface;
 import android.view.ViewGroup;
 import editor.tsd.editors.sora.lang.textmate.AndroidCodeEditorTMLanguage;
 import editor.tsd.editors.sora.lang.textmate.provider.TextMateProvider;
+import editor.tsd.tools.EditorListeners;
 import editor.tsd.tools.Themes;
 import editor.tsd.widget.CodeEditorLayout;
 import io.github.rosemoe.sora.langs.textmate.TextMateColorScheme;
@@ -36,6 +37,7 @@ public class SoraEditor implements Editor {
   public CodeEditor editor;
   public Context context;
   public EditorColorScheme colorScheme;
+  public EditorListeners listener;
 
   public SoraEditor(Context context) {
     this.context = context;
@@ -55,8 +57,11 @@ public class SoraEditor implements Editor {
   }
 
   @Override
-  public String getCode() {
-    return editor.getText().toString();
+  public void getCode(EditorListeners listener) {
+    this.listener = listener;
+    if (listener != null) {
+      listener.onReceviedCode(editor.getText().toString());
+    }
   }
 
   public CodeEditor getCodeEditor() {

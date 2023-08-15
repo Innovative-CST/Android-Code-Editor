@@ -26,6 +26,7 @@ import editor.tsd.R;
 import editor.tsd.editors.AceEditor;
 import editor.tsd.editors.Editor;
 import editor.tsd.editors.SoraEditor;
+import editor.tsd.tools.EditorListeners;
 import io.github.rosemoe.sora.widget.CodeEditor;
 
 public class CodeEditorLayout extends LinearLayout {
@@ -118,11 +119,9 @@ public class CodeEditorLayout extends LinearLayout {
     CurrentCodeEditor.setCode(newCode);
   }
 
-  public String getCode() {
+  public void getCode(EditorListeners listener) {
     if (CurrentCodeEditor != null) {
-      return CurrentCodeEditor.getCode();
-    } else {
-      return "";
+      CurrentCodeEditor.getCode(listener);
     }
   }
 
@@ -131,7 +130,14 @@ public class CodeEditorLayout extends LinearLayout {
       if (CodeEditorLayout.AceCodeEditor == newEditor) {
         aceEditor = new AceEditor(conText);
         CurrentCodeEditor = aceEditor;
-        aceEditor.setCode(getCode());
+        EditorListeners listener =
+            new EditorListeners() {
+              @Override
+              public void onReceviedCode(String code) {
+                aceEditor.setCode(code);
+              }
+            };
+        getCode(listener);
         removeView(soraEditor.getCodeEditor());
         addView(aceEditor.getCodeEditor());
         editor = AceCodeEditor;
@@ -140,7 +146,14 @@ public class CodeEditorLayout extends LinearLayout {
       } else if (CodeEditorLayout.SoraCodeEditor == newEditor) {
         soraEditor = new SoraEditor(conText);
         CurrentCodeEditor = soraEditor;
-        soraEditor.setCode(getCode());
+        EditorListeners listener =
+            new EditorListeners() {
+              @Override
+              public void onReceviedCode(String code) {
+                soraEditor.setCode(code);
+              }
+            };
+        getCode(listener);
         removeView(aceEditor.getCodeEditor());
         addView(soraEditor.getCodeEditor());
         editor = SoraCodeEditor;
