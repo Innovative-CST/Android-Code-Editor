@@ -19,7 +19,6 @@ package android.code.editor.activity;
 
 import android.code.editor.R;
 import android.code.editor.utils.Setting;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
