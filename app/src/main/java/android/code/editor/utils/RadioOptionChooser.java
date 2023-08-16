@@ -81,6 +81,12 @@ public class RadioOptionChooser {
               (view) -> {
                 radioButtonOnClick(view);
               });
+      dialogView
+          .findViewById(R.id.radioOption3)
+          .setOnClickListener(
+              (view) -> {
+                radioButtonOnClick(view);
+              });
 
       if (Setting.SaveInFile.getSettingInt(
               Setting.Key.ConsoleMode, Setting.Default.ConsoleMode, context)
@@ -90,6 +96,10 @@ public class RadioOptionChooser {
               Setting.Key.ConsoleMode, Setting.Default.ConsoleMode, context)
           == WebViewActivity.Console.DEFAULT) {
         ((MaterialRadioButton) dialogView.findViewById(R.id.radioOption2)).setChecked(true);
+      } else if (Setting.SaveInFile.getSettingInt(
+              Setting.Key.ConsoleMode, Setting.Default.ConsoleMode, context)
+          == WebViewActivity.Console.ERUDA) {
+        ((MaterialRadioButton) dialogView.findViewById(R.id.radioOption3)).setChecked(true);
       }
     } else if (layout == R.layout.layout_language_chooser_radio_group) {
       dialogView
@@ -140,6 +150,9 @@ public class RadioOptionChooser {
       } else if (selectedId == R.id.radioOption2) {
         Setting.SaveInFile.setSetting(
             Setting.Key.ConsoleMode, WebViewActivity.Console.DEFAULT, context);
+      } else if (selectedId == R.id.radioOption3) {
+        Setting.SaveInFile.setSetting(
+            Setting.Key.ConsoleMode, WebViewActivity.Console.ERUDA, context);
       }
     } else if (layout == R.layout.layout_language_chooser_radio_group) {
       int selectedId = view.getId();

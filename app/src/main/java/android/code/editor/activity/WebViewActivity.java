@@ -19,6 +19,7 @@ package android.code.editor.activity;
 
 import android.code.editor.R;
 import android.code.editor.utils.Setting;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ import android.view.inputmethod.EditorInfo;
 import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -45,6 +47,7 @@ public class WebViewActivity extends BaseActivity {
   private LinearLayout consoleView;
   private ScrollView console_content;
   private EditText executeCodeInWebView;
+  public String initialUrl = "";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -104,13 +107,29 @@ public class WebViewActivity extends BaseActivity {
             return super.onConsoleMessage(console);
           }
         });
+    webview.setWebViewClient(
+        new WebViewClient() {
+          @Override
+          public void onPageFinished(WebView webview, String url) {
+            if (Setting.SaveInFile.getSettingInt(
+                    Setting.Key.ConsoleMode, Setting.Default.ConsoleMode, WebViewActivity.this)
+                == Console.ERUDA) {
+              String eruda =
+                  "javascript:(function () { var script = document.createElement('script'); script.src=\"file:///android_asset/eruda.js\"; document.body.append(script); script.onload = function () { eruda.init(); } })();";
+              webview.loadUrl("javascript:".concat(eruda));
+            }
+            super.onPageFinished(webview, url);
+          }
+        });
 
     if (getIntent().getStringExtra("type") != null
         && getIntent().getStringExtra("type").equals("file")) {
       webview.loadUrl("file:".concat(getIntent().getStringExtra("data")));
+      initialUrl = webview.getUrl();
     }
 
-    if (Setting.SaveInFile.getSettingInt(Setting.Key.ConsoleMode, Setting.Default.ConsoleMode, this)
+    if (Setting.SaveInFile.getSettingInt(
+            Setting.Key.ConsoleMode, Setting.Default.ConsoleMode, WebViewActivity.this)
         == Console.DEFAULT) {
       findViewById(R.id.console_slider).setVisibility(View.VISIBLE);
       console_content.setVisibility(View.VISIBLE);
@@ -216,5 +235,6 @@ public class WebViewActivity extends BaseActivity {
   public class Console {
     public static final int DEFAULT = 0;
     public static final int NONE = 1;
+    public static final int ERUDA = 2;
   }
 }
