@@ -54,4 +54,5 @@
     <string name="to_create_project_enter_name">परियोजना बनाने के लिए नाम दर्ज करें</string>
     <string name="ui_mode">यूआई मोड</string>
     <string name="webview">वेब-दृश्य</string>
+    <string name="zooming">जूमकरण</string>
 </resources>

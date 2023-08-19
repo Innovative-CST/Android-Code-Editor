@@ -38,7 +38,6 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
 public class WebViewActivity extends BaseActivity {

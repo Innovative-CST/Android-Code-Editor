@@ -7,7 +7,7 @@
         android:title="@string/clear_console_log" />
     <item
         android:id="@+id/action_zooming"
-        android:title="Zooming"
+        android:title="@string/zooming"
         android:checkable="true"
         android:checked="true" />
 </menu>

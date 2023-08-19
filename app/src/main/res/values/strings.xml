@@ -54,4 +54,5 @@
     <string name="to_create_project_enter_name">To create project enter name</string>
     <string name="ui_mode">UI mode</string>
     <string name="webview">WebView</string>
+    <string name="zooming">Zooming</string>
 </resources>
