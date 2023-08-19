@@ -3,11 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_main_setting"
-        android:icon="@drawable/more_vert_fill0_wght400_grad0_opsz48"
-        android:orderInCategory="100"
-        app:showAsAction="always"
-        android:actionLayout="@layout/activity_file_manager"
-        android:title="@string/more"
-        app:iconTint="?attr/colorOnSurface" />
+        android:id="@+id/clear_console"
+        android:title="@string/clear_console_log" />
 </menu>

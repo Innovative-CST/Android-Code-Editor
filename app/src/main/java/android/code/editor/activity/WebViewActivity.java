@@ -38,6 +38,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
 public class WebViewActivity extends BaseActivity {
@@ -185,47 +186,30 @@ public class WebViewActivity extends BaseActivity {
   @Override
   public boolean onCreateOptionsMenu(Menu arg0) {
     super.onCreateOptionsMenu(arg0);
-    if (Setting.SaveInFile.getSettingInt(Setting.Key.ConsoleMode, Setting.Default.ConsoleMode, this)
-        == Console.DEFAULT) {
-      getMenuInflater().inflate(R.menu.web_view_activity_menu, arg0);
-      return true;
-    }
-    return false;
+    getMenuInflater().inflate(R.menu.web_view_activity_menu, arg0);
+    return true;
   }
 
   @Override
   public boolean onPrepareOptionsMenu(Menu arg0) {
-    if (Setting.SaveInFile.getSettingInt(Setting.Key.ConsoleMode, Setting.Default.ConsoleMode, this)
-        == Console.DEFAULT) {
-      MenuItem item = arg0.findItem(R.id.menu_main_setting);
-      Drawable icon =
-          getResources()
-              .getDrawable(R.drawable.more_vert_fill0_wght400_grad0_opsz48, this.getTheme());
-      item.setIcon(icon);
+    MenuItem item1 = arg0.findItem(R.id.clear_console);
+    if (!(Setting.SaveInFile.getSettingInt(
+            Setting.Key.ConsoleMode, Setting.Default.ConsoleMode, this)
+        == Console.DEFAULT)) {
+      item1.setVisible(false);
     }
     return super.onPrepareOptionsMenu(arg0);
   }
 
   @Override
   public boolean onOptionsItemSelected(MenuItem arg0) {
-    if (arg0.getItemId() == R.id.menu_main_setting) {
+    if (arg0.getItemId() == R.id.clear_console) {
       if (Setting.SaveInFile.getSettingInt(
               Setting.Key.ConsoleMode, Setting.Default.ConsoleMode, this)
           == Console.DEFAULT) {
-        PopupMenu popupMenu = new PopupMenu(this, findViewById(R.id.menu_main_setting));
-        Menu menu = popupMenu.getMenu();
-        menu.add(R.string.clear_console_log);
-
-        popupMenu.setOnMenuItemClickListener(
-            item -> {
-              if (item.getTitle().toString().equals(getString(R.string.clear_console_log))) {
-                if (consoleView != null) {
-                  consoleView.removeAllViews();
-                }
-              }
-              return true;
-            });
-        popupMenu.show();
+        if (consoleView != null) {
+          consoleView.removeAllViews();
+        }
       }
     }
     return super.onOptionsItemSelected(arg0);
