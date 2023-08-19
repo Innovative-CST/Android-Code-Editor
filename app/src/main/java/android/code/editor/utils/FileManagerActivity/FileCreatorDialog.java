@@ -19,7 +19,6 @@ package android.code.editor.utils.FileManagerActivity;
 
 import android.code.editor.R;
 import android.code.editor.activity.FileManagerActivity;
-import android.code.editor.activity.LicenseActivity;
 import android.code.editor.files.utils.FileManager;
 import android.content.Context;
 import android.text.Editable;
@@ -123,7 +122,7 @@ public class FileCreatorDialog {
     switch (FileManager.getPathFormat(path.getAbsolutePath())) {
       case "html":
         pathToCopyText = "Templates/NewFiles/template_01.html";
-        content = LicenseActivity.readFileFromAssets(context.getAssets(), pathToCopyText);
+        content = FileManager.readFileFromAssets(context.getAssets(), pathToCopyText);
         content =
             content.replace(
                 "${Project_Name}",
@@ -131,15 +130,15 @@ public class FileCreatorDialog {
         break;
       case "css":
         pathToCopyText = "Templates/NewFiles/template_02.css";
-        content = LicenseActivity.readFileFromAssets(context.getAssets(), pathToCopyText);
+        content = FileManager.readFileFromAssets(context.getAssets(), pathToCopyText);
         break;
       case "js":
         pathToCopyText = "Templates/NewFiles/template_03.js";
-        content = LicenseActivity.readFileFromAssets(context.getAssets(), pathToCopyText);
+        content = FileManager.readFileFromAssets(context.getAssets(), pathToCopyText);
         break;
       case "java":
         pathToCopyText = "Templates/NewFiles/template_04.java";
-        content = LicenseActivity.readFileFromAssets(context.getAssets(), pathToCopyText);
+        content = FileManager.readFileFromAssets(context.getAssets(), pathToCopyText);
         content =
             content.replace(
                 "${Class_Name}",

@@ -17,11 +17,15 @@
 
 package android.code.editor.files.utils;
 
+import android.content.res.AssetManager;
 import android.net.Uri;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -156,5 +160,25 @@ public class FileManager {
       File file = new File(path);
       file.mkdirs();
     }
+  }
+
+  public static String readFileFromAssets(AssetManager assetManager, String fileName) {
+    StringBuilder stringBuilder = new StringBuilder();
+    try {
+      InputStream inputStream = assetManager.open(fileName);
+      BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+      String line;
+      while ((line = bufferedReader.readLine()) != null) {
+        stringBuilder.append(line);
+        stringBuilder.append("\n");
+      }
+
+      bufferedReader.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    return stringBuilder.toString();
   }
 }

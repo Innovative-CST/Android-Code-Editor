@@ -18,17 +18,13 @@
 package android.code.editor.activity;
 
 import android.code.editor.R;
-import android.content.res.AssetManager;
+import android.code.editor.files.utils.FileManager;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.view.View;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 public class LicenseActivity extends BaseActivity {
 
@@ -53,26 +49,6 @@ public class LicenseActivity extends BaseActivity {
     licenseText = findViewById(R.id.licenseText);
     licenseText.setAutoLinkMask(Linkify.WEB_URLS);
     licenseText.setMovementMethod(LinkMovementMethod.getInstance());
-    licenseText.setText(readFileFromAssets(getAssets(), "oos.text"));
-  }
-
-  public static String readFileFromAssets(AssetManager assetManager, String fileName) {
-    StringBuilder stringBuilder = new StringBuilder();
-    try {
-      InputStream inputStream = assetManager.open(fileName);
-      BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-      String line;
-      while ((line = bufferedReader.readLine()) != null) {
-        stringBuilder.append(line);
-        stringBuilder.append("\n");
-      }
-
-      bufferedReader.close();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
-    return stringBuilder.toString();
+    licenseText.setText(FileManager.readFileFromAssets(getAssets(), "oos.text"));
   }
 }
