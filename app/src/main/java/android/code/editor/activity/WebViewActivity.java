@@ -75,6 +75,8 @@ public class WebViewActivity extends BaseActivity {
     webview.getSettings().setSupportZoom(true);
     webview.getSettings().setAllowContentAccess(true);
     webview.getSettings().setAllowFileAccess(true);
+    webview.getSettings().setBuiltInZoomControls(true);
+    webview.getSettings().setDisplayZoomControls(false);
     webview.setWebChromeClient(
         new WebChromeClient() {
           @Override
@@ -198,6 +200,8 @@ public class WebViewActivity extends BaseActivity {
         == Console.DEFAULT)) {
       item1.setVisible(false);
     }
+    MenuItem item2 = arg0.findItem(R.id.action_zooming);
+    item2.setChecked(webview.getSettings().supportZoom());
     return super.onPrepareOptionsMenu(arg0);
   }
 
@@ -211,6 +215,10 @@ public class WebViewActivity extends BaseActivity {
           consoleView.removeAllViews();
         }
       }
+    }
+    if (arg0.getItemId() == R.id.action_zooming) {
+      webview.getSettings().setSupportZoom(!arg0.isChecked());
+      arg0.setChecked(!arg0.isChecked());
     }
     return super.onOptionsItemSelected(arg0);
   }
