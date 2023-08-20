@@ -18,6 +18,7 @@
 package android.code.editor.files.utils;
 
 import android.code.editor.R;
+import android.code.editor.common.utils.FileUtils;
 import android.content.Context;
 import android.widget.ImageView;
 import java.io.File;
@@ -27,7 +28,7 @@ public class FileIcon {
     if (new File(path).isDirectory()) {
       imageview.setImageResource(R.drawable.ic_folder_black_24dp);
     } else if (new File(path).isFile()) {
-      switch (FileManager.getPathFormat(path)) {
+      switch (FileUtils.getPathFormat(path)) {
         case "java":
           imageview.setImageResource(R.drawable.ic_language_java);
           break;

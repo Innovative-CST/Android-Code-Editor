@@ -18,7 +18,7 @@
 package android.code.editor.utils;
 
 import android.code.editor.activity.WebViewActivity;
-import android.code.editor.files.utils.FileManager;
+import android.code.editor.common.utils.FileUtils;
 import android.code.editor.ui.MaterialColorHelper;
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -85,17 +85,17 @@ public class Setting {
     public static void setSetting(String key, Object value, Context context) {
       SettingFilePath = getDataDir(context).concat(File.separator).concat("Settings.json");
       initSettingFile(SettingFilePath);
-      settingData = FileManager.readFile(SettingFilePath);
+      settingData = FileUtils.readFile(SettingFilePath);
       try {
         TypeToken<HashMap<String, Object>> tokentype = new TypeToken<>() {};
         setting_map = new Gson().fromJson(settingData, tokentype);
         if (setting_map != null) {
           setting_map.put(key, value);
-          FileManager.writeFile(SettingFilePath, new Gson().toJson(setting_map));
+          FileUtils.writeFile(SettingFilePath, new Gson().toJson(setting_map));
         } else {
           setting_map = new HashMap<>();
           setting_map.put(key, value);
-          FileManager.writeFile(SettingFilePath, new Gson().toJson(setting_map));
+          FileUtils.writeFile(SettingFilePath, new Gson().toJson(setting_map));
         }
       } catch (JsonParseException e) {
 
@@ -105,7 +105,7 @@ public class Setting {
     public static void setSetting(String key, int value, Context context) {
       SettingFilePath = getDataDir(context).concat(File.separator).concat("Settings.json");
       initSettingFile(SettingFilePath);
-      settingData = FileManager.readFile(SettingFilePath);
+      settingData = FileUtils.readFile(SettingFilePath);
       try {
         TypeToken<HashMap<String, Object>> tokentype = new TypeToken<>() {};
         setting_map = new Gson().fromJson(settingData, tokentype);
@@ -113,7 +113,7 @@ public class Setting {
           setting_map = new HashMap<>();
         }
         setting_map.put(key, String.valueOf(value));
-        FileManager.writeFile(SettingFilePath, new Gson().toJson(setting_map));
+        FileUtils.writeFile(SettingFilePath, new Gson().toJson(setting_map));
       } catch (JsonParseException e) {
 
       }
@@ -122,7 +122,7 @@ public class Setting {
     public static String getSettingString(String key, String defaultValue, Context context) {
       SettingFilePath = getDataDir(context).concat(File.separator).concat("Settings.json");
       initSettingFile(SettingFilePath);
-      settingData = FileManager.readFile(SettingFilePath);
+      settingData = FileUtils.readFile(SettingFilePath);
       try {
         TypeToken<HashMap<String, Object>> tokentype = new TypeToken<>() {};
         setting_map = new Gson().fromJson(settingData, tokentype);
@@ -143,7 +143,7 @@ public class Setting {
     public static int getSettingInt(String key, int defaultValue, Context context) {
       SettingFilePath = getDataDir(context).concat(File.separator).concat("Settings.json");
       initSettingFile(SettingFilePath);
-      settingData = FileManager.readFile(SettingFilePath);
+      settingData = FileUtils.readFile(SettingFilePath);
       try {
         TypeToken<HashMap<String, Object>> tokentype = new TypeToken<>() {};
         setting_map = new Gson().fromJson(settingData, tokentype);
@@ -175,7 +175,7 @@ public class Setting {
 
     public static void initSettingFile(String path) {
       if (!new File(path).exists()) {
-        FileManager.createNewFile(path);
+        FileUtils.createNewFile(path);
       }
     }
   }

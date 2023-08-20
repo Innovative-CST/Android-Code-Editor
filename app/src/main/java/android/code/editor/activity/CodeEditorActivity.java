@@ -20,8 +20,8 @@ package android.code.editor.activity;
 import android.code.editor.R;
 import android.code.editor.adapters.viewholders.FileTabAdapter;
 import android.code.editor.adapters.viewholders.FileTreeViewHolder;
+import android.code.editor.common.utils.FileUtils;
 import android.code.editor.databinding.ActivityCodeEditorBinding;
-import android.code.editor.files.utils.FileManager;
 import android.code.editor.files.utils.FileTypeHandler;
 import android.code.editor.utils.LanguageModeHandler;
 import android.code.editor.utils.Setting;
@@ -112,7 +112,7 @@ public class CodeEditorActivity extends BaseActivity {
             new EditorListeners() {
               @Override
               public void onReceviedCode(String code) {
-                FileManager.writeFile(openedFile.getAbsolutePath(), code);
+                FileUtils.writeFile(openedFile.getAbsolutePath(), code);
               }
             };
         codeEditor.getCode(listener);
@@ -132,7 +132,7 @@ public class CodeEditorActivity extends BaseActivity {
                     new Runnable() {
                       @Override
                       public void run() {
-                        FileManager.writeFile(openedFile.getAbsolutePath(), code);
+                        FileUtils.writeFile(openedFile.getAbsolutePath(), code);
                         runOnUiThread(
                             new Runnable() {
                               @Override
@@ -388,8 +388,8 @@ public class CodeEditorActivity extends BaseActivity {
       binding.list.addView(treeView);
     }
     if (preview != null && openedFile != null) {
-      if (FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("md")
-          || FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("html")) {
+      if (FileUtils.getPathFormat(openedFile.getAbsolutePath()).equals("md")
+          || FileUtils.getPathFormat(openedFile.getAbsolutePath()).equals("html")) {
         preview.setVisible(true);
       } else {
         preview.setVisible(false);
@@ -413,8 +413,8 @@ public class CodeEditorActivity extends BaseActivity {
     menu = arg0;
     preview = arg0.findItem(R.id.preview);
     if (openedFile != null) {
-      if (FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("md")
-          || FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("html")) {
+      if (FileUtils.getPathFormat(openedFile.getAbsolutePath()).equals("md")
+          || FileUtils.getPathFormat(openedFile.getAbsolutePath()).equals("html")) {
         preview.setVisible(true);
       } else {
         preview.setVisible(false);
@@ -431,12 +431,12 @@ public class CodeEditorActivity extends BaseActivity {
       save();
       if (openedFile != null) {
         if (codeEditor != null) {
-          if (FileManager.getPathFormat(openedFile.getAbsolutePath()).equals("md")) {
+          if (FileUtils.getPathFormat(openedFile.getAbsolutePath()).equals("md")) {
             Intent i = new Intent();
             i.setClass(CodeEditorActivity.this, MarkdownViewer.class);
             i.putExtra("type", "file");
             i.putExtra("style", "github");
-            i.putExtra("title", FileManager.getLatSegmentOfFilePath(openedFile.getAbsolutePath()));
+            i.putExtra("title", FileUtils.getLatSegmentOfFilePath(openedFile.getAbsolutePath()));
             i.putExtra("data", openedFile.getAbsolutePath());
             startActivity(i);
           } else {
@@ -502,8 +502,8 @@ public class CodeEditorActivity extends BaseActivity {
             adapter.notifyDataSetChanged();
 
             if (preview != null) {
-              if (FileManager.getPathFormat(file.getAbsolutePath()).equals("md")
-                  || FileManager.getPathFormat(file.getAbsolutePath()).equals("html")) {
+              if (FileUtils.getPathFormat(file.getAbsolutePath()).equals("md")
+                  || FileUtils.getPathFormat(file.getAbsolutePath()).equals("html")) {
                 preview.setVisible(true);
               } else {
                 preview.setVisible(false);
@@ -516,7 +516,7 @@ public class CodeEditorActivity extends BaseActivity {
             codeEditor.setVisibility(View.GONE);
 
             openedFile = file;
-            codeEditor.setCode(FileManager.readFile(file.getAbsolutePath()));
+            codeEditor.setCode(FileUtils.readFile(file.getAbsolutePath()));
 
             binding.progressbar.setVisibility(View.GONE);
             codeEditor.setVisibility(View.VISIBLE);

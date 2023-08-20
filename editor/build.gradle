@@ -37,4 +37,5 @@ dependencies {
     implementation "$editorGroupId:editor"
     implementation "$editorGroupId:language-textmate"
     implementation "$editorGroupId:language-java"
+    implementation project(path: ':common')
 }

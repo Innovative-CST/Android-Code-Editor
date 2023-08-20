@@ -19,7 +19,7 @@ package android.code.editor.adapters.viewholders;
 
 import android.code.editor.R;
 import android.code.editor.activity.CodeEditorActivity;
-import android.code.editor.files.utils.FileManager;
+import android.code.editor.common.utils.FileUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -60,7 +60,7 @@ public class FileTabAdapter extends RecyclerView.Adapter<FileTabAdapter.ViewHold
   public void onBindViewHolder(ViewHolder _holder, final int _position) {
     View _view = _holder.itemView;
     ((TextView) _view.findViewById(R.id.fileName))
-        .setText(FileManager.getLatSegmentOfFilePath(fileTabData.get(_position).filePath));
+        .setText(FileUtils.getLatSegmentOfFilePath(fileTabData.get(_position).filePath));
     _view
         .findViewById(R.id.root)
         .setOnClickListener(

@@ -18,8 +18,8 @@
 package android.code.editor.activity;
 
 import android.code.editor.R;
+import android.code.editor.common.utils.FileUtils;
 import android.code.editor.files.utils.FileIcon;
-import android.code.editor.files.utils.FileManager;
 import android.code.editor.files.utils.FileTypeHandler;
 import android.code.editor.utils.FileManagerActivity.FileCreatorDialog;
 import android.code.editor.utils.FileManagerActivity.FolderCreatorDialog;
@@ -195,8 +195,8 @@ public class FileManagerActivity extends BaseActivity {
                 });
 
             // Get file path from intent and list dir in array
-            FileManager.listDir(path, listString);
-            FileManager.setUpFileList(listMap, listString);
+            FileUtils.listDir(path, listString);
+            FileUtils.setUpFileList(listMap, listString);
 
             runOnUiThread(
                 new Runnable() {

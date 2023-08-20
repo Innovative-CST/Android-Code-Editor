@@ -1,0 +1,25 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /storage/emulated/0/.GitHub/Android-Code-Editor/common/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4163885306322829159.xml:2:13-83
+INJECTED from /storage/emulated/0/.GitHub/Android-Code-Editor/common/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4163885306322829159.xml:2:13-83
+INJECTED from /storage/emulated/0/.GitHub/Android-Code-Editor/common/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4163885306322829159.xml:2:13-83
+	package
+		INJECTED from /storage/emulated/0/.GitHub/Android-Code-Editor/common/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4163885306322829159.xml
+		ADDED from /storage/emulated/0/.GitHub/Android-Code-Editor/common/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4163885306322829159.xml:2:13-83
+		INJECTED from /storage/emulated/0/.GitHub/Android-Code-Editor/common/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4163885306322829159.xml
+	xmlns:android
+		ADDED from /storage/emulated/0/.GitHub/Android-Code-Editor/common/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4163885306322829159.xml:2:23-81
+uses-sdk
+INJECTED from /storage/emulated/0/.GitHub/Android-Code-Editor/common/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4163885306322829159.xml reason: use-sdk injection requested
+INJECTED from /storage/emulated/0/.GitHub/Android-Code-Editor/common/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4163885306322829159.xml
+INJECTED from /storage/emulated/0/.GitHub/Android-Code-Editor/common/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4163885306322829159.xml
+INJECTED from /storage/emulated/0/.GitHub/Android-Code-Editor/common/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4163885306322829159.xml
+INJECTED from /storage/emulated/0/.GitHub/Android-Code-Editor/common/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4163885306322829159.xml
+	android:targetSdkVersion
+		INJECTED from /storage/emulated/0/.GitHub/Android-Code-Editor/common/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4163885306322829159.xml
+		ADDED from /storage/emulated/0/.GitHub/Android-Code-Editor/common/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4163885306322829159.xml
+		INJECTED from /storage/emulated/0/.GitHub/Android-Code-Editor/common/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4163885306322829159.xml
+	android:minSdkVersion
+		INJECTED from /storage/emulated/0/.GitHub/Android-Code-Editor/common/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4163885306322829159.xml
+		ADDED from /storage/emulated/0/.GitHub/Android-Code-Editor/common/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4163885306322829159.xml
+		INJECTED from /storage/emulated/0/.GitHub/Android-Code-Editor/common/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4163885306322829159.xml

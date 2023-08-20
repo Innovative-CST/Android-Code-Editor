@@ -18,7 +18,7 @@
 package android.code.editor.activity;
 
 import android.code.editor.R;
-import android.code.editor.files.utils.FileManager;
+import android.code.editor.common.utils.FileUtils;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
@@ -49,6 +49,6 @@ public class LicenseActivity extends BaseActivity {
     licenseText = findViewById(R.id.licenseText);
     licenseText.setAutoLinkMask(Linkify.WEB_URLS);
     licenseText.setMovementMethod(LinkMovementMethod.getInstance());
-    licenseText.setText(FileManager.readFileFromAssets(getAssets(), "oos.text"));
+    licenseText.setText(FileUtils.readFileFromAssets(getAssets(), "oos.text"));
   }
 }

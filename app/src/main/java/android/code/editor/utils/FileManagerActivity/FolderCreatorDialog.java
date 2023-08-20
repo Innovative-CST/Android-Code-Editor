@@ -19,7 +19,7 @@ package android.code.editor.utils.FileManagerActivity;
 
 import android.code.editor.R;
 import android.code.editor.activity.FileManagerActivity;
-import android.code.editor.files.utils.FileManager;
+import android.code.editor.common.utils.FileUtils;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.ViewGroup;
@@ -78,7 +78,7 @@ public class FolderCreatorDialog {
               .exists()) {
             activity.listMap.clear();
             activity.listString.clear();
-            FileManager.makeDir(
+            FileUtils.makeDir(
                 activity.currentDir.concat(File.separator).concat(path.getText().toString()));
             activity.loadFileList(activity.currentDir);
           } else {

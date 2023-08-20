@@ -15,7 +15,7 @@
  *   along with AndroidIDE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package android.code.editor.files.utils;
+package android.code.editor.common.utils;
 
 import android.content.res.AssetManager;
 import android.net.Uri;
@@ -31,7 +31,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 
-public class FileManager {
+public class FileUtils {
   public static void setUpFileList(
       ArrayList<HashMap<String, Object>> listMap, ArrayList<String> listString) {
     final class FileComparator implements Comparator<String> {

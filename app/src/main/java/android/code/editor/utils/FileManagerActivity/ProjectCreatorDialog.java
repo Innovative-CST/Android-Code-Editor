@@ -18,7 +18,7 @@
 package android.code.editor.utils.FileManagerActivity;
 
 import android.code.editor.R;
-import android.code.editor.files.utils.FileManager;
+import android.code.editor.common.utils.FileUtils;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.text.Editable;
@@ -146,7 +146,7 @@ public class ProjectCreatorDialog {
   public static void _FindAndReplace(
       final String _path, final String _find, final String _replace) {
     ArrayList<String> findAndReplace = new ArrayList<String>();
-    FileManager.listDir(_path, findAndReplace);
+    FileUtils.listDir(_path, findAndReplace);
     try {
       JSONArray FindAndReplace = new JSONArray(new Gson().toJson(findAndReplace));
       for (int position = 0; position < (int) (FindAndReplace.length()); position++) {
@@ -159,10 +159,10 @@ public class ProjectCreatorDialog {
             }
             _FindAndReplace(FindAndReplace.getString(position), _find, _replace);
           } else {
-            if (FileManager.readFile(FindAndReplace.getString(position)).contains(_find)) {
-              FileManager.writeFile(
+            if (FileUtils.readFile(FindAndReplace.getString(position)).contains(_find)) {
+              FileUtils.writeFile(
                   FindAndReplace.getString(position),
-                  FileManager.readFile(FindAndReplace.getString(position))
+                  FileUtils.readFile(FindAndReplace.getString(position))
                       .replace(_find, _replace));
             }
             if (FindAndReplace.getString(position).contains(_find)) {

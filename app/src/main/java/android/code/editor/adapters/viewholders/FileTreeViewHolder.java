@@ -19,8 +19,8 @@ package android.code.editor.adapters.viewholders;
 
 import android.code.editor.R;
 import android.code.editor.activity.CodeEditorActivity;
+import android.code.editor.common.utils.FileUtils;
 import android.code.editor.files.utils.FileIcon;
-import android.code.editor.files.utils.FileManager;
 import android.code.editor.files.utils.FileTypeHandler;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -127,7 +127,7 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
             }
           });
     }
-    path.setText(FileManager.getLatSegmentOfFilePath(file.getAbsolutePath()));
+    path.setText(FileUtils.getLatSegmentOfFilePath(file.getAbsolutePath()));
     return view;
   }
 

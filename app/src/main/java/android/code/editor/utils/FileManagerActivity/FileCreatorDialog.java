@@ -19,7 +19,7 @@ package android.code.editor.utils.FileManagerActivity;
 
 import android.code.editor.R;
 import android.code.editor.activity.FileManagerActivity;
-import android.code.editor.files.utils.FileManager;
+import android.code.editor.common.utils.FileUtils;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -96,7 +96,7 @@ public class FileCreatorDialog {
               .exists()) {
             activity.listMap.clear();
             activity.listString.clear();
-            FileManager.writeFile(
+            FileUtils.writeFile(
                 activity.currentDir.concat(File.separator).concat(path.getText().toString()),
                 getFileTemplate(
                     new File(
@@ -119,33 +119,33 @@ public class FileCreatorDialog {
   public static String getFileTemplate(File path, Context context) {
     String content = "";
     String pathToCopyText = "";
-    switch (FileManager.getPathFormat(path.getAbsolutePath())) {
+    switch (FileUtils.getPathFormat(path.getAbsolutePath())) {
       case "html":
         pathToCopyText = "Templates/NewFiles/template_01.html";
-        content = FileManager.readFileFromAssets(context.getAssets(), pathToCopyText);
+        content = FileUtils.readFileFromAssets(context.getAssets(), pathToCopyText);
         content =
             content.replace(
                 "${Project_Name}",
-                FileManager.getLatSegmentOfFilePath(path.getParentFile().getAbsolutePath()));
+                FileUtils.getLatSegmentOfFilePath(path.getParentFile().getAbsolutePath()));
         break;
       case "css":
         pathToCopyText = "Templates/NewFiles/template_02.css";
-        content = FileManager.readFileFromAssets(context.getAssets(), pathToCopyText);
+        content = FileUtils.readFileFromAssets(context.getAssets(), pathToCopyText);
         break;
       case "js":
         pathToCopyText = "Templates/NewFiles/template_03.js";
-        content = FileManager.readFileFromAssets(context.getAssets(), pathToCopyText);
+        content = FileUtils.readFileFromAssets(context.getAssets(), pathToCopyText);
         break;
       case "java":
         pathToCopyText = "Templates/NewFiles/template_04.java";
-        content = FileManager.readFileFromAssets(context.getAssets(), pathToCopyText);
+        content = FileUtils.readFileFromAssets(context.getAssets(), pathToCopyText);
         content =
             content.replace(
                 "${Class_Name}",
-                FileManager.getLatSegmentOfFilePath(path.getAbsolutePath())
+                FileUtils.getLatSegmentOfFilePath(path.getAbsolutePath())
                     .substring(
                         0,
-                        FileManager.getLatSegmentOfFilePath(path.getAbsolutePath()).length() - 5));
+                        FileUtils.getLatSegmentOfFilePath(path.getAbsolutePath()).length() - 5));
         break;
     }
     return content;
