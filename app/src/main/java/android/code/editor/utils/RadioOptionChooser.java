@@ -18,8 +18,8 @@
 package android.code.editor.utils;
 
 import android.code.editor.R;
-import android.code.editor.activity.SettingActivity;
-import android.code.editor.activity.WebViewActivity;
+import android.code.editor.ui.activities.SettingActivity;
+import android.code.editor.ui.activities.WebViewActivity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

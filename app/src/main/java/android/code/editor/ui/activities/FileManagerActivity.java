@@ -15,15 +15,15 @@
  *   along with AndroidIDE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package android.code.editor.activity;
+package android.code.editor.ui.activities;
 
 import android.code.editor.R;
 import android.code.editor.common.utils.FileUtils;
-import android.code.editor.files.utils.FileIcon;
-import android.code.editor.files.utils.FileTypeHandler;
-import android.code.editor.utils.FileManagerActivity.FileCreatorDialog;
-import android.code.editor.utils.FileManagerActivity.FolderCreatorDialog;
-import android.code.editor.utils.FileManagerActivity.ProjectCreatorDialog;
+import android.code.editor.handlers.FileTypeHandler;
+import android.code.editor.ui.dialogs.FileCreatorDialog;
+import android.code.editor.ui.dialogs.FolderCreatorDialog;
+import android.code.editor.ui.dialogs.ProjectCreatorDialog;
+import android.code.editor.utils.FileIcon;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;

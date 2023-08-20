@@ -15,7 +15,7 @@
  *   along with AndroidIDE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package android.code.editor.utils.sketchware;
+package android.code.editor.utils;
 
 import android.app.Activity;
 import java.util.HashMap;

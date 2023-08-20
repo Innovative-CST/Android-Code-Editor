@@ -17,9 +17,9 @@
 
 package android.code.editor.utils;
 
-import android.code.editor.activity.WebViewActivity;
 import android.code.editor.common.utils.FileUtils;
-import android.code.editor.ui.MaterialColorHelper;
+import android.code.editor.ui.activities.WebViewActivity;
+import android.code.editor.utils.MaterialColorHelper;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;

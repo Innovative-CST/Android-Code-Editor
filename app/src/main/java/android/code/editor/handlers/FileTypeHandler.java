@@ -15,10 +15,10 @@
  *   along with AndroidIDE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package android.code.editor.files.utils;
+package android.code.editor.handlers;
 
-import android.code.editor.activity.CodeEditorActivity;
-import android.code.editor.activity.FileManagerActivity;
+import android.code.editor.ui.activities.CodeEditorActivity;
+import android.code.editor.ui.activities.FileManagerActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;

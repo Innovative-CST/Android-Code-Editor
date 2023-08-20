@@ -15,11 +15,11 @@
  *   along with AndroidIDE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package android.code.editor.utils.FileManagerActivity;
+package android.code.editor.ui.dialogs;
 
 import android.code.editor.R;
-import android.code.editor.activity.FileManagerActivity;
 import android.code.editor.common.utils.FileUtils;
+import android.code.editor.ui.activities.FileManagerActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.ViewGroup;

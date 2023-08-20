@@ -15,11 +15,11 @@
  *   along with AndroidIDE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package android.code.editor.activity;
+package android.code.editor.ui.activities;
 
 import android.code.editor.R;
-import android.code.editor.utils.sketchware.RequestNetwork;
-import android.code.editor.utils.sketchware.RequestNetworkController;
+import android.code.editor.utils.RequestNetwork;
+import android.code.editor.utils.RequestNetworkController;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;

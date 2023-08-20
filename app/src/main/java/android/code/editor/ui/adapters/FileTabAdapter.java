@@ -15,11 +15,11 @@
  *   along with AndroidIDE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package android.code.editor.adapters.viewholders;
+package android.code.editor.ui.adapters;
 
 import android.code.editor.R;
-import android.code.editor.activity.CodeEditorActivity;
 import android.code.editor.common.utils.FileUtils;
+import android.code.editor.ui.activities.CodeEditorActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;

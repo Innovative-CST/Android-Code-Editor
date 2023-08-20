@@ -15,9 +15,9 @@
  *   along with AndroidIDE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package android.code.editor.activity;
+package android.code.editor.ui.activities;
 
-import android.code.editor.ui.MaterialColorHelper;
+import android.code.editor.utils.MaterialColorHelper;
 import android.code.editor.utils.Setting;
 import android.content.res.Configuration;
 import android.content.res.Resources;

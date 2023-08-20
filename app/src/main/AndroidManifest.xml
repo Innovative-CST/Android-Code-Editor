@@ -21,7 +21,7 @@
         android:theme="@style/AppTheme"
         android:forceDarkAllowed="false">
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,30 +29,30 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.DebugActivity"
+            android:name=".ui.activities.DebugActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.FileManagerActivity"
+            android:name=".ui.activities.FileManagerActivity"
             android:exported="true" />
         <activity
             android:configChanges="uiMode"
             android:windowSoftInputMode="adjustResize"
-            android:name=".activity.CodeEditorActivity"
+            android:name=".ui.activities.CodeEditorActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.ContributorsActivity"
+            android:name=".ui.activities.ContributorsActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.SettingActivity"
+            android:name=".ui.activities.SettingActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.MarkdownViewer"
+            android:name=".ui.activities.MarkdownViewer"
             android:exported="true" />
         <activity
-            android:name=".activity.LicenseActivity"
+            android:name=".ui.activities.LicenseActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.WebViewActivity"
+            android:name=".ui.activities.WebViewActivity"
             android:exported="true" />
     </application>
 

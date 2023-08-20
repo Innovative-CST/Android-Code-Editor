@@ -20,7 +20,7 @@ package android.code.editor;
 import android.app.AlarmManager;
 import android.app.Application;
 import android.app.PendingIntent;
-import android.code.editor.activity.DebugActivity;
+import android.code.editor.ui.activities.DebugActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Process;

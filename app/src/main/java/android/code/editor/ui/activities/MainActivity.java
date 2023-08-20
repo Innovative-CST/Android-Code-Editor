@@ -15,7 +15,7 @@
  *   along with AndroidIDE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package android.code.editor.activity;
+package android.code.editor.ui.activities;
 
 import android.Manifest;
 import android.app.Activity;

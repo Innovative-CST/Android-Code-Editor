@@ -15,14 +15,14 @@
  *   along with AndroidIDE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package android.code.editor.activity;
+package android.code.editor.ui.activities;
 
 import android.code.editor.R;
-import android.code.editor.adapters.viewholders.FileTabAdapter;
-import android.code.editor.adapters.viewholders.FileTreeViewHolder;
 import android.code.editor.common.utils.FileUtils;
 import android.code.editor.databinding.ActivityCodeEditorBinding;
-import android.code.editor.files.utils.FileTypeHandler;
+import android.code.editor.handlers.FileTypeHandler;
+import android.code.editor.ui.adapters.FileTabAdapter;
+import android.code.editor.ui.viewholders.FileTreeViewHolder;
 import android.code.editor.utils.LanguageModeHandler;
 import android.code.editor.utils.Setting;
 import android.content.Context;

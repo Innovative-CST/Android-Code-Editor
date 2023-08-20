@@ -15,28 +15,27 @@
  *   along with AndroidIDE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package android.code.editor.activity;
+package android.code.editor.ui.activities;
 
 import android.code.editor.R;
+import android.code.editor.common.utils.FileUtils;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.View;
+import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
-import br.tiagohm.markdownview.MarkdownView;
-import br.tiagohm.markdownview.css.styles.Github;
-import java.io.File;
 
-public class MarkdownViewer extends BaseActivity {
+public class LicenseActivity extends BaseActivity {
 
-  public MarkdownView markdown_view;
+  private TextView licenseText;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_markdown_viewer);
+    setContentView(R.layout.activity_license);
     Toolbar toolbar = findViewById(R.id.toolbar);
-    if (getIntent().hasExtra("title")) {
-      toolbar.setTitle(getIntent().getStringExtra("title"));
-    }
+    toolbar.setTitle(R.string.open_source_licenses);
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setHomeButtonEnabled(true);
@@ -47,16 +46,9 @@ public class MarkdownViewer extends BaseActivity {
             onBackPressed();
           }
         });
-    markdown_view = findViewById(R.id.markdown_view);
-    if (getIntent().hasExtra("style")) {
-      if (getIntent().getStringExtra("style").equals("github")) {
-        markdown_view.addStyleSheet(new Github());
-      }
-    }
-    if (getIntent().getStringExtra("type").equals("url")) {
-      markdown_view.loadMarkdownFromUrl(getIntent().getStringExtra("data"));
-    } else if (getIntent().getStringExtra("type").equals("file")) {
-      markdown_view.loadMarkdownFromFile(new File(getIntent().getStringExtra("data")));
-    }
+    licenseText = findViewById(R.id.licenseText);
+    licenseText.setAutoLinkMask(Linkify.WEB_URLS);
+    licenseText.setMovementMethod(LinkMovementMethod.getInstance());
+    licenseText.setText(FileUtils.readFileFromAssets(getAssets(), "oos.text"));
   }
 }

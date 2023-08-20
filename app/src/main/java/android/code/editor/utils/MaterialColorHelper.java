@@ -15,7 +15,7 @@
  *   along with AndroidIDE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package android.code.editor.ui;
+package android.code.editor.utils;
 
 import android.code.editor.R;
 import android.code.editor.utils.Setting;
