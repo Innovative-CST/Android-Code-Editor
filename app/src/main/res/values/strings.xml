@@ -16,7 +16,7 @@
     <string name="close_all">Close All</string>
     <string name="close_others">Close others</string>
     <string name="close_this">Close this</string>
-    <string name="create">Cancel</string>
+    <string name="create">Create</string>
     <string name="create_new_file">Create new file</string>
     <string name="create_new_folder">Create new folder</string>
     <string name="create_new_project">Create new project</string>
