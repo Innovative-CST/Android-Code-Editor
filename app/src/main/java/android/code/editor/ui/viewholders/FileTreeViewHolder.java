@@ -119,6 +119,7 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
               case "css":
               case "js":
               case "md":
+              case "json":
                 editorActivity.openFileInEditor(file);
                 editorActivity.drawer.closeDrawer(GravityCompat.END);
                 break;

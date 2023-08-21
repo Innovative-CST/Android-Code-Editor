@@ -187,6 +187,9 @@ public class AceEditor implements Editor, ScaleGestureDetector.OnScaleGestureLis
       case Language.Markdown:
         aceJSInterface.languageMode = "markdown";
         break;
+      case Language.JSON:
+        aceJSInterface.languageMode = "markdown";
+        break;
     }
     aceEditor.loadUrl("javascript:setLanguageMode()");
   }

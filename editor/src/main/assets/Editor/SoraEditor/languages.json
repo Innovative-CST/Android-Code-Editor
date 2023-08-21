@@ -46,6 +46,12 @@
       "name": "xml",
       "scopeName": "text.xml",
       "languageConfiguration": "Editor/SoraEditor/xml/language-configuration.json"
+    },
+    {
+      "grammar": "Editor/SoraEditor/json/syntaxes/json.tmLanguage.json",
+      "name": "json",
+      "scopeName": "source.json", 
+      "languageConfiguration": "Editor/SoraEditor/json/language-configuration.json"
     }
   ]
 }

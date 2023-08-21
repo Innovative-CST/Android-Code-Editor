@@ -24,4 +24,5 @@ public class Language {
   public static final String CSS = "css";
   public static final String XML = "xml";
   public static final String Markdown = "md";
+  public static final String JSON = "json";
 }
