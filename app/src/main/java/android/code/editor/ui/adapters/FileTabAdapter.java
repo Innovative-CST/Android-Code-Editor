@@ -20,6 +20,7 @@ package android.code.editor.ui.adapters;
 import android.code.editor.R;
 import android.code.editor.common.utils.FileUtils;
 import android.code.editor.ui.activities.CodeEditorActivity;
+import android.code.editor.utils.FileTabDataOperator;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -95,7 +96,7 @@ public class FileTabAdapter extends RecyclerView.Adapter<FileTabAdapter.ViewHold
                             .toString()
                             .equals(activity.getString(R.string.close_this))) {
                           int positionOfCloser =
-                              CodeEditorActivity.FileTabDataOperator.getPosition(
+                              FileTabDataOperator.getPosition(
                                   fileTabData, fileTabData.get(_position).filePath);
                           if (activeTab == positionOfCloser) {
                             activity.save(
@@ -157,7 +158,7 @@ public class FileTabAdapter extends RecyclerView.Adapter<FileTabAdapter.ViewHold
                             .equals(activity.getString(R.string.close_others))) {
                           CodeEditorActivity.FileTabDataItem fileTabItem =
                               fileTabData.get(
-                                  CodeEditorActivity.FileTabDataOperator.getPosition(
+                                  FileTabDataOperator.getPosition(
                                       fileTabData, fileTabData.get(_position).filePath));
                           fileTabData.clear();
                           activeTab = 0;

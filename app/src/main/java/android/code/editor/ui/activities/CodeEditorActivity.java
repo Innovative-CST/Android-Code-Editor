@@ -23,6 +23,7 @@ import android.code.editor.databinding.ActivityCodeEditorBinding;
 import android.code.editor.handlers.FileTypeHandler;
 import android.code.editor.ui.adapters.FileTabAdapter;
 import android.code.editor.ui.viewholders.FileTreeViewHolder;
+import android.code.editor.utils.FileTabDataOperator;
 import android.code.editor.utils.LanguageModeHandler;
 import android.code.editor.utils.Setting;
 import android.content.Context;
@@ -607,40 +608,6 @@ public class CodeEditorActivity extends BaseActivity {
   public class FileTabDataItem {
     public String filePath = "";
     public CodeEditorLayout editor;
-  }
-
-  public class FileTabDataOperator {
-    public static boolean isContainsPath(ArrayList<FileTabDataItem> data, String path) {
-      for (int position = 0; position < data.size(); position++) {
-        if (data.get(position).filePath.equals(path)) {
-          return true;
-        }
-      }
-      return false;
-    }
-
-    public static void removePath(ArrayList<FileTabDataItem> data, String path) {
-      for (int position = 0; position < data.size(); position++) {
-        if (data.get(position).filePath.equals(path)) {
-          data.remove(position);
-        }
-      }
-    }
-
-    public static int getPosition(ArrayList<FileTabDataItem> data, String path) {
-      for (int position = 0; position < data.size(); position++) {
-        if (data.get(position).filePath.equals(path)) {
-          return position;
-        }
-      }
-      return -1;
-    }
-
-    public static void addPath(ArrayList<FileTabDataItem> data, FileTabDataItem obj) {
-      if (!isContainsPath(data, obj.filePath)) {
-        data.add(obj);
-      }
-    }
   }
 
   public interface TaskListener {
