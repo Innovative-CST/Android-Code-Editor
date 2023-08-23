@@ -4,8 +4,14 @@
 
 name: Android CI
 
+
 on:
   push:
+    paths-ignore:
+      - assets/**
+      - .gitignore
+      - LICENCE
+      - README.md
 
 jobs:
   buildApkFile:
@@ -27,6 +33,7 @@ jobs:
         shell: bash
         env:
           JSON_CONTENT: ${{ secrets.KEYSTOREPASSWORD }}
+        if: ${{ env.JSON_CONTENT != '' }}
         run: |
           printf 'KEYSTOREPASSWORD<<EOF\n%s\nEOF\n' "$JSON_CONTENT" >> $GITHUB_ENV
 
