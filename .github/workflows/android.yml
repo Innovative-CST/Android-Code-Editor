@@ -4,8 +4,14 @@
 
 name: Android CI
 
+
 on:
   push:
+    paths-ignore:
+      - assets/**
+      - .gitignore
+      - LICENCE
+      - README.md
 
 jobs:
   buildApkFile:

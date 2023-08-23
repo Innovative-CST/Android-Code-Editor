@@ -6,6 +6,11 @@ name: Android CI[PR]
 
 on:
   pull_request:
+    paths-ignore:
+      - assets/**
+      - .gitignore
+      - LICENCE
+      - README.md
 
 jobs:
   buildApkFile:
