@@ -114,13 +114,23 @@ public class RadioOptionChooser {
               (view) -> {
                 radioButtonOnClick(view);
               });
+      dialogView
+          .findViewById(R.id.radioOption3)
+          .setOnClickListener(
+              (view) -> {
+                radioButtonOnClick(view);
+              });
       if (Setting.SaveInFile.getSettingString(Setting.Key.Language, Languages.English, context)
-          == Languages.English) {
+          .equals(Languages.English)) {
         ((MaterialRadioButton) dialogView.findViewById(R.id.radioOption1)).setChecked(true);
       } else if (Setting.SaveInFile.getSettingString(
               Setting.Key.Language, Languages.English, context)
-          == Languages.Hindi) {
+          .equals(Languages.Hindi)) {
         ((MaterialRadioButton) dialogView.findViewById(R.id.radioOption2)).setChecked(true);
+      } else if (Setting.SaveInFile.getSettingString(
+              Setting.Key.Language, Languages.English, context)
+          .equals(Languages.Persian)) {
+        ((MaterialRadioButton) dialogView.findViewById(R.id.radioOption3)).setChecked(true);
       }
     }
     dialog.setView(dialogView);
@@ -162,6 +172,10 @@ public class RadioOptionChooser {
         ((SettingActivity) context).refreshActivityIfRequired();
       } else if (selectedId == R.id.radioOption2) {
         Setting.SaveInFile.setSetting(Setting.Key.Language, Languages.Hindi, context);
+        ((SettingActivity) context).setLangugeMode();
+        ((SettingActivity) context).refreshActivityIfRequired();
+      } else if (selectedId == R.id.radioOption3) {
+        Setting.SaveInFile.setSetting(Setting.Key.Language, Languages.Persian, context);
         ((SettingActivity) context).setLangugeMode();
         ((SettingActivity) context).refreshActivityIfRequired();
       }

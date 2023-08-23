@@ -17,12 +17,14 @@
 
 package android.code.editor.ui.activities;
 
+import android.code.editor.utils.Languages;
 import android.code.editor.utils.MaterialColorHelper;
 import android.code.editor.utils.Setting;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import com.google.android.material.color.DynamicColors;
@@ -43,6 +45,9 @@ public class BaseActivity extends AppCompatActivity {
     Log.e("BaseActivity", language);
     refreshThemeStatusIfRequired();
     setLangugeMode();
+    if (language.equals(Languages.Persian)) {
+      getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+    }
   }
 
   @Override
