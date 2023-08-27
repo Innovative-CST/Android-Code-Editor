@@ -29,10 +29,12 @@ public class LanguageModeHandler {
       return Language.HTML;
     } else if (ext.equals("css")) {
       return Language.CSS;
-    } else if (ext.equals("md")) {
+    } else if (ext.equals("js")) {
       return Language.JavaScript;
-    } else {
+    } else if (ext.equals("md")) {
       return Language.Markdown;
+    } else {
+      return Language.JSON;
     }
   }
 }
