@@ -22,6 +22,7 @@ import android.code.editor.common.utils.FileUtils;
 import android.code.editor.utils.FileIcon;
 import android.code.editor.handlers.FileTypeHandler;
 import android.code.editor.ui.activities.CodeEditorActivity;
+import android.code.editor.utils.Utils;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,7 +62,7 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
     view =
         ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
             .inflate(R.layout.layout_file_tree_view, null);
-    view = applyPadding(node, (LinearLayout) view, UtilsdpToPx(context, 15));
+    view = applyPadding(node, (LinearLayout) view, Utils.dpToPx(context, 15));
     icon = view.findViewById(R.id.icon);
     expandCollapse = view.findViewById(R.id.expandCollapse);
     path = view.findViewById(R.id.path);

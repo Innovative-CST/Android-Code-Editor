@@ -19,25 +19,17 @@ package android.code.editor.ui.activities;
 
 import android.code.editor.R;
 import android.code.editor.common.utils.FileUtils;
-import android.code.editor.handlers.FileTypeHandler;
+import android.code.editor.ui.adapters.FileList;
 import android.code.editor.ui.dialogs.FileCreatorDialog;
 import android.code.editor.ui.dialogs.FolderCreatorDialog;
 import android.code.editor.ui.dialogs.ProjectCreatorDialog;
-import android.code.editor.utils.FileIcon;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.text.method.LinkMovementMethod;
-import android.text.util.Linkify;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -204,7 +196,7 @@ public class FileManagerActivity extends BaseActivity {
                   public void run() {
                     // Set Data in list
                     progressbar.setVisibility(View.GONE);
-                    filelist = new FileList(listMap);
+                    filelist = new FileList(listMap, FileManagerActivity.this);
                     list.setAdapter(filelist);
                     list.setLayoutManager(new LinearLayoutManager(FileManagerActivity.this));
                   }
@@ -219,83 +211,6 @@ public class FileManagerActivity extends BaseActivity {
       finishAffinity();
     } else {
       loadFileList(new File(currentDir).getParent());
-    }
-  }
-
-  // Adapter of Recycler View
-  private class FileList extends RecyclerView.Adapter<FileList.ViewHolder> {
-
-    ArrayList<HashMap<String, Object>> _data;
-    private ImageView icon;
-    private ImageView gitIcon;
-    private TextView path;
-    private LinearLayout mainlayout;
-
-    public FileList(ArrayList<HashMap<String, Object>> _arr) {
-      _data = _arr;
-    }
-
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-      if (viewType == 1) {
-        LayoutInflater _inflater = getLayoutInflater();
-        View _v = _inflater.inflate(R.layout.report_issues, null);
-        RecyclerView.LayoutParams _lp =
-            new RecyclerView.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        _v.setLayoutParams(_lp);
-        return new ViewHolder(_v);
-      }
-      LayoutInflater _inflater = getLayoutInflater();
-      View _v = _inflater.inflate(R.layout.filelist, null);
-      RecyclerView.LayoutParams _lp =
-          new RecyclerView.LayoutParams(
-              ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-      _v.setLayoutParams(_lp);
-      return new ViewHolder(_v);
-    }
-
-    @Override
-    public void onBindViewHolder(ViewHolder _holder, final int _position) {
-      if (_position != 0) {
-        View _view = _holder.itemView;
-        mainlayout = _view.findViewById(R.id.layout);
-        icon = _view.findViewById(R.id.icon);
-        path = _view.findViewById(R.id.path);
-        FileIcon.setUpIcon(
-            FileManagerActivity.this, _data.get(_position - 1).get("path").toString(), icon);
-        path.setText(_data.get(_position - 1).get("lastSegmentOfFilePath").toString());
-        String path = _data.get(_position - 1).get("path").toString();
-        FileTypeHandler fileTypeHandler =
-            new FileTypeHandler(FileManagerActivity.this, FileManagerActivity.this);
-        fileTypeHandler.handleFile(new File(path));
-        fileTypeHandler.setTargetView(mainlayout);
-        fileTypeHandler.startHandling();
-      } else {
-        View _view = _holder.itemView;
-        ((TextView) _view.findViewById(R.id.text)).setAutoLinkMask(Linkify.WEB_URLS);
-        ((TextView) _view.findViewById(R.id.text))
-            .setMovementMethod(LinkMovementMethod.getInstance());
-      }
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-      if (position == 0) {
-        return 1;
-      }
-      return 0;
-    }
-
-    @Override
-    public int getItemCount() {
-      return _data.size() + 1;
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-      public ViewHolder(View v) {
-        super(v);
-      }
     }
   }
 }
