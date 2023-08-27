@@ -36,6 +36,14 @@ jobs:
         if: ${{ env.JSON_CONTENT != '' }}
         run: |
           printf 'KEYSTOREPASSWORD<<EOF\n%s\nEOF\n' "$JSON_CONTENT" >> $GITHUB_ENV
+          
+      - name: Set up firebase
+        shell: bash 
+        env:
+          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_ANALYTICS }}
+        if: ${{ env.GOOGLE_SERVICES_JSON != '' }}
+        run: |
+          printf 'GOOGLE_ANALYTICS<<EOF\n%s\nEOF\n' "$GOOGLE_SERVICES_JSON" >> $GITHUB_ENV
 
       - name: Build debug APK
         run: ./gradlew assembleDebug --warning-mode all
