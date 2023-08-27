@@ -21,6 +21,7 @@ import android.code.editor.R;
 import android.code.editor.common.utils.FileUtils;
 import android.code.editor.databinding.ActivityCodeEditorBinding;
 import android.code.editor.handlers.FileTypeHandler;
+import android.code.editor.interfaces.TaskListener;
 import android.code.editor.ui.adapters.FileTabAdapter;
 import android.code.editor.ui.viewholders.FileTreeViewHolder;
 import android.code.editor.utils.FileTabDataOperator;
@@ -608,10 +609,6 @@ public class CodeEditorActivity extends BaseActivity {
   public class FileTabDataItem {
     public String filePath = "";
     public CodeEditorLayout editor;
-  }
-
-  public interface TaskListener {
-    void onTaskComplete();
   }
 
   private AlertDialog loading;
