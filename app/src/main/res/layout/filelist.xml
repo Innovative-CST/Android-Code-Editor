@@ -44,13 +44,4 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:paddingLeft="5dp"
-        android:id="@+id/child">
-
-    </LinearLayout>
-
 </LinearLayout>
