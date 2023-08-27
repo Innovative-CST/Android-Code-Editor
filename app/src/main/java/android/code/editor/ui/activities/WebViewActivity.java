@@ -19,8 +19,8 @@ package android.code.editor.ui.activities;
 
 import android.code.editor.R;
 import android.code.editor.utils.Setting;
+import android.code.editor.utils.Utils;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -35,7 +35,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
@@ -170,7 +169,7 @@ public class WebViewActivity extends BaseActivity {
                     if ((initialHeight + (int) dy) >= 0) {
                       if ((initialHeight
                               + (int) dy
-                              + CodeEditorActivity.dpToPx(WebViewActivity.this, 5))
+                              + Utils.dpToPx(WebViewActivity.this, 5))
                           <= findViewById(R.id.mainContainer).getHeight()) {
                         ViewGroup.LayoutParams layoutParams = console_content.getLayoutParams();
                         layoutParams.height = initialHeight + (int) dy;

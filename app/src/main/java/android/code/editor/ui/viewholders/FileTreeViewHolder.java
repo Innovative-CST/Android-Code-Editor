@@ -61,7 +61,7 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
     view =
         ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
             .inflate(R.layout.layout_file_tree_view, null);
-    view = applyPadding(node, (LinearLayout) view, CodeEditorActivity.dpToPx(context, 15));
+    view = applyPadding(node, (LinearLayout) view, UtilsdpToPx(context, 15));
     icon = view.findViewById(R.id.icon);
     expandCollapse = view.findViewById(R.id.expandCollapse);
     path = view.findViewById(R.id.path);

@@ -27,13 +27,11 @@ import android.code.editor.ui.viewholders.FileTreeViewHolder;
 import android.code.editor.utils.FileTabDataOperator;
 import android.code.editor.utils.LanguageModeHandler;
 import android.code.editor.utils.Setting;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -461,13 +459,6 @@ public class CodeEditorActivity extends BaseActivity {
       child.setViewHolder(new FileTreeViewHolder(this, this));
       root.addChild(child);
     }
-  }
-
-  // Method to convert dp to pixels
-  public static int dpToPx(Context context, int dp) {
-    return (int)
-        TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
   }
 
   public void openFileInEditor(File file) {
