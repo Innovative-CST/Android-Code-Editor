@@ -1,19 +1,31 @@
 apply plugin: "com.android.application"
 
+def KEYSTOREPASSWORD = System.getenv('KEYSTOREPASSWORD')
+def secretsPropertiesFile = file('../secrets.properties')
+def secretsProperties = new Properties()
 def secrets = System.getenv("GOOGLE_ANALYTICS")
 def analyticsEnabled = secrets != null
+def useEnvForFirebase = true
+
+if (secretsPropertiesFile.exists()) {
+    secretsProperties.load(new FileInputStream(secretsPropertiesFile))
+}
+
+if (analyticsEnabled) {
+    useEnvForFirebase = true
+} else if (secretsPropertiesFile.exists()) {
+    if (secretsProperties.getProperty('useFirebase') != null) {
+        analyticsEnabled = secretsProperties.getProperty('useFirebase') == "true"
+        if (analyticsEnabled) {
+            useEnvForFirebase = false
+        }
+    }
+}
 
 if (analyticsEnabled) {
     apply plugin: "com.google.gms.google-services"
 }
 
-def KEYSTOREPASSWORD = System.getenv('KEYSTOREPASSWORD')
-def secretsPropertiesFile = file('../secrets.properties')
-def secretsProperties = new Properties()
-
-if (secretsPropertiesFile.exists()) {
-    secretsProperties.load(new FileInputStream(secretsPropertiesFile))
-}
 
 def signingEnabled = false
 def password = ""
@@ -106,10 +118,11 @@ dependencies {
     implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
     
     if (analyticsEnabled) {
-        new File("$projectDir/google-services.json").text = secrets;
+        if (useEnvForFirebase) {
+            new File("$projectDir/google-services.json").text = secrets;
+        }
     }
     implementation platform('com.google.firebase:firebase-bom:32.2.3')
-    implementation("com.google.firebase:firebase-crashlytics")
     implementation("com.google.firebase:firebase-analytics")
 
     implementation project(path:':markdown-viewer')
