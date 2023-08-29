@@ -3,6 +3,6 @@
 3    package="android.codd.editor.common" >
 4
 5    <uses-sdk android:minSdkVersion="21" />
-5-->/storage/emulated/0/.GitHub/Android-Code-Editor/common/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2850141777115108143.xml
+5-->/storage/emulated/0/.GitHub/Android-Code-Editor/common/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest2897398101208354062.xml
 6
 7</manifest>

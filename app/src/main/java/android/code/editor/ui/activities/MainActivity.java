@@ -36,6 +36,7 @@ import androidx.annotation.CallSuper;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class MainActivity extends BaseActivity {
 
@@ -43,11 +44,13 @@ public class MainActivity extends BaseActivity {
   private MaterialAlertDialogBuilder MaterialDialog;
   private TextView info;
   private LinearLayout main;
+  private FirebaseAnalytics mFirebaseAnalytics;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
     if (isStoagePermissionGranted(this)) {
       startActivtyLogic();
@@ -70,6 +73,10 @@ public class MainActivity extends BaseActivity {
             startActivity(intent);
           }
         });
+    Bundle bundle = new Bundle();
+    bundle.putString(FirebaseAnalytics.Param.SCREEN_NAME, "MainActivity");
+    bundle.putString(FirebaseAnalytics.Param.SCREEN_CLASS, "MainActivity");
+    mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, bundle);
   }
 
   public static boolean isStoagePermissionGranted(Context context) {

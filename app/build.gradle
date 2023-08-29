@@ -1,5 +1,10 @@
-plugins {
-    id 'com.android.application'
+apply plugin: "com.android.application"
+
+def secrets = System.getenv("GOOGLE_ANALYTICS")
+def analyticsEnabled = secrets != null
+
+if (analyticsEnabled) {
+    apply plugin: "com.google.gms.google-services"
 }
 
 def KEYSTOREPASSWORD = System.getenv('KEYSTOREPASSWORD')
@@ -51,6 +56,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            debuggable true
+            jniDebuggable true
+        }
     }
 
     compileOptions {
@@ -96,6 +105,13 @@ dependencies {
     implementation "$editorGroupId:editor"
     implementation "$editorGroupId:language-textmate"
     implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
+    
+    if (analyticsEnabled) {
+        new File("$projectDir/google-services.json").text = secrets;
+    }
+    implementation platform('com.google.firebase:firebase-bom:32.2.3')
+    implementation("com.google.firebase:firebase-crashlytics")
+    implementation("com.google.firebase:firebase-analytics")
 
     implementation project(path:':markdown-viewer')
     implementation project(path:':editor')

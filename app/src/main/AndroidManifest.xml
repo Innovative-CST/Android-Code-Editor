@@ -55,6 +55,10 @@
         <activity
             android:name=".ui.activities.WebViewActivity"
             android:exported="true" />
+
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="true" />
     </application>
 
 </manifest>

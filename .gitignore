@@ -1,6 +1,7 @@
 .androidide
 .gradle
 app/build
+app/google-services.json
 editor/build
 markdown-viewer/build
 secrets.properties
