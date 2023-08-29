@@ -6,3 +6,4 @@ editor/build
 markdown-viewer/build
 secrets.properties
 treeview/build
+common/build

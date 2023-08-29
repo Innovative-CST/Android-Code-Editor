@@ -1,1 +1,0 @@
-android.codd.editor.common
