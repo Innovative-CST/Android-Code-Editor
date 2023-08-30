@@ -171,14 +171,16 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
                     ((ViewFlipper) view.findViewById(R.id.viewFlipper)).setDisplayedChild(0);
                     updateExpandCollapseIcon(expandCollapse, node.isExpanded());
                     if (node.getChildren().size() == 1) {
-                      expandNode(
-                          node.getChildren().get(0), (File) node.getChildren().get(0).getValue());
-                      ((FileTreeViewHolder) node.getChildren().get(0).getViewHolder())
-                          .viewFlipper.setDisplayedChild(0);
-                      updateExpandCollapseIcon(
-                          ((FileTreeViewHolder) node.getChildren().get(0).getViewHolder())
-                              .expandCollapse,
-                          node.getChildren().get(0).isExpanded());
+                      if (((File) node.getChildren().get(0).getValue()).isDirectory()) {
+                        expandNode(
+                            node.getChildren().get(0), (File) node.getChildren().get(0).getValue());
+                        ((FileTreeViewHolder) node.getChildren().get(0).getViewHolder())
+                            .viewFlipper.setDisplayedChild(0);
+                        updateExpandCollapseIcon(
+                            ((FileTreeViewHolder) node.getChildren().get(0).getViewHolder())
+                                .expandCollapse,
+                            node.getChildren().get(0).isExpanded());
+                      }
                     }
                   }
                 });
