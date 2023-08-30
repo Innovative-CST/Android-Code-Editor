@@ -1,6 +1,5 @@
 package br.tiagohm.markdownview.ext.bean.internal;
 
-import com.orhanobut.logger.Logger;
 import com.vladsch.flexmark.html.CustomNodeRenderer;
 import com.vladsch.flexmark.html.HtmlWriter;
 import com.vladsch.flexmark.html.renderer.NodeRenderer;
@@ -51,7 +50,6 @@ public class BeanNodeRenderer implements NodeRenderer {
                         fieldMethod = beanClass.getMethod("is" + methodNameCamelCase);
                         //Logger.d("encontrado is%", methodNameCamelCase);
                     } catch (NoSuchMethodException e2) {
-                        Logger.d("NoSuchMethodException: ", methodName);
                         return null;
                     }
                 }

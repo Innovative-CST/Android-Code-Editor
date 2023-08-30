@@ -8,7 +8,6 @@ import android.util.AttributeSet;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
-import com.orhanobut.logger.Logger;
 import com.vladsch.flexmark.Extension;
 import com.vladsch.flexmark.ast.AutoLink;
 import com.vladsch.flexmark.ast.FencedCodeBlock;
@@ -262,8 +261,6 @@ public class MarkdownView extends WebView {
         sb.append("</html>");
 
         html = sb.toString();
-
-        Logger.d(html);
 
         loadDataWithBaseURL("",
                 html,
