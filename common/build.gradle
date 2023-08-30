@@ -6,7 +6,7 @@ android {
     compileSdk 32
     buildToolsVersion "33.0.2"
     useLibrary 'org.apache.http.legacy'
-    namespace "android.codd.editor.common"
+    namespace "android.code.editor.common"
 
     defaultConfig {
         minSdk 21
