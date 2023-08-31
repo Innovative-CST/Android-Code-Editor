@@ -46,7 +46,8 @@ Join our discord server to keep contact us about Android Code Editor.
     - [x] CSS
     - [x] XML
     - [x] Markdown
-    - [ ] JSON
+    - [x] JSON
+- [ ] Code Completion
 
 ## Thanks to
 - [JetBrains](https://www.jetbrains.com) for [JetBrains font](https://www.jetbrains.com/lp/mono)
