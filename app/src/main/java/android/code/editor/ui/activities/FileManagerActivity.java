@@ -44,7 +44,7 @@ import java.util.concurrent.Executors;
 public class FileManagerActivity extends BaseActivity {
   private ProgressBar progressbar;
   private RecyclerView list;
-  private FileList filelist;
+  public FileList filelist;
   private String initialDir;
   public String currentDir;
 
@@ -173,7 +173,7 @@ public class FileManagerActivity extends BaseActivity {
     listMap.clear();
     currentDir = path;
     ExecutorService loadFileList = Executors.newSingleThreadExecutor();
-
+        
     loadFileList.execute(
         new Runnable() {
           @Override

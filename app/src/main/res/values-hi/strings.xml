@@ -22,6 +22,9 @@
     <string name="create_new_project">नया फ़ोल्डर बनाएं</string>
     <string name="code_editor">कोड संपादक</string>
     <string name="console_log">कंसोल लॉग</string>
+    <string name="delete">मिटायें</string>
+    <string name="deleting">हटाया जा रहा है</string>
+    <string name="do_you_want_to_delete_the_selected_path">क्या आप चयनित पथ को हटाना चाहते हैं?</string>
     <string name="editor">संपादक</string>
     <string name="enter_file_name">फ़ाइल नाम दर्ज करें</string>
     <string name="enter_folder_name">फ़ोल्डर नाम दर्ज करें</string>

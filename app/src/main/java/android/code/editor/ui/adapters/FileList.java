@@ -20,6 +20,7 @@ package android.code.editor.ui.adapters;
 import android.code.editor.R;
 import android.code.editor.handlers.FileTypeHandler;
 import android.code.editor.ui.activities.FileManagerActivity;
+import android.code.editor.ui.dialogs.DeleteFileDialog;
 import android.code.editor.utils.FileIcon;
 import android.content.Context;
 import android.text.method.LinkMovementMethod;
@@ -85,6 +86,11 @@ public class FileList extends RecyclerView.Adapter<FileList.ViewHolder> {
       fileTypeHandler.handleFile(new File(path));
       fileTypeHandler.setTargetView(mainlayout);
       fileTypeHandler.startHandling();
+      mainlayout.setOnLongClickListener(
+          (param1) -> {
+            new DeleteFileDialog((FileManagerActivity) context, new File(path), _position);
+            return true;
+          });
     } else {
       View _view = _holder.itemView;
       ((TextView) _view.findViewById(R.id.text)).setAutoLinkMask(Linkify.WEB_URLS);

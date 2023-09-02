@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_height="match_parent"
+     android:layout_width="match_parent"
+     android:padding="16dp"
+     android:orientation="vertical"
+     android:id="@+id/root">
+
+    <TextView
+         android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:id="@+id/tv_path" />
+
+    <ProgressBar
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:visibility="visible"
+         android:indeterminate="false"
+         style="?android:progressBarStyleHorizontal"
+         android:id="@+id/progressbar" />
+
+</LinearLayout>
