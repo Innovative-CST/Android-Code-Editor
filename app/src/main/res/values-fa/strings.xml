@@ -23,6 +23,9 @@
     <string name="code_editor">ویرایشگر کد</string> 
     <string name="console_log">گزارش کنسول</string> 
     <string name="editor">ویرایشگر</string> 
+    <string name="delete">حذف</string>
+    <string name="deleting">حذف کردن</string>
+    <string name="do_you_want_to_delete_the_selected_path">آیا می خواهید مسیر انتخاب شده را حذف کنید؟</string>
     <string name="enter_file_name">نام فایل را وارد کنید</string> 
     <string name="enter_folder_name">نام پوشه را وارد کنید</string> 
     <string name="enter_project_name">نام پروژه را وارد کنید</string> 
