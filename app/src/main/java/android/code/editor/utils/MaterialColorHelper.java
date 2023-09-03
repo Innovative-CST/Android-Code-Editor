@@ -28,6 +28,8 @@ public class MaterialColorHelper {
   public static final String AppTheme4 = "AppTheme4";
   public static final String AppTheme5 = "AppTheme5";
   public static final String AppTheme6 = "AppTheme6";
+  public static final String AppTheme7 = "AppTheme7";
+  public static final String AppTheme8 = "AppTheme8";
 
   public static void setUpTheme(Context context) {
     context.setTheme(getCurrentTheme(context));
@@ -54,7 +56,13 @@ public class MaterialColorHelper {
         break;
       case AppTheme6:
         theme = R.style.AppTheme6;
-            break;
+        break;
+      case AppTheme7:
+        theme = R.style.AppTheme7;
+        break;
+      case AppTheme8:
+        theme = R.style.AppTheme8;
+        break;
       default:
         return R.style.AppTheme;
     }

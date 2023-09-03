@@ -223,4 +223,78 @@
             tools:targetApi="q">false</item>
     </style>
 
+    <style
+        name="AppTheme7"
+        parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/theme_7_md_theme_light_primary</item>
+        <item name="colorOnPrimary">@color/theme_7_md_theme_light_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/theme_7_md_theme_light_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/theme_7_md_theme_light_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/theme_7_md_theme_light_secondary</item>
+        <item name="colorOnSecondary">@color/theme_7_md_theme_light_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/theme_7_md_theme_light_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/theme_7_md_theme_light_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/theme_7_md_theme_light_tertiary</item>
+        <item name="colorOnTertiary">@color/theme_7_md_theme_light_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/theme_7_md_theme_light_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/theme_7_md_theme_light_onTertiaryContainer</item>
+        <item name="colorError">@color/theme_7_md_theme_light_error</item>
+        <item name="colorErrorContainer">@color/theme_7_md_theme_light_errorContainer</item>
+        <item name="colorOnError">@color/theme_7_md_theme_light_onError</item>
+        <item name="colorOnErrorContainer">@color/theme_7_md_theme_light_onErrorContainer</item>
+        <item name="android:colorBackground">@color/theme_7_md_theme_light_background</item>
+        <item name="colorOnBackground">@color/theme_7_md_theme_light_onBackground</item>
+        <item name="colorSurface">@color/theme_7_md_theme_light_surface</item>
+        <item name="colorOnSurface">@color/theme_7_md_theme_light_onSurface</item>
+        <item name="colorSurfaceVariant">@color/theme_7_md_theme_light_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/theme_7_md_theme_light_onSurfaceVariant</item>
+        <item name="colorOutline">@color/theme_7_md_theme_light_outline</item>
+        <item name="colorOnSurfaceInverse">@color/theme_7_md_theme_light_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/theme_7_md_theme_light_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/theme_7_md_theme_light_inversePrimary</item>
+
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/theme_7_md_theme_light_surface</item>
+        <item
+            name="android:forceDarkAllowed"
+            tools:targetApi="q">false</item>
+    </style>
+
+    <style
+        name="AppTheme8"
+        parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/theme_8_md_theme_light_primary</item>
+        <item name="colorOnPrimary">@color/theme_8_md_theme_light_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/theme_8_md_theme_light_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/theme_8_md_theme_light_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/theme_8_md_theme_light_secondary</item>
+        <item name="colorOnSecondary">@color/theme_8_md_theme_light_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/theme_8_md_theme_light_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/theme_8_md_theme_light_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/theme_8_md_theme_light_tertiary</item>
+        <item name="colorOnTertiary">@color/theme_8_md_theme_light_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/theme_8_md_theme_light_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/theme_8_md_theme_light_onTertiaryContainer</item>
+        <item name="colorError">@color/theme_8_md_theme_light_error</item>
+        <item name="colorErrorContainer">@color/theme_8_md_theme_light_errorContainer</item>
+        <item name="colorOnError">@color/theme_8_md_theme_light_onError</item>
+        <item name="colorOnErrorContainer">@color/theme_8_md_theme_light_onErrorContainer</item>
+        <item name="android:colorBackground">@color/theme_8_md_theme_light_background</item>
+        <item name="colorOnBackground">@color/theme_8_md_theme_light_onBackground</item>
+        <item name="colorSurface">@color/theme_8_md_theme_light_surface</item>
+        <item name="colorOnSurface">@color/theme_8_md_theme_light_onSurface</item>
+        <item name="colorSurfaceVariant">@color/theme_8_md_theme_light_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/theme_8_md_theme_light_onSurfaceVariant</item>
+        <item name="colorOutline">@color/theme_8_md_theme_light_outline</item>
+        <item name="colorOnSurfaceInverse">@color/theme_8_md_theme_light_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/theme_8_md_theme_light_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/theme_8_md_theme_light_inversePrimary</item>
+
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/theme_8_md_theme_light_surface</item>
+        <item
+            name="android:forceDarkAllowed"
+            tools:targetApi="q">false</item>
+    </style>
+
 </resources>
