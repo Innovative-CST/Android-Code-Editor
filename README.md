@@ -59,6 +59,8 @@ Join our discord server to keep contact us about Android Code Editor.
 - [Rosemoe](https://github.com/Rosemoe) for the [Sora Editor](https://github.com/Rosemoe/sora-editor)
 - [Microsoft](https://github.com/microsoft) for [extensions files](https://github.com/microsoft/vscode/tree/main/extensions)
 - [liriliri](https://github.com/liriliri) for [eruda](https://github.com/liriliri/eruda)
+- [LordFokas](https://github.com/LordFokas)
+for [NanoHTTPD](https://github.com/NanoHttpd/nanohttpd)
 
 ## Note for New Contributors
 Help us to build an Android Code Editor that supports Sora Code Editor as well as Ace Code Editor on GitHub.Just add features,fix bugs,enhance app.
