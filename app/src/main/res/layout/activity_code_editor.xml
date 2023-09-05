@@ -38,6 +38,12 @@
             android:layout_width="match_parent"
             android:id="@+id/fileTab" />
 
+        <View
+            android:layout_height="0.5dp"
+            android:layout_width="match_parent"
+            android:background="?attr/colorOutline"
+            android:id="@+id/divider" />
+
         <LinearLayout
             android:id="@+id/editorArea"
             android:layout_height="0dp"
