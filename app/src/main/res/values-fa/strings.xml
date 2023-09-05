@@ -58,5 +58,6 @@
     <string name="ui_mode">حالت رابط کاربری</string> 
     <string name="webview">نمای وب</string> 
     <string name="zooming">بزرگنمایی</string> 
+    <string name="open_in_browser">بازکردن در مرورگر</string>
 </resources> 
 
