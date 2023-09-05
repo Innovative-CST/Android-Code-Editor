@@ -20,6 +20,7 @@ package android.code.editor.ui.activities;
 import android.code.editor.R;
 import android.code.editor.utils.Setting;
 import android.code.editor.utils.Utils;
+import android.code.editor.utils.nanohttpd;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -42,6 +43,7 @@ import androidx.appcompat.widget.Toolbar;
 public class WebViewActivity extends BaseActivity {
 
   private WebView webview;
+  private nanohttpd webServer;
   private LinearLayout consoleView;
   private ScrollView console_content;
   private EditText executeCodeInWebView;
