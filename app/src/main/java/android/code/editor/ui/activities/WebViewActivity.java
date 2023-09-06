@@ -22,7 +22,9 @@ import android.code.editor.common.utils.FileUtils;
 import android.code.editor.utils.Setting;
 import android.code.editor.utils.Utils;
 import android.code.editor.utils.nanohttpd;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -242,6 +244,10 @@ public class WebViewActivity extends BaseActivity {
     if (arg0.getItemId() == R.id.action_zooming) {
       webview.getSettings().setSupportZoom(!arg0.isChecked());
       arg0.setChecked(!arg0.isChecked());
+    }
+    if (arg0.getItemId() == R.id.open_in_browser) {
+      Intent openInBrowser = new Intent(Intent.ACTION_VIEW, Uri.parse(initialUrl));
+      startActivity(openInBrowser);
     }
     return super.onOptionsItemSelected(arg0);
   }
