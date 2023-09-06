@@ -48,6 +48,7 @@ public class WebViewActivity extends BaseActivity {
   private ScrollView console_content;
   private EditText executeCodeInWebView;
   public String initialUrl = "";
+  public nanohttpd hoster;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -127,7 +128,12 @@ public class WebViewActivity extends BaseActivity {
     if (getIntent().getStringExtra("type") != null
         && getIntent().getStringExtra("type").equals("file")) {
       webview.loadUrl("file:".concat(getIntent().getStringExtra("data")));
-      initialUrl = webview.getUrl();
+      nanohttpd hoster =
+          new nanohttpd(
+              8080, getIntent().getStringExtra("root"), getIntent().getStringExtra("data"));
+      hoster.startServer();
+      initialUrl = hoster.getLocalIpAddress();
+      webview.loadUrl(initialUrl);
     }
 
     if (Setting.SaveInFile.getSettingInt(
@@ -169,9 +175,7 @@ public class WebViewActivity extends BaseActivity {
                     float currentY = motionEvent.getRawY();
                     float dy = currentY - initialY;
                     if ((initialHeight + (int) dy) >= 0) {
-                      if ((initialHeight
-                              + (int) dy
-                              + Utils.dpToPx(WebViewActivity.this, 5))
+                      if ((initialHeight + (int) dy + Utils.dpToPx(WebViewActivity.this, 5))
                           <= findViewById(R.id.mainContainer).getHeight()) {
                         ViewGroup.LayoutParams layoutParams = console_content.getLayoutParams();
                         layoutParams.height = initialHeight + (int) dy;
@@ -183,6 +187,14 @@ public class WebViewActivity extends BaseActivity {
                 return false;
               }
             });
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    if (hoster != null) {
+      hoster.stopServer();
+    }
   }
 
   @Override
