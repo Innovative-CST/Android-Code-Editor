@@ -129,9 +129,11 @@ public class WebViewActivity extends BaseActivity {
     if (getIntent().getStringExtra("type") != null
         && getIntent().getStringExtra("type").equals("file")) {
       webview.loadUrl("file:".concat(getIntent().getStringExtra("data")));
-      nanohttpd hoster =
+      hoster =
           new nanohttpd(
-              8080, getIntent().getStringExtra("root"), FileUtils.getLatSegmentOfFilePath(getIntent().getStringExtra("data")));
+              8080,
+              getIntent().getStringExtra("root"),
+              FileUtils.getLatSegmentOfFilePath(getIntent().getStringExtra("data")));
       hoster.startServer();
       initialUrl = hoster.getLocalIpAddress();
       webview.loadUrl(initialUrl);
@@ -196,6 +198,14 @@ public class WebViewActivity extends BaseActivity {
     if (hoster != null) {
       hoster.stopServer();
     }
+  }
+
+  @Override
+  public void onBackPressed() {
+    if (hoster != null) {
+      hoster.stopServer();
+    }
+    finish();
   }
 
   @Override
