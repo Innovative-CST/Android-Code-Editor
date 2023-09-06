@@ -36,8 +36,8 @@ public class nanohttpd {
 
   public nanohttpd(int port, String NameFolder, String indexFile) {
     this.port = port;
-    this.NameFolder = rootFolder;
-    this.indexFile = indexFlie;
+    this.NameFolder = NameFolder;
+    this.indexFile = indexFile;
   }
 
   public void startServer() {
@@ -45,7 +45,7 @@ public class nanohttpd {
       server = new WebServer(port);
       server.start();
     } catch (IOException e) {
-      Log.error("WebServer", "Failed to start the server: " + e.getMessage());
+      Log.e("WebServer", "Failed to start the server: " + e.getMessage());
       e.printStackTrace();
     }
   }
@@ -87,7 +87,7 @@ public class nanohttpd {
               NanoHTTPD.Response.Status.NOT_FOUND, NanoHTTPD.MIME_PLAINTEXT, "File not found.");
         }
       } catch (IOException e) {
-        Log.error("WebServer", e);
+        Log.e("WebServer", e.toString());
         e.printStackTrace();
         return newFixedLengthResponse(
             NanoHTTPD.Response.Status.INTERNAL_ERROR,
