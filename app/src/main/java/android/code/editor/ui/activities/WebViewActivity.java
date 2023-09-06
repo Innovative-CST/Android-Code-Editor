@@ -18,6 +18,7 @@
 package android.code.editor.ui.activities;
 
 import android.code.editor.R;
+import android.code.editor.common.utils.FileUtils;
 import android.code.editor.utils.Setting;
 import android.code.editor.utils.Utils;
 import android.code.editor.utils.nanohttpd;
@@ -130,7 +131,7 @@ public class WebViewActivity extends BaseActivity {
       webview.loadUrl("file:".concat(getIntent().getStringExtra("data")));
       nanohttpd hoster =
           new nanohttpd(
-              8080, getIntent().getStringExtra("root"), getIntent().getStringExtra("data"));
+              8080, getIntent().getStringExtra("root"), FileUtils.getLatSegmentOfFilePath(getIntent().getStringExtra("data")));
       hoster.startServer();
       initialUrl = hoster.getLocalIpAddress();
       webview.loadUrl(initialUrl);
