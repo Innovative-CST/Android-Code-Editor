@@ -20,8 +20,8 @@ package android.code.editor.ui.activities;
 import android.code.editor.R;
 import android.code.editor.common.utils.FileUtils;
 import android.code.editor.utils.Setting;
+import android.code.editor.utils.SimpleHttpServer;
 import android.code.editor.utils.Utils;
-import android.code.editor.utils.nanohttpd;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -46,12 +46,11 @@ import androidx.appcompat.widget.Toolbar;
 public class WebViewActivity extends BaseActivity {
 
   private WebView webview;
-  private nanohttpd webServer;
   private LinearLayout consoleView;
   private ScrollView console_content;
   private EditText executeCodeInWebView;
   public String initialUrl = "";
-  public nanohttpd hoster;
+  public SimpleHttpServer hoster;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -132,7 +131,7 @@ public class WebViewActivity extends BaseActivity {
         && getIntent().getStringExtra("type").equals("file")) {
       webview.loadUrl("file:".concat(getIntent().getStringExtra("data")));
       hoster =
-          new nanohttpd(
+          new SimpleHttpServer(
               8080,
               getIntent().getStringExtra("root"),
               FileUtils.getLatSegmentOfFilePath(getIntent().getStringExtra("data")));
