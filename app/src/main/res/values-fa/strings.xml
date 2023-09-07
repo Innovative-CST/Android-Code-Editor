@@ -38,6 +38,7 @@
     <string name="new_project">پروژه جدید</string> 
     <string name="open_file_fist_from_drawer">لیست فایل ها را از کشو باز کنید</string> 
     <string name="open_source_licenses">مجوزهای منبع باز</string> 
+    <string name="open_in_browser">بازکردن در مرورگر</string>
     <string name="please_do_not_enter_slash_in_project_name">لطفاً "/" را در نام پروژه وارد نکنید</string> 
     <string name="please_enter_a_file_name">لطفا یک نام فایل وارد کنید</string> 
     <string name="please_enter_a_file_name_that_does_not_exists">لطفاً نام فایلی را وارد کنید که وجود ندارد</string> 
@@ -58,6 +59,5 @@
     <string name="ui_mode">حالت رابط کاربری</string> 
     <string name="webview">نمای وب</string> 
     <string name="zooming">بزرگنمایی</string> 
-    <string name="open_in_browser">بازکردن در مرورگر</string>
 </resources> 
 
