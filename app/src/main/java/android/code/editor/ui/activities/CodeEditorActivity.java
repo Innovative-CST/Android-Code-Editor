@@ -443,6 +443,7 @@ public class CodeEditorActivity extends BaseActivity {
             Intent i = new Intent();
             i.setClass(CodeEditorActivity.this, WebViewActivity.class);
             i.putExtra("type", "file");
+            i.putExtra("root", selectPath);
             i.putExtra("data", openedFile.getAbsolutePath());
             startActivity(i);
           }
