@@ -111,6 +111,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'com.google.code.gson:gson:2.8.7'
     implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+    implementation 'org.nanohttpd:nanohttpd:2.3.0'
     def editorGroupId = "io.github.Rosemoe.sora-editor"
     implementation platform("$editorGroupId:bom:0.22.0")
     implementation "$editorGroupId:editor"

@@ -18,9 +18,13 @@
 package android.code.editor.ui.activities;
 
 import android.code.editor.R;
+import android.code.editor.common.utils.FileUtils;
 import android.code.editor.utils.Setting;
+import android.code.editor.utils.SimpleHttpServer;
 import android.code.editor.utils.Utils;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -46,6 +50,7 @@ public class WebViewActivity extends BaseActivity {
   private ScrollView console_content;
   private EditText executeCodeInWebView;
   public String initialUrl = "";
+  public SimpleHttpServer hoster;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +130,14 @@ public class WebViewActivity extends BaseActivity {
     if (getIntent().getStringExtra("type") != null
         && getIntent().getStringExtra("type").equals("file")) {
       webview.loadUrl("file:".concat(getIntent().getStringExtra("data")));
-      initialUrl = webview.getUrl();
+      hoster =
+          new SimpleHttpServer(
+              8080,
+              getIntent().getStringExtra("root"),
+              FileUtils.getLatSegmentOfFilePath(getIntent().getStringExtra("data")));
+      hoster.startServer();
+      initialUrl = hoster.getLocalIpAddress();
+      webview.loadUrl(initialUrl);
     }
 
     if (Setting.SaveInFile.getSettingInt(
@@ -167,9 +179,7 @@ public class WebViewActivity extends BaseActivity {
                     float currentY = motionEvent.getRawY();
                     float dy = currentY - initialY;
                     if ((initialHeight + (int) dy) >= 0) {
-                      if ((initialHeight
-                              + (int) dy
-                              + Utils.dpToPx(WebViewActivity.this, 5))
+                      if ((initialHeight + (int) dy + Utils.dpToPx(WebViewActivity.this, 5))
                           <= findViewById(R.id.mainContainer).getHeight()) {
                         ViewGroup.LayoutParams layoutParams = console_content.getLayoutParams();
                         layoutParams.height = initialHeight + (int) dy;
@@ -181,6 +191,22 @@ public class WebViewActivity extends BaseActivity {
                 return false;
               }
             });
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    if (hoster != null) {
+      hoster.stopServer();
+    }
+  }
+
+  @Override
+  public void onBackPressed() {
+    if (hoster != null) {
+      hoster.stopServer();
+    }
+    finish();
   }
 
   @Override
@@ -217,6 +243,10 @@ public class WebViewActivity extends BaseActivity {
     if (arg0.getItemId() == R.id.action_zooming) {
       webview.getSettings().setSupportZoom(!arg0.isChecked());
       arg0.setChecked(!arg0.isChecked());
+    }
+    if (arg0.getItemId() == R.id.open_in_browser) {
+      Intent openInBrowser = new Intent(Intent.ACTION_VIEW, Uri.parse(initialUrl));
+      startActivity(openInBrowser);
     }
     return super.onOptionsItemSelected(arg0);
   }
