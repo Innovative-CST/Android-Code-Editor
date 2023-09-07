@@ -37,6 +37,7 @@
     <string name="new_folder">New folder</string>
     <string name="new_project">New Project</string>
     <string name="open_file_fist_from_drawer">Open file list from drawer</string>
+    <string name="open_in_browser">Open in Browser</string>
     <string name="open_source_licenses">Open Source Licenses</string>
     <string name="please_do_not_enter_slash_in_project_name">Please do not enter "/" in project name</string>
     <string name="please_enter_a_file_name">Please enter a file name</string>
@@ -58,5 +59,4 @@
     <string name="ui_mode">UI mode</string>
     <string name="webview">WebView</string>
     <string name="zooming">Zooming</string>
-    <string name="open_in_browser">Open in Browser</string>
 </resources>
