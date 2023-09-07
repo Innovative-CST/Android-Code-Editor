@@ -78,21 +78,27 @@ public class SettingActivity extends BaseActivity {
         .setOnClickListener(
             (view) -> {
               new RadioOptionChooser(
-                  this, R.layout.layout_editor_chooser_radio_group, getString(R.string.choose_an_editor));
+                  this,
+                  R.layout.layout_editor_chooser_radio_group,
+                  getString(R.string.choose_an_editor));
             });
 
     findViewById(R.id.consoleChooserContainer)
         .setOnClickListener(
             (view) -> {
               new RadioOptionChooser(
-                  this, R.layout.layout_console_chooser_radio_group, getString(R.string.choose_a_console_log));
+                  this,
+                  R.layout.layout_console_chooser_radio_group,
+                  getString(R.string.choose_a_console_log));
             });
 
     findViewById(R.id.languageChooserContainer)
         .setOnClickListener(
             (view) -> {
               new RadioOptionChooser(
-                  this, R.layout.layout_language_chooser_radio_group, getString(R.string.choose_a_language));
+                  this,
+                  R.layout.layout_language_chooser_radio_group,
+                  getString(R.string.choose_a_language));
             });
 
     uiMode.add("Light");
@@ -200,6 +206,42 @@ public class SettingActivity extends BaseActivity {
               (view) -> {
                 Setting.SaveInFile.setSetting(
                     Setting.Key.Theme, MaterialColorHelper.AppTheme5, this);
+                refreshActivityIfRequired();
+              });
+
+      View theme6 = getLayoutInflater().inflate(R.layout.theme_chooser_item, null);
+      theme6.findViewById(R.id.color).setBackgroundResource(R.color.theme_6_md_theme_light_primary);
+      ((ViewGroup) findViewById(R.id.themes)).addView(theme6);
+      theme6
+          .findViewById(R.id.color)
+          .setOnClickListener(
+              (view) -> {
+                Setting.SaveInFile.setSetting(
+                    Setting.Key.Theme, MaterialColorHelper.AppTheme6, this);
+                refreshActivityIfRequired();
+              });
+
+      View theme7 = getLayoutInflater().inflate(R.layout.theme_chooser_item, null);
+      theme7.findViewById(R.id.color).setBackgroundResource(R.color.theme_7_md_theme_light_primary);
+      ((ViewGroup) findViewById(R.id.themes)).addView(theme7);
+      theme7
+          .findViewById(R.id.color)
+          .setOnClickListener(
+              (view) -> {
+                Setting.SaveInFile.setSetting(
+                    Setting.Key.Theme, MaterialColorHelper.AppTheme7, this);
+                refreshActivityIfRequired();
+              });
+
+      View theme8 = getLayoutInflater().inflate(R.layout.theme_chooser_item, null);
+      theme8.findViewById(R.id.color).setBackgroundResource(R.color.theme_8_md_theme_light_primary);
+      ((ViewGroup) findViewById(R.id.themes)).addView(theme8);
+      theme8
+          .findViewById(R.id.color)
+          .setOnClickListener(
+              (view) -> {
+                Setting.SaveInFile.setSetting(
+                    Setting.Key.Theme, MaterialColorHelper.AppTheme8, this);
                 refreshActivityIfRequired();
               });
     }

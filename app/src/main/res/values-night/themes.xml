@@ -184,4 +184,116 @@
             name="android:forceDarkAllowed"
             tools:targetApi="q">false</item>
     </style>
+
+    <style
+        name="AppTheme6"
+        parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/theme_6_md_theme_dark_primary</item>
+        <item name="colorOnPrimary">@color/theme_6_md_theme_dark_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/theme_6_md_theme_dark_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/theme_6_md_theme_dark_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/theme_6_md_theme_dark_secondary</item>
+        <item name="colorOnSecondary">@color/theme_6_md_theme_dark_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/theme_6_md_theme_dark_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/theme_6_md_theme_dark_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/theme_6_md_theme_dark_tertiary</item>
+        <item name="colorOnTertiary">@color/theme_6_md_theme_dark_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/theme_6_md_theme_dark_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/theme_6_md_theme_dark_onTertiaryContainer</item>
+        <item name="colorError">@color/theme_6_md_theme_dark_error</item>
+        <item name="colorErrorContainer">@color/theme_6_md_theme_dark_errorContainer</item>
+        <item name="colorOnError">@color/theme_6_md_theme_dark_onError</item>
+        <item name="colorOnErrorContainer">@color/theme_6_md_theme_dark_onErrorContainer</item>
+        <item name="android:colorBackground">@color/theme_6_md_theme_dark_background</item>
+        <item name="colorOnBackground">@color/theme_6_md_theme_dark_onBackground</item>
+        <item name="colorSurface">@color/theme_6_md_theme_dark_surface</item>
+        <item name="colorOnSurface">@color/theme_6_md_theme_dark_onSurface</item>
+        <item name="colorSurfaceVariant">@color/theme_6_md_theme_dark_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/theme_6_md_theme_dark_onSurfaceVariant</item>
+        <item name="colorOutline">@color/theme_6_md_theme_dark_outline</item>
+        <item name="colorOnSurfaceInverse">@color/theme_6_md_theme_dark_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/theme_6_md_theme_dark_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/theme_6_md_theme_dark_inversePrimary</item>
+
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@color/theme_6_md_theme_dark_surface</item>
+        <item
+            name="android:forceDarkAllowed"
+            tools:targetApi="q">false</item>
+    </style>
+
+    <style
+        name="AppTheme7"
+        parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/theme_7_md_theme_dark_primary</item>
+        <item name="colorOnPrimary">@color/theme_7_md_theme_dark_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/theme_7_md_theme_dark_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/theme_7_md_theme_dark_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/theme_7_md_theme_dark_secondary</item>
+        <item name="colorOnSecondary">@color/theme_7_md_theme_dark_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/theme_7_md_theme_dark_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/theme_7_md_theme_dark_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/theme_7_md_theme_dark_tertiary</item>
+        <item name="colorOnTertiary">@color/theme_7_md_theme_dark_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/theme_7_md_theme_dark_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/theme_7_md_theme_dark_onTertiaryContainer</item>
+        <item name="colorError">@color/theme_7_md_theme_dark_error</item>
+        <item name="colorErrorContainer">@color/theme_7_md_theme_dark_errorContainer</item>
+        <item name="colorOnError">@color/theme_7_md_theme_dark_onError</item>
+        <item name="colorOnErrorContainer">@color/theme_7_md_theme_dark_onErrorContainer</item>
+        <item name="android:colorBackground">@color/theme_7_md_theme_dark_background</item>
+        <item name="colorOnBackground">@color/theme_7_md_theme_dark_onBackground</item>
+        <item name="colorSurface">@color/theme_7_md_theme_dark_surface</item>
+        <item name="colorOnSurface">@color/theme_7_md_theme_dark_onSurface</item>
+        <item name="colorSurfaceVariant">@color/theme_7_md_theme_dark_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/theme_7_md_theme_dark_onSurfaceVariant</item>
+        <item name="colorOutline">@color/theme_7_md_theme_dark_outline</item>
+        <item name="colorOnSurfaceInverse">@color/theme_7_md_theme_dark_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/theme_7_md_theme_dark_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/theme_7_md_theme_dark_inversePrimary</item>
+
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@color/theme_7_md_theme_dark_surface</item>
+        <item
+            name="android:forceDarkAllowed"
+            tools:targetApi="q">false</item>
+    </style>
+
+    <style
+        name="AppTheme8"
+        parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/theme_8_md_theme_dark_primary</item>
+        <item name="colorOnPrimary">@color/theme_8_md_theme_dark_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/theme_8_md_theme_dark_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/theme_8_md_theme_dark_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/theme_8_md_theme_dark_secondary</item>
+        <item name="colorOnSecondary">@color/theme_8_md_theme_dark_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/theme_8_md_theme_dark_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/theme_8_md_theme_dark_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/theme_8_md_theme_dark_tertiary</item>
+        <item name="colorOnTertiary">@color/theme_8_md_theme_dark_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/theme_8_md_theme_dark_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/theme_8_md_theme_dark_onTertiaryContainer</item>
+        <item name="colorError">@color/theme_8_md_theme_dark_error</item>
+        <item name="colorErrorContainer">@color/theme_8_md_theme_dark_errorContainer</item>
+        <item name="colorOnError">@color/theme_8_md_theme_dark_onError</item>
+        <item name="colorOnErrorContainer">@color/theme_8_md_theme_dark_onErrorContainer</item>
+        <item name="android:colorBackground">@color/theme_8_md_theme_dark_background</item>
+        <item name="colorOnBackground">@color/theme_8_md_theme_dark_onBackground</item>
+        <item name="colorSurface">@color/theme_8_md_theme_dark_surface</item>
+        <item name="colorOnSurface">@color/theme_8_md_theme_dark_onSurface</item>
+        <item name="colorSurfaceVariant">@color/theme_8_md_theme_dark_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/theme_8_md_theme_dark_onSurfaceVariant</item>
+        <item name="colorOutline">@color/theme_8_md_theme_dark_outline</item>
+        <item name="colorOnSurfaceInverse">@color/theme_8_md_theme_dark_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/theme_8_md_theme_dark_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/theme_8_md_theme_dark_inversePrimary</item>
+
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@color/theme_8_md_theme_dark_surface</item>
+        <item
+            name="android:forceDarkAllowed"
+            tools:targetApi="q">false</item>
+    </style>
+
 </resources>
