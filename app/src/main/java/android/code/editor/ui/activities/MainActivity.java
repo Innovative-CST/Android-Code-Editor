@@ -20,6 +20,7 @@ package android.code.editor.ui.activities;
 import android.Manifest;
 import android.app.Activity;
 import android.code.editor.R;
+import android.code.editor.utils.Setting;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -50,13 +51,7 @@ public class MainActivity extends BaseActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
-    if (isStoagePermissionGranted(this)) {
-      startActivtyLogic();
-    } else {
-      showStoragePermissionDialog(this);
-    }
+    privacyPolicy();
   }
 
   public void startActivtyLogic() {
@@ -232,5 +227,54 @@ public class MainActivity extends BaseActivity {
           }
         });
     dialog.create().show();
+  }
+
+  private void privacyPolicy() {
+    if (Setting.SaveInFile.getSettingString("PrivacyPolicy", "notAccepted", this)
+        .equals("notAccepted")) {
+      MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
+      dialog.setTitle("Privacy Policy");
+      dialog.setMessage("Please read our privacy policy before continue");
+      dialog.setPositiveButton(
+          "Agree",
+          new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface _dialog, int _which) {
+              Setting.SaveInFile.setSetting("PrivacyPolicy", "accepted", MainActivity.this);
+              mFirebaseAnalytics = FirebaseAnalytics.getInstance(MainActivity.this);
+              if (isStoagePermissionGranted(MainActivity.this)) {
+                startActivtyLogic();
+              } else {
+                showStoragePermissionDialog(MainActivity.this);
+              }
+            }
+          });
+      dialog.setNegativeButton(
+          "Deny",
+          new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface _dialog, int _which) {
+              MainActivity.this.finishAffinity();
+            }
+          });
+      dialog.setNeutralButton(
+          "Privacy Policy",
+          new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface _dialog, int _which) {
+              privacyPolicy();
+              Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ts-code-editor.vercel.app/privacy_policy"));
+              MainActivity.this.startActivity(i);
+            }
+          });
+      dialog.create().show();
+    } else {
+      mFirebaseAnalytics = FirebaseAnalytics.getInstance(MainActivity.this);
+      if (isStoagePermissionGranted(MainActivity.this)) {
+        startActivtyLogic();
+      } else {
+        showStoragePermissionDialog(MainActivity.this);
+      }
+    }
   }
 }
