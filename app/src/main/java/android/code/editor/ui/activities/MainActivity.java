@@ -263,7 +263,10 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(DialogInterface _dialog, int _which) {
               privacyPolicy();
-              Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ts-code-editor.vercel.app/privacy_policy"));
+              Intent i =
+                  new Intent(
+                      Intent.ACTION_VIEW,
+                      Uri.parse("https://ts-code-editor.vercel.app/privacy_policy"));
               MainActivity.this.startActivity(i);
             }
           });
