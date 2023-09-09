@@ -62,16 +62,6 @@ android {
         versionCode 1
         versionName "1.0-Snapshot-" + getCommitHash()
     }
-    
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            debuggable true
-        }
-    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -98,6 +88,17 @@ android {
                 keyAlias "AndroidCodeEditor"
                 keyPassword password
             }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            debuggable true
         }
     }
 }
