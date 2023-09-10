@@ -18,6 +18,7 @@
 package android.code.editor.ui.activities;
 
 import android.code.editor.R;
+import android.code.editor.ui.adapters.ContributorsListAdapter;
 import android.code.editor.utils.RequestNetwork;
 import android.code.editor.utils.RequestNetworkController;
 import android.content.Intent;
@@ -99,7 +100,7 @@ public class ContributorsActivity extends BaseActivity {
                   contributorsList.add(_item);
                 }
               }
-              list.setAdapter(new ContribitorsListAdaptor(contributorsList));
+              list.setAdapter(new ContributorsListAdapter(contributorsList, ContributorsActivity.this));
               list.setLayoutManager(new LinearLayoutManager(ContributorsActivity.this));
             } catch (JSONException e) {
               Toast.makeText(ContributorsActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -135,71 +136,5 @@ public class ContributorsActivity extends BaseActivity {
     list = findViewById(R.id.list);
     main = findViewById(R.id.main);
     loading = findViewById(R.id.loading);
-  }
-
-  public class ContribitorsListAdaptor
-      extends RecyclerView.Adapter<ContribitorsListAdaptor.ViewHolder> {
-
-    ArrayList<HashMap<String, Object>> _data;
-    public ImageView profile;
-    public TextView name;
-    public TextView description;
-
-    public ContribitorsListAdaptor(ArrayList<HashMap<String, Object>> _arr) {
-      _data = _arr;
-    }
-
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-      LayoutInflater _inflater = getLayoutInflater();
-      View _v = _inflater.inflate(R.layout.contributors, null);
-      RecyclerView.LayoutParams _lp =
-          new RecyclerView.LayoutParams(
-              ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-      _v.setLayoutParams(_lp);
-      return new ViewHolder(_v);
-    }
-
-    @Override
-    public void onBindViewHolder(ViewHolder _holder, final int _position) {
-      View _view = _holder.itemView;
-      profile = _view.findViewById(R.id.profile);
-      MultiTransformation multi = new MultiTransformation<Bitmap>(new CircleCrop());
-      Glide.with(ContributorsActivity.this)
-          .load(Uri.parse(_data.get(_position).get("Image").toString()))
-          .thumbnail(0.10F)
-          .into(profile);
-      name = _view.findViewById(R.id.name);
-      description = _view.findViewById(R.id.description);
-      name.setText(_data.get(_position).get("Name").toString());
-      description.setText(_data.get(_position).get("Description").toString());
-      _view.findViewById(R.id.infoInMarkDown).setVisibility(View.GONE);
-      if (_data.get(_position).containsKey("markdownUrl")) {
-        _view.findViewById(R.id.infoInMarkDown).setVisibility(View.VISIBLE);
-        _view
-            .findViewById(R.id.infoInMarkDown)
-            .setOnClickListener(
-                (view) -> {
-                  Intent i = new Intent();
-                  i.setClass(ContributorsActivity.this, MarkdownViewer.class);
-                  i.putExtra("type", "url");
-                  i.putExtra("style", "github");
-                  i.putExtra("title", _data.get(_position).get("Name").toString());
-                  i.putExtra("data", _data.get(_position).get("markdownUrl").toString());
-                  startActivity(i);
-                });
-      }
-    }
-
-    @Override
-    public int getItemCount() {
-      return _data.size();
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-      public ViewHolder(View v) {
-        super(v);
-      }
-    }
   }
 }
