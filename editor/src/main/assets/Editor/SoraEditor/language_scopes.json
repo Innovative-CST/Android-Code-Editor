@@ -4,6 +4,7 @@
   "java": "source.java",
   "md": "text.html.markdown",
   "css": "source.css",
+  "htm": "text.html.basic",
   "html": "text.html.basic",
   "xml": "text.xml"
 }

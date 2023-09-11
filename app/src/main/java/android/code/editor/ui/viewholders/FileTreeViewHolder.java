@@ -117,6 +117,7 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
               case "java":
               case "xml":
               case "html":
+              case "htm":
               case "css":
               case "js":
               case "md":

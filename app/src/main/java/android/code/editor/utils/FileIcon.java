@@ -36,6 +36,7 @@ public class FileIcon {
           imageview.setImageResource(R.drawable.file_xml_box);
           break;
         case "html":
+        case "htm":
           imageview.setImageResource(R.drawable.language_html);
           break;
         case "css":

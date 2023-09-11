@@ -25,7 +25,7 @@ public class LanguageModeHandler {
       return Language.Java;
     } else if (ext.equals("xml")) {
       return Language.XML;
-    } else if (ext.equals("html")) {
+    } else if (ext.equals("html") || ext.equals("htm")) {
       return Language.HTML;
     } else if (ext.equals("css")) {
       return Language.CSS;

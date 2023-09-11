@@ -388,12 +388,15 @@ public class CodeEditorActivity extends BaseActivity {
       binding.list.addView(treeView);
     }
     if (preview != null && openedFile != null) {
-      if (FileUtils.getPathFormat(openedFile.getAbsolutePath()).equals("md")
-          || FileUtils.getPathFormat(openedFile.getAbsolutePath()).equals("html")) {
-        preview.setVisible(true);
-      } else {
-        preview.setVisible(false);
+      boolean showPreview = false;
+      switch (FileUtils.getPathFormat(openedFile.getAbsolutePath())) {
+        case "md":
+        case "html":
+        case "htm":
+          showPreview = true;
+          break;
       }
+      preview.setVisible(showPreview);
     }
 
     if (codeEditor != null) {
@@ -413,12 +416,15 @@ public class CodeEditorActivity extends BaseActivity {
     menu = arg0;
     preview = arg0.findItem(R.id.preview);
     if (openedFile != null) {
-      if (FileUtils.getPathFormat(openedFile.getAbsolutePath()).equals("md")
-          || FileUtils.getPathFormat(openedFile.getAbsolutePath()).equals("html")) {
-        preview.setVisible(true);
-      } else {
-        preview.setVisible(false);
+      boolean showPreview = false;
+      switch (FileUtils.getPathFormat(openedFile.getAbsolutePath())) {
+        case "md":
+        case "html":
+        case "htm":
+          showPreview = true;
+          break;
       }
+      preview.setVisible(showPreview);
     } else {
       preview.setVisible(false);
     }
@@ -496,12 +502,15 @@ public class CodeEditorActivity extends BaseActivity {
             adapter.notifyDataSetChanged();
 
             if (preview != null) {
-              if (FileUtils.getPathFormat(file.getAbsolutePath()).equals("md")
-                  || FileUtils.getPathFormat(file.getAbsolutePath()).equals("html")) {
-                preview.setVisible(true);
-              } else {
-                preview.setVisible(false);
+              boolean showPreview = false;
+              switch (FileUtils.getPathFormat(file.getAbsolutePath())) {
+                case "md":
+                case "html":
+                case "htm":
+                  showPreview = true;
+                  break;
               }
+              preview.setVisible(showPreview);
             }
 
             binding.fileNotOpenedArea.setVisibility(View.GONE);

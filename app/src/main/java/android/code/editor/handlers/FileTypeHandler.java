@@ -59,6 +59,7 @@ public class FileTypeHandler {
         case "java":
         case "xml":
         case "html":
+        case "htm":
         case "css":
         case "js":
         case "md":
