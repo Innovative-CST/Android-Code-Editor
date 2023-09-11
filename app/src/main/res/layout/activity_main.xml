@@ -17,18 +17,10 @@
         <ImageView
             android:layout_height="0dp"
             android:layout_width="match_parent"
-            android:src="@drawable/logo_black"
+            android:src="@drawable/banner"
             android:tint="?attr/colorOnSurface"
-            android:layout_weight="1" />
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:visibility="gone"
-            android:textColor="?attr/colorOnSurface"
-            android:text="@string/tap_to_start"
-            android:id="@+id/info"
-            android:layout_gravity="center_horizontal" />
+            android:layout_weight="1"
+            android:padding="16dp" />
 
     </LinearLayout>
 

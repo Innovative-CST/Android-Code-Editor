@@ -43,7 +43,6 @@ public class MainActivity extends BaseActivity {
 
   private boolean isRequested;
   private MaterialAlertDialogBuilder MaterialDialog;
-  private TextView info;
   private LinearLayout main;
   private FirebaseAnalytics mFirebaseAnalytics;
 
@@ -55,9 +54,7 @@ public class MainActivity extends BaseActivity {
   }
 
   public void startActivtyLogic() {
-    info = findViewById(R.id.info);
     main = findViewById(R.id.main);
-    info.setVisibility(View.VISIBLE);
     main.setOnClickListener(
         new View.OnClickListener() {
           @Override
