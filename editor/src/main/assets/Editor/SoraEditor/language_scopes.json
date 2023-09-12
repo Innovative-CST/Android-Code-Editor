@@ -5,6 +5,7 @@
   "md": "text.html.markdown",
   "css": "source.css",
   "htm": "text.html.basic",
+  "kt": "source.kotlin",
   "html": "text.html.basic",
   "xml": "text.xml"
 }
