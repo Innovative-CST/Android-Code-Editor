@@ -35,8 +35,10 @@ public class LanguageModeHandler {
       return Language.Markdown;
     } else if (ext.equals("kt")) {
       return Language.Kt;
-    } else {
+    } else if (ext.equals("json")) {
       return Language.JSON;
+    } else {
+      return Language.UNKNOWN;
     }
   }
 }

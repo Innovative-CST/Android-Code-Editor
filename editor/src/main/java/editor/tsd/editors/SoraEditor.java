@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import editor.tsd.editors.sora.lang.textmate.AndroidCodeEditorTMLanguage;
 import editor.tsd.editors.sora.lang.textmate.provider.TextMateProvider;
 import editor.tsd.tools.EditorListeners;
+import editor.tsd.tools.Language;
 import editor.tsd.tools.Themes;
 import editor.tsd.widget.CodeEditorLayout;
 import io.github.rosemoe.sora.langs.textmate.TextMateColorScheme;
@@ -75,9 +76,11 @@ public class SoraEditor implements Editor {
 
   @Override
   public void setLanguageMode(String LanguageMode) {
-    editor.setEditorLanguage(
-        AndroidCodeEditorTMLanguage.create(
-            TextMateProvider.getLanguageScope(context, LanguageMode)));
+    if (!LanguageMode.equals(Language.UNKNOWN)) {
+      editor.setEditorLanguage(
+          AndroidCodeEditorTMLanguage.create(
+              TextMateProvider.getLanguageScope(context, LanguageMode)));
+    }
   }
 
   @Override
