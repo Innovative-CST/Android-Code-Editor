@@ -173,7 +173,7 @@ public class AceEditor implements Editor, ScaleGestureDetector.OnScaleGestureLis
         aceJSInterface.languageMode = "java";
         break;
       case Language.Kt:
-        aceJSInterface.languageMode = "kt";   
+        aceJSInterface.languageMode = "kotlin";   
         break;
       case Language.XML:
         aceJSInterface.languageMode = "xml";
