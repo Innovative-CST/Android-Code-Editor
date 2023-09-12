@@ -33,6 +33,8 @@ public class LanguageModeHandler {
       return Language.JavaScript;
     } else if (ext.equals("md")) {
       return Language.Markdown;
+    } else if (ext.equals("kt")) {
+      return Language.Kt;
     } else {
       return Language.JSON;
     }
