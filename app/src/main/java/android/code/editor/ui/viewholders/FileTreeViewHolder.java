@@ -115,6 +115,7 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
           (view) -> {
             switch (FileTypeHandler.getFileFormat(file.getAbsolutePath())) {
               case "java":
+              case "kt":  
               case "xml":
               case "html":
               case "htm":

@@ -57,6 +57,7 @@ public class FileTypeHandler {
       final File FinalFile = file;
       switch (getFileFormat(file.getAbsolutePath())) {
         case "java":
+        case "kt":  
         case "xml":
         case "html":
         case "htm":

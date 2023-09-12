@@ -32,6 +32,9 @@ public class FileIcon {
         case "java":
           imageview.setImageResource(R.drawable.ic_language_java);
           break;
+        case "kt":
+          imageview.setImageResource(R.drawable.ic_language_kotlin);   
+          break;
         case "xml":
           imageview.setImageResource(R.drawable.file_xml_box);
           break;

@@ -23,6 +23,12 @@
       "languageConfiguration": "Editor/SoraEditor/java/language-configuration.json"
     },
     {
+      "grammar": "Editor/SoraEditor/kotlin/syntaxes/Kotlin.tmLanguage.json",
+      "name": "kt",
+      "scopeName": "source.kt",
+      "languageConfiguration": "Editor/SoraEditor/kotlin/language-configuration.json"
+    }, 
+    {
       "grammar": "Editor/SoraEditor/javascript/syntaxes/JavaScript.tmLanguage.json",
       "name": "javascript",
       "scopeName": "source.js",

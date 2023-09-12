@@ -19,6 +19,7 @@ package editor.tsd.tools;
 
 public class Language {
   public static final String Java = "java";
+  public static final String Kt = "kt";
   public static final String JavaScript = "js";
   public static final String HTML = "html";
   public static final String CSS = "css";
