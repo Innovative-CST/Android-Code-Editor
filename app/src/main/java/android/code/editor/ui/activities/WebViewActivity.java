@@ -18,7 +18,6 @@
 package android.code.editor.ui.activities;
 
 import android.code.editor.R;
-import android.code.editor.common.utils.FileUtils;
 import android.code.editor.utils.Setting;
 import android.code.editor.utils.SimpleHttpServer;
 import android.code.editor.utils.Utils;
@@ -134,7 +133,9 @@ public class WebViewActivity extends BaseActivity {
           new SimpleHttpServer(
               8080,
               getIntent().getStringExtra("root"),
-              FileUtils.getLatSegmentOfFilePath(getIntent().getStringExtra("data")));
+              getIntent()
+                  .getStringExtra("data")
+                  .substring(getIntent().getStringExtra("root").length()));
       hoster.startServer();
       initialUrl = hoster.getLocalIpAddress();
       webview.loadUrl(initialUrl);
