@@ -17,6 +17,8 @@
 
 package editor.tsd.editors;
 
+import android.code.editor.common.utils.AssetsManager;
+import android.code.editor.common.utils.FileUtils;
 import android.content.Context;
 import android.view.ScaleGestureDetector;
 import android.view.ViewGroup;
@@ -27,6 +29,7 @@ import editor.tsd.tools.EditorListeners;
 import editor.tsd.tools.Language;
 import editor.tsd.tools.Themes;
 import editor.tsd.widget.CodeEditorLayout;
+import java.io.File;
 
 public class AceEditor implements Editor, ScaleGestureDetector.OnScaleGestureListener {
   public Context context;
@@ -35,6 +38,7 @@ public class AceEditor implements Editor, ScaleGestureDetector.OnScaleGestureLis
   public float fontSize = 8;
   private ScaleGestureDetector scaleGestureDetector;
   private EditorListeners listener;
+  public static final String AceEditorPath = File.separator + "AceEditor";
 
   public AceEditor(Context c) {
     context = c;
@@ -65,7 +69,12 @@ public class AceEditor implements Editor, ScaleGestureDetector.OnScaleGestureLis
     aceEditor.addJavascriptInterface(aceJSInterface, "aceEditor");
 
     // load editor file
-    aceEditor.loadUrl("file:///android_asset/Editor/Ace-Editor/AceEditor/index.html");
+    aceEditor.loadUrl(
+        "file://"
+            .concat(FileUtils.getDataDir(context))
+            .concat(AceEditorPath)
+            .concat(File.separator)
+            .concat("index.html"));
 
     scaleGestureDetector = new ScaleGestureDetector(context, this);
 
@@ -173,7 +182,7 @@ public class AceEditor implements Editor, ScaleGestureDetector.OnScaleGestureLis
         aceJSInterface.languageMode = "java";
         break;
       case Language.Kt:
-        aceJSInterface.languageMode = "kotlin";   
+        aceJSInterface.languageMode = "kotlin";
         break;
       case Language.XML:
         aceJSInterface.languageMode = "xml";
@@ -244,5 +253,25 @@ public class AceEditor implements Editor, ScaleGestureDetector.OnScaleGestureLis
         aceEditor.loadUrl("javascript:editor.navigateUp(1)");
       }
     }
+  }
+
+  public static void install(Context context) {
+    save_assets_folder(
+        context,
+        "Editor/Ace-Editor/AceEditor",
+        FileUtils.getDataDir(context).concat(AceEditorPath));
+    save_assets_folder(
+        context,
+        "Editor/Ace-Editor/AceEditor/js",
+        FileUtils.getDataDir(context).concat(AceEditorPath).concat("/js"));
+    save_assets_folder(
+        context,
+        "Editor/Ace-Editor/AceEditor/js/snippets",
+        FileUtils.getDataDir(context).concat(AceEditorPath).concat("/js/snippets"));
+  }
+
+  public static void save_assets_folder(
+      final Context context, final String _path, final String _save_path) {
+    new AssetsManager(context).saveFolder(_path, _save_path);
   }
 }

@@ -18,6 +18,7 @@
 package android.code.editor.ui.activities;
 
 import android.code.editor.R;
+import android.code.editor.common.utils.ColorUtils;
 import android.code.editor.common.utils.FileUtils;
 import android.code.editor.databinding.ActivityCodeEditorBinding;
 import android.code.editor.handlers.FileTypeHandler;
@@ -48,6 +49,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.unnamed.b.atv.model.TreeNode;
 import com.unnamed.b.atv.view.AndroidTreeView;
 import com.unnamed.b.atv.view.TreeNodeWrapperView;
+import editor.tsd.editors.ace.AceEditorColors;
 import editor.tsd.tools.EditorListeners;
 import editor.tsd.widget.CodeEditorLayout;
 import java.io.File;
@@ -68,6 +70,7 @@ public class CodeEditorActivity extends BaseActivity {
   public RecyclerView fileTab;
   public FileTabAdapter adapter;
   public ArrayList<FileTabDataItem> fileTabData = new ArrayList<FileTabDataItem>();
+  public AceEditorColors aceColors;
 
   public ActivityCodeEditorBinding binding;
 
@@ -161,6 +164,24 @@ public class CodeEditorActivity extends BaseActivity {
   }
 
   public void initActivity() {
+    aceColors = new AceEditorColors();
+    aceColors.setEditorBackground(
+        ColorUtils.materialIntToHexColor(this, com.google.android.material.R.attr.colorSurface));
+    aceColors.setActiveLineColor(
+        ColorUtils.materialIntToHexColor(
+            this, com.google.android.material.R.attr.colorSurfaceVariant));
+    aceColors.setGutterActiveLineColor(
+        ColorUtils.materialIntToHexColor(
+            this, com.google.android.material.R.attr.colorSurfaceVariant));
+    aceColors.setGutterBackground(
+        ColorUtils.materialIntToHexColor(
+            this, com.google.android.material.R.attr.colorSurface));
+    aceColors.setGutterTextColor(
+        ColorUtils.materialIntToHexColor(
+            this, com.google.android.material.R.attr.colorOnSurface));
+
+    aceColors.apply(this);
+
     fileTab = binding.fileTab;
     Toolbar toolbar = binding.toolbar;
     setSupportActionBar(toolbar);

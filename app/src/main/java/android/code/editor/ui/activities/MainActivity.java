@@ -32,12 +32,14 @@ import android.os.Environment;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import androidx.annotation.CallSuper;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import editor.tsd.editors.AceEditor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends BaseActivity {
 
@@ -69,6 +71,11 @@ public class MainActivity extends BaseActivity {
     bundle.putString(FirebaseAnalytics.Param.SCREEN_NAME, "MainActivity");
     bundle.putString(FirebaseAnalytics.Param.SCREEN_CLASS, "MainActivity");
     mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, bundle);
+    ExecutorService exec = Executors.newSingleThreadExecutor();
+    exec.execute(
+        () -> {
+          AceEditor.install(this);
+        });
   }
 
   public static boolean isStoagePermissionGranted(Context context) {

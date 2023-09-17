@@ -17,6 +17,9 @@
 
 package android.code.editor.common.utils;
 
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.net.Uri;
 import java.io.BufferedReader;
@@ -103,6 +106,18 @@ public class FileUtils {
           .equals(".".concat(format));
     } catch (Exception e) {
       return false;
+    }
+  }
+
+  public static String getDataDir(Context context) {
+    PackageManager pm = context.getPackageManager();
+    String packageName = context.getPackageName();
+    PackageInfo packageInfo;
+    try {
+      packageInfo = pm.getPackageInfo(packageName, 0);
+      return packageInfo.applicationInfo.dataDir;
+    } catch (PackageManager.NameNotFoundException e) {
+      return "";
     }
   }
 
