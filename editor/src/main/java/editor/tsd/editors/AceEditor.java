@@ -20,6 +20,7 @@ package editor.tsd.editors;
 import android.code.editor.common.utils.AssetsManager;
 import android.code.editor.common.utils.FileUtils;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.ScaleGestureDetector;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
@@ -48,6 +49,8 @@ public class AceEditor implements Editor, ScaleGestureDetector.OnScaleGestureLis
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
     aceEditor.setLayoutParams(aceEditor_LayoutParams);
+
+    aceEditor.setBackgroundColor(Color.TRANSPARENT);
 
     aceEditor.getSettings().setJavaScriptEnabled(true);
 

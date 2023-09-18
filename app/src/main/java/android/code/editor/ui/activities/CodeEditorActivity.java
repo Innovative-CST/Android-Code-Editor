@@ -165,20 +165,16 @@ public class CodeEditorActivity extends BaseActivity {
 
   public void initActivity() {
     aceColors = new AceEditorColors();
-    aceColors.setEditorBackground(
-        ColorUtils.materialIntToHexColor(this, com.google.android.material.R.attr.colorSurface));
+    aceColors.setEditorBackground("#FF000000");
     aceColors.setActiveLineColor(
         ColorUtils.materialIntToHexColor(
             this, com.google.android.material.R.attr.colorSurfaceVariant));
     aceColors.setGutterActiveLineColor(
         ColorUtils.materialIntToHexColor(
             this, com.google.android.material.R.attr.colorSurfaceVariant));
-    aceColors.setGutterBackground(
-        ColorUtils.materialIntToHexColor(
-            this, com.google.android.material.R.attr.colorSurface));
+    aceColors.setGutterBackground("#FF000000");
     aceColors.setGutterTextColor(
-        ColorUtils.materialIntToHexColor(
-            this, com.google.android.material.R.attr.colorOnSurface));
+        ColorUtils.materialIntToHexColor(this, com.google.android.material.R.attr.colorOnSurface));
 
     aceColors.apply(this);
 
