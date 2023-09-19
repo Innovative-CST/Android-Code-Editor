@@ -13,6 +13,8 @@ public class AceEditorColors {
 
   public void apply(Context context) {
     apply(context, "Editor/Ace-Editor/AceEditor/css/themes/monokai.css", "/css/themes/monokai.css");
+    apply(context, "Editor/Ace-Editor/AceEditor/css/themes/dracula.css", "/css/themes/dracula.css");
+    AceEditor.reinstallIndexFile(context);
   }
 
   public void apply(Context context, String cssPath, String finalPath) {

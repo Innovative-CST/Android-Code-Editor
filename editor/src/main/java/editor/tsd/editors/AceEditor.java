@@ -277,4 +277,14 @@ public class AceEditor implements Editor, ScaleGestureDetector.OnScaleGestureLis
       final Context context, final String _path, final String _save_path) {
     new AssetsManager(context).saveFolder(_path, _save_path);
   }
+
+  public static void reinstallIndexFile(Context context) {
+    String htmlText = FileUtils.readFileFromAssets(context.getAssets(), "Editor/Ace-Editor/AceEditor/index.html");
+    FileUtils.writeFile(
+        FileUtils.getDataDir(context)
+            .concat(AceEditorPath)
+            .concat(File.separator)
+            .concat("index.html"),
+        htmlText);
+  }
 }
