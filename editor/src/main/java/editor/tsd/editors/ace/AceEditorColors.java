@@ -20,6 +20,7 @@ public class AceEditorColors {
         context,
         "Editor/Ace-Editor/AceEditor/css/themes/crimson-editor.css",
         "/css/themes/crimson-editor.css");
+    apply(context, "Editor/Ace-Editor/AceEditor/css/themes/dawn.css", "/css/themes/dawn.css");
     AceEditor.reinstallIndexFile(context);
   }
 

@@ -1,0 +1,27 @@
+.ace-dawn {
+    /* Background */
+    /* Orginal Background */
+    /* background-color: #272822; */
+    background-color: ace_background;
+}
+
+.ace-dawn .ace_gutter {
+    /* line number background */
+    /* background: #2F3129; */
+    background: ace_gutter_background;
+    /* line number color */
+    /* color: #8F908A; */
+    color: ace_gutter_text_color;
+}
+
+.ace-dawn .ace_marker-layer .ace_active-line {
+    /* Active line */
+    /* background: #202020; */
+    background: ace_active_line;
+}
+
+.ace-dawn .ace_gutter-active-line {
+    /* Side bar active line color */
+    /* background-color: #272727; */
+    background-color: ace_gutter_active_line;
+}
