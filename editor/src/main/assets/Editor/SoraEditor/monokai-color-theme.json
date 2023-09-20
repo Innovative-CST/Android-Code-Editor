@@ -16,7 +16,7 @@
 		"list.dropBackground": "#414339",
 		"list.highlightForeground": "#f8f8f2",
 		"button.background": "#75715E",
-		"editor.background": "#272822",
+		"editor.background": "#00000000",
 		"editor.foreground": "#f8f8f2",
 		"selection.background": "#878b9180",
 		"editor.selectionHighlightBackground": "#575b6180",
@@ -52,10 +52,10 @@
 		"statusBar.debuggingBackground": "#75715E",
 		"statusBarItem.remoteBackground": "#AC6218",
 		"ports.iconRunningProcessForeground": "#ccccc7",
-		"activityBar.background": "#272822",
+		"activityBar.background": "#00000000",
 		"activityBar.foreground": "#f8f8f2",
 		"sideBar.background": "#1e1f1c",
-		"sideBarSectionHeader.background": "#272822",
+		"sideBarSectionHeader.background": "#00000000",
 		"menu.background": "#1e1f1c",
 		"menu.foreground": "#cccccc",
 		"pickerGroup.foreground": "#75715E",
@@ -64,21 +64,21 @@
 		"focusBorder": "#99947c",
 		"editorWidget.background": "#1e1f1c",
 		"debugToolBar.background": "#1e1f1c",
-		"diffEditor.insertedTextBackground": "#4b661680", // middle of #272822 and #a6e22e
-		"diffEditor.removedTextBackground": "#90274A70", // middle of #272822 and #f92672
-		"inputValidation.errorBackground": "#90274A", // middle of #272822 and #f92672
+		"diffEditor.insertedTextBackground": "#4b661680", // middle of #00000000 and #a6e22e
+		"diffEditor.removedTextBackground": "#90274A70", // middle of #00000000 and #f92672
+		"inputValidation.errorBackground": "#90274A", // middle of #00000000 and #f92672
 		"inputValidation.errorBorder": "#f92672",
-		"inputValidation.warningBackground": "#848528", // middle of #272822 and #e2e22e
+		"inputValidation.warningBackground": "#848528", // middle of #00000000 and #e2e22e
 		"inputValidation.warningBorder": "#e2e22e",
-		"inputValidation.infoBackground": "#546190", // middle of #272822 and #819aff
+		"inputValidation.infoBackground": "#546190", // middle of #00000000 and #819aff
 		"inputValidation.infoBorder": "#819aff",
 		"editorHoverWidget.background": "#414339",
 		"editorHoverWidget.border": "#75715E",
-		"editorSuggestWidget.background": "#272822",
+		"editorSuggestWidget.background": "#00000000",
 		"editorSuggestWidget.border": "#75715E",
 		"editorGroup.border": "#34352f",
 		"peekView.border": "#75715E",
-		"peekViewEditor.background": "#272822",
+		"peekViewEditor.background": "#00000000",
 		"peekViewResult.background": "#1e1f1c",
 		"peekViewTitle.background": "#1e1f1c",
 		"peekViewResult.selectionBackground": "#414339",
