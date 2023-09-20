@@ -364,7 +364,7 @@
 		// "scrollbarSlider.background": "",
 		// "scrollbarSlider.hoverBackground": "",
 		// Editor
-		"editor.background": "#FFFFFF",
+		"editor.background": "#00000000",
 		"editor.foreground": "#657B83",
 		"notebook.cellEditorBackground": "#F7F0E0",
 		"editorWidget.background": "#EEE8D5",
@@ -429,14 +429,14 @@
 		"editorGroupHeader.tabsBackground": "#D9D2C2",
 		// Workbench: Tabs
 		"tab.border": "#DDD6C1",
-		"tab.activeBackground": "#FFFFFF",
+		"tab.activeBackground": "#00000000",
 		"tab.inactiveForeground": "#586E75",
 		"tab.inactiveBackground": "#D3CBB7",
 		"tab.activeModifiedBorder": "#cb4b16",
 		// "tab.activeBackground": "",
 		// "tab.activeForeground": "",
 		// "tab.inactiveForeground": "",
-		"tab.lastPinnedBorder": "#FFFFFF",
+		"tab.lastPinnedBorder": "#00000000",
 		// Workbench: Activity Bar
 		"activityBar.background": "#DDD6C1",
 		"activityBar.foreground": "#584c27",
@@ -491,10 +491,10 @@
 		"terminal.ansiBrightBlue": "#839496",
 		"terminal.ansiBrightMagenta": "#6c71c4",
 		"terminal.ansiBrightCyan": "#93a1a1",
-		"terminal.ansiBrightWhite": "#FFFFFF",
+		"terminal.ansiBrightWhite": "#00000000",
 		// Set terminal background explicitly, otherwise selection becomes invisible when the
 		// terminal is in the side bar
-		"terminal.background": "#FFFFFF",
+		"terminal.background": "#00000000",
 		// Interactive Playground
 		"walkThrough.embeddedEditorBackground": "#00000014"
 	},
