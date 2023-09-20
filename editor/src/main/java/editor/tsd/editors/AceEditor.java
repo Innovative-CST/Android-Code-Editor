@@ -226,7 +226,7 @@ public class AceEditor implements Editor, ScaleGestureDetector.OnScaleGestureLis
         aceJSInterface.setTheme("clouds");
         break;
       case Themes.AceEditorTheme.Light.Crimeson_Editor:
-        aceJSInterface.setTheme("crimeson_editor");
+        aceJSInterface.setTheme("crimson_editor");
         break;
       case Themes.AceEditorTheme.Light.Dawn:
         aceJSInterface.setTheme("dawn");
