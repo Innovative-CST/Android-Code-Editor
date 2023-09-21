@@ -15,7 +15,7 @@
  *   along with Android Code Editor.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package android.code.editor.ui.dialogs;
+package android.code.editor.ui.dialogs.filemanager;
 
 import android.code.editor.R;
 import android.code.editor.ui.activities.FileManagerActivity;

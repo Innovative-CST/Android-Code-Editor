@@ -20,7 +20,7 @@ package android.code.editor.ui.adapters;
 import android.code.editor.R;
 import android.code.editor.handlers.FileTypeHandler;
 import android.code.editor.ui.activities.FileManagerActivity;
-import android.code.editor.ui.dialogs.DeleteFileDialog;
+import android.code.editor.ui.dialogs.filemanager.DeleteFileDialog;
 import android.code.editor.utils.FileIcon;
 import android.content.Context;
 import android.text.method.LinkMovementMethod;
