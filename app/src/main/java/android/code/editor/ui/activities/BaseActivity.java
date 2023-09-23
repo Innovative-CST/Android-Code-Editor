@@ -43,7 +43,6 @@ public class BaseActivity extends AppCompatActivity {
     }
     language = getAppliedLanguage();
     Log.e("BaseActivity", language);
-    refreshThemeStatusIfRequired();
     setLangugeMode();
     if (language.equals(Languages.Persian)) {
       getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
@@ -53,29 +52,8 @@ public class BaseActivity extends AppCompatActivity {
   @Override
   protected void onResume() {
     super.onResume();
-    refreshThemeStatusIfRequired();
     setLangugeMode();
     refreshActivityIfRequired();
-  }
-
-  public void refreshThemeStatusIfRequired() {
-    switch (SettingActivity.getThemeTypeInInt(this)) {
-      case 0:
-        if (AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_NO) {
-          AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-        break;
-      case 1:
-        if (AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_YES) {
-          AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }
-        break;
-      case 2:
-        if (AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM) {
-          AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-        }
-        break;
-    }
   }
 
   public void refreshActivityIfRequired() {

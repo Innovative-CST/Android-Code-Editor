@@ -21,11 +21,13 @@ import android.app.AlarmManager;
 import android.app.Application;
 import android.app.PendingIntent;
 import android.code.editor.ui.activities.DebugActivity;
+import android.code.editor.ui.activities.SettingActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Process;
 import android.util.Log;
 import android.widget.Toast;
+import androidx.appcompat.app.AppCompatDelegate;
 import com.google.android.material.color.DynamicColors;
 import editor.tsd.editors.sora.lang.textmate.provider.TextMateProvider;
 import io.github.rosemoe.sora.langs.textmate.registry.FileProviderRegistry;
@@ -68,6 +70,23 @@ public class MyApplication extends Application {
             uncaughtExceptionHandler.uncaughtException(thread, throwable);
           }
         });
+    switch (SettingActivity.getThemeTypeInInt(this)) {
+      case 0:
+        if (AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_NO) {
+          AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+        break;
+      case 1:
+        if (AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_YES) {
+          AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        break;
+      case 2:
+        if (AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM) {
+          AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        }
+        break;
+    }
     super.onCreate();
     FileProviderRegistry.getInstance().addFileProvider(new AssetsFileResolver(getAssets()));
     try {
