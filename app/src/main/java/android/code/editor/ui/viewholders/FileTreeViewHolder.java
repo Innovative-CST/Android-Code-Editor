@@ -19,6 +19,7 @@ package android.code.editor.ui.viewholders;
 
 import android.code.editor.R;
 import android.code.editor.common.utils.FileUtils;
+import android.code.editor.ui.bottomsheet.editor.FileOperationBottomSheet;
 import android.code.editor.utils.FileIcon;
 import android.code.editor.handlers.FileTypeHandler;
 import android.code.editor.ui.activities.CodeEditorActivity;
@@ -115,7 +116,7 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
           (view) -> {
             switch (FileTypeHandler.getFileFormat(file.getAbsolutePath())) {
               case "java":
-              case "kt":  
+              case "kt":
               case "xml":
               case "html":
               case "htm":
@@ -132,6 +133,15 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<File> {
           });
     }
     path.setText(FileUtils.getLatSegmentOfFilePath(file.getAbsolutePath()));
+    view.setOnLongClickListener(
+        new View.OnLongClickListener() {
+          @Override
+          public boolean onLongClick(View arg0) {
+            FileOperationBottomSheet fileOperation = new FileOperationBottomSheet(file, editorActivity, node);
+            fileOperation.show(editorActivity.getSupportFragmentManager(), "ModalBottomSheet");
+            return false;
+          }
+        });
     return view;
   }
 
