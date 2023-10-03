@@ -456,7 +456,7 @@ public class CodeEditorActivity extends BaseActivity {
         if (codeEditor != null) {
           if (FileUtils.getPathFormat(openedFile.getAbsolutePath()).equals("md")) {
             Intent i = new Intent();
-            i.setClass(CodeEditorActivity.this, MarkdownViewer.class);
+            i.setClass(CodeEditorActivity.this, MarkdownViewerActivity.class);
             i.putExtra("type", "file");
             i.putExtra("style", "github");
             i.putExtra("title", FileUtils.getLatSegmentOfFilePath(openedFile.getAbsolutePath()));

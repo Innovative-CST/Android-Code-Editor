@@ -2,7 +2,7 @@ package android.code.editor.ui.adapters;
 
 import android.code.editor.R;
 import android.code.editor.ui.activities.ContributorsActivity;
-import android.code.editor.ui.activities.MarkdownViewer;
+import android.code.editor.ui.activities.MarkdownViewerActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -66,7 +66,7 @@ public class ContributorsListAdapter
           .setOnClickListener(
               (view) -> {
                 Intent i = new Intent();
-                i.setClass(mContributorsActivity, MarkdownViewer.class);
+                i.setClass(mContributorsActivity, MarkdownViewerActivity.class);
                 i.putExtra("type", "url");
                 i.putExtra("style", "github");
                 i.putExtra("title", _data.get(_position).get("Name").toString());

@@ -25,7 +25,7 @@ import br.tiagohm.markdownview.MarkdownView;
 import br.tiagohm.markdownview.css.styles.Github;
 import java.io.File;
 
-public class MarkdownViewer extends BaseActivity {
+public class MarkdownViewerActivity extends BaseActivity {
 
   public MarkdownView markdown_view;
 

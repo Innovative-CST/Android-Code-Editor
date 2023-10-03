@@ -48,7 +48,7 @@
             android:name=".ui.activities.SettingActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.activities.MarkdownViewer"
+            android:name=".ui.activities.MarkdownViewerActivity"
             android:exported="true" />
         <activity
             android:name=".ui.activities.LicenseActivity"
