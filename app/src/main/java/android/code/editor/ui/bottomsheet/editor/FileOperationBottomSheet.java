@@ -19,7 +19,9 @@ package android.code.editor.ui.bottomsheet.editor;
 
 import android.code.editor.databinding.LayoutFileOperationCodeEditorBinding;
 import android.code.editor.interfaces.PathCreationListener;
+import android.code.editor.listeners.OnPathDeletedListener;
 import android.code.editor.ui.activities.CodeEditorActivity;
+import android.code.editor.ui.dialogs.editor.DeleteFileDialog;
 import android.code.editor.ui.dialogs.editor.FileCreatorDialog;
 import android.code.editor.ui.viewholders.FileTreeViewHolder;
 import android.os.Bundle;
@@ -68,6 +70,21 @@ public class FileOperationBottomSheet extends BottomSheetDialogFragment {
           });
     }
 
+    binding.deleteFile.setOnClickListener(
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View arg0) {
+            new DeleteFileDialog(
+                activity,
+                path,
+                new OnPathDeletedListener() {
+                  @Override
+                  public void OnPathDeleted(File path) {
+                    node.getParent().deleteChild(node);
+                  }
+                });
+          }
+        });
     return binding.getRoot();
   }
 }

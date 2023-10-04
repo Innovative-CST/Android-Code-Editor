@@ -35,5 +35,29 @@
             android:textColor="?attr/colorOnSurfaceVariant" />
 
     </LinearLayout>
+    
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:background="@drawable/ripple_on_color_surface"
+        android:padding="8dp"
+        android:id="@+id/delete_file">
+
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:padding="8dp"
+            android:tint="?attr/colorOnSurfaceVariant"
+            android:src="@drawable/delete" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:padding="8dp"
+            android:text="@string/delete"
+            android:textColor="?attr/colorOnSurfaceVariant" />
+
+    </LinearLayout>
 
 </LinearLayout>
