@@ -94,6 +94,7 @@ public class FileManagerActivity extends BaseActivity {
       menu.add(R.string.new_project);
       menu.add(R.string.open_source_licenses);
       menu.add(R.string.contributors);
+      menu.add(R.string.terminal);
       menu.add(R.string.settings);
 
       popupMenu.setOnMenuItemClickListener(
@@ -131,6 +132,13 @@ public class FileManagerActivity extends BaseActivity {
                 Intent license = new Intent();
                 license.setClass(FileManagerActivity.this, LicenseActivity.class);
                 startActivity(license);
+              } else if (title.equals(getString(R.string.terminal))) {
+                Intent terminal = new Intent();
+                if (currentDir != null) {
+                  terminal.putExtra("path", currentDir);
+                }
+                terminal.setClass(FileManagerActivity.this, TerminalActivity.class);
+                startActivity(terminal);
               }
               return true;
             }
@@ -173,7 +181,7 @@ public class FileManagerActivity extends BaseActivity {
     listMap.clear();
     currentDir = path;
     ExecutorService loadFileList = Executors.newSingleThreadExecutor();
-        
+
     loadFileList.execute(
         new Runnable() {
           @Override

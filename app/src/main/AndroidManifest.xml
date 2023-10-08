@@ -56,6 +56,9 @@
         <activity
             android:name=".ui.activities.WebViewActivity"
             android:exported="true" />
+        <activity
+            android:name=".ui.activities.TerminalActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

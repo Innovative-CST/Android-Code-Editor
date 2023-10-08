@@ -472,6 +472,13 @@ public class CodeEditorActivity extends BaseActivity {
           }
         }
       }
+    } else if (arg0.getItemId() == R.id.terminal) {
+      Intent i = new Intent();
+      if (DrawerListDir != null) {
+        i.putExtra("path", DrawerListDir.getAbsolutePath());
+      }
+      i.setClass(CodeEditorActivity.this, TerminalActivity.class);
+      startActivity(i);
     }
 
     return super.onOptionsItemSelected(arg0);

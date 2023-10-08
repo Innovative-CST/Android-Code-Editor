@@ -57,7 +57,7 @@ android {
     }
     defaultConfig {
         applicationId "android.code.editor"
-        minSdk 21
+        minSdk 24
         targetSdk 28
         versionCode 2
         versionName "1.0-Snapshot-" + getCommitHash()
@@ -112,13 +112,14 @@ dependencies {
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'com.google.code.gson:gson:2.8.7'
     implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+    implementation 'com.termux.termux-app:terminal-view:0.117'
+    implementation 'com.termux.termux-app:terminal-emulator:0.117'
     implementation 'org.nanohttpd:nanohttpd:2.3.0'
     def editorGroupId = "io.github.Rosemoe.sora-editor"
     implementation platform("$editorGroupId:bom:0.22.0")
     implementation "$editorGroupId:editor"
     implementation "$editorGroupId:language-textmate"
     implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
-    
     if (analyticsEnabled) {
         if (useEnvForFirebase) {
             new File("$projectDir/google-services.json").text = secrets;
