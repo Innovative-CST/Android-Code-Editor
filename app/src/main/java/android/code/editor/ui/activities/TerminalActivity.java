@@ -27,6 +27,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import androidx.annotation.MainThread;
 import com.blankj.utilcode.util.KeyboardUtils;
 import com.termux.terminal.TerminalEmulator;
 import com.termux.terminal.TerminalSession;
@@ -38,6 +39,7 @@ public class TerminalActivity extends BaseActivity
 
   private ActivityTerminalBinding binding;
   private String cwd;
+  private TerminalSession session;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +61,15 @@ public class TerminalActivity extends BaseActivity
     binding.terminalView.setTextSize(28);
     String[] env = {};
     String[] argsList = {};
-    binding.terminalView.attachSession(
+    session =
         new TerminalSession(
             "/system/bin/sh",
             cwd,
             env,
             argsList,
             TerminalEmulator.DEFAULT_TERMINAL_CURSOR_STYLE,
-            this));
+            this);
+    binding.terminalView.attachSession(session);
     binding.terminalView.setTerminalViewClient(this);
   }
 
@@ -106,6 +109,11 @@ public class TerminalActivity extends BaseActivity
 
   @Override
   public boolean onKeyDown(int keyCode, KeyEvent e, TerminalSession session) {
+    if (!session.isRunning()) {
+      if (e.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+        finish();
+      }
+    }
     return false;
   }
 
@@ -180,4 +188,12 @@ public class TerminalActivity extends BaseActivity
 
   @Override
   public void onClipboardText(TerminalSession arg0, String arg1) {}
+
+  @Override
+  @MainThread
+  public void onBackPressed() {
+    if (!session.isRunning()) {
+      super.onBackPressed();
+    }
+  }
 }
