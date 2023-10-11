@@ -20,9 +20,8 @@ It is the beginning of this app and I hope it will available soon for users.
 ## WARNING
 Please keep a backup of files that you are trying to edit with Android Code Editor.
 
-## Discord
-Join our discord server to keep contact us about Android Code Editor.
-
+## Social
+[![Telegram](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkXsL--BFzZ5vyYw-BhLulizfzWSjeVmzIJA&usqp=CAU)](https://t.me/android_code_editor)
 [![Join our discord](https://invidget.switchblade.xyz/RM5qaZs4kd)](https://discord.gg/RM5qaZs4kd)
 
 ### TODO
