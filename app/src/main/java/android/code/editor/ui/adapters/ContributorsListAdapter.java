@@ -66,15 +66,21 @@ public class ContributorsListAdapter
   public void onBindViewHolder(ViewHolder _holder, final int _position) {
     View _view = _holder.itemView;
     profile = _view.findViewById(R.id.profile);
-    MultiTransformation multi = new MultiTransformation<Bitmap>(new CircleCrop());
-    Glide.with(mContributorsActivity)
-        .load(Uri.parse(_data.get(_position).get("Image").toString()))
-        .thumbnail(0.10F)
-        .into(profile);
+    if (_data.get(_position).containsKey("Image")) {
+      MultiTransformation multi = new MultiTransformation<Bitmap>(new CircleCrop());
+      Glide.with(mContributorsActivity)
+          .load(Uri.parse(_data.get(_position).get("Image").toString()))
+          .thumbnail(0.10F)
+          .into(profile);
+    }
     name = _view.findViewById(R.id.name);
     description = _view.findViewById(R.id.description);
-    name.setText(_data.get(_position).get("Name").toString());
-    description.setText(_data.get(_position).get("Description").toString());
+    if (_data.get(_position).containsKey("Name")) {
+      name.setText(_data.get(_position).get("Name").toString());
+    }
+    if (_data.get(_position).containsKey("Description")) {
+      description.setText(_data.get(_position).get("Description").toString());
+    }
     _view.findViewById(R.id.infoInMarkDown).setVisibility(View.GONE);
     if (_data.get(_position).containsKey("markdownUrl")) {
       _view.findViewById(R.id.infoInMarkDown).setVisibility(View.VISIBLE);
